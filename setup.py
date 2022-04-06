@@ -6,7 +6,7 @@ with open("README.rst", "r") as readme_file:
 requirements = []
 
 setup(
-    name="bentoncounty",
+    name="bentoncounty_gistools",
     version="0.0.1",
     author="Erik Rose",
     author_email="erik.w.rose@gmail.com",
