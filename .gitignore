@@ -1,5 +1,5 @@
 gis
 tags
-bentoncounty_gistools.egg-info
+*.egg-info
 dist
 build
