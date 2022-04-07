@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bentoncounty_gistools.bentoncounty_gistools &mdash; Benton County GIS Tools  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+</head>
+
+<body class="wy-body-for-nav">
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Benton County GIS Tools
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../bentoncounty_gistools.html">bentoncounty_gistools package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">bentoncounty_gistools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Benton County GIS Tools</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>bentoncounty_gistools.bentoncounty_gistools</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+
+  <h1>Source code for bentoncounty_gistools.bentoncounty_gistools</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">from</span> <span class="nn">arcgis.mapping</span> <span class="kn">import</span> <span class="n">MapServiceLayer</span>
+
+
+<div class="viewcode-block" id="layer_urls"><a class="viewcode-back" href="../../bentoncounty_gistools.html#bentoncounty_gistools.bentoncounty_gistools.layer_urls">[docs]</a><span class="k">def</span> <span class="nf">layer_urls</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;List service layer urls.</span>
+
+<span class="sd">    :param item: Service with target layers.</span>
+<span class="sd">    :type kind: ArcGISFeatureLayer</span>
+<span class="sd">    :return: A list of urls for layers in the service.</span>
+<span class="sd">    :rtype: list[str]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">urls</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">lyr</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">layers</span><span class="p">:</span>
+        <span class="n">urls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lyr</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">urls</span></div>
+
+
+<div class="viewcode-block" id="create_layer_id"><a class="viewcode-back" href="../../bentoncounty_gistools.html#bentoncounty_gistools.bentoncounty_gistools.create_layer_id">[docs]</a><span class="k">def</span> <span class="nf">create_layer_id</span><span class="p">(</span><span class="n">layerIndex</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate random ids for layers. Copied verbatim from https://community.esri.com/t5/arcgis-api-for-python-questions/python-api-add-group-layer-to-webmap/td-p/1112126.</span>
+
+<span class="sd">    To build a web map from a published service, we generate feature layers pointed to each service. Each feature layer requires a unique layer id, produced by this function.</span>
+
+<span class="sd">    :param layerIndex: Layer index number.</span>
+<span class="sd">    :return: A randomized string to serve as a unique id.</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">digits</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">11</span><span class="p">))</span>
+        <span class="o">+</span> <span class="s2">&quot;-layer-&quot;</span>
+        <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">layerIndex</span><span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+<span class="c1"># generate feature class data for layer</span>
+<div class="viewcode-block" id="fc_gen"><a class="viewcode-back" href="../../bentoncounty_gistools.html#bentoncounty_gistools.bentoncounty_gistools.fc_gen">[docs]</a><span class="k">def</span> <span class="nf">fc_gen</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    To create group layers, we wrap each service in a feature layer. This function formats the feature layer based upon the service layer.</span>
+
+<span class="sd">    :param layer: Source for feature layer.</span>
+<span class="sd">    :type layer: MapServiceLayer</span>
+<span class="sd">    :param opacity: Opacity of feature layer.</span>
+<span class="sd">    :type opacity: float</span>
+<span class="sd">    :return: Feature layer data for map service layer.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fc_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">fc_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">create_layer_id</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">))})</span>
+    <span class="n">fc_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">layer</span><span class="o">.</span><span class="n">url</span><span class="p">})</span>
+    <span class="n">fc_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">layer</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">name</span><span class="p">})</span>
+    <span class="n">fc_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;itemId&quot;</span><span class="p">:</span> <span class="n">layer</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">serviceItemId</span><span class="p">})</span>
+    <span class="n">fc_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;layerType&quot;</span><span class="p">:</span> <span class="s2">&quot;ArcGISFeatureLayer&quot;</span><span class="p">})</span>
+    <span class="n">fc_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;opacity&quot;</span><span class="p">:</span> <span class="n">opacity</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">fc_dict</span></div>
+
+
+<div class="viewcode-block" id="add_nfi"><a class="viewcode-back" href="../../bentoncounty_gistools.html#bentoncounty_gistools.bentoncounty_gistools.add_nfi">[docs]</a><span class="k">def</span> <span class="nf">add_nfi</span><span class="p">(</span><span class="n">project_map</span><span class="p">,</span> <span class="n">service</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Updates a web mab to include the natural features inventory.</span>
+
+<span class="sd">    :param project_map: The web map to update with the NFI.</span>
+<span class="sd">    :param service: The natural features inventory feature collection service.</span>
+<span class="sd">    :return: None (modifies project_map)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">urls</span> <span class="o">=</span> <span class="n">layer_urls</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
+    <span class="n">urls</span>
+
+    <span class="c1"># load layers for grouping</span>
+    <span class="c1"># streams layer</span>
+    <span class="n">streams</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># Features</span>
+    <span class="c1">## significant vegetation</span>
+    <span class="c1"># protected oak savanna</span>
+    <span class="n">oak_savanna</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># high protection significant vegetation</span>
+    <span class="n">inc_veg_hi_1</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">inc_veg_hi_2</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+    <span class="n">inc_veg_hi_3</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+    <span class="n">inc_veg_hi_4</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+    <span class="n">inc_veg_hi_5</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+    <span class="n">inc_veg_hi_6</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+    <span class="n">inc_veg_hi_7</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span>
+    <span class="n">inc_veg_hi_8</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span>
+    <span class="n">inc_veg_hi_9</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span>
+
+    <span class="c1"># partial protection significant vegetation</span>
+    <span class="n">inc_veg_lo_1</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">11</span><span class="p">])</span>
+    <span class="n">inc_veg_lo_2</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">12</span><span class="p">])</span>
+    <span class="n">inc_veg_lo_3</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">13</span><span class="p">])</span>
+    <span class="n">inc_veg_lo_4</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">14</span><span class="p">])</span>
+    <span class="n">inc_veg_lo_5</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">15</span><span class="p">])</span>
+    <span class="n">inc_veg_lo_6</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">16</span><span class="p">])</span>
+    <span class="n">inc_veg_lo_7</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">17</span><span class="p">])</span>
+
+    <span class="c1">## Riparian Areas</span>
+    <span class="c1"># top-of-bank stream buffers</span>
+    <span class="n">buff_50</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">18</span><span class="p">])</span>
+    <span class="n">buff_75</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">19</span><span class="p">])</span>
+    <span class="n">buff_100</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">20</span><span class="p">])</span>
+    <span class="n">buff_120</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">21</span><span class="p">])</span>
+    <span class="n">buff_downtown</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">22</span><span class="p">])</span>
+
+    <span class="c1"># Wetlands Within Riparian Adjacent Areas - no buffer</span>
+    <span class="n">wetlands_rip</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">23</span><span class="p">])</span>
+
+    <span class="c1">## Systems-Critical Wetlands</span>
+    <span class="c1"># Locally Significant Wetlands</span>
+    <span class="n">wetlands_sig</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">24</span><span class="p">])</span>
+
+    <span class="c1">## Other Wetlands</span>
+    <span class="c1"># DSL Wetlands (notify if activities within 25ft)</span>
+    <span class="n">wetlands_dsl</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">25</span><span class="p">])</span>
+
+    <span class="c1"># Hazards</span>
+    <span class="c1">## Flooding</span>
+    <span class="c1"># 0.2-Foot Floodway</span>
+    <span class="n">floodway</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">26</span><span class="p">])</span>
+    <span class="c1"># Willamette, Marys, Mill Race</span>
+    <span class="n">flood_will</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">27</span><span class="p">])</span>
+    <span class="c1"># Dixon</span>
+    <span class="n">flood_dixon</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">28</span><span class="p">])</span>
+    <span class="c1"># Dunawi</span>
+    <span class="n">flood_dunawi</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">29</span><span class="p">])</span>
+    <span class="c1"># Jackson Frazier</span>
+    <span class="n">flood_jackson</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">30</span><span class="p">])</span>
+    <span class="c1"># Lewisburg</span>
+    <span class="n">flood_lewisburg</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">31</span><span class="p">])</span>
+    <span class="c1"># Oak Creek</span>
+    <span class="n">flood_oak</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">32</span><span class="p">])</span>
+    <span class="c1"># Sequoia</span>
+    <span class="n">flood_sequoia</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">33</span><span class="p">])</span>
+    <span class="c1"># Village Green</span>
+    <span class="n">flood_village</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">34</span><span class="p">])</span>
+
+    <span class="c1">## Landslide Debris Runout Areas</span>
+    <span class="c1"># Confined Channel</span>
+    <span class="n">runout_closed</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">35</span><span class="p">])</span>
+    <span class="c1"># Open Channel</span>
+    <span class="n">runout_open</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">36</span><span class="p">])</span>
+
+    <span class="c1">## Landslide Risk</span>
+    <span class="c1"># Landslides Risk</span>
+    <span class="n">landslide</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">37</span><span class="p">])</span>
+
+    <span class="c1">## Steep Slopes</span>
+    <span class="c1"># Percent Slope</span>
+    <span class="n">steep_slope</span> <span class="o">=</span> <span class="n">MapServiceLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="mi">38</span><span class="p">])</span>
+
+    <span class="c1"># format as feature layer for grouping</span>
+    <span class="n">stream</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">streams</span><span class="p">)</span>
+    <span class="n">oaksavanna</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">oak_savanna</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+
+    <span class="c1"># high protection significant vegetation</span>
+    <span class="n">incveg_hi1</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">inc_veg_hi_1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">incveg_hi2</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">inc_veg_hi_2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">incveg_hi3</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">inc_veg_hi_3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">incveg_hi4</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">inc_veg_hi_4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">incveg_hi5</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">inc_veg_hi_5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">incveg_hi6</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">inc_veg_hi_6</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">incveg_hi7</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">inc_veg_hi_7</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">incveg_hi8</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">inc_veg_hi_8</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">incveg_hi9</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">inc_veg_hi_9</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+
+    <span class="c1"># partial protection significant vegetation</span>
+    <span class="n">incveg_lo1</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">inc_veg_lo_1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">incveg_lo2</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">inc_veg_lo_2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">incveg_lo3</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">inc_veg_lo_3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">incveg_lo4</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">inc_veg_lo_4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">incveg_lo5</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">inc_veg_lo_5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">incveg_lo6</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">inc_veg_lo_6</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">incveg_lo7</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">inc_veg_lo_7</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+
+    <span class="c1">## Riparian Areas</span>
+    <span class="n">buff50</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">buff_50</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">buff75</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">buff_75</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">buff100</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">buff_100</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">buff120</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">buff_120</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">buffdown</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">buff_downtown</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">wetlandsrip</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">wetlands_rip</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+
+    <span class="c1">## Systems-Critical Wetlands</span>
+    <span class="n">wetlandssig</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">wetlands_sig</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+    <span class="c1">## Other Wetlands</span>
+    <span class="n">wetlandsdsl</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">wetlands_dsl</span><span class="p">,</span> <span class="mf">0.19</span><span class="p">)</span>
+
+    <span class="c1"># Hazards</span>
+    <span class="c1">## Flooding</span>
+    <span class="n">flood</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">floodway</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">floodwill</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">flood_will</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">flooddixon</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">flood_dixon</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">flooddunawi</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">flood_dunawi</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">floodjackson</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">flood_jackson</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">floodlewisburg</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">flood_lewisburg</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">floodoak</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">flood_oak</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">floodsequoia</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">flood_sequoia</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">floodvillage</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">flood_village</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+
+    <span class="n">runoutclosed</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">runout_closed</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">runoutopen</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">runout_open</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">landsliderisk</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">landslide</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">steepslope</span> <span class="o">=</span> <span class="n">fc_gen</span><span class="p">(</span><span class="n">steep_slope</span><span class="p">,</span> <span class="mf">0.19</span><span class="p">)</span>
+
+    <span class="c1"># define layer groups for web map</span>
+    <span class="n">high_protection</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">create_layer_id</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)),</span>
+        <span class="s2">&quot;layers&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;layerType&quot;</span><span class="p">:</span> <span class="s2">&quot;GroupLayer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;High Protection&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">partial_protection</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">create_layer_id</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)),</span>
+        <span class="s2">&quot;layers&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;layerType&quot;</span><span class="p">:</span> <span class="s2">&quot;GroupLayer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Partial Protection&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">incentive_vegetation</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">create_layer_id</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)),</span>
+        <span class="s2">&quot;layers&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;layerType&quot;</span><span class="p">:</span> <span class="s2">&quot;GroupLayer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Incentive Vegetation&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">significant_vegetation</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">create_layer_id</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)),</span>
+        <span class="s2">&quot;layers&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;layerType&quot;</span><span class="p">:</span> <span class="s2">&quot;GroupLayer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Significant Vegetation&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">riparian_areas</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">create_layer_id</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)),</span>
+        <span class="s2">&quot;layers&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;layerType&quot;</span><span class="p">:</span> <span class="s2">&quot;GroupLayer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Riparian Areas&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">wetlands_critical</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">create_layer_id</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)),</span>
+        <span class="s2">&quot;layers&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;layerType&quot;</span><span class="p">:</span> <span class="s2">&quot;GroupLayer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Systems-Critical Wetlands&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">wetlands_other</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">create_layer_id</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)),</span>
+        <span class="s2">&quot;layers&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;layerType&quot;</span><span class="p">:</span> <span class="s2">&quot;GroupLayer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Other Wetlands&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">features</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">create_layer_id</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)),</span>
+        <span class="s2">&quot;layers&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;layerType&quot;</span><span class="p">:</span> <span class="s2">&quot;GroupLayer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Features&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">flooding</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">create_layer_id</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)),</span>
+        <span class="s2">&quot;layers&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;layerType&quot;</span><span class="p">:</span> <span class="s2">&quot;GroupLayer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Flooding&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">runout_areas</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">create_layer_id</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)),</span>
+        <span class="s2">&quot;layers&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;layerType&quot;</span><span class="p">:</span> <span class="s2">&quot;GroupLayer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Landslide Debris Runout Areas&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">steep_slopes</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">create_layer_id</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)),</span>
+        <span class="s2">&quot;layers&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;layerType&quot;</span><span class="p">:</span> <span class="s2">&quot;GroupLayer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Steep Slopes&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">hazards</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">create_layer_id</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)),</span>
+        <span class="s2">&quot;layers&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;layerType&quot;</span><span class="p">:</span> <span class="s2">&quot;GroupLayer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Hazards&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">nfi_group</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">create_layer_id</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)),</span>
+        <span class="s2">&quot;layers&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;layerType&quot;</span><span class="p">:</span> <span class="s2">&quot;GroupLayer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Natural Features Inventory&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">high_protection</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incveg_hi9</span><span class="p">)</span>
+    <span class="n">high_protection</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incveg_hi8</span><span class="p">)</span>
+    <span class="n">high_protection</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incveg_hi7</span><span class="p">)</span>
+    <span class="n">high_protection</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incveg_hi6</span><span class="p">)</span>
+    <span class="n">high_protection</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incveg_hi5</span><span class="p">)</span>
+    <span class="n">high_protection</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incveg_hi4</span><span class="p">)</span>
+    <span class="n">high_protection</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incveg_hi3</span><span class="p">)</span>
+    <span class="n">high_protection</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incveg_hi2</span><span class="p">)</span>
+    <span class="n">high_protection</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incveg_hi1</span><span class="p">)</span>
+
+    <span class="n">partial_protection</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incveg_lo7</span><span class="p">)</span>
+    <span class="n">partial_protection</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incveg_lo6</span><span class="p">)</span>
+    <span class="n">partial_protection</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incveg_lo5</span><span class="p">)</span>
+    <span class="n">partial_protection</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incveg_lo4</span><span class="p">)</span>
+    <span class="n">partial_protection</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incveg_lo3</span><span class="p">)</span>
+    <span class="n">partial_protection</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incveg_lo2</span><span class="p">)</span>
+    <span class="n">partial_protection</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incveg_lo1</span><span class="p">)</span>
+
+    <span class="n">incentive_vegetation</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">partial_protection</span><span class="p">)</span>
+    <span class="n">incentive_vegetation</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">high_protection</span><span class="p">)</span>
+    <span class="n">significant_vegetation</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incentive_vegetation</span><span class="p">)</span>
+    <span class="n">significant_vegetation</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">oaksavanna</span><span class="p">)</span>
+
+    <span class="n">riparian_areas</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wetlandsrip</span><span class="p">)</span>
+    <span class="n">riparian_areas</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buffdown</span><span class="p">)</span>
+    <span class="n">riparian_areas</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buff120</span><span class="p">)</span>
+    <span class="n">riparian_areas</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buff100</span><span class="p">)</span>
+    <span class="n">riparian_areas</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buff75</span><span class="p">)</span>
+    <span class="n">riparian_areas</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buff50</span><span class="p">)</span>
+
+    <span class="n">wetlands_critical</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wetlandssig</span><span class="p">)</span>
+    <span class="n">wetlands_other</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wetlandsdsl</span><span class="p">)</span>
+
+    <span class="n">features</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wetlands_other</span><span class="p">)</span>
+    <span class="n">features</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wetlands_critical</span><span class="p">)</span>
+    <span class="n">features</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">riparian_areas</span><span class="p">)</span>
+    <span class="n">features</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">significant_vegetation</span><span class="p">)</span>
+
+    <span class="n">flooding</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">floodvillage</span><span class="p">)</span>
+    <span class="n">flooding</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">floodsequoia</span><span class="p">)</span>
+    <span class="n">flooding</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">floodoak</span><span class="p">)</span>
+    <span class="n">flooding</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">floodlewisburg</span><span class="p">)</span>
+    <span class="n">flooding</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">floodjackson</span><span class="p">)</span>
+    <span class="n">flooding</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">flooddunawi</span><span class="p">)</span>
+    <span class="n">flooding</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">flooddixon</span><span class="p">)</span>
+    <span class="n">flooding</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">floodwill</span><span class="p">)</span>
+    <span class="n">flooding</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">flood</span><span class="p">)</span>
+
+    <span class="n">runout_areas</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">runoutclosed</span><span class="p">)</span>
+    <span class="n">runout_areas</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">runoutopen</span><span class="p">)</span>
+    <span class="n">steep_slopes</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">steepslope</span><span class="p">)</span>
+
+    <span class="n">hazards</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">steepslope</span><span class="p">)</span>
+    <span class="n">hazards</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">landsliderisk</span><span class="p">)</span>
+    <span class="n">hazards</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">runout_areas</span><span class="p">)</span>
+    <span class="n">hazards</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">flooding</span><span class="p">)</span>
+
+    <span class="n">nfi_group</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hazards</span><span class="p">)</span>
+    <span class="n">nfi_group</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+    <span class="n">nfi_group</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
+
+    <span class="n">map_def</span> <span class="o">=</span> <span class="n">project_map</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+    <span class="n">map_def</span><span class="p">[</span><span class="s2">&quot;operationalLayers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nfi_group</span><span class="p">)</span>
+    <span class="n">project_map</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">map_def</span><span class="p">)})</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Erik Rose.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+</body>
+</html>

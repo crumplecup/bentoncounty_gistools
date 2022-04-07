@@ -6,7 +6,13 @@
 Welcome to Benton County GIS Tools's documentation!
 ===================================================
 
+Function definitions are in :doc:'bentoncounty_gistools' or :doc:'modules'.
+Check out the :doc:`usage` section for further information.
+
 .. toctree::
+   bentoncounty_gistools
+   modules
+   usage
    :maxdepth: 2
    :caption: Contents:
 

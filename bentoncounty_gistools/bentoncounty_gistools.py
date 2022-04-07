@@ -6,11 +6,10 @@ from arcgis.mapping import MapServiceLayer
 def layer_urls(item):
     """List service layer urls.
 
-    Arguments:
-    item (ArcGIS Feature Collection Service): Service with target layers.
-
-    Returns:
-    A list of urls as strings.
+    :param item: Service with target layers.
+    :type kind: ArcGISFeatureLayer
+    :return: A list of urls for layers in the service.
+    :rtype: list[str]
     """
     urls = []
     for lyr in item.layers:
@@ -24,8 +23,9 @@ def create_layer_id(layerIndex):
 
     To build a web map from a published service, we generate feature layers pointed to each service. Each feature layer requires a unique layer id, produced by this function.
 
-    Arguments:
-    layerIndex: Layer index number.
+    :param layerIndex: Layer index number.
+    :return: A randomized string to serve as a unique id.
+    :rtype: str
     """
     return (
         "".join(random.choices(string.ascii_lowercase + string.digits, k=11))
@@ -39,9 +39,11 @@ def fc_gen(layer, opacity=1.0):
     """
     To create group layers, we wrap each service in a feature layer. This function formats the feature layer based upon the service layer.
 
-    Keyword arguments:
-    layer -- MapServiceLayer source for feature layer.
-    opacity -- Opacity of feature layer.
+    :param layer: Source for feature layer.
+    :type layer: MapServiceLayer
+    :param opacity: Opacity of feature layer.
+    :type opacity: float
+    :return: Feature layer data for map service layer.
     """
     fc_dict = {}
     fc_dict.update({"id": create_layer_id(random.randint(10000, 99999))})
@@ -57,9 +59,9 @@ def add_nfi(project_map, service):
     """
     Updates a web mab to include the natural features inventory.
 
-    Keyword arguments:
-    project_map -- The web map to update with the NFI.
-    service -- The natural features inventory service.
+    :param project_map: The web map to update with the NFI.
+    :param service: The natural features inventory feature collection service.
+    :return: None (modifies project_map)
     """
     urls = layer_urls(service)
     urls

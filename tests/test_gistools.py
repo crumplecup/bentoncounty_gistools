@@ -3,6 +3,14 @@ from arcgis.gis import GIS
 from arcgis.mapping import MapServiceLayer
 from arcgis.mapping import WebMap
 from bentoncounty_gistools import bentoncounty_gistools as bc
+import os
+import pytest
+from dotenv import load_dotenv
+
+load_dotenv()
+ARCGIS_USERNAME = os.getenv("ARCGIS_USERNAME")
+ARCGIS_PASSWORD = os.getenv("ARCGIS_PASSWORD")
+PYTEST_SKIP = os.getenv("PYTEST_SKIP")
 
 
 def test_layer_urls():
@@ -41,3 +49,27 @@ def test_fc_gen():
     )
     assert stream["title"] == "STREAMS"
     assert stream["layerType"] == "ArcGISFeatureLayer"
+
+
+@pytest.mark.skipif(
+    PYTEST_SKIP, reason="Resource intensive. Test copies are persistent."
+)
+def test_add_nfi():
+    """Adds NFI layers to web map."""
+    gis = GIS(
+        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
+    )
+    # load natural features inventory feature collection service
+    nfi_fs = gis.content.search(
+        "NaturalFeaturesInventoryService2022_DRAFT",
+        item_type="Feature Layer Collection",
+    )[0]
+
+    item_props = {
+        "title": "test_map",
+        "snippet": "Blank web map for testing.",
+        "tags": ["test"],
+        "description": "Does not persist.",
+    }
+    wm = WebMap().save(item_props)
+    bc.add_nfi(wm, nfi_fs)
