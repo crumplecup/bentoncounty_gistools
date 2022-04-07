@@ -25,7 +25,7 @@ def create_layer_id(layerIndex):
 
 
 # generate feature class data for layer
-def fc_gen(layer, opacity=1):
+def fc_gen(layer, opacity=1.0):
     """
     To create group layers, we wrap each service in a feature layer. This function formats the feature layer based upon the service layer.
 
@@ -44,16 +44,21 @@ def fc_gen(layer, opacity=1):
 
 
 def add_nfi(project_map, service):
+    """
+    Updates a web mab to include the natural features inventory.
+
+    Keyword arguments:
+    project_map -- The web map to update with the NFI.
+    service -- The natural features inventory service.
+    """
     urls = layer_urls(service)
     urls
 
     # load layers for grouping
-
     # streams layer
     streams = MapServiceLayer(url=urls[0])
 
     # Features
-
     ## significant vegetation
     # protected oak savanna
     oak_savanna = MapServiceLayer(url=urls[1])
@@ -98,7 +103,6 @@ def add_nfi(project_map, service):
     wetlands_dsl = MapServiceLayer(url=urls[25])
 
     # Hazards
-
     ## Flooding
     # 0.2-Foot Floodway
     floodway = MapServiceLayer(url=urls[26])
@@ -122,7 +126,6 @@ def add_nfi(project_map, service):
     ## Landslide Debris Runout Areas
     # Confined Channel
     runout_closed = MapServiceLayer(url=urls[35])
-
     # Open Channel
     runout_open = MapServiceLayer(url=urls[36])
 
@@ -133,9 +136,8 @@ def add_nfi(project_map, service):
     ## Steep Slopes
     # Percent Slope
     steep_slope = MapServiceLayer(url=urls[38])
+
     # format as feature layer for grouping
-
-
     stream = fc_gen(streams)
     oaksavanna = fc_gen(oak_savanna, 0.4)
 
@@ -173,7 +175,6 @@ def add_nfi(project_map, service):
     wetlandsdsl = fc_gen(wetlands_dsl, 0.19)
 
     # Hazards
-
     ## Flooding
     flood = fc_gen(floodway, 0.4)
     floodwill = fc_gen(flood_will, 0.3)
@@ -190,10 +191,7 @@ def add_nfi(project_map, service):
     landsliderisk = fc_gen(landslide, 0.3)
     steepslope = fc_gen(steep_slope, 0.19)
 
-
     # define layer groups for web map
-
-
     high_protection = {
             "id": create_layer_id(random.randint(10000, 99999)),
             "layers": [],
@@ -272,7 +270,6 @@ def add_nfi(project_map, service):
             "layerType": "GroupLayer",
             "title": "Natural Features Inventory" }
 
-
     high_protection["layers"].append(incveg_hi9)
     high_protection["layers"].append(incveg_hi8)
     high_protection["layers"].append(incveg_hi7)
@@ -293,7 +290,6 @@ def add_nfi(project_map, service):
 
     incentive_vegetation["layers"].append(partial_protection)
     incentive_vegetation["layers"].append(high_protection)
-
     significant_vegetation["layers"].append(incentive_vegetation)
     significant_vegetation["layers"].append(oaksavanna)
 
@@ -305,15 +301,12 @@ def add_nfi(project_map, service):
     riparian_areas["layers"].append(buff50)
 
     wetlands_critical["layers"].append(wetlandssig)
-
     wetlands_other["layers"].append(wetlandsdsl)
-
 
     features["layers"].append(wetlands_other)
     features["layers"].append(wetlands_critical)
     features["layers"].append(riparian_areas)
     features["layers"].append(significant_vegetation)
-
 
     flooding["layers"].append(floodvillage)
     flooding["layers"].append(floodsequoia)
@@ -327,7 +320,6 @@ def add_nfi(project_map, service):
 
     runout_areas["layers"].append(runoutclosed)
     runout_areas["layers"].append(runoutopen)
-
     steep_slopes["layers"].append(steepslope)
 
     hazards["layers"].append(steepslope)
