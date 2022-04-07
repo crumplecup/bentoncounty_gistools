@@ -6,8 +6,11 @@ from arcgis.mapping import MapServiceLayer
 def layer_urls(item):
     """List service layer urls.
 
-    Keyword arguments:
-    item -- ArcGIS Feature Collection Service
+    Arguments:
+    item (ArcGIS Feature Collection Service): Service with target layers.
+
+    Returns:
+    A list of urls as strings.
     """
     urls = []
     for lyr in item.layers:
@@ -16,11 +19,13 @@ def layer_urls(item):
 
 
 def create_layer_id(layerIndex):
-    """Generate random ids for layers.
-    Copied verbatim from https://community.esri.com/t5/arcgis-api-for-python-questions/python-api-add-group-layer-to-webmap/td-p/1112126. To build a web map from a published service, we generate feature layers pointed to each service. Each feature layer requires a unique layer id, produced by this function.
+    """
+    Generate random ids for layers. Copied verbatim from https://community.esri.com/t5/arcgis-api-for-python-questions/python-api-add-group-layer-to-webmap/td-p/1112126.
 
-    Keyword arguments:
-    layerIndex -- Layer index number.
+    To build a web map from a published service, we generate feature layers pointed to each service. Each feature layer requires a unique layer id, produced by this function.
+
+    Arguments:
+    layerIndex: Layer index number.
     """
     return (
         "".join(random.choices(string.ascii_lowercase + string.digits, k=11))
