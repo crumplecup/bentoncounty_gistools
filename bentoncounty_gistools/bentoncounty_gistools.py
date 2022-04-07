@@ -2,6 +2,7 @@ import random
 import string
 from arcgis.mapping import MapServiceLayer
 
+
 def layer_urls(item):
     """List service layer urls.
 
@@ -13,6 +14,7 @@ def layer_urls(item):
         urls.append(lyr.url)
     return urls
 
+
 def create_layer_id(layerIndex):
     """Generate random ids for layers.
     Copied verbatim from https://community.esri.com/t5/arcgis-api-for-python-questions/python-api-add-group-layer-to-webmap/td-p/1112126. To build a web map from a published service, we generate feature layers pointed to each service. Each feature layer requires a unique layer id, produced by this function.
@@ -20,8 +22,11 @@ def create_layer_id(layerIndex):
     Keyword arguments:
     layerIndex -- Layer index number.
     """
-    return ''.join(random.choices(string.ascii_lowercase + \
-            string.digits, k=11)) + "-layer-" + str(layerIndex)
+    return (
+        "".join(random.choices(string.ascii_lowercase + string.digits, k=11))
+        + "-layer-"
+        + str(layerIndex)
+    )
 
 
 # generate feature class data for layer
@@ -193,82 +198,95 @@ def add_nfi(project_map, service):
 
     # define layer groups for web map
     high_protection = {
-            "id": create_layer_id(random.randint(10000, 99999)),
-            "layers": [],
-            "layerType": "GroupLayer",
-            "title": "High Protection" }
+        "id": create_layer_id(random.randint(10000, 99999)),
+        "layers": [],
+        "layerType": "GroupLayer",
+        "title": "High Protection",
+    }
 
     partial_protection = {
-            "id": create_layer_id(random.randint(10000, 99999)),
-            "layers": [],
-            "layerType": "GroupLayer",
-            "title": "Partial Protection" }
+        "id": create_layer_id(random.randint(10000, 99999)),
+        "layers": [],
+        "layerType": "GroupLayer",
+        "title": "Partial Protection",
+    }
 
     incentive_vegetation = {
-            "id": create_layer_id(random.randint(10000, 99999)),
-            "layers": [],
-            "layerType": "GroupLayer",
-            "title": "Incentive Vegetation" }
+        "id": create_layer_id(random.randint(10000, 99999)),
+        "layers": [],
+        "layerType": "GroupLayer",
+        "title": "Incentive Vegetation",
+    }
 
     significant_vegetation = {
-            "id": create_layer_id(random.randint(10000, 99999)),
-            "layers": [],
-            "layerType": "GroupLayer",
-            "title": "Significant Vegetation" }
+        "id": create_layer_id(random.randint(10000, 99999)),
+        "layers": [],
+        "layerType": "GroupLayer",
+        "title": "Significant Vegetation",
+    }
 
     riparian_areas = {
-            "id": create_layer_id(random.randint(10000, 99999)),
-            "layers": [],
-            "layerType": "GroupLayer",
-            "title": "Riparian Areas" }
+        "id": create_layer_id(random.randint(10000, 99999)),
+        "layers": [],
+        "layerType": "GroupLayer",
+        "title": "Riparian Areas",
+    }
 
     wetlands_critical = {
-            "id": create_layer_id(random.randint(10000, 99999)),
-            "layers": [],
-            "layerType": "GroupLayer",
-            "title": "Systems-Critical Wetlands" }
+        "id": create_layer_id(random.randint(10000, 99999)),
+        "layers": [],
+        "layerType": "GroupLayer",
+        "title": "Systems-Critical Wetlands",
+    }
 
     wetlands_other = {
-            "id": create_layer_id(random.randint(10000, 99999)),
-            "layers": [],
-            "layerType": "GroupLayer",
-            "title": "Other Wetlands" }
+        "id": create_layer_id(random.randint(10000, 99999)),
+        "layers": [],
+        "layerType": "GroupLayer",
+        "title": "Other Wetlands",
+    }
 
     features = {
-            "id": create_layer_id(random.randint(10000, 99999)),
-            "layers": [],
-            "layerType": "GroupLayer",
-            "title": "Features" }
+        "id": create_layer_id(random.randint(10000, 99999)),
+        "layers": [],
+        "layerType": "GroupLayer",
+        "title": "Features",
+    }
 
     flooding = {
-            "id": create_layer_id(random.randint(10000, 99999)),
-            "layers": [],
-            "layerType": "GroupLayer",
-            "title": "Flooding" }
+        "id": create_layer_id(random.randint(10000, 99999)),
+        "layers": [],
+        "layerType": "GroupLayer",
+        "title": "Flooding",
+    }
 
     runout_areas = {
-            "id": create_layer_id(random.randint(10000, 99999)),
-            "layers": [],
-            "layerType": "GroupLayer",
-            "title": "Landslide Debris Runout Areas" }
+        "id": create_layer_id(random.randint(10000, 99999)),
+        "layers": [],
+        "layerType": "GroupLayer",
+        "title": "Landslide Debris Runout Areas",
+    }
 
     steep_slopes = {
-            "id": create_layer_id(random.randint(10000, 99999)),
-            "layers": [],
-            "layerType": "GroupLayer",
-            "title": "Steep Slopes" }
+        "id": create_layer_id(random.randint(10000, 99999)),
+        "layers": [],
+        "layerType": "GroupLayer",
+        "title": "Steep Slopes",
+    }
 
     hazards = {
-            "id": create_layer_id(random.randint(10000, 99999)),
-            "layers": [],
-            "layerType": "GroupLayer",
-            "title": "Hazards" }
+        "id": create_layer_id(random.randint(10000, 99999)),
+        "layers": [],
+        "layerType": "GroupLayer",
+        "title": "Hazards",
+    }
 
     nfi_group = {
-            "id": create_layer_id(random.randint(10000, 99999)),
-            "layers": [],
-            "layerType": "GroupLayer",
-            "title": "Natural Features Inventory" }
+        "id": create_layer_id(random.randint(10000, 99999)),
+        "layers": [],
+        "layerType": "GroupLayer",
+        "title": "Natural Features Inventory",
+    }
 
     high_protection["layers"].append(incveg_hi9)
     high_protection["layers"].append(incveg_hi8)
@@ -333,4 +351,4 @@ def add_nfi(project_map, service):
 
     map_def = project_map.get_data()
     map_def["operationalLayers"].append(nfi_group)
-    project_map.update({'text': str(map_def)})
+    project_map.update({"text": str(map_def)})
