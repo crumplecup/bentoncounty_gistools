@@ -5,3 +5,4 @@ dist
 build
 *.pyc
 .env
+docs/_build

@@ -28,11 +28,24 @@ author = 'Erik Rose'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+        'autoapi.extension',
         'sphinx.ext.napoleon',
-        'sphinx.ext.autodoc',
+        # 'sphinx.ext.autodoc',
         'sphinx.ext.viewcode',
         'sphinx.ext.coverage',
 ]
+
+autoapi_dirs = ['../bentoncounty_gistools']
+autoapi_ignore = ["*/tests/*",
+                  "*_version.py"]
+
+autoapi_options = ['members',
+        'undoc-members',
+		# 'private-members',
+		# 'special-members',
+		'show-inheritance',
+		'show-module-summary',
+		'imported-members']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
