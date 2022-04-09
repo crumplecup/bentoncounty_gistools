@@ -10,6 +10,19 @@ def layer_urls(item):
     :type kind: ArcGISFeatureLayer
     :return: A list of urls for layers in the service.
     :rtype: list[str]
+
+    >>> import bentoncounty_gistools from bentoncounty_gistools as bc
+    >>> gis = GIS()
+    >>> # load natural features inventory feature collection service
+    >>> nfi_fs = gis.content.search(
+    >>>     "NaturalFeaturesInventoryService2022_DRAFT",
+    >>>     item_type="Feature Layer Collection",
+    >>> )[0]
+    >>> urls = bc.layer_urls(nfi_fs)
+    >>> urls[0]
+    "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/NaturalFeaturesInventoryService2022_DRAFT/FeatureServer/0"
+    >>> urls[1]
+    "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/NaturalFeaturesInventoryService2022_DRAFT/FeatureServer/3"
     """
     urls = []
     for lyr in item.layers:
@@ -44,6 +57,23 @@ def fc_gen(layer, opacity=1.0):
     :param opacity: Opacity of feature layer.
     :type opacity: float
     :return: Feature layer data for map service layer.
+
+    >>> import bentoncounty_gistools from bentoncounty_gistools as bc
+    >>> gis = GIS()
+    >>> # load natural features inventory feature collection service
+    >>> nfi_fs = gis.content.search(
+    >>>     "NaturalFeaturesInventoryService2022_DRAFT",
+    >>>     item_type="Feature Layer Collection",
+    >>> )[0]
+    >>> urls = bc.layer_urls(nfi_fs)
+    >>> streams = MapServiceLayer(urls[0])
+    >>> stream = bc.fc_gen(streams)
+    >>> stream["url"]
+    "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/NaturalFeaturesInventoryService2022_DRAFT/FeatureServer/0"
+    >>> stream["title"]
+    "STREAMS"
+    >>> stream["layerType"]
+    "ArcGISFeatureLayer"
     """
     fc_dict = {}
     fc_dict.update({"id": create_layer_id(random.randint(10000, 99999))})
@@ -359,3 +389,9 @@ def add_nfi(project_map, service):
     map_def = project_map.get_data()
     map_def["operationalLayers"].append(nfi_group)
     project_map.update({"text": str(map_def)})
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
