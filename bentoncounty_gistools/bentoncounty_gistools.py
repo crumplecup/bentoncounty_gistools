@@ -52,6 +52,7 @@ def fc_gen(layer, opacity=1.0):
     fc_dict.update({"itemId": layer.properties.serviceItemId})
     fc_dict.update({"layerType": "ArcGISFeatureLayer"})
     fc_dict.update({"opacity": opacity})
+    fc_dict.update({"disablePopup": False})
     return fc_dict
 
 

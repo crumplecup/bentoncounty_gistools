@@ -65,11 +65,12 @@ def test_add_nfi():
         item_type="Feature Layer Collection",
     )[0]
 
-    item_props = {
-        "title": "test_map",
-        "snippet": "Blank web map for testing.",
-        "tags": ["test"],
-        "description": "Does not persist.",
-    }
-    wm = WebMap().save(item_props)
-    bc.add_nfi(wm, nfi_fs)
+    # load designated web map for unit testing
+    nfi_test = gis.content.search('nfi_test_map')[0]
+    test_layers = nfi_test.layers()
+    # delete current content of test map
+    for lyr in test_layers:
+        nfi_test.remove_layer(lyr)
+
+    # add nfi layers
+    bc.add_nfi(nfi_test, nfi_fs)
