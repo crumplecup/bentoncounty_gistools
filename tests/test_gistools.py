@@ -52,7 +52,8 @@ def test_fc_gen():
 
 
 @pytest.mark.skipif(
-    PYTEST_SKIP, reason="Resource intensive. Test copies are persistent."
+    PYTEST_SKIP,
+    reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
 )
 def test_add_nfi():
     """Adds NFI layers to web map."""
@@ -66,10 +67,10 @@ def test_add_nfi():
     )[0]
 
     item_props = {
-        "title": "test_map",
-        "snippet": "Blank web map for testing.",
+        "title": "nfi_test_map",
+        "snippet": "Test map for the Natural Features Inventory feature collection.",
         "tags": ["test"],
-        "description": "Does not persist.",
+        "description": "This map is overwritten periodically during automated unit testing. Do not use.",
     }
     wm = WebMap().save(item_props)
     bc.add_nfi(wm, nfi_fs)

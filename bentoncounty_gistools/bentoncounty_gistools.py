@@ -85,6 +85,16 @@ def fc_gen(layer, opacity=1.0):
     return fc_dict
 
 
+def ms_gen(layer):
+    ms_dict = {}
+    ms_dict.update({"id": create_layer_id(random.randint(10000, 99999))})
+    ms_dict.update({"url": layer.url})
+    ms_dict.update({"title": layer.properties.name})
+    ms_dict.update({"itemId": layer.properties.serviceItemId})
+    ms_dict.update({"layerType": "ArcGISMapServiceLayer"})
+    return ms_dict
+
+
 def add_nfi(project_map, service):
     """
     Updates a web mab to include the natural features inventory.
