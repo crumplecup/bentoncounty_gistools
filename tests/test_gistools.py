@@ -66,11 +66,23 @@ def test_add_nfi():
     )[0]
 
     # load designated web map for unit testing
-    nfi_test = gis.content.search('nfi_test_map')[0]
-    test_layers = nfi_test.layers()
+    nfi_template = gis.content.search("nfi_template")[0]
+    nfi_map = gis.content.search("nfi_test_map")[0]
+    nfi_test = WebMap(nfi_map)
+    test_layers = nfi_test.layers
     # delete current content of test map
     for lyr in test_layers:
         nfi_test.remove_layer(lyr)
 
+    nfi_test.update()
+
     # add nfi layers
-    bc.add_nfi(nfi_test, nfi_fs)
+    bc.add_nfi(nfi_map, nfi_fs, nfi_template)
+
+
+def test_enable_popups():
+    gis = GIS(
+        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
+    )
+    nfi_map = gis.content.search("nfi_test_map")[0]
+    bc.enable_popups(nfi_map)
