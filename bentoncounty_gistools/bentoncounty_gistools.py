@@ -87,6 +87,13 @@ def fc_gen(layer, opacity=1.0):
 
 
 def group_layer(name):
+    """
+    Generates dictionary of item properties for a group layer.
+
+    :param name: Name to display in map legend for layer.
+    :type name: [str]
+    :return: Dictionary of item properties for group feature layer.
+    """
     group_dict = {}
     group_dict.update({"id": create_layer_id(random.randint(10000, 99999))})
     group_dict.update({"layers": []})
@@ -96,16 +103,14 @@ def group_layer(name):
     return group_dict
 
 
-def enable_popups(project_map):
-    item_def = project_map.get_data()
-    for lyr in item_def["operationalLayers"]:
-        lyr.update({"disablePopup": False})
-
-    item_props = {"text": item_def}
-    project_map.update(item_properties=item_props)
-
-
 def nfi_popup_info(template):
+    """
+    Generates dictionary of popupInfo for layers of the natural features inventory.
+
+    :param template: Template web map with pop ups enabled on target layers.
+    :return: Dictionary of reference names keys and popupInfo values.
+    """
+
     nfi_def = template.get_data()
     nfi_dict = {}
     streams = nfi_def["operationalLayers"][0]["layers"][2]["popupInfo"]
@@ -271,22 +276,22 @@ def nfi_popup_info(template):
 
     nfi_dict.update({"streams": streams})
     nfi_dict.update({"oak_savanna": oak_savanna})
-    nfi_dict.update({"hi_inc_oak_sav": hi_inc_oak_sav})
-    nfi_dict.update({"hi_inc_chip": hi_inc_chip})
-    nfi_dict.update({"hi_inc_nat_tree": hi_inc_nat_veg})
-    nfi_dict.update({"hi_inc_timber": hi_inc_timber})
-    nfi_dict.update({"hi_inc_top10": hi_inc_top10})
-    nfi_dict.update({"hi_inc_topthird": hi_inc_topthird})
-    nfi_dict.update({"hi_inc_mit_tree": hi_inc_mit_tree})
-    nfi_dict.update({"hi_inc_nat_tree": hi_inc_nat_tree})
-    nfi_dict.update({"hi_inc_whas": hi_inc_whas})
-    nfi_dict.update({"lo_inc_nat_veg": lo_inc_nat_veg})
-    nfi_dict.update({"lo_inc_top": lo_inc_top})
-    nfi_dict.update({"lo_inc_topthird": lo_inc_topthird})
-    nfi_dict.update({"lo_inc_iso_tree": lo_inc_iso_tree})
-    nfi_dict.update({"lo_inc_mit_tree": lo_inc_mit_tree})
-    nfi_dict.update({"lo_inc_nat_tree": lo_inc_nat_tree})
-    nfi_dict.update({"lo_inc_whas": lo_inc_whas})
+    nfi_dict.update({"hi_inc_9of9": hi_inc_oak_sav})
+    nfi_dict.update({"hi_inc_8of9": hi_inc_chip})
+    nfi_dict.update({"hi_inc_7of9": hi_inc_nat_veg})
+    nfi_dict.update({"hi_inc_6of9": hi_inc_timber})
+    nfi_dict.update({"hi_inc_5of9": hi_inc_top10})
+    nfi_dict.update({"hi_inc_4of9": hi_inc_topthird})
+    nfi_dict.update({"hi_inc_3of9": hi_inc_mit_tree})
+    nfi_dict.update({"hi_inc_2of9": hi_inc_nat_tree})
+    nfi_dict.update({"hi_inc_1of9": hi_inc_whas})
+    nfi_dict.update({"lo_inc_7of7": lo_inc_nat_veg})
+    nfi_dict.update({"lo_inc_6of7": lo_inc_top})
+    nfi_dict.update({"lo_inc_5of7": lo_inc_topthird})
+    nfi_dict.update({"lo_inc_4of7": lo_inc_iso_tree})
+    nfi_dict.update({"lo_inc_3of7": lo_inc_mit_tree})
+    nfi_dict.update({"lo_inc_2of7": lo_inc_nat_tree})
+    nfi_dict.update({"lo_inc_1of7": lo_inc_whas})
     nfi_dict.update({"wetlands_rip": wetlands_rip})
     nfi_dict.update({"buff_downtown": wetlands_downtown})
     nfi_dict.update({"buff120": rip120})
@@ -425,6 +430,16 @@ def add_nfi(project_map, service, template):
     incveg_hi8 = fc_gen(inc_veg_hi_8, 0.4)
     incveg_hi9 = fc_gen(inc_veg_hi_9, 0.4)
 
+    incveg_hi1.update({"popupInfo": nfi_popup["hi_inc_1of9"]})
+    incveg_hi2.update({"popupInfo": nfi_popup["hi_inc_2of9"]})
+    incveg_hi3.update({"popupInfo": nfi_popup["hi_inc_3of9"]})
+    incveg_hi4.update({"popupInfo": nfi_popup["hi_inc_4of9"]})
+    incveg_hi5.update({"popupInfo": nfi_popup["hi_inc_5of9"]})
+    incveg_hi6.update({"popupInfo": nfi_popup["hi_inc_6of9"]})
+    incveg_hi7.update({"popupInfo": nfi_popup["hi_inc_7of9"]})
+    incveg_hi8.update({"popupInfo": nfi_popup["hi_inc_8of9"]})
+    incveg_hi9.update({"popupInfo": nfi_popup["hi_inc_9of9"]})
+
     # partial protection significant vegetation
     incveg_lo1 = fc_gen(inc_veg_lo_1, 0.4)
     incveg_lo2 = fc_gen(inc_veg_lo_2, 0.4)
@@ -433,6 +448,14 @@ def add_nfi(project_map, service, template):
     incveg_lo5 = fc_gen(inc_veg_lo_5, 0.4)
     incveg_lo6 = fc_gen(inc_veg_lo_6, 0.4)
     incveg_lo7 = fc_gen(inc_veg_lo_7, 0.4)
+
+    incveg_lo1.update({"popupInfo": nfi_popup["lo_inc_1of7"]})
+    incveg_lo2.update({"popupInfo": nfi_popup["lo_inc_2of7"]})
+    incveg_lo3.update({"popupInfo": nfi_popup["lo_inc_3of7"]})
+    incveg_lo4.update({"popupInfo": nfi_popup["lo_inc_4of7"]})
+    incveg_lo5.update({"popupInfo": nfi_popup["lo_inc_5of7"]})
+    incveg_lo6.update({"popupInfo": nfi_popup["lo_inc_6of7"]})
+    incveg_lo7.update({"popupInfo": nfi_popup["lo_inc_7of7"]})
 
     ## Riparian Areas
     buff50 = fc_gen(buff_50, 0.4)
@@ -471,6 +494,20 @@ def add_nfi(project_map, service, template):
     runoutopen = fc_gen(runout_open, 0.3)
     landsliderisk = fc_gen(landslide, 0.3)
     steepslope = fc_gen(steep_slope, 0.19)
+
+    flood.update({"popupInfo": nfi_popup["floodway"]})
+    floodwill.update({"popupInfo": nfi_popup["flood_will"]})
+    flooddixon.update({"popupInfo": nfi_popup["flood_dixon"]})
+    flooddunawi.update({"popupInfo": nfi_popup["flood_dunawi"]})
+    floodjackson.update({"popupInfo": nfi_popup["flood_jackson"]})
+    floodlewisburg.update({"popupInfo": nfi_popup["flood_lewisburg"]})
+    floodoak.update({"popupInfo": nfi_popup["flood_oak"]})
+    floodsequoia.update({"popupInfo": nfi_popup["flood_sequoia"]})
+    floodvillage.update({"popupInfo": nfi_popup["flood_village"]})
+    runoutclosed.update({"popupInfo": nfi_popup["runout_closed"]})
+    runoutopen.update({"popupInfo": nfi_popup["runout_open"]})
+    landsliderisk.update({"popupInfo": nfi_popup["landslide_risk"]})
+    steepslope.update({"popupInfo": nfi_popup["steep_slope"]})
 
     # define layer groups for web map
     # name of group layer shown to user in map legend

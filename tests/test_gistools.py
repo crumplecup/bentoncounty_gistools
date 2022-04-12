@@ -80,9 +80,11 @@ def test_add_nfi():
     bc.add_nfi(nfi_map, nfi_fs, nfi_template)
 
 
-def test_enable_popups():
-    gis = GIS(
-        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
-    )
-    nfi_map = gis.content.search("nfi_test_map")[0]
-    bc.enable_popups(nfi_map)
+def test_group_layer():
+    test_group = bc.group_layer("test")
+    test_keys = ["id", "layers", "layerType", "title", "disablePopup"]
+    # dictionary has appropriate fields
+    for key in test_group.keys():
+        assert key in test_keys
+    # title is set as specified
+    assert test_group["title"] == "test"
