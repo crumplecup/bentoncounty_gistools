@@ -8,6 +8,34 @@ ZONING_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services
 ZONING_AIRPORT_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/5"
 ZONING_FEMA_FLOODPLAIN_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/4"
 
+BC_TAXLOTS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotOwners/FeatureServer/0"
+BC_ROADS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/FeatureServer/3"
+BC_RAILROADS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/FeatureServer/0"
+BC_SECTION_LINES = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/5"
+BC_SECTION_NUMBERS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/3"
+BC_BOUNDARIES = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer"
+)
+BC_TRANSPORTATION = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/MapServer"
+BC_TAXLOT_MAP = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotService/MapServer"
+)
+BC_ADDRESS_CORVALLIS = (
+    "https://gis.corvallisoregon.gov/pub2/rest/services/Base/CorvallisAddress/MapServer"
+)
+BC_ADDRESS_COUNTY = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/AddressService/MapServer"
+)
+FEMA_FLOOD_HAZARDS = (
+    "https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer"
+)
+BC_ZONING_COMPLIANCE = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningCompliance/MapServer"
+)
+BC_WATER_SOILS_WETLANS = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/NaturalService/MapServer"
+)
+
 
 def zoning_map(project_map):
     ugb_corv = MapServiceLayer(ZONING_UGB_CORVALLIS_URL)
@@ -21,6 +49,51 @@ def zoning_map(project_map):
     zoning_fc = fc_gen(zoning, 0.75)
     zoning_airport_fc = fc_gen(zoning_airport, 0.75)
     zoning_fema_fc = fc_gen(zoning_fema, 0.75)
+
+
+def county_basemap_layers(group_layer):
+    """
+    Add common reference layers to group layer.
+    Layers are taxlots, roads, railroads, section lines and section numbers.
+
+    :param group_layer: Group layer target for reference layers.
+    :return: Appends reference layers to group layer.
+    :rtype: None.
+    """
+    bc_taxlots = MapServiceLayer(BC_TAXLOTS)
+    bc_roads = MapServiceLayer(BC_ROADS)
+    # mislabeled - road names (does not display properly)
+    # bc_railroads = MapServiceLayer(BC_RAILROADS)
+    bc_section_lines = MapServiceLayer(BC_SECTION_LINES)
+    bc_section_numbers = MapServiceLayer(BC_SECTION_NUMBERS)
+
+    bc_taxlots_fc = feature_class(bc_taxlots, 0.75)
+    bc_roads_fc = feature_class(bc_roads, 0.75)
+    # bc_railroads_fc = feature_class(bc_railroads, 0.75)
+    bc_section_lines_fc = feature_class(bc_section_lines, 0.75)
+    bc_section_numbers_fc = feature_class(bc_section_numbers, 0.75)
+
+    group_layer["layers"].append(bc_taxlots_fc)
+    group_layer["layers"].append(bc_roads_fc)
+    # group_layer["layers"].append(bc_railroads_fc)
+    group_layer["layers"].append(bc_section_lines_fc)
+    group_layer["layers"].append(bc_section_numbers_fc)
+
+
+def county_basemap(project_map):
+    """
+    Add common reference layers to web map.
+    Layers are taxlots, roads, railroads, section lines and section numbers.
+
+    :param project_map: Web map to update with reference layers.
+    :return: Updates the web map, adding reference layers.
+    :rtype: None.
+    """
+    basemap = group_layer("Base")
+    county_basemap_layers(basemap)
+    map_def = project_map.get_data()
+    map_def["operationalLayers"].append(basemap)
+    project_map.update({"text": str(map_def)})
 
 
 def layer_urls(item):
@@ -65,6 +138,42 @@ def create_layer_id(layerIndex):
         + "-layer-"
         + str(layerIndex)
     )
+
+
+def feature_class(layer, opacity=1.0):
+    """
+    Generic feature class wrapper for layer data.
+
+    :param layer: Source for feature layer.
+    :type layer: MapServiceLayer
+    :param opacity: Opacity of feature layer.
+    :type opacity: float
+    :return: Feature layer data for map service layer.
+
+    >>> import bentoncounty_gistools from bentoncounty_gistools as bc
+    >>> gis = GIS()
+    >>> # load natural features inventory feature collection service
+    >>> nfi_fs = gis.content.search(
+    >>>     "NaturalFeaturesInventoryService2022_DRAFT",
+    >>>     item_type="Feature Layer Collection",
+    >>> )[0]
+    >>> urls = bc.layer_urls(nfi_fs)
+    >>> streams = MapServiceLayer(urls[0])
+    >>> stream = bc.fc_gen(streams)
+    >>> stream["url"]
+    "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/NaturalFeaturesInventoryService2022_DRAFT/FeatureServer/0"
+    >>> stream["title"]
+    "STREAMS"
+    >>> stream["layerType"]
+    "ArcGISFeatureLayer"
+    """
+    fc_dict = {}
+    fc_dict.update({"id": create_layer_id(random.randint(10000, 99999))})
+    fc_dict.update({"url": layer.url})
+    fc_dict.update({"title": layer.properties.name})
+    fc_dict.update({"layerType": "ArcGISFeatureLayer"})
+    fc_dict.update({"opacity": opacity})
+    return fc_dict
 
 
 # generate feature class data for layer
@@ -136,6 +245,7 @@ def add_nfi(project_map, service, template):
 
     :param project_map: The web map to update with the NFI.
     :param service: The natural features inventory feature collection service.
+    :param template: Template layer for popup info.
     :return: None (modifies project_map)
     """
     urls = layer_urls(service)
@@ -402,6 +512,7 @@ def add_nfi(project_map, service, template):
 def nfi_popup_info(template):
     """
     Generates dictionary of popupInfo for layers of the natural features inventory.
+
     :param template: Template web map with pop ups enabled on target layers.
     :return: Dictionary of reference names keys and popupInfo values.
     """

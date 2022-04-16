@@ -5,6 +5,7 @@ from arcgis.mapping import WebMap
 from bentoncounty_gistools import bentoncounty_gistools as bc
 import os
 import pytest
+import random
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -82,3 +83,44 @@ def test_group_layer():
     group_lyr = bc.group_layer("test")
     assert group_lyr["layerType"] == "GroupLayer"
     assert group_lyr["title"] == "test"
+
+
+@pytest.mark.skipif(
+    PYTEST_SKIP,
+    reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
+)
+def test_county_basemap():
+    gis = GIS(
+        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
+    )
+
+    # wm = WebMap()
+    # item_props = {}
+    # item_props.update({"title": "test_county_basemap"})
+    # item_props.update(
+    #     {
+    #         "description": "Test web map for common reference layers for community development planners. Overwritten during tests. Do not use."
+    #     }
+    #  )
+    #  item_props.update({"snippet": "For testing purposes. Do not use."})
+    #  item_props.update({"tags": ["community development", "test"]})
+    #  item_props.update(
+    #      {"serviceItemId": bc.create_layer_id(random.randint(10000, 99999))}
+    #  )
+    #  wm.save(item_props)
+    test_item = gis.content.search("test_county_basemap")[0]
+    test_map = WebMap(test_item)
+    test_layers = test_map.layers
+    for lyr in test_layers:
+        test_map.remove_layer(lyr)
+    test_map.update()
+    bc.county_basemap(test_item)
+
+
+def test_county_basemap_layers():
+    test_group = bc.group_layer("test")
+    bc.county_basemap_layers(test_group)
+    assert test_group["layers"][0]["title"] == "TaxlotOwners"
+    assert test_group["layers"][1]["title"] == "Roads"
+    assert test_group["layers"][2]["title"] == "Sectionlines"
+    assert test_group["layers"][3]["title"] == "Section Numbers"
