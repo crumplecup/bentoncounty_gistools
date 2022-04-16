@@ -65,12 +65,20 @@ def test_add_nfi():
         "NaturalFeaturesInventoryService2022_DRAFT",
         item_type="Feature Layer Collection",
     )[0]
+    # load designated web map for unit testing
+    nfi_template = gis.content.search("nfi_template")[0]
+    nfi_map = gis.content.search("nfi_test_map")[0]
+    nfi_test = WebMap(nfi_map)
+    test_layers = nfi_test.layers
+    # delete current content of test map
+    for lyr in test_layers:
+        nfi_test.remove_layer(lyr)
+    nfi_test.update()
+    # add nfi layers
+    bc.add_nfi(nfi_map, nfi_fs, nfi_template)
 
-    item_props = {
-        "title": "nfi_test_map",
-        "snippet": "Test map for the Natural Features Inventory feature collection.",
-        "tags": ["test"],
-        "description": "This map is overwritten periodically during automated unit testing. Do not use.",
-    }
-    wm = WebMap().save(item_props)
-    bc.add_nfi(wm, nfi_fs)
+
+def test_group_layer():
+    group_lyr = bc.group_layer("test")
+    assert group_lyr["layerType"] == "GroupLayer"
+    assert group_lyr["title"] == "test"
