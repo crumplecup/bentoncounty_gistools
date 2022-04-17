@@ -85,10 +85,10 @@ def test_group_layer():
     assert group_lyr["title"] == "test"
 
 
-@pytest.mark.skipif(
-    PYTEST_SKIP,
-    reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
-)
+# @pytest.mark.skipif(
+#     PYTEST_SKIP,
+#     reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
+# )
 def test_county_basemap():
     gis = GIS(
         "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
@@ -120,7 +120,14 @@ def test_county_basemap():
 def test_county_basemap_layers():
     test_group = bc.group_layer("test")
     bc.county_basemap_layers(test_group)
-    assert test_group["layers"][0]["title"] == "TaxlotOwners"
+    assert test_group["layers"][4]["title"] == "Section Numbers"
+    assert test_group["layers"][3]["title"] == "Sectionlines"
+    assert test_group["layers"][2]["title"] == "Railroads"
     assert test_group["layers"][1]["title"] == "Roads"
-    assert test_group["layers"][2]["title"] == "Sectionlines"
-    assert test_group["layers"][3]["title"] == "Section Numbers"
+    assert test_group["layers"][0]["title"] == "TaxlotOwners"
+
+
+def test_county_boundaries():
+    test_group = bc.group_layer("test")
+    bc.county_boundaries(test_group)
+    assert test_group["layers"][0]["title"] == "Boundaries"

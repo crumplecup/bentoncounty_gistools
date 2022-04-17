@@ -10,7 +10,7 @@ ZONING_FEMA_FLOODPLAIN_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcg
 
 BC_TAXLOTS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotOwners/FeatureServer/0"
 BC_ROADS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/FeatureServer/3"
-BC_RAILROADS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/FeatureServer/0"
+BC_RAILROADS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/FeatureServer/4"
 BC_SECTION_LINES = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/5"
 BC_SECTION_NUMBERS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/3"
 BC_BOUNDARIES = (
@@ -35,6 +35,30 @@ BC_ZONING_COMPLIANCE = (
 BC_WATER_SOILS_WETLANS = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/NaturalService/MapServer"
 )
+BC_BOUNDARIES_CITIES = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/0"
+)
+BC_BOUNDARIES_COUNTY = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/1"
+)
+BC_BOUNDARIES_PRECINCTS = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/2"
+)
+BC_BOUNDARIES_PARKS = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/3"
+)
+BC_BOUNDARIES_ZIP_CODES = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/4"
+)
+BC_BOUNDARIES_SCHOOL = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/5"
+)
+BC_BOUNDARIES_FIRE = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/6"
+)
+BC_BOUNDARIES_ALL_DISTRICTS = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/7"
+)
 
 
 def zoning_map(project_map):
@@ -51,6 +75,43 @@ def zoning_map(project_map):
     zoning_fema_fc = fc_gen(zoning_fema, 0.75)
 
 
+def county_boundaries(group_lyr):
+    bc_boundaries_cities = MapServiceLayer(BC_BOUNDARIES_CITIES)
+    bc_boundaries_county = MapServiceLayer(BC_BOUNDARIES_COUNTY)
+    bc_boundaries_precincts = MapServiceLayer(BC_BOUNDARIES_PRECINCTS)
+    bc_boundaries_parks = MapServiceLayer(BC_BOUNDARIES_PARKS)
+    bc_boundaries_zip = MapServiceLayer(BC_BOUNDARIES_ZIP_CODES)
+    bc_boundaries_school = MapServiceLayer(BC_BOUNDARIES_SCHOOL)
+    bc_boundaries_fire = MapServiceLayer(BC_BOUNDARIES_FIRE)
+    # bc_boundaries_all = MapServiceLayer(BC_BOUNDARIES_ALL_DISTRICTS)
+
+    bc_boundaries_cities_fc = feature_class(bc_boundaries_cities)
+    bc_boundaries_county_fc = feature_class(bc_boundaries_county)
+    bc_boundaries_precincts_fc = feature_class(bc_boundaries_precincts)
+    bc_boundaries_precincts_fc.update({"visibility": False})
+    bc_boundaries_parks_fc = feature_class(bc_boundaries_parks)
+    bc_boundaries_zip_fc = feature_class(bc_boundaries_zip)
+    bc_boundaries_zip_fc.update({"visibility": False})
+    bc_boundaries_school_fc = feature_class(bc_boundaries_school)
+    bc_boundaries_school_fc.update({"visibility": False})
+    bc_boundaries_fire_fc = feature_class(bc_boundaries_fire)
+    bc_boundaries_fire_fc.update({"visibility": False})
+    # bc_boundaries_all_fc = feature_class(bc_boundaries_all)
+
+    boundary_group = group_layer("Boundaries")
+
+    # group_layer["layers"].append(bc_boundaries_all_fc)
+    boundary_group["layers"].append(bc_boundaries_fire_fc)
+    boundary_group["layers"].append(bc_boundaries_school_fc)
+    boundary_group["layers"].append(bc_boundaries_zip_fc)
+    boundary_group["layers"].append(bc_boundaries_parks_fc)
+    boundary_group["layers"].append(bc_boundaries_precincts_fc)
+    boundary_group["layers"].append(bc_boundaries_county_fc)
+    boundary_group["layers"].append(bc_boundaries_cities_fc)
+
+    group_lyr["layers"].append(boundary_group)
+
+
 def county_basemap_layers(group_layer):
     """
     Add common reference layers to group layer.
@@ -62,20 +123,20 @@ def county_basemap_layers(group_layer):
     """
     bc_taxlots = MapServiceLayer(BC_TAXLOTS)
     bc_roads = MapServiceLayer(BC_ROADS)
-    # mislabeled - road names (does not display properly)
-    # bc_railroads = MapServiceLayer(BC_RAILROADS)
+    bc_railroads = MapServiceLayer(BC_RAILROADS)
     bc_section_lines = MapServiceLayer(BC_SECTION_LINES)
     bc_section_numbers = MapServiceLayer(BC_SECTION_NUMBERS)
 
     bc_taxlots_fc = feature_class(bc_taxlots, 0.75)
-    bc_roads_fc = feature_class(bc_roads, 0.75)
-    # bc_railroads_fc = feature_class(bc_railroads, 0.75)
+    bc_roads_fc = feature_class(bc_roads, 1.0)
+    bc_railroads_fc = feature_class(bc_railroads, 0.75)
     bc_section_lines_fc = feature_class(bc_section_lines, 0.75)
     bc_section_numbers_fc = feature_class(bc_section_numbers, 0.75)
 
+    # append in reverse legend order
     group_layer["layers"].append(bc_taxlots_fc)
     group_layer["layers"].append(bc_roads_fc)
-    # group_layer["layers"].append(bc_railroads_fc)
+    group_layer["layers"].append(bc_railroads_fc)
     group_layer["layers"].append(bc_section_lines_fc)
     group_layer["layers"].append(bc_section_numbers_fc)
 
@@ -90,6 +151,7 @@ def county_basemap(project_map):
     :rtype: None.
     """
     basemap = group_layer("Base")
+    county_boundaries(basemap)
     county_basemap_layers(basemap)
     map_def = project_map.get_data()
     map_def["operationalLayers"].append(basemap)
