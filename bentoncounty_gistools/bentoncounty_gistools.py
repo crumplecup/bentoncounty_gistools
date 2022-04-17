@@ -32,7 +32,7 @@ FEMA_FLOOD_HAZARDS = (
 BC_ZONING_COMPLIANCE = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningCompliance/MapServer"
 )
-BC_WATER_SOILS_WETLANS = (
+BC_WATER_SOILS_WETLANDS = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/NaturalService/MapServer"
 )
 BC_BOUNDARIES_CITIES = (
@@ -60,6 +60,245 @@ BC_BOUNDARIES_ALL_DISTRICTS = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/7"
 )
 
+TRANSPORTATION_ROAD_NAMES = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/MapServer/0"
+TRANSPORTATION_ROAD_SURFACE = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/MapServer/1"
+TRANSPORTATION_CENTERLINES = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/MapServer/2"
+TRANSPORTATION_ROADS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/MapServer/3"
+TRANSPORTATION_RAILROADS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/MapServer/4"
+
+SURVEY_BENCHMARKS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/0"
+SURVEY_DLC_CORNERS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/1"
+SURVEY_GEODETIC_CONTROL = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/2"
+SURVEY_SECTION_NUMBERS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/3"
+SURVEY_SECTION_CORNERS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/4"
+SURVEY_SECTION_LINES = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/5"
+SURVEY_SECTION_POLYGONS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/6"
+SURVEY_DLC = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/7"
+SURVEY_INDEX = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/8"
+
+TAXLOT_ANNO_0020_SCALE = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotService/MapServer/0"
+)
+TAXLOT_ANNO_0050_SCALE = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotService/MapServer/38"
+)
+
+ADDRESS_COUNTY = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/AddressService/MapServer/0"
+)
+ADDRESS_BUILDINGS = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/AddressService/MapServer/1"
+)
+ADDRESS_DRIVEWAYS = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/AddressService/MapServer/2"
+)
+
+NATURAL_HYDRO_HUCS = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/NaturalService/MapServer/0"
+)
+NATURAL_HYDRO_POLYS = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/NaturalService/MapServer/1"
+)
+NATURAL_HYDRO_LINES = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/NaturalService/MapServer/2"
+)
+NATURAL_SOILS = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/NaturalService/MapServer/3"
+)
+NATURAL_WETLANDS = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/NaturalService/MapServer/5"
+)
+
+# current zoning service
+BC_ZONING_UGB = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningService/MapServer/0"
+)
+BC_WILLAMETTE_GREENWAY = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningService/MapServer/1"
+)
+BC_ZONING_OVERLAYS = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningService/MapServer/3"
+)
+BC_ZONING_AIRPORT = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningService/MapServer/4"
+)
+BC_ZONING_CURRENT = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningService/MapServer/5"
+)
+
+
+def zoning_layers(group_lyr):
+    bc_zoning_ugb = MapServiceLayer(BC_ZONING_UGB)
+    bc_willamette_greenway = MapServiceLayer(BC_WILLAMETTE_GREENWAY)
+    bc_zoning_overlays = MapServiceLayer(BC_ZONING_OVERLAYS)
+    bc_zoning_airport = MapServiceLayer(BC_ZONING_AIRPORT)
+    bc_zoning_current = MapServiceLayer(BC_ZONING_CURRENT)
+
+    bc_zoning_ugb_fc = feature_class(bc_zoning_ugb)
+    bc_willamette_greenway_fc = feature_class(bc_willamette_greenway, 0.4)
+    bc_zoning_overlays_fc = feature_class(bc_zoning_overlays, 0.4)
+    bc_zoning_airport_fc = feature_class(bc_zoning_airport, 0.4)
+    bc_zoning_current_fc = feature_class(bc_zoning_current, 0.4)
+
+    zoning_group = group_layer("Zoning")
+    zoning_group["layers"].append(bc_zoning_current_fc)
+    zoning_group["layers"].append(bc_zoning_airport_fc)
+    zoning_group["layers"].append(bc_zoning_overlays_fc)
+    zoning_group["layers"].append(bc_willamette_greenway_fc)
+    zoning_group["layers"].append(bc_zoning_ugb_fc)
+
+    group_lyr["layers"].append(zoning_group)
+
+
+def natural_layers(group_lyr):
+    natural_hydro_hucs = MapServiceLayer(NATURAL_HYDRO_HUCS)
+    natural_hydro_polys = MapServiceLayer(NATURAL_HYDRO_POLYS)
+    natural_hydro_lines = MapServiceLayer(NATURAL_HYDRO_LINES)
+    natural_soils = MapServiceLayer(NATURAL_SOILS)
+    natural_wetlands = MapServiceLayer(NATURAL_WETLANDS)
+
+    natural_hydro_hucs_fc = feature_class(natural_hydro_hucs)
+    natural_hydro_hucs_fc.update({"visibility": False})
+    natural_hydro_polys_fc = feature_class(natural_hydro_polys)
+    natural_hydro_lines_fc = feature_class(natural_hydro_lines)
+    natural_soils_fc = feature_class(natural_soils)
+    natural_soils_fc.update({"visibility": False})
+    natural_wetlands_fc = feature_class(natural_wetlands)
+    natural_wetlands_fc.update({"visibility": False})
+
+    natural_group = group_layer("WATER|SOILS|WETLANDS")
+    natural_group["layers"].append(natural_wetlands_fc)
+    natural_group["layers"].append(natural_soils_fc)
+    natural_group["layers"].append(natural_hydro_lines_fc)
+    natural_group["layers"].append(natural_hydro_polys_fc)
+    natural_group["layers"].append(natural_hydro_hucs_fc)
+
+    group_lyr["layers"].append(natural_group)
+
+
+def address_map(project_map, template):
+    basemap = group_layer("Base")
+    address_layers(basemap, template)
+    map_def = project_map.get_data()
+    map_def["operationalLayers"].append(basemap)
+    project_map.update({"text": str(map_def)})
+
+
+def address_layers(group_lyr, template):
+    address_county = MapServiceLayer(ADDRESS_COUNTY)
+    address_buildings = MapServiceLayer(ADDRESS_BUILDINGS)
+    address_driveways = MapServiceLayer(ADDRESS_DRIVEWAYS)
+    popup_info = addr_popup_info(template)
+    labels = addr_labels(template)
+
+    address_county_fc = feature_class(address_county)
+    address_county_fc.update({"popupInfo": popup_info["address"]})
+    address_county_fc.update({"layerDefinition": labels["labels"]})
+    address_buildings_fc = feature_class(address_buildings)
+    address_buildings_fc.update({"visibility": False})
+    address_driveways_fc = feature_class(address_driveways)
+    address_driveways_fc.update({"visibility": False})
+    address_driveways_fc.update({"popupInfo": popup_info["driveways"]})
+
+    address_group = group_layer("Address")
+    address_group["layers"].append(address_buildings_fc)
+    address_group["layers"].append(address_driveways_fc)
+    address_group["layers"].append(address_county_fc)
+
+    group_lyr["layers"].append(address_group)
+
+
+def taxlot_layers(group_lyr):
+    taxlot_anno_0020_scale = MapServiceLayer(TAXLOT_ANNO_0020_SCALE)
+    taxlot_anno_0050_scale = MapServiceLayer(TAXLOT_ANNO_0050_SCALE)
+    taxlot_anno_0020_scale_fc = feature_class(taxlot_anno_0020_scale)
+    taxlot_anno_0020_scale_fc.update({"visibility": False})
+    taxlot_anno_0050_scale_fc = feature_class(taxlot_anno_0050_scale)
+    taxlot_anno_0050_scale_fc.update({"visibility": False})
+
+    taxlot_group = group_layer("Taxlot")
+    taxlot_group["layers"].append(taxlot_anno_0050_scale_fc)
+    taxlot_group["layers"].append(taxlot_anno_0020_scale_fc)
+
+    group_lyr["layers"].append(taxlot_group)
+
+
+def survey_layers(group_lyr):
+    survey_benchmarks = MapServiceLayer(SURVEY_BENCHMARKS)
+    survey_dlc_corners = MapServiceLayer(SURVEY_DLC_CORNERS)
+    survey_geodetic_control = MapServiceLayer(SURVEY_GEODETIC_CONTROL)
+    survey_section_numbers = MapServiceLayer(SURVEY_SECTION_NUMBERS)
+    survey_section_corners = MapServiceLayer(SURVEY_SECTION_CORNERS)
+    survey_section_lines = MapServiceLayer(SURVEY_SECTION_LINES)
+    survey_section_polygons = MapServiceLayer(SURVEY_SECTION_POLYGONS)
+    survey_dlc = MapServiceLayer(SURVEY_DLC)
+    survey_index = MapServiceLayer(SURVEY_INDEX)
+
+    survey_benchmarks_fc = feature_class(survey_benchmarks)
+    survey_benchmarks_fc.update({"visibility": False})
+    survey_dlc_corners_fc = feature_class(survey_dlc_corners)
+    survey_dlc_corners_fc.update({"visibility": False})
+    survey_geodetic_control_fc = feature_class(survey_geodetic_control)
+    survey_geodetic_control_fc.update({"visibility": False})
+    survey_section_numbers_fc = feature_class(survey_section_numbers)
+    survey_section_corners_fc = feature_class(survey_section_corners)
+    survey_section_corners_fc.update({"visibility": False})
+    survey_section_lines_fc = feature_class(survey_section_lines)
+    survey_section_polygons_fc = feature_class(survey_section_polygons, 0.5)
+    survey_section_polygons_fc.update({"visibility": False})
+    survey_dlc_fc = feature_class(survey_dlc)
+    survey_dlc_fc.update({"visibility": False})
+    survey_index_fc = feature_class(survey_index)
+    survey_index_fc.update({"visibility": False})
+
+    survey_group = group_layer("Survey")
+    survey_group["layers"].append(survey_benchmarks_fc)
+    survey_group["layers"].append(survey_section_polygons_fc)
+    survey_group["layers"].append(survey_dlc_fc)
+    survey_group["layers"].append(survey_dlc_corners_fc)
+    survey_group["layers"].append(survey_geodetic_control_fc)
+    survey_group["layers"].append(survey_section_corners_fc)
+    survey_group["layers"].append(survey_section_lines_fc)
+    survey_group["layers"].append(survey_index_fc)
+    survey_group["layers"].append(survey_section_numbers_fc)
+
+    group_lyr["layers"].append(survey_group)
+
+
+def transport_layers(group_lyr):
+    """
+    Append transportation layers to web map group layer.
+
+    :param group_lyr: Group layer definition to append with layers.
+    :return: Group layer definition with transportation layers appended.
+    :rtype: None.
+    """
+    transport_road_names = MapServiceLayer(TRANSPORTATION_ROAD_NAMES)
+    transport_road_surface = MapServiceLayer(TRANSPORTATION_ROAD_SURFACE)
+    transport_centerlines = MapServiceLayer(TRANSPORTATION_CENTERLINES)
+    transport_roads = MapServiceLayer(TRANSPORTATION_ROADS)
+    transport_railroads = MapServiceLayer(TRANSPORTATION_RAILROADS)
+
+    transport_road_names_fc = feature_class(transport_road_names)
+    transport_road_names_fc.update({"visibility": False})
+    transport_road_surface_fc = feature_class(transport_road_surface)
+    transport_road_surface_fc.update({"visibility": False})
+    transport_centerlines_fc = feature_class(transport_centerlines)
+    transport_centerlines_fc.update({"visibility": False})
+    transport_roads_fc = feature_class(transport_roads, 0.5)
+    transport_roads_fc.update({"visibility": False})
+    transport_railroads_fc = feature_class(transport_railroads)
+
+    transport_group = group_layer("Transportation")
+
+    transport_group["layers"].append(transport_road_surface_fc)
+    transport_group["layers"].append(transport_roads_fc)
+    transport_group["layers"].append(transport_centerlines_fc)
+    transport_group["layers"].append(transport_road_names_fc)
+    transport_group["layers"].append(transport_railroads_fc)
+
+    group_lyr["layers"].append(transport_group)
+
 
 def zoning_map(project_map):
     ugb_corv = MapServiceLayer(ZONING_UGB_CORVALLIS_URL)
@@ -76,6 +315,14 @@ def zoning_map(project_map):
 
 
 def county_boundaries(group_lyr):
+    """
+    Add boundaries layers to group for web map.
+    Layers include cities and places, counties, precincts, parks, zip codes, school districts and fire districts.
+
+    :param group_lyr: Group layer definition to append with boundary layers.
+    :return: Group layer definition with boundary layers appended.
+    :rtype: None.
+    """
     bc_boundaries_cities = MapServiceLayer(BC_BOUNDARIES_CITIES)
     bc_boundaries_county = MapServiceLayer(BC_BOUNDARIES_COUNTY)
     bc_boundaries_precincts = MapServiceLayer(BC_BOUNDARIES_PRECINCTS)
@@ -151,8 +398,14 @@ def county_basemap(project_map):
     :rtype: None.
     """
     basemap = group_layer("Base")
+    zoning_layers(basemap)
+    natural_layers(basemap)
+    address_layers(basemap)
+    # taxlot_layers(basemap)
+    transport_layers(basemap)
     county_boundaries(basemap)
-    county_basemap_layers(basemap)
+    survey_layers(basemap)
+    # county_basemap_layers(basemap)
     map_def = project_map.get_data()
     map_def["operationalLayers"].append(basemap)
     project_map.update({"text": str(map_def)})
@@ -570,6 +823,24 @@ def add_nfi(project_map, service, template):
     map_def = project_map.get_data()
     map_def["operationalLayers"].append(nfi_group)
     project_map.update({"text": str(map_def)})
+
+
+def addr_popup_info(template):
+    addr = template.get_data()
+    addr_dict = {}
+    driveways = addr["operationalLayers"][0]["layers"][0]["layers"][1]["popupInfo"]
+    address = addr["operationalLayers"][0]["layers"][0]["layers"][2]["popupInfo"]
+    addr_dict.update({"driveways": driveways})
+    addr_dict.update({"address": address})
+    return addr_dict
+
+
+def addr_labels(template):
+    addr = template.get_data()
+    addr_dict = {}
+    labels = addr["operationalLayers"][0]["layers"][0]["layers"][2]["layerDefinition"]
+    addr_dict.update({"labels": labels})
+    return addr_dict
 
 
 def nfi_popup_info(template):
