@@ -2,6 +2,161 @@ import random
 import string
 from arcgis.mapping import MapServiceLayer
 
+ZONING_UGB_CORVALLIS_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/0"
+ZONING_UGB_PHILOMATH_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/2"
+ZONING_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/3"
+ZONING_AIRPORT_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/5"
+ZONING_FEMA_FLOODPLAIN_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/4"
+
+BC_TAXLOTS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotOwners/FeatureServer/0"
+BC_ROADS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/FeatureServer/3"
+BC_RAILROADS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/FeatureServer/4"
+BC_SECTION_LINES = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/5"
+BC_SECTION_NUMBERS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/3"
+BC_BOUNDARIES = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer"
+)
+BC_TRANSPORTATION = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/MapServer"
+BC_TAXLOT_MAP = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotService/MapServer"
+)
+BC_ADDRESS_CORVALLIS = (
+    "https://gis.corvallisoregon.gov/pub2/rest/services/Base/CorvallisAddress/MapServer"
+)
+BC_ADDRESS_COUNTY = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/AddressService/MapServer"
+)
+FEMA_FLOOD_HAZARDS = (
+    "https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer"
+)
+BC_ZONING_COMPLIANCE = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningCompliance/MapServer"
+)
+BC_WATER_SOILS_WETLANS = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/NaturalService/MapServer"
+)
+BC_BOUNDARIES_CITIES = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/0"
+)
+BC_BOUNDARIES_COUNTY = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/1"
+)
+BC_BOUNDARIES_PRECINCTS = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/2"
+)
+BC_BOUNDARIES_PARKS = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/3"
+)
+BC_BOUNDARIES_ZIP_CODES = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/4"
+)
+BC_BOUNDARIES_SCHOOL = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/5"
+)
+BC_BOUNDARIES_FIRE = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/6"
+)
+BC_BOUNDARIES_ALL_DISTRICTS = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/7"
+)
+
+
+def zoning_map(project_map):
+    ugb_corv = MapServiceLayer(ZONING_UGB_CORVALLIS_URL)
+    ugb_phil = MapServiceLayer(ZONING_UGB_PHILOMATH_URL)
+    zoning = MapServiceLayer(ZONING_URL)
+    zoning_airport = MapServiceLayer(ZONING_AIRPORT_URL)
+    zoning_fema = MapServiceLayer(ZONING_FEMA_FLOODPLAIN_URL)
+
+    ugb_corv_fc = fc_gen(ugb_corv, 0.75)
+    ugb_phil_fc = fc_gen(ugb_phil, 0.75)
+    zoning_fc = fc_gen(zoning, 0.75)
+    zoning_airport_fc = fc_gen(zoning_airport, 0.75)
+    zoning_fema_fc = fc_gen(zoning_fema, 0.75)
+
+
+def county_boundaries(group_lyr):
+    bc_boundaries_cities = MapServiceLayer(BC_BOUNDARIES_CITIES)
+    bc_boundaries_county = MapServiceLayer(BC_BOUNDARIES_COUNTY)
+    bc_boundaries_precincts = MapServiceLayer(BC_BOUNDARIES_PRECINCTS)
+    bc_boundaries_parks = MapServiceLayer(BC_BOUNDARIES_PARKS)
+    bc_boundaries_zip = MapServiceLayer(BC_BOUNDARIES_ZIP_CODES)
+    bc_boundaries_school = MapServiceLayer(BC_BOUNDARIES_SCHOOL)
+    bc_boundaries_fire = MapServiceLayer(BC_BOUNDARIES_FIRE)
+    # bc_boundaries_all = MapServiceLayer(BC_BOUNDARIES_ALL_DISTRICTS)
+
+    bc_boundaries_cities_fc = feature_class(bc_boundaries_cities)
+    bc_boundaries_county_fc = feature_class(bc_boundaries_county)
+    bc_boundaries_precincts_fc = feature_class(bc_boundaries_precincts)
+    bc_boundaries_precincts_fc.update({"visibility": False})
+    bc_boundaries_parks_fc = feature_class(bc_boundaries_parks)
+    bc_boundaries_zip_fc = feature_class(bc_boundaries_zip)
+    bc_boundaries_zip_fc.update({"visibility": False})
+    bc_boundaries_school_fc = feature_class(bc_boundaries_school)
+    bc_boundaries_school_fc.update({"visibility": False})
+    bc_boundaries_fire_fc = feature_class(bc_boundaries_fire)
+    bc_boundaries_fire_fc.update({"visibility": False})
+    # bc_boundaries_all_fc = feature_class(bc_boundaries_all)
+
+    boundary_group = group_layer("Boundaries")
+
+    # group_layer["layers"].append(bc_boundaries_all_fc)
+    boundary_group["layers"].append(bc_boundaries_fire_fc)
+    boundary_group["layers"].append(bc_boundaries_school_fc)
+    boundary_group["layers"].append(bc_boundaries_zip_fc)
+    boundary_group["layers"].append(bc_boundaries_parks_fc)
+    boundary_group["layers"].append(bc_boundaries_precincts_fc)
+    boundary_group["layers"].append(bc_boundaries_county_fc)
+    boundary_group["layers"].append(bc_boundaries_cities_fc)
+
+    group_lyr["layers"].append(boundary_group)
+
+
+def county_basemap_layers(group_layer):
+    """
+    Add common reference layers to group layer.
+    Layers are taxlots, roads, railroads, section lines and section numbers.
+
+    :param group_layer: Group layer target for reference layers.
+    :return: Appends reference layers to group layer.
+    :rtype: None.
+    """
+    bc_taxlots = MapServiceLayer(BC_TAXLOTS)
+    bc_roads = MapServiceLayer(BC_ROADS)
+    bc_railroads = MapServiceLayer(BC_RAILROADS)
+    bc_section_lines = MapServiceLayer(BC_SECTION_LINES)
+    bc_section_numbers = MapServiceLayer(BC_SECTION_NUMBERS)
+
+    bc_taxlots_fc = feature_class(bc_taxlots, 0.75)
+    bc_roads_fc = feature_class(bc_roads, 1.0)
+    bc_railroads_fc = feature_class(bc_railroads, 0.75)
+    bc_section_lines_fc = feature_class(bc_section_lines, 0.75)
+    bc_section_numbers_fc = feature_class(bc_section_numbers, 0.75)
+
+    # append in reverse legend order
+    group_layer["layers"].append(bc_taxlots_fc)
+    group_layer["layers"].append(bc_roads_fc)
+    group_layer["layers"].append(bc_railroads_fc)
+    group_layer["layers"].append(bc_section_lines_fc)
+    group_layer["layers"].append(bc_section_numbers_fc)
+
+
+def county_basemap(project_map):
+    """
+    Add common reference layers to web map.
+    Layers are taxlots, roads, railroads, section lines and section numbers.
+
+    :param project_map: Web map to update with reference layers.
+    :return: Updates the web map, adding reference layers.
+    :rtype: None.
+    """
+    basemap = group_layer("Base")
+    county_boundaries(basemap)
+    county_basemap_layers(basemap)
+    map_def = project_map.get_data()
+    map_def["operationalLayers"].append(basemap)
+    project_map.update({"text": str(map_def)})
+
 
 def layer_urls(item):
     """List service layer urls.
@@ -47,6 +202,42 @@ def create_layer_id(layerIndex):
     )
 
 
+def feature_class(layer, opacity=1.0):
+    """
+    Generic feature class wrapper for layer data.
+
+    :param layer: Source for feature layer.
+    :type layer: MapServiceLayer
+    :param opacity: Opacity of feature layer.
+    :type opacity: float
+    :return: Feature layer data for map service layer.
+
+    >>> import bentoncounty_gistools from bentoncounty_gistools as bc
+    >>> gis = GIS()
+    >>> # load natural features inventory feature collection service
+    >>> nfi_fs = gis.content.search(
+    >>>     "NaturalFeaturesInventoryService2022_DRAFT",
+    >>>     item_type="Feature Layer Collection",
+    >>> )[0]
+    >>> urls = bc.layer_urls(nfi_fs)
+    >>> streams = MapServiceLayer(urls[0])
+    >>> stream = bc.fc_gen(streams)
+    >>> stream["url"]
+    "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/NaturalFeaturesInventoryService2022_DRAFT/FeatureServer/0"
+    >>> stream["title"]
+    "STREAMS"
+    >>> stream["layerType"]
+    "ArcGISFeatureLayer"
+    """
+    fc_dict = {}
+    fc_dict.update({"id": create_layer_id(random.randint(10000, 99999))})
+    fc_dict.update({"url": layer.url})
+    fc_dict.update({"title": layer.properties.name})
+    fc_dict.update({"layerType": "ArcGISFeatureLayer"})
+    fc_dict.update({"opacity": opacity})
+    return fc_dict
+
+
 # generate feature class data for layer
 def fc_gen(layer, opacity=1.0):
     """
@@ -86,235 +277,29 @@ def fc_gen(layer, opacity=1.0):
     return fc_dict
 
 
-def group_layer(name):
-    """
-    Generates dictionary of item properties for a group layer.
+def ms_gen(layer):
+    ms_dict = {}
+    ms_dict.update({"id": create_layer_id(random.randint(10000, 99999))})
+    ms_dict.update({"url": layer.url})
+    ms_dict.update({"title": layer.properties.name})
+    ms_dict.update({"itemId": layer.properties.serviceItemId})
+    ms_dict.update({"layerType": "ArcGISMapServiceLayer"})
+    return ms_dict
 
-    :param name: Name to display in map legend for layer.
-    :type name: [str]
-    :return: Dictionary of item properties for group feature layer.
+
+def group_layer(title):
+    """
+    Generates an empty group layer with a specified title.
+
+    :param title: The title of the layer as shown in the legend.
+    :return: A json dictionary for a group layer.
     """
     group_dict = {}
     group_dict.update({"id": create_layer_id(random.randint(10000, 99999))})
     group_dict.update({"layers": []})
     group_dict.update({"layerType": "GroupLayer"})
-    group_dict.update({"title": name})
-    group_dict.update({"disablePopup": False})
+    group_dict.update({"title": title})
     return group_dict
-
-
-def nfi_popup_info(template):
-    """
-    Generates dictionary of popupInfo for layers of the natural features inventory.
-
-    :param template: Template web map with pop ups enabled on target layers.
-    :return: Dictionary of reference names keys and popupInfo values.
-    """
-
-    nfi_def = template.get_data()
-    nfi_dict = {}
-    streams = nfi_def["operationalLayers"][0]["layers"][2]["popupInfo"]
-    oak_savanna = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3]["layers"][
-        1
-    ]["popupInfo"]
-
-    # high incentive vegetation
-    # oak savanna
-    hi_inc_oak_sav = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
-        "layers"
-    ][0]["layers"][1]["layers"][0]["popupInfo"]
-    # Old Growth Douglar Fir in Chip Ross
-    hi_inc_chip = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3]["layers"][
-        0
-    ]["layers"][1]["layers"][1]["popupInfo"]
-    # Native Tree Dominated Vegetation
-    hi_inc_nat_veg = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
-        "layers"
-    ][0]["layers"][1]["layers"][2]["popupInfo"]
-    # Native Tree Dominated - Timber Hill Hybrid
-    hi_inc_timber = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3]["layers"][
-        0
-    ]["layers"][1]["layers"][3]["popupInfo"]
-    # Top 11-25% in UGB
-    hi_inc_top10 = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3]["layers"][
-        0
-    ]["layers"][1]["layers"][4]["popupInfo"]
-    # Top Third in UGB
-    hi_inc_topthird = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
-        "layers"
-    ][0]["layers"][1]["layers"][5]["popupInfo"]
-    # Mitigation Tree Groves
-    hi_inc_mit_tree = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
-        "layers"
-    ][0]["layers"][1]["layers"][6]["popupInfo"]
-    # Native Tree Dominated
-    hi_inc_nat_tree = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
-        "layers"
-    ][0]["layers"][1]["layers"][7]["popupInfo"]
-    # Connecting Corridors for WHAs
-    hi_inc_whas = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3]["layers"][
-        0
-    ]["layers"][1]["layers"][8]["popupInfo"]
-
-    # Partial Protection Incentive Vegetation
-    # Native Tree Dominated Vegetation
-    lo_inc_nat_veg = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
-        "layers"
-    ][0]["layers"][0]["layers"][0]["popupInfo"]
-    # Top 11-25% in UGB
-    lo_inc_top = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3]["layers"][0][
-        "layers"
-    ][0]["layers"][1]["popupInfo"]
-    # Top Third in UGB
-    lo_inc_topthird = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
-        "layers"
-    ][0]["layers"][0]["layers"][2]["popupInfo"]
-    # Isolated Tree Groves
-    lo_inc_iso_tree = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
-        "layers"
-    ][0]["layers"][0]["layers"][3]["popupInfo"]
-    # Mitigation Tree Groves
-    lo_inc_mit_tree = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
-        "layers"
-    ][0]["layers"][0]["layers"][4]["popupInfo"]
-    # Native Tree Dominated
-    lo_inc_nat_tree = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
-        "layers"
-    ][0]["layers"][0]["layers"][5]["popupInfo"]
-    # Connecting Corridors for WHAs
-    lo_inc_whas = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3]["layers"][
-        0
-    ]["layers"][0]["layers"][6]["popupInfo"]
-
-    # Riparian Areas
-    # Wetlands Within Riparian Adjacent Areas - no buffer
-    wetlands_rip = nfi_def["operationalLayers"][0]["layers"][1]["layers"][2]["layers"][
-        0
-    ]["popupInfo"]
-    # Downtown Between Dixon Creek and Marys
-    wetlands_downtown = nfi_def["operationalLayers"][0]["layers"][1]["layers"][2][
-        "layers"
-    ][1]["popupInfo"]
-    # 120-Foot TOB Buffers Except Downtown
-    rip120 = nfi_def["operationalLayers"][0]["layers"][1]["layers"][2]["layers"][2][
-        "popupInfo"
-    ]
-    # 100-Foot TOB Buffers
-    rip100 = nfi_def["operationalLayers"][0]["layers"][1]["layers"][2]["layers"][3][
-        "popupInfo"
-    ]
-    # 75-Foot TOB Buffers
-    rip75 = nfi_def["operationalLayers"][0]["layers"][1]["layers"][2]["layers"][4][
-        "popupInfo"
-    ]
-    # 50-Foot TOB Buffers
-    rip50 = nfi_def["operationalLayers"][0]["layers"][1]["layers"][2]["layers"][5][
-        "popupInfo"
-    ]
-    # Systems-Critical Wetlands
-    wetlands_sig = nfi_def["operationalLayers"][0]["layers"][1]["layers"][1]["layers"][
-        0
-    ]["popupInfo"]
-    # Other Wetlands
-    wetlands_other = nfi_def["operationalLayers"][0]["layers"][1]["layers"][0][
-        "layers"
-    ][0]["popupInfo"]
-
-    # Hazards
-    # Percent Slope
-    steep_slope = nfi_def["operationalLayers"][0]["layers"][0]["layers"][0]["popupInfo"]
-    # Landslides Risk
-    landslide_risk = nfi_def["operationalLayers"][0]["layers"][0]["layers"][1][
-        "popupInfo"
-    ]
-    # Landslide Debris Runout Areas
-    # Confined Channel
-    runout_closed = nfi_def["operationalLayers"][0]["layers"][0]["layers"][2]["layers"][
-        0
-    ]["popupInfo"]
-    # Open Channel
-    runout_open = nfi_def["operationalLayers"][0]["layers"][0]["layers"][2]["layers"][
-        1
-    ]["popupInfo"]
-    # Flooding
-    # Village Green
-    flood_village = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3]["layers"][
-        0
-    ]["popupInfo"]
-    # Sequoia
-    flood_sequoia = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3]["layers"][
-        1
-    ]["popupInfo"]
-    # Oak Creek
-    flood_oak = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3]["layers"][2][
-        "popupInfo"
-    ]
-    # Lewisburg
-    flood_lewisburg = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3][
-        "layers"
-    ][3]["popupInfo"]
-    # Jackson
-    flood_jackson = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3]["layers"][
-        4
-    ]["popupInfo"]
-    # Dunawi
-    flood_dunawi = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3]["layers"][
-        5
-    ]["popupInfo"]
-    # Dixon
-    flood_dixon = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3]["layers"][
-        6
-    ]["popupInfo"]
-    # Willamette, Marys, Mill Race
-    flood_will = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3]["layers"][7][
-        "popupInfo"
-    ]
-    # 0.2-Foot Floodway
-    floodway = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3]["layers"][8][
-        "popupInfo"
-    ]
-
-    nfi_dict.update({"streams": streams})
-    nfi_dict.update({"oak_savanna": oak_savanna})
-    nfi_dict.update({"hi_inc_9of9": hi_inc_oak_sav})
-    nfi_dict.update({"hi_inc_8of9": hi_inc_chip})
-    nfi_dict.update({"hi_inc_7of9": hi_inc_nat_veg})
-    nfi_dict.update({"hi_inc_6of9": hi_inc_timber})
-    nfi_dict.update({"hi_inc_5of9": hi_inc_top10})
-    nfi_dict.update({"hi_inc_4of9": hi_inc_topthird})
-    nfi_dict.update({"hi_inc_3of9": hi_inc_mit_tree})
-    nfi_dict.update({"hi_inc_2of9": hi_inc_nat_tree})
-    nfi_dict.update({"hi_inc_1of9": hi_inc_whas})
-    nfi_dict.update({"lo_inc_7of7": lo_inc_nat_veg})
-    nfi_dict.update({"lo_inc_6of7": lo_inc_top})
-    nfi_dict.update({"lo_inc_5of7": lo_inc_topthird})
-    nfi_dict.update({"lo_inc_4of7": lo_inc_iso_tree})
-    nfi_dict.update({"lo_inc_3of7": lo_inc_mit_tree})
-    nfi_dict.update({"lo_inc_2of7": lo_inc_nat_tree})
-    nfi_dict.update({"lo_inc_1of7": lo_inc_whas})
-    nfi_dict.update({"wetlands_rip": wetlands_rip})
-    nfi_dict.update({"buff_downtown": wetlands_downtown})
-    nfi_dict.update({"buff120": rip120})
-    nfi_dict.update({"buff100": rip100})
-    nfi_dict.update({"buff75": rip75})
-    nfi_dict.update({"buff50": rip50})
-    nfi_dict.update({"wetlands_sig": wetlands_sig})
-    nfi_dict.update({"wetlands_dsl": wetlands_other})
-    nfi_dict.update({"steep_slope": steep_slope})
-    nfi_dict.update({"landslide_risk": landslide_risk})
-    nfi_dict.update({"runout_open": runout_open})
-    nfi_dict.update({"runout_closed": runout_closed})
-    nfi_dict.update({"flood_village": flood_village})
-    nfi_dict.update({"flood_sequoia": flood_sequoia})
-    nfi_dict.update({"flood_oak": flood_oak})
-    nfi_dict.update({"flood_jackson": flood_jackson})
-    nfi_dict.update({"flood_lewisburg": flood_lewisburg})
-    nfi_dict.update({"flood_dunawi": flood_dunawi})
-    nfi_dict.update({"flood_dixon": flood_dixon})
-    nfi_dict.update({"flood_will": flood_will})
-    nfi_dict.update({"floodway": floodway})
-
-    return nfi_dict
 
 
 def add_nfi(project_map, service, template):
@@ -323,10 +308,10 @@ def add_nfi(project_map, service, template):
 
     :param project_map: The web map to update with the NFI.
     :param service: The natural features inventory feature collection service.
+    :param template: Template layer for popup info.
     :return: None (modifies project_map)
     """
     urls = layer_urls(service)
-    urls
 
     # load layers for grouping
     # streams layer
@@ -418,7 +403,6 @@ def add_nfi(project_map, service, template):
     stream.update({"popupInfo": nfi_popup["streams"]})
     oaksavanna = fc_gen(oak_savanna, 0.4)
     oaksavanna.update({"popupInfo": nfi_popup["oak_savanna"]})
-
     # high protection significant vegetation
     incveg_hi1 = fc_gen(inc_veg_hi_1, 0.4)
     incveg_hi2 = fc_gen(inc_veg_hi_2, 0.4)
@@ -470,14 +454,12 @@ def add_nfi(project_map, service, template):
     buffdown.update({"popupInfo": nfi_popup["buff_downtown"]})
     wetlandsrip = fc_gen(wetlands_rip, 0.3)
     wetlandsrip.update({"popupInfo": nfi_popup["wetlands_rip"]})
-
     ## Systems-Critical Wetlands
     wetlandssig = fc_gen(wetlands_sig, 0.3)
     wetlandssig.update({"popupInfo": nfi_popup["wetlands_sig"]})
     ## Other Wetlands
     wetlandsdsl = fc_gen(wetlands_dsl, 0.19)
     wetlandsdsl.update({"popupInfo": nfi_popup["wetlands_dsl"]})
-
     # Hazards
     ## Flooding
     flood = fc_gen(floodway, 0.4)
@@ -489,7 +471,6 @@ def add_nfi(project_map, service, template):
     floodoak = fc_gen(flood_oak, 0.3)
     floodsequoia = fc_gen(flood_sequoia, 0.3)
     floodvillage = fc_gen(flood_village, 0.3)
-
     runoutclosed = fc_gen(runout_closed, 0.3)
     runoutopen = fc_gen(runout_open, 0.3)
     landsliderisk = fc_gen(landslide, 0.3)
@@ -589,6 +570,214 @@ def add_nfi(project_map, service, template):
     map_def = project_map.get_data()
     map_def["operationalLayers"].append(nfi_group)
     project_map.update({"text": str(map_def)})
+
+
+def nfi_popup_info(template):
+    """
+    Generates dictionary of popupInfo for layers of the natural features inventory.
+
+    :param template: Template web map with pop ups enabled on target layers.
+    :return: Dictionary of reference names keys and popupInfo values.
+    """
+    nfi_def = template.get_data()
+    nfi_dict = {}
+    streams = nfi_def["operationalLayers"][0]["layers"][2]["popupInfo"]
+    oak_savanna = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3]["layers"][
+        1
+    ]["popupInfo"]
+    # high incentive vegetation
+    # oak savanna
+    hi_inc_oak_sav = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
+        "layers"
+    ][0]["layers"][1]["layers"][0]["popupInfo"]
+    # Old Growth Douglar Fir in Chip Ross
+    hi_inc_chip = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3]["layers"][
+        0
+    ]["layers"][1]["layers"][1]["popupInfo"]
+    # Native Tree Dominated Vegetation
+    hi_inc_nat_veg = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
+        "layers"
+    ][0]["layers"][1]["layers"][2]["popupInfo"]
+    # Native Tree Dominated - Timber Hill Hybrid
+    hi_inc_timber = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3]["layers"][
+        0
+    ]["layers"][1]["layers"][3]["popupInfo"]
+    # Top 11-25% in UGB
+    hi_inc_top10 = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3]["layers"][
+        0
+    ]["layers"][1]["layers"][4]["popupInfo"]
+    # Top Third in UGB
+    hi_inc_topthird = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
+        "layers"
+    ][0]["layers"][1]["layers"][5]["popupInfo"]
+    # Mitigation Tree Groves
+    hi_inc_mit_tree = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
+        "layers"
+    ][0]["layers"][1]["layers"][6]["popupInfo"]
+    # Native Tree Dominated
+    hi_inc_nat_tree = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
+        "layers"
+    ][0]["layers"][1]["layers"][7]["popupInfo"]
+    # Connecting Corridors for WHAs
+    hi_inc_whas = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3]["layers"][
+        0
+    ]["layers"][1]["layers"][8]["popupInfo"]
+    # Partial Protection Incentive Vegetation
+    # Native Tree Dominated Vegetation
+    lo_inc_nat_veg = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
+        "layers"
+    ][0]["layers"][0]["layers"][0]["popupInfo"]
+    # Top 11-25% in UGB
+    lo_inc_top = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3]["layers"][0][
+        "layers"
+    ][0]["layers"][1]["popupInfo"]
+    # Top Third in UGB
+    lo_inc_topthird = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
+        "layers"
+    ][0]["layers"][0]["layers"][2]["popupInfo"]
+    # Isolated Tree Groves
+    lo_inc_iso_tree = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
+        "layers"
+    ][0]["layers"][0]["layers"][3]["popupInfo"]
+    # Mitigation Tree Groves
+    lo_inc_mit_tree = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
+        "layers"
+    ][0]["layers"][0]["layers"][4]["popupInfo"]
+    # Native Tree Dominated
+    lo_inc_nat_tree = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3][
+        "layers"
+    ][0]["layers"][0]["layers"][5]["popupInfo"]
+    # Connecting Corridors for WHAs
+    lo_inc_whas = nfi_def["operationalLayers"][0]["layers"][1]["layers"][3]["layers"][
+        0
+    ]["layers"][0]["layers"][6]["popupInfo"]
+    # Riparian Areas
+    # Wetlands Within Riparian Adjacent Areas - no buffer
+    wetlands_rip = nfi_def["operationalLayers"][0]["layers"][1]["layers"][2]["layers"][
+        0
+    ]["popupInfo"]
+    # Downtown Between Dixon Creek and Marys
+    wetlands_downtown = nfi_def["operationalLayers"][0]["layers"][1]["layers"][2][
+        "layers"
+    ][1]["popupInfo"]
+    # 120-Foot TOB Buffers Except Downtown
+    rip120 = nfi_def["operationalLayers"][0]["layers"][1]["layers"][2]["layers"][2][
+        "popupInfo"
+    ]
+    # 100-Foot TOB Buffers
+    rip100 = nfi_def["operationalLayers"][0]["layers"][1]["layers"][2]["layers"][3][
+        "popupInfo"
+    ]
+    # 75-Foot TOB Buffers
+    rip75 = nfi_def["operationalLayers"][0]["layers"][1]["layers"][2]["layers"][4][
+        "popupInfo"
+    ]
+    # 50-Foot TOB Buffers
+    rip50 = nfi_def["operationalLayers"][0]["layers"][1]["layers"][2]["layers"][5][
+        "popupInfo"
+    ]
+    # Systems-Critical Wetlands
+    wetlands_sig = nfi_def["operationalLayers"][0]["layers"][1]["layers"][1]["layers"][
+        0
+    ]["popupInfo"]
+    # Other Wetlands
+    wetlands_other = nfi_def["operationalLayers"][0]["layers"][1]["layers"][0][
+        "layers"
+    ][0]["popupInfo"]
+    # Hazards
+    # Percent Slope
+    steep_slope = nfi_def["operationalLayers"][0]["layers"][0]["layers"][0]["popupInfo"]
+    # Landslides Risk
+    landslide_risk = nfi_def["operationalLayers"][0]["layers"][0]["layers"][1][
+        "popupInfo"
+    ]
+    # Landslide Debris Runout Areas
+    # Confined Channel
+    runout_closed = nfi_def["operationalLayers"][0]["layers"][0]["layers"][2]["layers"][
+        0
+    ]["popupInfo"]
+    # Open Channel
+    runout_open = nfi_def["operationalLayers"][0]["layers"][0]["layers"][2]["layers"][
+        1
+    ]["popupInfo"]
+    # Flooding
+    # Village Green
+    flood_village = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3]["layers"][
+        0
+    ]["popupInfo"]
+    # Sequoia
+    flood_sequoia = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3]["layers"][
+        1
+    ]["popupInfo"]
+    # Oak Creek
+    flood_oak = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3]["layers"][2][
+        "popupInfo"
+    ]
+    # Lewisburg
+    flood_lewisburg = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3][
+        "layers"
+    ][3]["popupInfo"]
+    # Jackson
+    flood_jackson = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3]["layers"][
+        4
+    ]["popupInfo"]
+    # Dunawi
+    flood_dunawi = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3]["layers"][
+        5
+    ]["popupInfo"]
+    # Dixon
+    flood_dixon = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3]["layers"][
+        6
+    ]["popupInfo"]
+    # Willamette, Marys, Mill Race
+    flood_will = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3]["layers"][7][
+        "popupInfo"
+    ]
+    # 0.2-Foot Floodway
+    floodway = nfi_def["operationalLayers"][0]["layers"][0]["layers"][3]["layers"][8][
+        "popupInfo"
+    ]
+
+    nfi_dict.update({"streams": streams})
+    nfi_dict.update({"oak_savanna": oak_savanna})
+    nfi_dict.update({"hi_inc_9of9": hi_inc_oak_sav})
+    nfi_dict.update({"hi_inc_8of9": hi_inc_chip})
+    nfi_dict.update({"hi_inc_7of9": hi_inc_nat_veg})
+    nfi_dict.update({"hi_inc_6of9": hi_inc_timber})
+    nfi_dict.update({"hi_inc_5of9": hi_inc_top10})
+    nfi_dict.update({"hi_inc_4of9": hi_inc_topthird})
+    nfi_dict.update({"hi_inc_3of9": hi_inc_mit_tree})
+    nfi_dict.update({"hi_inc_2of9": hi_inc_nat_tree})
+    nfi_dict.update({"hi_inc_1of9": hi_inc_whas})
+    nfi_dict.update({"lo_inc_7of7": lo_inc_nat_veg})
+    nfi_dict.update({"lo_inc_6of7": lo_inc_top})
+    nfi_dict.update({"lo_inc_5of7": lo_inc_topthird})
+    nfi_dict.update({"lo_inc_4of7": lo_inc_iso_tree})
+    nfi_dict.update({"lo_inc_3of7": lo_inc_mit_tree})
+    nfi_dict.update({"lo_inc_2of7": lo_inc_nat_tree})
+    nfi_dict.update({"lo_inc_1of7": lo_inc_whas})
+    nfi_dict.update({"wetlands_rip": wetlands_rip})
+    nfi_dict.update({"buff_downtown": wetlands_downtown})
+    nfi_dict.update({"buff120": rip120})
+    nfi_dict.update({"buff100": rip100})
+    nfi_dict.update({"buff75": rip75})
+    nfi_dict.update({"buff50": rip50})
+    nfi_dict.update({"wetlands_sig": wetlands_sig})
+    nfi_dict.update({"wetlands_dsl": wetlands_other})
+    nfi_dict.update({"steep_slope": steep_slope})
+    nfi_dict.update({"landslide_risk": landslide_risk})
+    nfi_dict.update({"runout_open": runout_open})
+    nfi_dict.update({"runout_closed": runout_closed})
+    nfi_dict.update({"flood_village": flood_village})
+    nfi_dict.update({"flood_sequoia": flood_sequoia})
+    nfi_dict.update({"flood_oak": flood_oak})
+    nfi_dict.update({"flood_jackson": flood_jackson})
+    nfi_dict.update({"flood_lewisburg": flood_lewisburg})
+    nfi_dict.update({"flood_dunawi": flood_dunawi})
+    nfi_dict.update({"flood_dixon": flood_dixon})
+    nfi_dict.update({"flood_will": flood_will})
+    nfi_dict.update({"floodway": floodway})
+    return nfi_dict
 
 
 if __name__ == "__main__":
