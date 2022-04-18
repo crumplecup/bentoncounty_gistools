@@ -150,7 +150,28 @@ def zoning_layers(group_lyr):
     group_lyr["layers"].append(zoning_group)
 
 
-def natural_layers(group_lyr):
+def natural_layers_info(template):
+    ref_data = template.get_data()
+    new_data = {}
+    wetlands = ref_data["operationalLayers"][0]["layers"][0]["layers"][0]["popupInfo"]
+    soils = ref_data["operationalLayers"][0]["layers"][0]["layers"][1]["popupInfo"]
+    hucs = ref_data["operationalLayers"][0]["layers"][0]["layers"][4]["popupInfo"]
+    new_data.update({"wetlands": wetlands})
+    new_data.update({"soils": soils})
+    new_data.update({"hucs": hucs})
+    return new_data
+
+
+def natural_map(project_map, template):
+    basemap = group_layer("Base")
+    natural_layers(basemap, template)
+    map_def = project_map.get_data()
+    map_def["operationalLayers"].append(basemap)
+    project_map.update({"text": str(map_def)})
+
+
+def natural_layers(group_lyr, template):
+    lyr_data = natural_layers_info(template)
     natural_hydro_hucs = MapServiceLayer(NATURAL_HYDRO_HUCS)
     natural_hydro_polys = MapServiceLayer(NATURAL_HYDRO_POLYS)
     natural_hydro_lines = MapServiceLayer(NATURAL_HYDRO_LINES)
@@ -159,12 +180,18 @@ def natural_layers(group_lyr):
 
     natural_hydro_hucs_fc = feature_class(natural_hydro_hucs)
     natural_hydro_hucs_fc.update({"visibility": False})
+    natural_hydro_hucs_fc.update({"disablePopup": False})
+    natural_hydro_hucs_fc.update({"popupInfo": lyr_data["hucs"]})
     natural_hydro_polys_fc = feature_class(natural_hydro_polys)
     natural_hydro_lines_fc = feature_class(natural_hydro_lines)
     natural_soils_fc = feature_class(natural_soils)
     natural_soils_fc.update({"visibility": False})
+    natural_soils_fc.update({"disablePopup": False})
+    natural_soils_fc.update({"popupInfo": lyr_data["soils"]})
     natural_wetlands_fc = feature_class(natural_wetlands)
     natural_wetlands_fc.update({"visibility": False})
+    natural_wetlands_fc.update({"disablePopup": False})
+    natural_wetlands_fc.update({"popupInfo": lyr_data["wetlands"]})
 
     natural_group = group_layer("WATER|SOILS|WETLANDS")
     natural_group["layers"].append(natural_wetlands_fc)
@@ -314,7 +341,15 @@ def zoning_map(project_map):
     zoning_fema_fc = fc_gen(zoning_fema, 0.75)
 
 
-def county_boundaries(group_lyr):
+def county_boundaries_map(project_map, template):
+    basemap = group_layer("Base")
+    county_boundaries(basemap, template)
+    map_def = project_map.get_data()
+    map_def["operationalLayers"].append(basemap)
+    project_map.update({"text": str(map_def)})
+
+
+def county_boundaries(group_lyr, template):
     """
     Add boundaries layers to group for web map.
     Layers include cities and places, counties, precincts, parks, zip codes, school districts and fire districts.
@@ -323,6 +358,7 @@ def county_boundaries(group_lyr):
     :return: Group layer definition with boundary layers appended.
     :rtype: None.
     """
+    data = boundary_layer_info(template)
     bc_boundaries_cities = MapServiceLayer(BC_BOUNDARIES_CITIES)
     bc_boundaries_county = MapServiceLayer(BC_BOUNDARIES_COUNTY)
     bc_boundaries_precincts = MapServiceLayer(BC_BOUNDARIES_PRECINCTS)
@@ -337,8 +373,15 @@ def county_boundaries(group_lyr):
     bc_boundaries_precincts_fc = feature_class(bc_boundaries_precincts)
     bc_boundaries_precincts_fc.update({"visibility": False})
     bc_boundaries_parks_fc = feature_class(bc_boundaries_parks)
+    bc_boundaries_parks_fc.update({"popupInfo": data["parks_popup"]})
+    bc_boundaries_parks_fc.update({"layerDefinition": data["parks_labels"]})
+    bc_boundaries_parks_fc.update({"showLabels": True})
+    bc_boundaries_parks_fc.update({"disablePopup": False})
+    bc_boundaries_parks_fc.update({"visibility": False})
     bc_boundaries_zip_fc = feature_class(bc_boundaries_zip)
     bc_boundaries_zip_fc.update({"visibility": False})
+    bc_boundaries_zip_fc.update({"popupInfo": data["zipcode_popup"]})
+    bc_boundaries_zip_fc.update({"disablePopup": False})
     bc_boundaries_school_fc = feature_class(bc_boundaries_school)
     bc_boundaries_school_fc.update({"visibility": False})
     bc_boundaries_fire_fc = feature_class(bc_boundaries_fire)
@@ -388,7 +431,7 @@ def county_basemap_layers(group_layer):
     group_layer["layers"].append(bc_section_numbers_fc)
 
 
-def county_basemap(project_map):
+def county_basemap(project_map, addr_ref, bnd_ref, nat_ref):
     """
     Add common reference layers to web map.
     Layers are taxlots, roads, railroads, section lines and section numbers.
@@ -399,11 +442,11 @@ def county_basemap(project_map):
     """
     basemap = group_layer("Base")
     zoning_layers(basemap)
-    natural_layers(basemap)
-    address_layers(basemap)
+    natural_layers(basemap, nat_ref)
+    address_layers(basemap, addr_ref)
     # taxlot_layers(basemap)
     transport_layers(basemap)
-    county_boundaries(basemap)
+    county_boundaries(basemap, bnd_ref)
     survey_layers(basemap)
     # county_basemap_layers(basemap)
     map_def = project_map.get_data()
@@ -832,6 +875,24 @@ def addr_popup_info(template):
     addr_dict.update({"driveways": driveways})
     addr_dict.update({"address": address})
     return addr_dict
+
+
+def boundary_layer_info(template):
+    ref_data = template.get_data()
+    new_data = {}
+    zipcode_popup = ref_data["operationalLayers"][0]["layers"][0]["layers"][2][
+        "popupInfo"
+    ]
+    parks_popup = ref_data["operationalLayers"][0]["layers"][0]["layers"][3][
+        "popupInfo"
+    ]
+    parks_labels = ref_data["operationalLayers"][0]["layers"][0]["layers"][3][
+        "layerDefinition"
+    ]
+    new_data.update({"zipcode_popup": zipcode_popup})
+    new_data.update({"parks_popup": parks_popup})
+    new_data.update({"parks_labels": parks_labels})
+    return new_data
 
 
 def addr_labels(template):
