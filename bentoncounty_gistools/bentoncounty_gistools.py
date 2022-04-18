@@ -128,6 +128,13 @@ BC_ZONING_CURRENT = (
 
 
 def zoning_layers(group_lyr):
+    """
+    Add zoning layers to definition of a group layer.
+
+    :param group_lyr: Group layer to update with zoning layers.
+    :param template: Web map template for feature layer info.
+    :return: Updates group layer definition with zoning' layers.
+    """
     bc_zoning_ugb = MapServiceLayer(BC_ZONING_UGB)
     bc_willamette_greenway = MapServiceLayer(BC_WILLAMETTE_GREENWAY)
     bc_zoning_overlays = MapServiceLayer(BC_ZONING_OVERLAYS)
@@ -151,6 +158,12 @@ def zoning_layers(group_lyr):
 
 
 def natural_layers_info(template):
+    """
+    Build dictionary of layer info for natural layers. Includes popup info.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions for the natural layers.
+    """
     ref_data = template.get_data()
     new_data = {}
     wetlands = ref_data["operationalLayers"][0]["layers"][0]["layers"][0]["popupInfo"]
@@ -162,16 +175,14 @@ def natural_layers_info(template):
     return new_data
 
 
-def natural_map(project_map, template):
-    basemap = group_layer("Base")
-    natural_layers(basemap, template)
-    map_def = project_map.get_data()
-    map_def["operationalLayers"].append(basemap)
-    project_map.update({"text": str(map_def)})
-
-
 def natural_layers(group_lyr, template):
-    lyr_data = natural_layers_info(template)
+    """
+    Add natural layers to definition of a group layer. Includes water, soils and wetlands.
+
+    :param group_lyr: Group layer to update with natural layers.
+    :param template: Web map template for feature layer info.
+    :return: Updates group layer definition with natural layers.
+    """
     natural_hydro_hucs = MapServiceLayer(NATURAL_HYDRO_HUCS)
     natural_hydro_polys = MapServiceLayer(NATURAL_HYDRO_POLYS)
     natural_hydro_lines = MapServiceLayer(NATURAL_HYDRO_LINES)
@@ -179,19 +190,24 @@ def natural_layers(group_lyr, template):
     natural_wetlands = MapServiceLayer(NATURAL_WETLANDS)
 
     natural_hydro_hucs_fc = feature_class(natural_hydro_hucs)
+    natural_hydro_hucs_fc.update({"title": "Watershed HUCS"})
     natural_hydro_hucs_fc.update({"visibility": False})
     natural_hydro_hucs_fc.update({"disablePopup": False})
-    natural_hydro_hucs_fc.update({"popupInfo": lyr_data["hucs"]})
+    natural_hydro_hucs_fc.update({"popupInfo": template["hucs"]})
     natural_hydro_polys_fc = feature_class(natural_hydro_polys)
+    natural_hydro_polys_fc.update({"title": "Water Bodies"})
     natural_hydro_lines_fc = feature_class(natural_hydro_lines)
+    natural_hydro_lines_fc.update({"title": "Rivers & Streams"})
     natural_soils_fc = feature_class(natural_soils)
+    natural_soils_fc.update({"title": "Soils"})
     natural_soils_fc.update({"visibility": False})
     natural_soils_fc.update({"disablePopup": False})
-    natural_soils_fc.update({"popupInfo": lyr_data["soils"]})
+    natural_soils_fc.update({"popupInfo": template["soils"]})
     natural_wetlands_fc = feature_class(natural_wetlands)
+    natural_wetlands_fc.update({"title": "Wetlands - NWI (County)"})
     natural_wetlands_fc.update({"visibility": False})
     natural_wetlands_fc.update({"disablePopup": False})
-    natural_wetlands_fc.update({"popupInfo": lyr_data["wetlands"]})
+    natural_wetlands_fc.update({"popupInfo": template["wetlands"]})
 
     natural_group = group_layer("WATER|SOILS|WETLANDS")
     natural_group["layers"].append(natural_wetlands_fc)
@@ -203,29 +219,27 @@ def natural_layers(group_lyr, template):
     group_lyr["layers"].append(natural_group)
 
 
-def address_map(project_map, template):
-    basemap = group_layer("Base")
-    address_layers(basemap, template)
-    map_def = project_map.get_data()
-    map_def["operationalLayers"].append(basemap)
-    project_map.update({"text": str(map_def)})
-
-
 def address_layers(group_lyr, template):
+    """
+    Add address layers to definition of a group layer.
+
+    :param group_lyr: Group layer to update with address layers.
+    :param template: Web map template for feature layer info.
+    :return: Updates group layer definition with address layers.
+    """
     address_county = MapServiceLayer(ADDRESS_COUNTY)
     address_buildings = MapServiceLayer(ADDRESS_BUILDINGS)
     address_driveways = MapServiceLayer(ADDRESS_DRIVEWAYS)
-    popup_info = addr_popup_info(template)
-    labels = addr_labels(template)
 
     address_county_fc = feature_class(address_county)
-    address_county_fc.update({"popupInfo": popup_info["address"]})
-    address_county_fc.update({"layerDefinition": labels["labels"]})
+    address_county_fc.update({"title": "County Addresses"})
+    address_county_fc.update({"popupInfo": template["address"]})
+    address_county_fc.update({"layerDefinition": template["labels"]})
     address_buildings_fc = feature_class(address_buildings)
     address_buildings_fc.update({"visibility": False})
     address_driveways_fc = feature_class(address_driveways)
     address_driveways_fc.update({"visibility": False})
-    address_driveways_fc.update({"popupInfo": popup_info["driveways"]})
+    address_driveways_fc.update({"popupInfo": template["driveways"]})
 
     address_group = group_layer("Address")
     address_group["layers"].append(address_buildings_fc)
@@ -250,44 +264,149 @@ def taxlot_layers(group_lyr):
     group_lyr["layers"].append(taxlot_group)
 
 
-def survey_layers(group_lyr):
+def survey_layers_info(template):
+    """
+    Build dictionary of layer info for survey layers. Includes popup info.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions for the survey layers.
+    """
+    ref_data = template.get_data()
+    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
+    new_data = {}
+    # pull data from template
+    survey_index_labels = ref_list[0]["layerDefinition"]
+    survey_index_popup = ref_list[0]["popupInfo"]
+    dlc_labels = ref_list[1]["layerDefinition"]
+    dlc_popup = ref_list[1]["popupInfo"]
+    dlc_corners_labels = ref_list[2]["layerDefinition"]
+    dlc_corners_popup = ref_list[2]["popupInfo"]
+    section_polygons_labels = ref_list[3]["layerDefinition"]
+    section_polygons_popup = ref_list[3]["popupInfo"]
+    section_corners_labels = ref_list[4]["layerDefinition"]
+    section_corners_popup = ref_list[4]["popupInfo"]
+    section_numbers_labels = ref_list[5]["layerDefinition"]
+    section_numbers_popup = ref_list[5]["popupInfo"]
+    geodetic_control_labels = ref_list[6]["layerDefinition"]
+    geodetic_control_popup = ref_list[6]["popupInfo"]
+    benchmarks_labels = ref_list[7]["layerDefinition"]
+    benchmarks_popup = ref_list[7]["popupInfo"]
+
+    # save layer info to dictionary and return
+    new_data.update({"survey_index_labels": survey_index_labels})
+    new_data.update({"survey_index_popup": survey_index_popup})
+    new_data.update({"dlc_labels": dlc_labels})
+    new_data.update({"dlc_popup": dlc_popup})
+    new_data.update({"dlc_corners_labels": dlc_corners_labels})
+    new_data.update({"dlc_corners_popup": dlc_corners_popup})
+    new_data.update({"section_polygons_labels": section_polygons_labels})
+    new_data.update({"section_polygons_popup": section_polygons_popup})
+    new_data.update({"section_corners_labels": section_corners_labels})
+    new_data.update({"section_corners_popup": section_corners_popup})
+    new_data.update({"section_numbers_labels": section_numbers_labels})
+    new_data.update({"section_numbers_popup": section_numbers_popup})
+    new_data.update({"geodetic_control_labels": geodetic_control_labels})
+    new_data.update({"geodetic_control_popup": geodetic_control_popup})
+    new_data.update({"benchmarks_labels": benchmarks_labels})
+    new_data.update({"benchmarks_popup": benchmarks_popup})
+    return new_data
+
+
+def test_map_layers(project_map, layers, template):
+    """
+    Build test map of the target layers.
+
+    :param project_map: Web map to update with target layers.
+    :type project_map: Web Map
+    :param template: Web map template for feature layer info.
+    :type template: Dictionary
+    :return: Updates web map to include the target layers.
+    :rtype: None
+    """
+    basemap = group_layer("Base")
+    layers(basemap, template)
+    map_def = project_map.get_data()
+    map_def["operationalLayers"].append(basemap)
+    project_map.update({"text": str(map_def)})
+
+
+def survey_layers(group_lyr, template):
     survey_benchmarks = MapServiceLayer(SURVEY_BENCHMARKS)
     survey_dlc_corners = MapServiceLayer(SURVEY_DLC_CORNERS)
     survey_geodetic_control = MapServiceLayer(SURVEY_GEODETIC_CONTROL)
     survey_section_numbers = MapServiceLayer(SURVEY_SECTION_NUMBERS)
     survey_section_corners = MapServiceLayer(SURVEY_SECTION_CORNERS)
-    survey_section_lines = MapServiceLayer(SURVEY_SECTION_LINES)
+    # survey_section_lines = MapServiceLayer(SURVEY_SECTION_LINES)
     survey_section_polygons = MapServiceLayer(SURVEY_SECTION_POLYGONS)
     survey_dlc = MapServiceLayer(SURVEY_DLC)
     survey_index = MapServiceLayer(SURVEY_INDEX)
 
-    survey_benchmarks_fc = feature_class(survey_benchmarks)
+    survey_benchmarks_fc = feature_class(survey_benchmarks, 0.5)
+    survey_benchmarks_fc.update({"title": "Benchmarks"})
     survey_benchmarks_fc.update({"visibility": False})
+    survey_benchmarks_fc.update({"disablePopup": True})
+    survey_benchmarks_fc.update({"popupInfo": template["benchmarks_popup"]})
+    survey_benchmarks_fc.update({"layerDefinition": template["benchmarks_labels"]})
     survey_dlc_corners_fc = feature_class(survey_dlc_corners)
+    survey_dlc_corners_fc.update({"title": "DLC Corners"})
     survey_dlc_corners_fc.update({"visibility": False})
-    survey_geodetic_control_fc = feature_class(survey_geodetic_control)
+    survey_dlc_corners_fc.update({"disablePopup": False})
+    survey_dlc_corners_fc.update({"popupInfo": template["dlc_corners_popup"]})
+    survey_dlc_corners_fc.update({"layerDefinition": template["dlc_corners_labels"]})
+    survey_geodetic_control_fc = feature_class(survey_geodetic_control, 0.5)
+    survey_geodetic_control_fc.update({"title": "Geodetic Control"})
     survey_geodetic_control_fc.update({"visibility": False})
+    survey_geodetic_control_fc.update({"disablePopup": False})
+    survey_geodetic_control_fc.update({"popupInfo": template["geodetic_control_popup"]})
+    survey_geodetic_control_fc.update(
+        {"layerDefinition": template["geodetic_control_labels"]}
+    )
     survey_section_numbers_fc = feature_class(survey_section_numbers)
+    # survey_section_numbers_fc.update({"disablePopup": True})
+    # survey_section_numbers_fc.update({"popupInfo": template["section_numbers_popup"]})
+    # survey_section_numbers_fc.update(
+    #     {"layerDefinition": template["section_numbers_labels"]}
+    # )
+    # survey_section_numbers_fc.update({"showLabels": True})
     survey_section_corners_fc = feature_class(survey_section_corners)
+    survey_section_corners_fc.update({"title": "Section Corners"})
     survey_section_corners_fc.update({"visibility": False})
-    survey_section_lines_fc = feature_class(survey_section_lines)
-    survey_section_polygons_fc = feature_class(survey_section_polygons, 0.5)
-    survey_section_polygons_fc.update({"visibility": False})
+    survey_section_corners_fc.update({"disablePopup": False})
+    survey_section_corners_fc.update({"popupInfo": template["section_corners_popup"]})
+    survey_section_corners_fc.update(
+        {"layerDefinition": template["section_corners_labels"]}
+    )
+    # survey_section_lines_fc = feature_class(survey_section_lines)
+    survey_section_polygons_fc = feature_class(survey_section_polygons)
+    survey_section_polygons_fc.update({"title": "Section Polygons"})
+    survey_section_polygons_fc.update({"disablePopup": False})
+    survey_section_polygons_fc.update({"popupInfo": template["section_polygons_popup"]})
+    survey_section_polygons_fc.update(
+        {"layerDefinition": template["section_polygons_labels"]}
+    )
     survey_dlc_fc = feature_class(survey_dlc)
+    survey_dlc_fc.update({"title": "Donation Land Claims"})
     survey_dlc_fc.update({"visibility": False})
+    survey_dlc_fc.update({"disablePopup": False})
+    survey_dlc_fc.update({"popupInfo": template["dlc_popup"]})
+    survey_dlc_fc.update({"layerDefinition": template["dlc_labels"]})
     survey_index_fc = feature_class(survey_index)
+    survey_index_fc.update({"title": "Survey Index"})
     survey_index_fc.update({"visibility": False})
+    survey_index_fc.update({"disablePopup": False})
+    survey_index_fc.update({"popupInfo": template["survey_index_popup"]})
+    survey_index_fc.update({"layerDefinition": template["survey_index_labels"]})
 
     survey_group = group_layer("Survey")
-    survey_group["layers"].append(survey_benchmarks_fc)
-    survey_group["layers"].append(survey_section_polygons_fc)
+    # survey_group["layers"].append(survey_section_lines_fc)
+    survey_group["layers"].append(survey_index_fc)
     survey_group["layers"].append(survey_dlc_fc)
     survey_group["layers"].append(survey_dlc_corners_fc)
-    survey_group["layers"].append(survey_geodetic_control_fc)
+    survey_group["layers"].append(survey_section_polygons_fc)
     survey_group["layers"].append(survey_section_corners_fc)
-    survey_group["layers"].append(survey_section_lines_fc)
-    survey_group["layers"].append(survey_index_fc)
     survey_group["layers"].append(survey_section_numbers_fc)
+    survey_group["layers"].append(survey_geodetic_control_fc)
+    survey_group["layers"].append(survey_benchmarks_fc)
 
     group_lyr["layers"].append(survey_group)
 
@@ -341,14 +460,6 @@ def zoning_map(project_map):
     zoning_fema_fc = fc_gen(zoning_fema, 0.75)
 
 
-def county_boundaries_map(project_map, template):
-    basemap = group_layer("Base")
-    county_boundaries(basemap, template)
-    map_def = project_map.get_data()
-    map_def["operationalLayers"].append(basemap)
-    project_map.update({"text": str(map_def)})
-
-
 def county_boundaries(group_lyr, template):
     """
     Add boundaries layers to group for web map.
@@ -358,7 +469,6 @@ def county_boundaries(group_lyr, template):
     :return: Group layer definition with boundary layers appended.
     :rtype: None.
     """
-    data = boundary_layer_info(template)
     bc_boundaries_cities = MapServiceLayer(BC_BOUNDARIES_CITIES)
     bc_boundaries_county = MapServiceLayer(BC_BOUNDARIES_COUNTY)
     bc_boundaries_precincts = MapServiceLayer(BC_BOUNDARIES_PRECINCTS)
@@ -373,14 +483,14 @@ def county_boundaries(group_lyr, template):
     bc_boundaries_precincts_fc = feature_class(bc_boundaries_precincts)
     bc_boundaries_precincts_fc.update({"visibility": False})
     bc_boundaries_parks_fc = feature_class(bc_boundaries_parks)
-    bc_boundaries_parks_fc.update({"popupInfo": data["parks_popup"]})
-    bc_boundaries_parks_fc.update({"layerDefinition": data["parks_labels"]})
+    bc_boundaries_parks_fc.update({"popupInfo": template["parks_popup"]})
+    bc_boundaries_parks_fc.update({"layerDefinition": template["parks_labels"]})
     bc_boundaries_parks_fc.update({"showLabels": True})
     bc_boundaries_parks_fc.update({"disablePopup": False})
     bc_boundaries_parks_fc.update({"visibility": False})
     bc_boundaries_zip_fc = feature_class(bc_boundaries_zip)
     bc_boundaries_zip_fc.update({"visibility": False})
-    bc_boundaries_zip_fc.update({"popupInfo": data["zipcode_popup"]})
+    bc_boundaries_zip_fc.update({"popupInfo": template["zipcode_popup"]})
     bc_boundaries_zip_fc.update({"disablePopup": False})
     bc_boundaries_school_fc = feature_class(bc_boundaries_school)
     bc_boundaries_school_fc.update({"visibility": False})
@@ -431,7 +541,7 @@ def county_basemap_layers(group_layer):
     group_layer["layers"].append(bc_section_numbers_fc)
 
 
-def county_basemap(project_map, addr_ref, bnd_ref, nat_ref):
+def county_basemap(project_map, template):
     """
     Add common reference layers to web map.
     Layers are taxlots, roads, railroads, section lines and section numbers.
@@ -442,12 +552,12 @@ def county_basemap(project_map, addr_ref, bnd_ref, nat_ref):
     """
     basemap = group_layer("Base")
     zoning_layers(basemap)
-    natural_layers(basemap, nat_ref)
-    address_layers(basemap, addr_ref)
+    natural_layers(basemap, template)
+    address_layers(basemap, template)
     # taxlot_layers(basemap)
     transport_layers(basemap)
-    county_boundaries(basemap, bnd_ref)
-    survey_layers(basemap)
+    county_boundaries(basemap, template)
+    survey_layers(basemap, template)
     # county_basemap_layers(basemap)
     map_def = project_map.get_data()
     map_def["operationalLayers"].append(basemap)
@@ -868,6 +978,12 @@ def add_nfi(project_map, service, template):
 
 
 def addr_popup_info(template):
+    """
+    Build dictionary of layer info for the address layers. Includes popup info.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions for the address layers.
+    """
     addr = template.get_data()
     addr_dict = {}
     driveways = addr["operationalLayers"][0]["layers"][0]["layers"][1]["popupInfo"]
@@ -878,6 +994,12 @@ def addr_popup_info(template):
 
 
 def boundary_layer_info(template):
+    """
+    Build dictionary of layer info for the boundary layers. Includes popup info and layer definition.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions for the boundary layers.
+    """
     ref_data = template.get_data()
     new_data = {}
     zipcode_popup = ref_data["operationalLayers"][0]["layers"][0]["layers"][2][
@@ -896,6 +1018,12 @@ def boundary_layer_info(template):
 
 
 def addr_labels(template):
+    """
+    Build dictionary of layer info for the address layers. Includes layer definition.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions for the address layers.
+    """
     addr = template.get_data()
     addr_dict = {}
     labels = addr["operationalLayers"][0]["layers"][0]["layers"][2]["layerDefinition"]
@@ -1109,6 +1237,26 @@ def nfi_popup_info(template):
     nfi_dict.update({"flood_will": flood_will})
     nfi_dict.update({"floodway": floodway})
     return nfi_dict
+
+
+def build_template_dictionary(template_type, template):
+    template_dict = {}
+    match template_type:
+        case "address":
+            template_dict.update(addr_popup_info(template))
+            template_dict.update(addr_labels(template))
+        case "boundary":
+            template_dict.update(boundary_layer_info(template))
+        case "natural":
+            template_dict.update(natural_layers_info(template))
+        case "nfi":
+            template_dict.update(nfi_popup_info(template))
+        case "survey":
+            template_dict.update(survey_layers_info(template))
+        # case "zoning":
+        # template_dict.update(zoning_layers_info(template))
+
+    return template_dict
 
 
 if __name__ == "__main__":
