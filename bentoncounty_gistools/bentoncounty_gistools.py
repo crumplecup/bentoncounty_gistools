@@ -1,6 +1,7 @@
 import random
 import string
 from arcgis.mapping import MapServiceLayer
+import bentoncounty_gistools.urls as urls
 
 ZONING_UGB_CORVALLIS_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/0"
 ZONING_UGB_PHILOMATH_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/2"
@@ -125,6 +126,123 @@ BC_ZONING_AIRPORT = (
 BC_ZONING_CURRENT = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningService/MapServer/5"
 )
+
+
+def taxlot_layers_info(template):
+    """
+    Build dictionary of layer info.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions.
+    """
+    ref_data = template.get_data()
+    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
+    new_data = {}
+    zoning_current_popup = ref_list[0]["popupInfo"]
+    zoning_current_labels = ref_list[0]["layerDefinition"]
+    new_data.update({"zoning_current_popup": zoning_current_popup})
+    new_data.update({"zoning_current_labels": zoning_current_labels})
+    return new_data
+
+
+def taxlot_layers(group_lyr, template):
+    """
+    Add layers for BC taxlots to group layer.
+
+    :param group_lyr: Group layer definition target for layers.
+    :return: Updates group layer definition with layers.
+    """
+    layer_ord = [0]
+    # cartographic layer needs fixing
+    for i in range(2, 5):
+        layer_ord.append(i)
+    # water - above empty
+    for i in range(6, 13):
+        layer_ord.append(i)
+
+    url_list = [urls.TAXLOT_URLS[i] for i in layer_ord]
+    taxlot_group = group_layer("Taxlots")
+    for lyr in reversed(url_list):
+        map_lyr = MapServiceLayer(lyr)
+        fc = feature_class(map_lyr)
+        fc.update({"visibility": False})
+        taxlot_group["layers"].append(fc)
+
+    group_lyr["layers"].append(taxlot_group)
+
+
+def anno_0050_layers_info(template):
+    """
+    Build dictionary of layer info.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions.
+    """
+    ref_data = template.get_data()
+    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
+    new_data = {}
+    zoning_current_popup = ref_list[0]["popupInfo"]
+    zoning_current_labels = ref_list[0]["layerDefinition"]
+    new_data.update({"zoning_current_popup": zoning_current_popup})
+    new_data.update({"zoning_current_labels": zoning_current_labels})
+    return new_data
+
+
+def anno_0050_layers(group_lyr, template):
+    """
+    Add layers for BC taxlot anno 0050 to group layer.
+
+    :param group_lyr: Group layer definition target for layers.
+    :return: Updates group layer definition with layers.
+    """
+    anno_group = group_layer("Anno 0050")
+    # for lyr in urls.ANNO_0020_URLS:
+    # map_lyr = MapServiceLayer(lyr)
+    # fc = feature_class(map_lyr)
+    # fc.update({"visibility": False})
+    # anno_group["layers"].append(fc)
+    lyr = MapServiceLayer(urls.ANNO_0050_URLS[0])
+    fc = feature_class(lyr)
+    anno_group["layers"].append(fc)
+
+    group_lyr["layers"].append(anno_group)
+
+
+def anno_0020_layers_info(template):
+    """
+    Build dictionary of layer info.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions.
+    """
+    ref_data = template.get_data()
+    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
+    new_data = {}
+    zoning_current_popup = ref_list[0]["popupInfo"]
+    zoning_current_labels = ref_list[0]["layerDefinition"]
+    new_data.update({"zoning_current_popup": zoning_current_popup})
+    new_data.update({"zoning_current_labels": zoning_current_labels})
+    return new_data
+
+
+def anno_0020_layers(group_lyr, template):
+    """
+    Add layers for BC taxlot anno 0020 to group layer.
+
+    :param group_lyr: Group layer definition target for layers.
+    :return: Updates group layer definition with layers.
+    """
+    anno_group = group_layer("Anno 0020")
+    # for lyr in urls.ANNO_0020_URLS:
+    # map_lyr = MapServiceLayer(lyr)
+    # fc = feature_class(map_lyr)
+    # fc.update({"visibility": False})
+    # anno_group["layers"].append(fc)
+    lyr = MapServiceLayer(urls.ANNO_0020_URLS[0])
+    fc = feature_class(lyr)
+    anno_group["layers"].append(fc)
+
+    group_lyr["layers"].append(anno_group)
 
 
 def zoning_layers_info(template):
@@ -344,21 +462,6 @@ def address_layers(group_lyr, template):
     address_group["layers"].append(address_county_fc)
 
     group_lyr["layers"].append(address_group)
-
-
-def taxlot_layers(group_lyr):
-    taxlot_anno_0020_scale = MapServiceLayer(TAXLOT_ANNO_0020_SCALE)
-    taxlot_anno_0050_scale = MapServiceLayer(TAXLOT_ANNO_0050_SCALE)
-    taxlot_anno_0020_scale_fc = feature_class(taxlot_anno_0020_scale)
-    taxlot_anno_0020_scale_fc.update({"visibility": False})
-    taxlot_anno_0050_scale_fc = feature_class(taxlot_anno_0050_scale)
-    taxlot_anno_0050_scale_fc.update({"visibility": False})
-
-    taxlot_group = group_layer("Taxlot")
-    taxlot_group["layers"].append(taxlot_anno_0050_scale_fc)
-    taxlot_group["layers"].append(taxlot_anno_0020_scale_fc)
-
-    group_lyr["layers"].append(taxlot_group)
 
 
 def survey_layers_info(template):
