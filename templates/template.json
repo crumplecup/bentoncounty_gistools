@@ -2406,6 +2406,204 @@
         ],
         "title": "Downtown Between Dixon Creek and Marys: {REACH_CD}"
     },
+    "centerlines_labels": {
+        "drawingInfo": {
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        225,
+                        225,
+                        225,
+                        128
+                    ],
+                    "style": "esriSLSSolid",
+                    "type": "esriSLS",
+                    "width": 0.8
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 1.5,
+                                "value": 564.248588
+                            },
+                            {
+                                "size": 0.75,
+                                "value": 4513.988705
+                            },
+                            {
+                                "size": 0.5625,
+                                "value": 36111.909643
+                            },
+                            {
+                                "size": 0.375,
+                                "value": 288895.277144
+                            }
+                        ],
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
+    },
+    "cities_labels": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[PLACENAME]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"PLACENAME\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 12428.600584,
+                    "minScale": 0,
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            0,
+                            169,
+                            230,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 10.5,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 1.5,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "outline": {
+                        "color": [
+                            0,
+                            77,
+                            168,
+                            128
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 1.13
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 2.3541666666666665,
+                                "value": 38005
+                            },
+                            {
+                                "size": 1.1770833333333333,
+                                "value": 118767
+                            },
+                            {
+                                "size": 0.5885416666666666,
+                                "value": 475067
+                            },
+                            {
+                                "size": 0,
+                                "value": 950134
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
+    },
+    "county_labels": {
+        "drawingInfo": {
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "outline": {
+                        "color": [
+                            169,
+                            0,
+                            230,
+                            128
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 1.5
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 1.5,
+                                "value": 1146168
+                            },
+                            {
+                                "size": 0.75,
+                                "value": 3581774
+                            },
+                            {
+                                "size": 0.375,
+                                "value": 14327095
+                            },
+                            {
+                                "size": 0,
+                                "value": 28654189
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        },
+        "featureReduction": null
+    },
     "dlc_corners_labels": {
         "drawingInfo": {
             "labelingInfo": [
@@ -3239,6 +3437,103 @@
             }
         ],
         "title": "Driveways: {ST_NAME}"
+    },
+    "fire_labels": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[District]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"District\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            255,
+                            0,
+                            0,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 10.5,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 2,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        255,
+                        0,
+                        0,
+                        128
+                    ],
+                    "outline": {
+                        "color": [
+                            255,
+                            0,
+                            0,
+                            128
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 1.5
+                    },
+                    "style": "esriSFSBackwardDiagonal",
+                    "type": "esriSFS"
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 1.5,
+                                "value": 297610
+                            },
+                            {
+                                "size": 0.75,
+                                "value": 930032
+                            },
+                            {
+                                "size": 0.375,
+                                "value": 3720127
+                            },
+                            {
+                                "size": 0,
+                                "value": 7440254
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        },
+        "featureReduction": null
     },
     "flood_dixon": {
         "fieldInfos": [
@@ -11247,7 +11542,62 @@
         ],
         "title": "Oak Savanna: {name}"
     },
-    "hucs": {
+    "hucs_labels": {
+        "drawingInfo": {
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "outline": {
+                        "color": [
+                            0,
+                            77,
+                            168,
+                            128
+                        ],
+                        "style": "esriSLSDash",
+                        "type": "esriSLS",
+                        "width": 2
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 2,
+                                "value": 198175
+                            },
+                            {
+                                "size": 1,
+                                "value": 619296
+                            },
+                            {
+                                "size": 0.5,
+                                "value": 2477186
+                            },
+                            {
+                                "size": 0,
+                                "value": 4954372
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
+    },
+    "hucs_popup": {
         "fieldInfos": [
             {
                 "fieldName": "OBJECTID_1",
@@ -11403,6 +11753,80 @@
             }
         ],
         "title": "Hydro_HUCS: {HUC_NUM}"
+    },
+    "hydro_lines_labels": {
+        "drawingInfo": {
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        115,
+                        223,
+                        255,
+                        128
+                    ],
+                    "style": "esriSLSSolid",
+                    "type": "esriSLS",
+                    "width": 1
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 1.5,
+                                "value": 1128.497176
+                            },
+                            {
+                                "size": 0.75,
+                                "value": 9027.977411
+                            },
+                            {
+                                "size": 0.5625,
+                                "value": 72223.819286
+                            },
+                            {
+                                "size": 0.375,
+                                "value": 577790.554289
+                            }
+                        ],
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
+    },
+    "hydro_polys_labels": {
+        "drawingInfo": {
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        190,
+                        232,
+                        255,
+                        128
+                    ],
+                    "outline": {
+                        "color": [
+                            115,
+                            223,
+                            255,
+                            128
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 0.4
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple"
+            }
+        }
     },
     "labels": {
         "drawingInfo": {
@@ -16571,19 +16995,20 @@
                     "symbol": {
                         "angle": 0,
                         "color": [
-                            105,
-                            105,
-                            105,
+                            43,
+                            43,
+                            43,
                             255
                         ],
                         "font": {
                             "family": "Arial",
-                            "size": 9.75
+                            "size": 10.5,
+                            "weight": "bold"
                         },
                         "haloColor": [
-                            211,
-                            211,
-                            211,
+                            255,
+                            255,
+                            255,
                             255
                         ],
                         "haloSize": 1,
@@ -16597,7 +17022,33 @@
                         "yoffset": 0
                     }
                 }
-            ]
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        211,
+                        255,
+                        190,
+                        128
+                    ],
+                    "outline": {
+                        "color": [
+                            38,
+                            115,
+                            0,
+                            128
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 1
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple"
+            }
         },
         "minScale": 29747.873202
     },
@@ -16731,6 +17182,314 @@
         ],
         "title": "County Parks: {PARKNAME}"
     },
+    "precincts_labels": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[Precinct]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"Precinct\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            132,
+                            0,
+                            168,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 13.5,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            232,
+                            190,
+                            255,
+                            255
+                        ],
+                        "haloSize": 1.5,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "outline": {
+                        "color": [
+                            132,
+                            0,
+                            168,
+                            128
+                        ],
+                        "style": "esriSLSDash",
+                        "type": "esriSLS",
+                        "width": 2
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 2,
+                                "value": 176679
+                            },
+                            {
+                                "size": 1,
+                                "value": 552123
+                            },
+                            {
+                                "size": 0.5,
+                                "value": 2208491
+                            },
+                            {
+                                "size": 0,
+                                "value": 4416983
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
+    },
+    "railroads_labels": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[Owner]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"Owner\"]"
+                    },
+                    "labelPlacement": "esriServerLinePlacementCenterAlong",
+                    "maxScale": 0,
+                    "minScale": 44810.838317,
+                    "repeatLabel": false,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            115,
+                            38,
+                            0,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 7.5
+                        },
+                        "haloSize": 1,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    }
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        115,
+                        38,
+                        0,
+                        128
+                    ],
+                    "style": "esriSLSSolid",
+                    "type": "esriSLS",
+                    "width": 1.5
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 4.0068696547355085,
+                                "value": 2256.994353
+                            },
+                            {
+                                "size": 2.0034348273677542,
+                                "value": 18055.954822
+                            },
+                            {
+                                "size": 1.5025761205258157,
+                                "value": 144447.638572
+                            },
+                            {
+                                "size": 1.0017174136838771,
+                                "value": 1155581.108577
+                            }
+                        ],
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
+    },
+    "road_surface_labels": {
+        "drawingInfo": {
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        225,
+                        225,
+                        225,
+                        128
+                    ],
+                    "outline": {
+                        "color": [
+                            156,
+                            156,
+                            156,
+                            128
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 0.4
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 2,
+                                "value": 311
+                            },
+                            {
+                                "size": 1,
+                                "value": 971
+                            },
+                            {
+                                "size": 0.5,
+                                "value": 3883
+                            },
+                            {
+                                "size": 0,
+                                "value": 7766
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
+    },
+    "roads_labels": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[FENAME]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"FENAME\"]"
+                    },
+                    "labelPlacement": "esriServerLinePlacementCenterAlong",
+                    "maxScale": 0,
+                    "minScale": 41980.717091,
+                    "repeatLabel": false,
+                    "repeatLabelDistance": 0,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            105,
+                            105,
+                            105,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 6.75
+                        },
+                        "haloSize": 1,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    }
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        255,
+                        255,
+                        255,
+                        128
+                    ],
+                    "style": "esriSLSSolid",
+                    "type": "esriSLS",
+                    "width": 1
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 1.5,
+                                "value": 564.248588
+                            },
+                            {
+                                "size": 0.75,
+                                "value": 4513.988705
+                            },
+                            {
+                                "size": 0.5625,
+                                "value": 36111.909643
+                            },
+                            {
+                                "size": 0.375,
+                                "value": 288895.277144
+                            }
+                        ],
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
+    },
     "runout_closed": {
         "fieldInfos": [
             {
@@ -16838,6 +17597,102 @@
             }
         ],
         "title": "Open Channel: {SLOPE}"
+    },
+    "school_labels": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[District]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"District\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            0,
+                            112,
+                            255,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 10.5,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 2,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "outline": {
+                        "color": [
+                            0,
+                            112,
+                            255,
+                            128
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 1.5
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 1.5,
+                                "value": 367053
+                            },
+                            {
+                                "size": 0.75,
+                                "value": 1147042
+                            },
+                            {
+                                "size": 0.375,
+                                "value": 4588167
+                            },
+                            {
+                                "size": 0,
+                                "value": 9176334
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
     },
     "section_corners_labels": {
         "drawingInfo": {
@@ -17199,8 +18054,7 @@
         ],
         "title": "Section_corner_index: {BOOK_NO}"
     },
-    "section_numbers_labels": {
-        "definitionExpression": null,
+    "section_polygons_labels": {
         "drawingInfo": {
             "labelingInfo": [
                 {
@@ -17208,7 +18062,7 @@
                     "labelExpressionInfo": {
                         "expression": "$feature[\"SECTION_\"]"
                     },
-                    "labelPlacement": "esriServerPointLabelPlacementCenterCenter",
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
                     "repeatLabel": true,
                     "symbol": {
                         "angle": 0,
@@ -17220,207 +18074,26 @@
                         ],
                         "font": {
                             "family": "Arial",
-                            "size": 12
+                            "size": 10.5
                         },
+                        "haloColor": [
+                            211,
+                            211,
+                            211,
+                            255
+                        ],
+                        "haloSize": 1,
                         "horizontalAlignment": "center",
                         "kerning": true,
-                        "rightToLeft": false,
                         "rotated": false,
                         "text": "",
                         "type": "esriTS",
-                        "verticalAlignment": "bottom",
+                        "verticalAlignment": "baseline",
                         "xoffset": 0,
                         "yoffset": 0
-                    },
-                    "useCodedValues": true
+                    }
                 }
             ],
-            "renderer": {
-                "description": "",
-                "label": "",
-                "symbol": {
-                    "angle": 0,
-                    "color": [
-                        255,
-                        255,
-                        255,
-                        0
-                    ],
-                    "outline": {
-                        "color": [
-                            43,
-                            43,
-                            43,
-                            0
-                        ],
-                        "style": "esriSLSSolid",
-                        "type": "esriSLS",
-                        "width": 1
-                    },
-                    "size": 4,
-                    "style": "esriSMSCircle",
-                    "type": "esriSMS",
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                "type": "simple"
-            }
-        },
-        "featureReduction": null,
-        "minScale": 301089.358262
-    },
-    "section_numbers_popup": {
-        "fieldInfos": [
-            {
-                "fieldName": "OBJECTID",
-                "label": "OBJECTID",
-                "visible": false
-            },
-            {
-                "fieldName": "FULL_NAME",
-                "isEditable": true,
-                "label": "FULL_NAME",
-                "visible": true
-            },
-            {
-                "fieldName": "GlobalID",
-                "label": "GlobalID",
-                "visible": false
-            },
-            {
-                "fieldName": "RANGE",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 0
-                },
-                "isEditable": true,
-                "label": "RANGE",
-                "visible": true
-            },
-            {
-                "fieldName": "RNG_CHAR",
-                "isEditable": true,
-                "label": "RNG_CHAR",
-                "visible": true
-            },
-            {
-                "fieldName": "SECTION_",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 0
-                },
-                "isEditable": true,
-                "label": "SECTION_",
-                "visible": true
-            },
-            {
-                "fieldName": "SECTIONS_",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 2
-                },
-                "isEditable": true,
-                "label": "SECTIONS_",
-                "visible": true
-            },
-            {
-                "fieldName": "SECTIONS_I",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 2
-                },
-                "isEditable": true,
-                "label": "SECTIONS_I",
-                "visible": false
-            },
-            {
-                "fieldName": "TOWNSHIP",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 0
-                },
-                "isEditable": true,
-                "label": "TOWNSHIP",
-                "visible": true
-            },
-            {
-                "fieldName": "TWP_CHAR",
-                "isEditable": true,
-                "label": "TWP_CHAR",
-                "visible": true
-            }
-        ],
-        "popupElements": [
-            {
-                "description": "",
-                "fieldInfos": [
-                    {
-                        "fieldName": "FULL_NAME",
-                        "isEditable": true,
-                        "label": "FULL_NAME",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "RANGE",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 0
-                        },
-                        "isEditable": true,
-                        "label": "RANGE",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "RNG_CHAR",
-                        "isEditable": true,
-                        "label": "RNG_CHAR",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "SECTION_",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 0
-                        },
-                        "isEditable": true,
-                        "label": "SECTION_",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "SECTIONS_",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 2
-                        },
-                        "isEditable": true,
-                        "label": "SECTIONS_",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "TOWNSHIP",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 0
-                        },
-                        "isEditable": true,
-                        "label": "TOWNSHIP",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "TWP_CHAR",
-                        "isEditable": true,
-                        "label": "TWP_CHAR",
-                        "visible": true
-                    }
-                ],
-                "title": "",
-                "type": "fields"
-            }
-        ],
-        "title": "Section Numbers: {SECTION_}"
-    },
-    "section_polygons_labels": {
-        "drawingInfo": {
             "renderer": {
                 "description": "",
                 "label": "",
@@ -17625,7 +18298,62 @@
         ],
         "title": "Section polygons: {FULL_NAME}"
     },
-    "soils": {
+    "soils_labels": {
+        "drawingInfo": {
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "outline": {
+                        "color": [
+                            169,
+                            0,
+                            230,
+                            128
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 0.56
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 0.7361111111111112,
+                                "value": 16546
+                            },
+                            {
+                                "size": 0.3680555555555556,
+                                "value": 51707
+                            },
+                            {
+                                "size": 0.1840277777777778,
+                                "value": 206826
+                            },
+                            {
+                                "size": 0,
+                                "value": 413653
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
+    },
+    "soils_popup": {
         "fieldInfos": [
             {
                 "fieldName": "OBJECTID",
@@ -18465,54 +19193,113 @@
         ],
         "title": "Survey Index: {NAME}"
     },
-    "wetlands": {
+    "ugb_corvallis_labels": {
+        "drawingInfo": {
+            "renderer": {
+                "symbol": {
+                    "color": [
+                        244,
+                        252,
+                        191,
+                        0
+                    ],
+                    "outline": {
+                        "color": [
+                            43,
+                            43,
+                            43,
+                            128
+                        ],
+                        "style": "esriSLSShortDashDotDot",
+                        "type": "esriSLS",
+                        "width": 1.88
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 1.88,
+                                "value": 254941
+                            },
+                            {
+                                "size": 0.94,
+                                "value": 796691
+                            },
+                            {
+                                "size": 0.47,
+                                "value": 3186765
+                            },
+                            {
+                                "size": 0,
+                                "value": 6373530
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        },
+        "featureReduction": null,
+        "minScale": 1668340.889474
+    },
+    "ugb_corvallis_popup": {
         "fieldInfos": [
             {
-                "fieldName": "OBJECTID",
+                "fieldName": "FID",
                 "label": "FID",
                 "visible": false
             },
             {
-                "fieldName": "ATTRIBUTE",
+                "fieldName": "LABEL",
                 "isEditable": true,
-                "label": "ATTRIBUTE",
+                "label": "LABEL",
                 "visible": true
             },
             {
-                "fieldName": "Shape_Leng",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 2
-                },
+                "fieldName": "LAYER",
                 "isEditable": true,
-                "label": "Shape_Leng",
-                "visible": false
-            },
-            {
-                "fieldName": "Shape.STArea()",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 2
-                },
-                "isEditable": true,
-                "label": "Shape.STArea()",
-                "visible": false
-            },
-            {
-                "fieldName": "Shape.STLength()",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 2
-                },
-                "isEditable": true,
-                "label": "Shape.STLength()",
-                "visible": false
-            },
-            {
-                "fieldName": "WETLAND_TY",
-                "isEditable": true,
-                "label": "WETLAND_TY",
+                "label": "LAYER",
                 "visible": true
+            },
+            {
+                "fieldName": "OBJECTID",
+                "isEditable": true,
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape__Area",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "label": "Shape__Area",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape__Length",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "label": "Shape__Length",
+                "visible": false
+            },
+            {
+                "fieldName": "SHAPE_Leng",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "SHAPE_Leng",
+                "visible": false
             }
         ],
         "popupElements": [
@@ -18520,15 +19307,15 @@
                 "description": "",
                 "fieldInfos": [
                     {
-                        "fieldName": "ATTRIBUTE",
+                        "fieldName": "LABEL",
                         "isEditable": true,
-                        "label": "ATTRIBUTE",
+                        "label": "LABEL",
                         "visible": true
                     },
                     {
-                        "fieldName": "WETLAND_TY",
+                        "fieldName": "LAYER",
                         "isEditable": true,
-                        "label": "WETLAND_TY",
+                        "label": "LAYER",
                         "visible": true
                     }
                 ],
@@ -18536,7 +19323,92 @@
                 "type": "fields"
             }
         ],
-        "title": "Wetlands (NWI): {ATTRIBUTE}"
+        "title": "UGB Corvallis: {OBJECTID}"
+    },
+    "ugb_labels": {
+        "drawingInfo": {
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "outline": {
+                        "color": [
+                            0,
+                            0,
+                            0,
+                            128
+                        ],
+                        "style": "esriSLSDashDotDot",
+                        "type": "esriSLS",
+                        "width": 1.5
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple"
+            }
+        },
+        "featureReduction": null
+    },
+    "ugb_philomath_labels": {
+        "drawingInfo": {
+            "renderer": {
+                "symbol": {
+                    "color": [
+                        196,
+                        252,
+                        194,
+                        0
+                    ],
+                    "outline": {
+                        "color": [
+                            43,
+                            43,
+                            43,
+                            128
+                        ],
+                        "style": "esriSLSShortDashDotDot",
+                        "type": "esriSLS",
+                        "width": 1.88
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 2.3165071672074586,
+                                "value": 79961
+                            },
+                            {
+                                "size": 1.1582535836037293,
+                                "value": 249878
+                            },
+                            {
+                                "size": 0.5791267918018647,
+                                "value": 999511
+                            },
+                            {
+                                "size": 0,
+                                "value": 1999022
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        },
+        "minScale": 1768844.256305
     },
     "wetlands_dsl": {
         "fieldInfos": [
@@ -18991,6 +19863,135 @@
             }
         ],
         "title": "DSL Wetlands (notify if activities within 25ft): {SITENAME}"
+    },
+    "wetlands_labels": {
+        "drawingInfo": {
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "outline": {
+                        "color": [
+                            230,
+                            0,
+                            169,
+                            128
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 0.56
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 2.24,
+                                "value": 5813
+                            },
+                            {
+                                "size": 1.12,
+                                "value": 18165
+                            },
+                            {
+                                "size": 0.56,
+                                "value": 72658
+                            },
+                            {
+                                "size": 0,
+                                "value": 145317
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        },
+        "featureReduction": null
+    },
+    "wetlands_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID",
+                "label": "FID",
+                "visible": false
+            },
+            {
+                "fieldName": "ATTRIBUTE",
+                "isEditable": true,
+                "label": "ATTRIBUTE",
+                "visible": true
+            },
+            {
+                "fieldName": "Shape_Leng",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape_Leng",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape.STArea()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STArea()",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape.STLength()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STLength()",
+                "visible": false
+            },
+            {
+                "fieldName": "WETLAND_TY",
+                "isEditable": true,
+                "label": "WETLAND_TY",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "ATTRIBUTE",
+                        "isEditable": true,
+                        "label": "ATTRIBUTE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "WETLAND_TY",
+                        "isEditable": true,
+                        "label": "WETLAND_TY",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Wetlands (NWI): {ATTRIBUTE}"
     },
     "wetlands_rip": {
         "fieldInfos": [
@@ -20496,6 +21497,103 @@
         ],
         "title": "Locally Significant Wetlands: {STUDY_AREA}"
     },
+    "zipcode_labels": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[ZIP]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"ZIP\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 823.602191,
+                    "minScale": 0,
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            102,
+                            102,
+                            102,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 10.5,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 1,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    }
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "outline": {
+                        "color": [
+                            204,
+                            204,
+                            204,
+                            128
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 1.13
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 1.13,
+                                "value": 295617
+                            },
+                            {
+                                "size": 0.565,
+                                "value": 923803
+                            },
+                            {
+                                "size": 0.2825,
+                                "value": 3695213
+                            },
+                            {
+                                "size": 0,
+                                "value": 7390427
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        },
+        "featureReduction": null
+    },
     "zipcode_popup": {
         "fieldInfos": [
             {
@@ -20705,5 +21803,1688 @@
             }
         ],
         "title": "Zip Codes: {PO_NAME}"
+    },
+    "zoning_airport_labels": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[LABEL]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"LABEL\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 265.545909,
+                    "minScale": 0,
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            255,
+                            0,
+                            197,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 8.25,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.75,
+                        "horizontalAlignment": "center",
+                        "kerning": false,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ]
+        },
+        "featureReduction": null
+    },
+    "zoning_airport_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID",
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "Comp_Plan",
+                "isEditable": true,
+                "label": "Comp_Plan",
+                "visible": true
+            },
+            {
+                "fieldName": "GlobalID",
+                "label": "GlobalID",
+                "visible": false
+            },
+            {
+                "fieldName": "ID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "ID",
+                "visible": true
+            },
+            {
+                "fieldName": "LABEL",
+                "isEditable": true,
+                "label": "LABEL",
+                "visible": true
+            },
+            {
+                "fieldName": "LAYER",
+                "isEditable": true,
+                "label": "LAYER",
+                "visible": true
+            },
+            {
+                "fieldName": "Shape.STArea()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STArea()",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape.STLength()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STLength()",
+                "visible": false
+            },
+            {
+                "fieldName": "SURFACE",
+                "isEditable": true,
+                "label": "SURFACE",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "Comp_Plan",
+                        "isEditable": true,
+                        "label": "Comp_Plan",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ID",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "ID",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "LABEL",
+                        "isEditable": true,
+                        "label": "LABEL",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "LAYER",
+                        "isEditable": true,
+                        "label": "LAYER",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SURFACE",
+                        "isEditable": true,
+                        "label": "SURFACE",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Airport Overlay: {SURFACE}"
+    },
+    "zoning_current_labels": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[LABEL]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"LABEL\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 94.340519,
+                    "minScale": 0,
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            0,
+                            0,
+                            0,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 10.5,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.75,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ],
+            "renderer": {
+                "field1": "LABEL",
+                "fieldDelimiter": ",",
+                "type": "uniqueValue",
+                "uniqueValueInfos": [
+                    {
+                        "description": "",
+                        "label": "/DA",
+                        "symbol": {
+                            "color": [
+                                0,
+                                160,
+                                185,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSBackwardDiagonal",
+                            "type": "esriSFS"
+                        },
+                        "value": "/DA"
+                    },
+                    {
+                        "description": "",
+                        "label": "/FB",
+                        "symbol": {
+                            "color": [
+                                0,
+                                112,
+                                255,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSBackwardDiagonal",
+                            "type": "esriSFS"
+                        },
+                        "value": "/FB"
+                    },
+                    {
+                        "description": "",
+                        "label": "/FI",
+                        "symbol": {
+                            "color": [
+                                169,
+                                0,
+                                230,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSBackwardDiagonal",
+                            "type": "esriSFS"
+                        },
+                        "value": "/FI"
+                    },
+                    {
+                        "description": "",
+                        "label": "/FW",
+                        "symbol": {
+                            "color": [
+                                255,
+                                0,
+                                197,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSBackwardDiagonal",
+                            "type": "esriSFS"
+                        },
+                        "value": "/FW"
+                    },
+                    {
+                        "description": "",
+                        "label": "/SM",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSForwardDiagonal",
+                            "type": "esriSFS"
+                        },
+                        "value": "/SM"
+                    },
+                    {
+                        "description": "",
+                        "label": "/U",
+                        "symbol": {
+                            "color": [
+                                255,
+                                115,
+                                223,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSBackwardDiagonal",
+                            "type": "esriSFS"
+                        },
+                        "value": "/U"
+                    },
+                    {
+                        "description": "",
+                        "label": "/W",
+                        "symbol": {
+                            "color": [
+                                50,
+                                98,
+                                140,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSBackwardDiagonal",
+                            "type": "esriSFS"
+                        },
+                        "value": "/W"
+                    },
+                    {
+                        "description": "",
+                        "label": "AI",
+                        "symbol": {
+                            "color": [
+                                225,
+                                225,
+                                225,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "AI"
+                    },
+                    {
+                        "description": "",
+                        "label": "EFU",
+                        "symbol": {
+                            "color": [
+                                211,
+                                255,
+                                190,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "EFU"
+                    },
+                    {
+                        "description": "",
+                        "label": "FC",
+                        "symbol": {
+                            "color": [
+                                115,
+                                178,
+                                115,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "FC"
+                    },
+                    {
+                        "description": "",
+                        "label": "FPA",
+                        "symbol": {
+                            "color": [
+                                239,
+                                228,
+                                190,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "FPA"
+                    },
+                    {
+                        "description": "",
+                        "label": "LS",
+                        "symbol": {
+                            "color": [
+                                115,
+                                0,
+                                0,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "LS"
+                    },
+                    {
+                        "description": "",
+                        "label": "MPA",
+                        "symbol": {
+                            "color": [
+                                238,
+                                241,
+                                160,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "MPA"
+                    },
+                    {
+                        "description": "",
+                        "label": "OS",
+                        "symbol": {
+                            "color": [
+                                151,
+                                219,
+                                242,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "OS"
+                    },
+                    {
+                        "description": "",
+                        "label": "P",
+                        "symbol": {
+                            "color": [
+                                0,
+                                92,
+                                230,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "P"
+                    },
+                    {
+                        "description": "",
+                        "label": "PR-1",
+                        "symbol": {
+                            "color": [
+                                242,
+                                242,
+                                90,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "PR-1"
+                    },
+                    {
+                        "description": "",
+                        "label": "PR-1/DA",
+                        "symbol": {
+                            "color": [
+                                255,
+                                167,
+                                127,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "PR-1/DA"
+                    },
+                    {
+                        "description": "",
+                        "label": "RC",
+                        "symbol": {
+                            "color": [
+                                101,
+                                152,
+                                184,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "RC"
+                    },
+                    {
+                        "description": "",
+                        "label": "RI",
+                        "symbol": {
+                            "color": [
+                                204,
+                                204,
+                                204,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "RI"
+                    },
+                    {
+                        "description": "",
+                        "label": "RR-10",
+                        "symbol": {
+                            "color": [
+                                170,
+                                102,
+                                205,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "RR-10"
+                    },
+                    {
+                        "description": "",
+                        "label": "RR-2",
+                        "symbol": {
+                            "color": [
+                                110,
+                                0,
+                                199,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "RR-2"
+                    },
+                    {
+                        "description": "",
+                        "label": "RR-20",
+                        "symbol": {
+                            "color": [
+                                232,
+                                190,
+                                255,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "RR-20"
+                    },
+                    {
+                        "description": "",
+                        "label": "RR-5",
+                        "symbol": {
+                            "color": [
+                                197,
+                                0,
+                                255,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "RR-5"
+                    },
+                    {
+                        "description": "",
+                        "label": "SU",
+                        "symbol": {
+                            "color": [
+                                250,
+                                95,
+                                245,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "SU"
+                    },
+                    {
+                        "description": "",
+                        "label": "See Adair",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "See Adair"
+                    },
+                    {
+                        "description": "",
+                        "label": "See Albany",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "See Albany"
+                    },
+                    {
+                        "description": "",
+                        "label": "See Corvallis",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "See Corvallis"
+                    },
+                    {
+                        "description": "",
+                        "label": "See Monroe",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "See Monroe"
+                    },
+                    {
+                        "description": "",
+                        "label": "See Philomath",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "See Philomath"
+                    },
+                    {
+                        "description": "",
+                        "label": "UC",
+                        "symbol": {
+                            "color": [
+                                250,
+                                174,
+                                97,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "UC"
+                    },
+                    {
+                        "description": "",
+                        "label": "UI",
+                        "symbol": {
+                            "color": [
+                                204,
+                                204,
+                                204,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "UI"
+                    },
+                    {
+                        "description": "",
+                        "label": "UI-20",
+                        "symbol": {
+                            "color": [
+                                178,
+                                178,
+                                178,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "UI-20"
+                    },
+                    {
+                        "description": "",
+                        "label": "UR-10",
+                        "symbol": {
+                            "color": [
+                                255,
+                                167,
+                                127,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "UR-10"
+                    },
+                    {
+                        "description": "",
+                        "label": "UR-5",
+                        "symbol": {
+                            "color": [
+                                214,
+                                133,
+                                137,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "UR-5"
+                    },
+                    {
+                        "description": "",
+                        "label": "UR-50",
+                        "symbol": {
+                            "color": [
+                                255,
+                                190,
+                                190,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "UR-50"
+                    },
+                    {
+                        "description": "",
+                        "label": "VC",
+                        "symbol": {
+                            "color": [
+                                255,
+                                85,
+                                0,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "VC"
+                    },
+                    {
+                        "description": "",
+                        "label": "VR",
+                        "symbol": {
+                            "color": [
+                                232,
+                                190,
+                                255,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    227,
+                                    227,
+                                    227,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1.13
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "VR"
+                    }
+                ]
+            }
+        },
+        "featureReduction": null
+    },
+    "zoning_current_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID_1",
+                "label": "OBJECTID_1",
+                "visible": false
+            },
+            {
+                "fieldName": "ACRES",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "ACRES",
+                "visible": false
+            },
+            {
+                "fieldName": "ACRES_WHOL",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "ACRES_WHOL",
+                "visible": false
+            },
+            {
+                "fieldName": "ArcGIS_Pro",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "ArcGIS_Pro",
+                "visible": false
+            },
+            {
+                "fieldName": "Comp_Plan",
+                "isEditable": true,
+                "label": "Comp_Plan",
+                "visible": false
+            },
+            {
+                "fieldName": "GlobalID",
+                "isEditable": true,
+                "label": "GlobalID",
+                "visible": false
+            },
+            {
+                "fieldName": "LABEL",
+                "isEditable": true,
+                "label": "LABEL",
+                "visible": true
+            },
+            {
+                "fieldName": "LAYER",
+                "isEditable": true,
+                "label": "LAYER",
+                "visible": true
+            },
+            {
+                "fieldName": "OBJECTID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "PERIMETER",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "PERIMETER",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape_Leng",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape_Leng",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape.STArea()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STArea()",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape.STLength()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STLength()",
+                "visible": false
+            },
+            {
+                "fieldName": "UID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "UID",
+                "visible": false
+            },
+            {
+                "fieldName": "URL",
+                "isEditable": true,
+                "label": "URL",
+                "visible": false
+            },
+            {
+                "fieldName": "URL1",
+                "isEditable": true,
+                "label": "URL1",
+                "visible": false
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "LABEL",
+                        "isEditable": true,
+                        "label": "LABEL",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "LAYER",
+                        "isEditable": true,
+                        "label": "LAYER",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Zoning - current: {LAYER}"
+    },
+    "zoning_greenway_labels": {
+        "minScale": 1869347.623136
+    },
+    "zoning_greenway_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID",
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "GlobalID",
+                "label": "GlobalID",
+                "visible": false
+            },
+            {
+                "fieldName": "ID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "ID",
+                "visible": true
+            },
+            {
+                "fieldName": "label",
+                "isEditable": true,
+                "label": "label",
+                "visible": true
+            },
+            {
+                "fieldName": "Shape.STArea()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STArea()",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape.STLength()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STLength()",
+                "visible": false
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "ID",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "ID",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "label",
+                        "isEditable": true,
+                        "label": "label",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Willamette Greenway: {label}"
+    },
+    "zoning_overlays_labels": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[LABEL]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"LABEL\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 337.945498,
+                    "minScale": 0,
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            0,
+                            92,
+                            230,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 8,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.75,
+                        "horizontalAlignment": "center",
+                        "kerning": false,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true,
+                    "where": "LABEL LIKE '/%'"
+                }
+            ]
+        },
+        "minScale": 1887774.915482
+    },
+    "zoning_overlays_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID_1",
+                "label": "OBJECTID_1",
+                "visible": false
+            },
+            {
+                "fieldName": "ACRES",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "ACRES",
+                "visible": true
+            },
+            {
+                "fieldName": "ACRES_WHOL",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "ACRES_WHOL",
+                "visible": true
+            },
+            {
+                "fieldName": "ArcGIS_Pro",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "ArcGIS_Pro",
+                "visible": true
+            },
+            {
+                "fieldName": "Comp_Plan",
+                "isEditable": true,
+                "label": "Comp_Plan",
+                "visible": true
+            },
+            {
+                "fieldName": "GlobalID",
+                "isEditable": true,
+                "label": "GlobalID",
+                "visible": true
+            },
+            {
+                "fieldName": "LABEL",
+                "isEditable": true,
+                "label": "LABEL",
+                "visible": true
+            },
+            {
+                "fieldName": "LAYER",
+                "isEditable": true,
+                "label": "LAYER",
+                "visible": true
+            },
+            {
+                "fieldName": "OBJECTID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "PERIMETER",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "PERIMETER",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape_Leng",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape_Leng",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape.STArea()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STArea()",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape.STLength()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STLength()",
+                "visible": false
+            },
+            {
+                "fieldName": "UID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "UID",
+                "visible": true
+            },
+            {
+                "fieldName": "URL",
+                "isEditable": true,
+                "label": "URL",
+                "visible": true
+            },
+            {
+                "fieldName": "URL1",
+                "isEditable": true,
+                "label": "URL1",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "ACRES",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "ACRES",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ACRES_WHOL",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "ACRES_WHOL",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ArcGIS_Pro",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "ArcGIS_Pro",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Comp_Plan",
+                        "isEditable": true,
+                        "label": "Comp_Plan",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "GlobalID",
+                        "isEditable": true,
+                        "label": "GlobalID",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "LABEL",
+                        "isEditable": true,
+                        "label": "LABEL",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "LAYER",
+                        "isEditable": true,
+                        "label": "LAYER",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "UID",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "UID",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "URL",
+                        "isEditable": true,
+                        "label": "URL",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "URL1",
+                        "isEditable": true,
+                        "label": "URL1",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Overlays: {LAYER}"
     }
 }
