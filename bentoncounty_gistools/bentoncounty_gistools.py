@@ -127,7 +127,48 @@ BC_ZONING_CURRENT = (
 )
 
 
-def zoning_layers(group_lyr):
+def zoning_layers_info(template):
+    """
+    Build dictionary of layer info for natural layers. Includes popup info.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions for the natural layers.
+    """
+    ref_data = template.get_data()
+    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
+    new_data = {}
+    zoning_current_popup = ref_list[0]["popupInfo"]
+    zoning_current_labels = ref_list[0]["layerDefinition"]
+    zoning_airport_popup = ref_list[1]["popupInfo"]
+    zoning_airport_labels = ref_list[1]["layerDefinition"]
+    zoning_overlays_popup = ref_list[2]["popupInfo"]
+    zoning_overlays_labels = ref_list[2]["layerDefinition"]
+    zoning_greenway_popup = ref_list[3]["popupInfo"]
+    zoning_greenway_labels = ref_list[3]["layerDefinition"]
+    # ugb_philomath_popup = ref_list[4]["popupInfo"]
+    ugb_philomath_labels = ref_list[4]["layerDefinition"]
+    ugb_corvallis_popup = ref_list[5]["popupInfo"]
+    ugb_corvallis_labels = ref_list[5]["layerDefinition"]
+    # ugb_popup = ref_list[6]["popupInfo"]
+    ugb_labels = ref_list[6]["layerDefinition"]
+    new_data.update({"zoning_current_popup": zoning_current_popup})
+    new_data.update({"zoning_current_labels": zoning_current_labels})
+    new_data.update({"zoning_airport_popup": zoning_airport_popup})
+    new_data.update({"zoning_airport_labels": zoning_airport_labels})
+    new_data.update({"zoning_overlays_popup": zoning_overlays_popup})
+    new_data.update({"zoning_overlays_labels": zoning_overlays_labels})
+    new_data.update({"zoning_greenway_popup": zoning_greenway_popup})
+    new_data.update({"zoning_greenway_labels": zoning_greenway_labels})
+    # new_data.update({"ugb_philomath_popup": ugb_philomath_popup})
+    new_data.update({"ugb_philomath_labels": ugb_philomath_labels})
+    new_data.update({"ugb_corvallis_popup": ugb_corvallis_popup})
+    new_data.update({"ugb_corvallis_labels": ugb_corvallis_labels})
+    # new_data.update({"ugb_popup": ugb_popup})
+    new_data.update({"ugb_labels": ugb_labels})
+    return new_data
+
+
+def zoning_layers(group_lyr, template):
     """
     Add zoning layers to definition of a group layer.
 
@@ -140,18 +181,55 @@ def zoning_layers(group_lyr):
     bc_zoning_overlays = MapServiceLayer(BC_ZONING_OVERLAYS)
     bc_zoning_airport = MapServiceLayer(BC_ZONING_AIRPORT)
     bc_zoning_current = MapServiceLayer(BC_ZONING_CURRENT)
+    zoning_ugb_corvallis = MapServiceLayer(ZONING_UGB_CORVALLIS_URL)
+    zoning_ugb_philomath = MapServiceLayer(ZONING_UGB_PHILOMATH_URL)
 
     bc_zoning_ugb_fc = feature_class(bc_zoning_ugb)
+    bc_zoning_ugb_fc.update({"visibility": False})
     bc_willamette_greenway_fc = feature_class(bc_willamette_greenway, 0.4)
+    bc_willamette_greenway_fc.update({"title": "Willamette Greenway"})
+    bc_willamette_greenway_fc.update({"visibility": False})
+    bc_willamette_greenway_fc.update({"popupInfo": template["zoning_greenway_popup"]})
+    bc_willamette_greenway_fc.update(
+        {"layerDefinition": template["zoning_greenway_labels"]}
+    )
     bc_zoning_overlays_fc = feature_class(bc_zoning_overlays, 0.4)
+    bc_zoning_overlays_fc.update({"title": "Overlays"})
+    bc_zoning_overlays_fc.update({"visibility": False})
+    bc_zoning_overlays_fc.update({"popupInfo": template["zoning_overlays_popup"]})
+    bc_zoning_overlays_fc.update(
+        {"layerDefinition": template["zoning_overlays_labels"]}
+    )
     bc_zoning_airport_fc = feature_class(bc_zoning_airport, 0.4)
+    bc_zoning_airport_fc.update({"title": "Airport Overlay"})
+    bc_zoning_airport_fc.update({"visibility": False})
+    bc_zoning_airport_fc.update({"popupInfo": template["zoning_airport_popup"]})
+    bc_zoning_airport_fc.update({"layerDefinition": template["zoning_airport_labels"]})
     bc_zoning_current_fc = feature_class(bc_zoning_current, 0.4)
+    bc_zoning_current_fc.update({"visibility": False})
+    bc_zoning_current_fc.update({"popupInfo": template["zoning_current_popup"]})
+    bc_zoning_current_fc.update({"layerDefinition": template["zoning_current_labels"]})
+    zoning_ugb_corvallis_fc = feature_class(zoning_ugb_corvallis)
+    zoning_ugb_corvallis_fc.update({"title": "UGB Corvallis"})
+    zoning_ugb_corvallis_fc.update({"visibility": False})
+    zoning_ugb_corvallis_fc.update({"popupInfo": template["ugb_corvallis_popup"]})
+    zoning_ugb_corvallis_fc.update(
+        {"layerDefinition": template["ugb_corvallis_labels"]}
+    )
+    zoning_ugb_philomath_fc = feature_class(zoning_ugb_philomath)
+    zoning_ugb_philomath_fc.update({"title": "UGB Philomath"})
+    zoning_ugb_philomath_fc.update({"visibility": False})
+    zoning_ugb_philomath_fc.update(
+        {"layerDefinition": template["ugb_philomath_labels"]}
+    )
 
     zoning_group = group_layer("Zoning")
     zoning_group["layers"].append(bc_zoning_current_fc)
     zoning_group["layers"].append(bc_zoning_airport_fc)
     zoning_group["layers"].append(bc_zoning_overlays_fc)
     zoning_group["layers"].append(bc_willamette_greenway_fc)
+    zoning_group["layers"].append(zoning_ugb_philomath_fc)
+    zoning_group["layers"].append(zoning_ugb_corvallis_fc)
     zoning_group["layers"].append(bc_zoning_ugb_fc)
 
     group_lyr["layers"].append(zoning_group)
@@ -165,13 +243,24 @@ def natural_layers_info(template):
     :return: Dictionary of short keys and layer definitions for the natural layers.
     """
     ref_data = template.get_data()
+    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
     new_data = {}
-    wetlands = ref_data["operationalLayers"][0]["layers"][0]["layers"][0]["popupInfo"]
-    soils = ref_data["operationalLayers"][0]["layers"][0]["layers"][1]["popupInfo"]
-    hucs = ref_data["operationalLayers"][0]["layers"][0]["layers"][4]["popupInfo"]
-    new_data.update({"wetlands": wetlands})
-    new_data.update({"soils": soils})
-    new_data.update({"hucs": hucs})
+    wetlands_popup = ref_list[0]["popupInfo"]
+    wetlands_labels = ref_list[0]["layerDefinition"]
+    soils_popup = ref_list[1]["popupInfo"]
+    soils_labels = ref_list[1]["layerDefinition"]
+    hydro_lines_labels = ref_list[2]["layerDefinition"]
+    hydro_polys_labels = ref_list[3]["layerDefinition"]
+    hucs_popup = ref_list[4]["popupInfo"]
+    hucs_labels = ref_list[4]["layerDefinition"]
+    new_data.update({"wetlands_popup": wetlands_popup})
+    new_data.update({"wetlands_labels": wetlands_labels})
+    new_data.update({"soils_popup": soils_popup})
+    new_data.update({"soils_labels": soils_labels})
+    new_data.update({"hydro_lines_labels": hydro_lines_labels})
+    new_data.update({"hydro_polys_labels": hydro_polys_labels})
+    new_data.update({"hucs_popup": hucs_popup})
+    new_data.update({"hucs_labels": hucs_labels})
     return new_data
 
 
@@ -193,21 +282,28 @@ def natural_layers(group_lyr, template):
     natural_hydro_hucs_fc.update({"title": "Watershed HUCS"})
     natural_hydro_hucs_fc.update({"visibility": False})
     natural_hydro_hucs_fc.update({"disablePopup": False})
-    natural_hydro_hucs_fc.update({"popupInfo": template["hucs"]})
+    natural_hydro_hucs_fc.update({"popupInfo": template["hucs_popup"]})
+    natural_hydro_hucs_fc.update({"layerDefinition": template["hucs_labels"]})
     natural_hydro_polys_fc = feature_class(natural_hydro_polys)
     natural_hydro_polys_fc.update({"title": "Water Bodies"})
+    natural_hydro_polys_fc.update({"visibility": False})
+    natural_hydro_polys_fc.update({"layerDefinition": template["hydro_polys_labels"]})
     natural_hydro_lines_fc = feature_class(natural_hydro_lines)
     natural_hydro_lines_fc.update({"title": "Rivers & Streams"})
+    natural_hydro_lines_fc.update({"visibility": False})
+    natural_hydro_lines_fc.update({"layerDefinition": template["hydro_lines_labels"]})
     natural_soils_fc = feature_class(natural_soils)
     natural_soils_fc.update({"title": "Soils"})
     natural_soils_fc.update({"visibility": False})
     natural_soils_fc.update({"disablePopup": False})
-    natural_soils_fc.update({"popupInfo": template["soils"]})
+    natural_soils_fc.update({"popupInfo": template["soils_popup"]})
+    natural_soils_fc.update({"layerDefinition": template["soils_labels"]})
     natural_wetlands_fc = feature_class(natural_wetlands)
     natural_wetlands_fc.update({"title": "Wetlands - NWI (County)"})
     natural_wetlands_fc.update({"visibility": False})
     natural_wetlands_fc.update({"disablePopup": False})
-    natural_wetlands_fc.update({"popupInfo": template["wetlands"]})
+    natural_wetlands_fc.update({"popupInfo": template["wetlands_popup"]})
+    natural_wetlands_fc.update({"layerDefinition": template["wetlands_labels"]})
 
     natural_group = group_layer("WATER|SOILS|WETLANDS")
     natural_group["layers"].append(natural_wetlands_fc)
@@ -233,6 +329,7 @@ def address_layers(group_lyr, template):
 
     address_county_fc = feature_class(address_county)
     address_county_fc.update({"title": "County Addresses"})
+    address_county_fc.update({"visibility": False})
     address_county_fc.update({"popupInfo": template["address"]})
     address_county_fc.update({"layerDefinition": template["labels"]})
     address_buildings_fc = feature_class(address_buildings)
@@ -285,12 +382,12 @@ def survey_layers_info(template):
     section_polygons_popup = ref_list[3]["popupInfo"]
     section_corners_labels = ref_list[4]["layerDefinition"]
     section_corners_popup = ref_list[4]["popupInfo"]
-    section_numbers_labels = ref_list[5]["layerDefinition"]
-    section_numbers_popup = ref_list[5]["popupInfo"]
-    geodetic_control_labels = ref_list[6]["layerDefinition"]
-    geodetic_control_popup = ref_list[6]["popupInfo"]
-    benchmarks_labels = ref_list[7]["layerDefinition"]
-    benchmarks_popup = ref_list[7]["popupInfo"]
+    # section_numbers_labels = ref_list[5]["layerDefinition"]
+    # section_numbers_popup = ref_list[5]["popupInfo"]
+    geodetic_control_labels = ref_list[5]["layerDefinition"]
+    geodetic_control_popup = ref_list[5]["popupInfo"]
+    benchmarks_labels = ref_list[6]["layerDefinition"]
+    benchmarks_popup = ref_list[6]["popupInfo"]
 
     # save layer info to dictionary and return
     new_data.update({"survey_index_labels": survey_index_labels})
@@ -303,8 +400,8 @@ def survey_layers_info(template):
     new_data.update({"section_polygons_popup": section_polygons_popup})
     new_data.update({"section_corners_labels": section_corners_labels})
     new_data.update({"section_corners_popup": section_corners_popup})
-    new_data.update({"section_numbers_labels": section_numbers_labels})
-    new_data.update({"section_numbers_popup": section_numbers_popup})
+    # new_data.update({"section_numbers_labels": section_numbers_labels})
+    # new_data.update({"section_numbers_popup": section_numbers_popup})
     new_data.update({"geodetic_control_labels": geodetic_control_labels})
     new_data.update({"geodetic_control_popup": geodetic_control_popup})
     new_data.update({"benchmarks_labels": benchmarks_labels})
@@ -334,7 +431,7 @@ def survey_layers(group_lyr, template):
     survey_benchmarks = MapServiceLayer(SURVEY_BENCHMARKS)
     survey_dlc_corners = MapServiceLayer(SURVEY_DLC_CORNERS)
     survey_geodetic_control = MapServiceLayer(SURVEY_GEODETIC_CONTROL)
-    survey_section_numbers = MapServiceLayer(SURVEY_SECTION_NUMBERS)
+    # survey_section_numbers = MapServiceLayer(SURVEY_SECTION_NUMBERS)
     survey_section_corners = MapServiceLayer(SURVEY_SECTION_CORNERS)
     # survey_section_lines = MapServiceLayer(SURVEY_SECTION_LINES)
     survey_section_polygons = MapServiceLayer(SURVEY_SECTION_POLYGONS)
@@ -361,7 +458,7 @@ def survey_layers(group_lyr, template):
     survey_geodetic_control_fc.update(
         {"layerDefinition": template["geodetic_control_labels"]}
     )
-    survey_section_numbers_fc = feature_class(survey_section_numbers)
+    # survey_section_numbers_fc = feature_class(survey_section_numbers)
     # survey_section_numbers_fc.update({"disablePopup": True})
     # survey_section_numbers_fc.update({"popupInfo": template["section_numbers_popup"]})
     # survey_section_numbers_fc.update(
@@ -379,6 +476,7 @@ def survey_layers(group_lyr, template):
     # survey_section_lines_fc = feature_class(survey_section_lines)
     survey_section_polygons_fc = feature_class(survey_section_polygons)
     survey_section_polygons_fc.update({"title": "Section Polygons"})
+    survey_section_polygons_fc.update({"visibility": False})
     survey_section_polygons_fc.update({"disablePopup": False})
     survey_section_polygons_fc.update({"popupInfo": template["section_polygons_popup"]})
     survey_section_polygons_fc.update(
@@ -404,14 +502,40 @@ def survey_layers(group_lyr, template):
     survey_group["layers"].append(survey_dlc_corners_fc)
     survey_group["layers"].append(survey_section_polygons_fc)
     survey_group["layers"].append(survey_section_corners_fc)
-    survey_group["layers"].append(survey_section_numbers_fc)
+    # survey_group["layers"].append(survey_section_numbers_fc)
     survey_group["layers"].append(survey_geodetic_control_fc)
     survey_group["layers"].append(survey_benchmarks_fc)
 
     group_lyr["layers"].append(survey_group)
 
 
-def transport_layers(group_lyr):
+def transport_layers_info(template):
+    """
+    Build dictionary of layer info for transportation layers.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions for the survey layers.
+    :rtype: Dictionary
+    """
+    ref_data = template.get_data()
+    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
+    new_data = {}
+    # pull data from template
+    road_surface_labels = ref_list[0]["layerDefinition"]
+    roads_labels = ref_list[1]["layerDefinition"]
+    centerlines_labels = ref_list[2]["layerDefinition"]
+    railroads_labels = ref_list[3]["layerDefinition"]
+
+    # save layer info to dictionary and return
+    new_data.update({"road_surface_labels": road_surface_labels})
+    new_data.update({"roads_labels": roads_labels})
+    new_data.update({"centerlines_labels": centerlines_labels})
+    # new_data.update({"road_names_labels": road_names_labels})
+    new_data.update({"railroads_labels": railroads_labels})
+    return new_data
+
+
+def transport_layers(group_lyr, template):
     """
     Append transportation layers to web map group layer.
 
@@ -419,45 +543,70 @@ def transport_layers(group_lyr):
     :return: Group layer definition with transportation layers appended.
     :rtype: None.
     """
-    transport_road_names = MapServiceLayer(TRANSPORTATION_ROAD_NAMES)
+    # transport_road_names = MapServiceLayer(TRANSPORTATION_ROAD_NAMES)
     transport_road_surface = MapServiceLayer(TRANSPORTATION_ROAD_SURFACE)
     transport_centerlines = MapServiceLayer(TRANSPORTATION_CENTERLINES)
     transport_roads = MapServiceLayer(TRANSPORTATION_ROADS)
     transport_railroads = MapServiceLayer(TRANSPORTATION_RAILROADS)
 
-    transport_road_names_fc = feature_class(transport_road_names)
-    transport_road_names_fc.update({"visibility": False})
+    # transport_road_names_fc = feature_class(transport_road_names)
+    # transport_road_names_fc.update({"visibility": False})
+    # transport_road_names_fc.update({"layerDefinition": template["road_names_labels"]})
     transport_road_surface_fc = feature_class(transport_road_surface)
     transport_road_surface_fc.update({"visibility": False})
+    transport_road_surface_fc.update(
+        {"layerDefinition": template["road_surface_labels"]}
+    )
     transport_centerlines_fc = feature_class(transport_centerlines)
     transport_centerlines_fc.update({"visibility": False})
+    transport_centerlines_fc.update({"layerDefinition": template["centerlines_labels"]})
     transport_roads_fc = feature_class(transport_roads, 0.5)
     transport_roads_fc.update({"visibility": False})
+    transport_roads_fc.update({"layerDefinition": template["roads_labels"]})
     transport_railroads_fc = feature_class(transport_railroads)
+    transport_railroads_fc.update({"visibility": False})
+    transport_railroads_fc.update({"layerDefinition": template["railroads_labels"]})
 
     transport_group = group_layer("Transportation")
 
     transport_group["layers"].append(transport_road_surface_fc)
     transport_group["layers"].append(transport_roads_fc)
     transport_group["layers"].append(transport_centerlines_fc)
-    transport_group["layers"].append(transport_road_names_fc)
+    # transport_group["layers"].append(transport_road_names_fc)
     transport_group["layers"].append(transport_railroads_fc)
 
     group_lyr["layers"].append(transport_group)
 
 
-def zoning_map(project_map):
-    ugb_corv = MapServiceLayer(ZONING_UGB_CORVALLIS_URL)
-    ugb_phil = MapServiceLayer(ZONING_UGB_PHILOMATH_URL)
-    zoning = MapServiceLayer(ZONING_URL)
-    zoning_airport = MapServiceLayer(ZONING_AIRPORT_URL)
-    zoning_fema = MapServiceLayer(ZONING_FEMA_FLOODPLAIN_URL)
+def boundary_layer_info(template):
+    """
+    Build dictionary of layer info for the boundary layers. Includes popup info and layer definition.
 
-    ugb_corv_fc = fc_gen(ugb_corv, 0.75)
-    ugb_phil_fc = fc_gen(ugb_phil, 0.75)
-    zoning_fc = fc_gen(zoning, 0.75)
-    zoning_airport_fc = fc_gen(zoning_airport, 0.75)
-    zoning_fema_fc = fc_gen(zoning_fema, 0.75)
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions for the boundary layers.
+    """
+    ref_data = template.get_data()
+    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
+    new_data = {}
+    fire_labels = ref_list[0]["layerDefinition"]
+    school_labels = ref_list[1]["layerDefinition"]
+    zipcode_popup = ref_list[2]["popupInfo"]
+    zipcode_labels = ref_list[2]["layerDefinition"]
+    parks_popup = ref_list[3]["popupInfo"]
+    parks_labels = ref_list[3]["layerDefinition"]
+    precincts_labels = ref_list[4]["layerDefinition"]
+    county_labels = ref_list[5]["layerDefinition"]
+    cities_labels = ref_list[6]["layerDefinition"]
+    new_data.update({"fire_labels": fire_labels})
+    new_data.update({"school_labels": school_labels})
+    new_data.update({"zipcode_popup": zipcode_popup})
+    new_data.update({"zipcode_labels": zipcode_labels})
+    new_data.update({"parks_popup": parks_popup})
+    new_data.update({"parks_labels": parks_labels})
+    new_data.update({"precincts_labels": precincts_labels})
+    new_data.update({"county_labels": county_labels})
+    new_data.update({"cities_labels": cities_labels})
+    return new_data
 
 
 def county_boundaries(group_lyr, template):
@@ -479,23 +628,30 @@ def county_boundaries(group_lyr, template):
     # bc_boundaries_all = MapServiceLayer(BC_BOUNDARIES_ALL_DISTRICTS)
 
     bc_boundaries_cities_fc = feature_class(bc_boundaries_cities)
+    bc_boundaries_cities_fc.update({"visibility": False})
+    bc_boundaries_cities_fc.update({"layerDefinition": template["cities_labels"]})
     bc_boundaries_county_fc = feature_class(bc_boundaries_county)
+    bc_boundaries_county_fc.update({"visibility": False})
+    bc_boundaries_county_fc.update({"layerDefinition": template["county_labels"]})
     bc_boundaries_precincts_fc = feature_class(bc_boundaries_precincts)
     bc_boundaries_precincts_fc.update({"visibility": False})
+    bc_boundaries_precincts_fc.update({"layerDefinition": template["precincts_labels"]})
     bc_boundaries_parks_fc = feature_class(bc_boundaries_parks)
-    bc_boundaries_parks_fc.update({"popupInfo": template["parks_popup"]})
-    bc_boundaries_parks_fc.update({"layerDefinition": template["parks_labels"]})
-    bc_boundaries_parks_fc.update({"showLabels": True})
-    bc_boundaries_parks_fc.update({"disablePopup": False})
-    bc_boundaries_parks_fc.update({"visibility": False})
+    # bc_boundaries_parks_fc.update({"popupInfo": template["parks_popup"]})
+    # bc_boundaries_parks_fc.update({"layerDefinition": template["parks_labels"]})
+    # bc_boundaries_parks_fc.update({"showLabels": True})
+    # bc_boundaries_parks_fc.update({"disablePopup": False})
     bc_boundaries_zip_fc = feature_class(bc_boundaries_zip)
     bc_boundaries_zip_fc.update({"visibility": False})
     bc_boundaries_zip_fc.update({"popupInfo": template["zipcode_popup"]})
+    bc_boundaries_zip_fc.update({"layerDefinition": template["zipcode_labels"]})
     bc_boundaries_zip_fc.update({"disablePopup": False})
     bc_boundaries_school_fc = feature_class(bc_boundaries_school)
     bc_boundaries_school_fc.update({"visibility": False})
+    bc_boundaries_school_fc.update({"layerDefinition": template["school_labels"]})
     bc_boundaries_fire_fc = feature_class(bc_boundaries_fire)
     bc_boundaries_fire_fc.update({"visibility": False})
+    bc_boundaries_fire_fc.update({"layerDefinition": template["fire_labels"]})
     # bc_boundaries_all_fc = feature_class(bc_boundaries_all)
 
     boundary_group = group_layer("Boundaries")
@@ -551,11 +707,11 @@ def county_basemap(project_map, template):
     :rtype: None.
     """
     basemap = group_layer("Base")
-    zoning_layers(basemap)
     natural_layers(basemap, template)
+    zoning_layers(basemap, template)
     address_layers(basemap, template)
     # taxlot_layers(basemap)
-    transport_layers(basemap)
+    transport_layers(basemap, template)
     county_boundaries(basemap, template)
     survey_layers(basemap, template)
     # county_basemap_layers(basemap)
@@ -993,30 +1149,6 @@ def addr_popup_info(template):
     return addr_dict
 
 
-def boundary_layer_info(template):
-    """
-    Build dictionary of layer info for the boundary layers. Includes popup info and layer definition.
-
-    :param template: Web map template for layer fields.
-    :return: Dictionary of short keys and layer definitions for the boundary layers.
-    """
-    ref_data = template.get_data()
-    new_data = {}
-    zipcode_popup = ref_data["operationalLayers"][0]["layers"][0]["layers"][2][
-        "popupInfo"
-    ]
-    parks_popup = ref_data["operationalLayers"][0]["layers"][0]["layers"][3][
-        "popupInfo"
-    ]
-    parks_labels = ref_data["operationalLayers"][0]["layers"][0]["layers"][3][
-        "layerDefinition"
-    ]
-    new_data.update({"zipcode_popup": zipcode_popup})
-    new_data.update({"parks_popup": parks_popup})
-    new_data.update({"parks_labels": parks_labels})
-    return new_data
-
-
 def addr_labels(template):
     """
     Build dictionary of layer info for the address layers. Includes layer definition.
@@ -1253,8 +1385,10 @@ def build_template_dictionary(template_type, template):
             template_dict.update(nfi_popup_info(template))
         case "survey":
             template_dict.update(survey_layers_info(template))
-        # case "zoning":
-        # template_dict.update(zoning_layers_info(template))
+        case "transport":
+            template_dict.update(transport_layers_info(template))
+        case "zoning":
+            template_dict.update(zoning_layers_info(template))
 
     return template_dict
 
