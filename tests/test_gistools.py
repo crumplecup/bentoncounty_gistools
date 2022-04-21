@@ -52,6 +52,7 @@ def test_build_template_dictionary():
     natural_map = gis.content.get(TEMPLATE_NATURAL_LAYERS_MAP)
     nfi_map = gis.content.get(TEMPLATE_NFI_MAP)
     survey_map = gis.content.get(TEMPLATE_SURVEY_MAP)
+    taxlot_map = gis.content.get(TEMPLATE_TAXLOT_MAP)
     transport_map = gis.content.get(TEMPLATE_TRANSPORTATION_MAP)
     zoning_map = gis.content.get(TEMPLATE_ZONING_MAP)
 
@@ -62,6 +63,7 @@ def test_build_template_dictionary():
     template_dict.update(bc.build_template_dictionary("natural", natural_map))
     template_dict.update(bc.build_template_dictionary("nfi", nfi_map))
     template_dict.update(bc.build_template_dictionary("survey", survey_map))
+    template_dict.update(bc.build_template_dictionary("taxlot", taxlot_map))
     template_dict.update(bc.build_template_dictionary("transport", transport_map))
     template_dict.update(bc.build_template_dictionary("zoning", zoning_map))
     dict_keys = list(template_dict.keys())
@@ -212,8 +214,8 @@ def test_survey_layers():
 
 def test_taxlot_layers():
     test_group = bc.group_layer("test")
-    bc.taxlot_layers(test_group)
-    assert test_group["layers"][0]["title"] == "Taxlot"
+    bc.taxlot_layers(test_group, template)
+    assert test_group["layers"][0]["title"] == "Taxlot Maps"
 
 
 def test_address_layers():

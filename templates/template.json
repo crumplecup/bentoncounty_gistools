@@ -19193,6 +19193,864 @@
         ],
         "title": "Survey Index: {NAME}"
     },
+    "taxlot_fire_districts_labels": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[Fire_District] CONCAT \" Fire District\"",
+                    "labelExpressionInfo": {
+                        "expression": "Concatenate($feature[\"Fire_District\"], \" Fire District\")"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            255,
+                            85,
+                            0,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 10.5,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.75,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ]
+        },
+        "minScale": 755923.090039
+    },
+    "taxlot_plss_lines_labels": {
+        "drawingInfo": {
+            "renderer": {
+                "field1": "LineType",
+                "fieldDelimiter": ",",
+                "type": "uniqueValue",
+                "uniqueValueInfos": [
+                    {
+                        "description": "",
+                        "label": "1/16th Line Inside DLC",
+                        "symbol": {
+                            "color": [
+                                230,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSSolid",
+                            "type": "esriSLS",
+                            "width": 3
+                        },
+                        "value": "3"
+                    },
+                    {
+                        "description": "",
+                        "label": "DLC Line",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSLongDash",
+                            "type": "esriSLS",
+                            "width": 0.4
+                        },
+                        "value": "47"
+                    },
+                    {
+                        "description": "",
+                        "label": "Govt Lot Line",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSShortDot",
+                            "type": "esriSLS",
+                            "width": 1
+                        },
+                        "value": "46"
+                    },
+                    {
+                        "description": "",
+                        "label": "Meander Line",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSDot",
+                            "type": "esriSLS",
+                            "width": 0.4
+                        },
+                        "value": "48"
+                    },
+                    {
+                        "description": "",
+                        "label": "PLSS Section Line",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSDash",
+                            "type": "esriSLS",
+                            "width": 0.4
+                        },
+                        "value": "2"
+                    },
+                    {
+                        "description": "",
+                        "label": "Section Corner",
+                        "symbol": {
+                            "color": [
+                                255,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSSolid",
+                            "type": "esriSLS",
+                            "width": 1
+                        },
+                        "value": "44"
+                    }
+                ]
+            }
+        },
+        "featureReduction": null,
+        "minScale": 764612.728656
+    },
+    "taxlot_reference_lines_labels": {
+        "drawingInfo": {
+            "renderer": {
+                "field1": "LineType",
+                "fieldDelimiter": ",",
+                "type": "uniqueValue",
+                "uniqueValueInfos": [
+                    {
+                        "description": "",
+                        "label": "BPA",
+                        "symbol": {
+                            "color": [
+                                255,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSLongDash",
+                            "type": "esriSLS",
+                            "width": 0.4
+                        },
+                        "value": "60"
+                    },
+                    {
+                        "description": "",
+                        "label": "Control Reference Line",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSSolid",
+                            "type": "esriSLS",
+                            "width": 1
+                        },
+                        "value": "7"
+                    },
+                    {
+                        "description": "",
+                        "label": "Detail Map Boundary",
+                        "symbol": {
+                            "color": [
+                                255,
+                                99,
+                                250,
+                                255
+                            ],
+                            "style": "esriSLSSolid",
+                            "type": "esriSLS",
+                            "width": 1.44
+                        },
+                        "value": "52"
+                    },
+                    {
+                        "description": "",
+                        "label": "Easement Centerline",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSDashDot",
+                            "type": "esriSLS",
+                            "width": 1
+                        },
+                        "value": "18"
+                    },
+                    {
+                        "description": "",
+                        "label": "Easement ROW",
+                        "symbol": {
+                            "color": [
+                                0,
+                                7,
+                                59,
+                                255
+                            ],
+                            "style": "esriSLSLongDash",
+                            "type": "esriSLS",
+                            "width": 1
+                        },
+                        "value": "17"
+                    },
+                    {
+                        "description": "",
+                        "label": "Fibre Optic",
+                        "symbol": {
+                            "color": [
+                                230,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSSolid",
+                            "type": "esriSLS",
+                            "width": 3
+                        },
+                        "value": "72"
+                    },
+                    {
+                        "description": "",
+                        "label": "Gas Utility",
+                        "symbol": {
+                            "color": [
+                                230,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSSolid",
+                            "type": "esriSLS",
+                            "width": 3
+                        },
+                        "value": "62"
+                    },
+                    {
+                        "description": "",
+                        "label": "Historical Boundary",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSShortDash",
+                            "type": "esriSLS",
+                            "width": 0.4
+                        },
+                        "value": "33"
+                    },
+                    {
+                        "description": "",
+                        "label": "Jettys",
+                        "symbol": {
+                            "color": [
+                                230,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSSolid",
+                            "type": "esriSLS",
+                            "width": 3
+                        },
+                        "value": "71"
+                    },
+                    {
+                        "description": "",
+                        "label": "Local Utility",
+                        "symbol": {
+                            "color": [
+                                230,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSSolid",
+                            "type": "esriSLS",
+                            "width": 0.75
+                        },
+                        "value": "63"
+                    },
+                    {
+                        "description": "",
+                        "label": "Map Boundary",
+                        "symbol": {
+                            "color": [
+                                255,
+                                79,
+                                205,
+                                255
+                            ],
+                            "style": "esriSLSDashDotDot",
+                            "type": "esriSLS",
+                            "width": 1.5
+                        },
+                        "value": "51"
+                    },
+                    {
+                        "description": "",
+                        "label": "Oyster Plat",
+                        "symbol": {
+                            "color": [
+                                230,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSSolid",
+                            "type": "esriSLS",
+                            "width": 3
+                        },
+                        "value": "70"
+                    },
+                    {
+                        "description": "",
+                        "label": "Private Road Centerline",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSShortDot",
+                            "type": "esriSLS",
+                            "width": 0.56
+                        },
+                        "value": "12"
+                    },
+                    {
+                        "description": "",
+                        "label": "Private Road ROW",
+                        "symbol": {
+                            "color": [
+                                0,
+                                7,
+                                59,
+                                255
+                            ],
+                            "style": "esriSLSDash",
+                            "type": "esriSLS",
+                            "width": 0.56
+                        },
+                        "value": "11"
+                    },
+                    {
+                        "description": "",
+                        "label": "Public Road Centerline",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSSolid",
+                            "type": "esriSLS",
+                            "width": 0.15
+                        },
+                        "value": "9"
+                    },
+                    {
+                        "description": "",
+                        "label": "Railroad Centerline",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSDash",
+                            "type": "esriSLS",
+                            "width": 0.75
+                        },
+                        "value": "15"
+                    },
+                    {
+                        "description": "",
+                        "label": "Road Tic",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSSolid",
+                            "type": "esriSLS",
+                            "width": 1
+                        },
+                        "value": "103"
+                    },
+                    {
+                        "description": "",
+                        "label": "Special Boundary",
+                        "symbol": {
+                            "color": [
+                                0,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSDashDotDot",
+                            "type": "esriSLS",
+                            "width": 0.75
+                        },
+                        "value": "55"
+                    },
+                    {
+                        "description": "",
+                        "label": "Subdivision Line",
+                        "symbol": {
+                            "color": [
+                                255,
+                                100,
+                                38,
+                                51
+                            ],
+                            "style": "esriSLSSolid",
+                            "type": "esriSLS",
+                            "width": 0.15
+                        },
+                        "value": "40"
+                    },
+                    {
+                        "description": "",
+                        "label": "Zone",
+                        "symbol": {
+                            "color": [
+                                61,
+                                181,
+                                255,
+                                255
+                            ],
+                            "style": "esriSLSDashDotDot",
+                            "type": "esriSLS",
+                            "width": 3
+                        },
+                        "value": "56"
+                    }
+                ],
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 0.46665015878180655,
+                                "value": 564.248588
+                            },
+                            {
+                                "size": 0.23332507939090327,
+                                "value": 4513.988705
+                            },
+                            {
+                                "size": 0.1749938095431775,
+                                "value": 36111.909643
+                            },
+                            {
+                                "size": 0.11666253969545164,
+                                "value": 288895.277144
+                            }
+                        ],
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        },
+        "featureReduction": null,
+        "minScale": 698260.572288
+    },
+    "taxlot_tax_code_areas_labels": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[Taxcode__Rural_Fire_]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"Taxcode__Rural_Fire_\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            255,
+                            115,
+                            223,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 12.75
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.75,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "outline": {
+                        "color": [
+                            255,
+                            190,
+                            232,
+                            255
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 3
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 2,
+                                "value": 79150
+                            },
+                            {
+                                "size": 1,
+                                "value": 247345
+                            },
+                            {
+                                "size": 0.5,
+                                "value": 989380
+                            },
+                            {
+                                "size": 0,
+                                "value": 1978760
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        },
+        "minScale": 690116.516335
+    },
+    "taxlot_tax_code_lines_labels": {
+        "drawingInfo": {
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        0,
+                        112,
+                        255,
+                        255
+                    ],
+                    "style": "esriSLSShortDot",
+                    "type": "esriSLS",
+                    "width": 5.25
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 5.25,
+                                "value": 2256.994353
+                            },
+                            {
+                                "size": 2.625,
+                                "value": 18055.954822
+                            },
+                            {
+                                "size": 1.9687499999999998,
+                                "value": 144447.638572
+                            },
+                            {
+                                "size": 1.3125,
+                                "value": 1155581.108577
+                            }
+                        ],
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        },
+        "featureReduction": null,
+        "minScale": 662475.605507
+    },
+    "taxlot_taxlots_labels": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[MapTaxlot]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"MapTaxlot\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 0,
+                    "minScale": 11320.259078,
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            43,
+                            43,
+                            43,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 7.5
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 1,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    }
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "outline": {
+                        "color": [
+                            0,
+                            0,
+                            0,
+                            128
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 0.19
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple"
+            }
+        },
+        "featureReduction": null
+    },
+    "taxlot_water_lines_labels": {
+        "drawingInfo": {
+            "renderer": {
+                "field1": "LineType",
+                "fieldDelimiter": ",",
+                "type": "uniqueValue",
+                "uniqueValueInfos": [
+                    {
+                        "description": "",
+                        "label": "Canal",
+                        "symbol": {
+                            "color": [
+                                5,
+                                0,
+                                161,
+                                255
+                            ],
+                            "style": "esriSLSShortDashDotDot",
+                            "type": "esriSLS",
+                            "width": 0.75
+                        },
+                        "value": "28"
+                    },
+                    {
+                        "description": "",
+                        "label": "Creek",
+                        "symbol": {
+                            "color": [
+                                5,
+                                0,
+                                161,
+                                255
+                            ],
+                            "style": "esriSLSShortDashDotDot",
+                            "type": "esriSLS",
+                            "width": 0.75
+                        },
+                        "value": "26"
+                    },
+                    {
+                        "description": "",
+                        "label": "Misc Water",
+                        "symbol": {
+                            "color": [
+                                5,
+                                0,
+                                161,
+                                255
+                            ],
+                            "style": "esriSLSShortDashDotDot",
+                            "type": "esriSLS",
+                            "width": 0.75
+                        },
+                        "value": "30"
+                    },
+                    {
+                        "description": "",
+                        "label": "Other",
+                        "symbol": {
+                            "color": [
+                                168,
+                                0,
+                                0,
+                                255
+                            ],
+                            "style": "esriSLSShortDashDotDot",
+                            "type": "esriSLS",
+                            "width": 0.75
+                        },
+                        "value": "50"
+                    },
+                    {
+                        "description": "",
+                        "label": "River",
+                        "symbol": {
+                            "color": [
+                                5,
+                                0,
+                                161,
+                                255
+                            ],
+                            "style": "esriSLSShortDashDotDot",
+                            "type": "esriSLS",
+                            "width": 0.75
+                        },
+                        "value": "24"
+                    },
+                    {
+                        "description": "",
+                        "label": "Waterbody",
+                        "symbol": {
+                            "color": [
+                                5,
+                                0,
+                                161,
+                                255
+                            ],
+                            "style": "esriSLSShortDashDotDot",
+                            "type": "esriSLS",
+                            "width": 0.75
+                        },
+                        "value": "22"
+                    }
+                ],
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 1.5562431743720424,
+                                "value": 282.124294
+                            },
+                            {
+                                "size": 0.7781215871860212,
+                                "value": 2256.994353
+                            },
+                            {
+                                "size": 0.5835911903895159,
+                                "value": 18055.954822
+                            },
+                            {
+                                "size": 0.3890607935930106,
+                                "value": 144447.638572
+                            }
+                        ],
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        },
+        "featureReduction": null,
+        "minScale": 177708.980385
+    },
     "ugb_corvallis_labels": {
         "drawingInfo": {
             "renderer": {
