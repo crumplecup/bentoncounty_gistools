@@ -1,6 +1,7 @@
 import random
 import string
 from arcgis.mapping import MapServiceLayer
+import bentoncounty_gistools.urls as urls
 
 ZONING_UGB_CORVALLIS_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/0"
 ZONING_UGB_PHILOMATH_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/2"
@@ -125,6 +126,183 @@ BC_ZONING_AIRPORT = (
 BC_ZONING_CURRENT = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningService/MapServer/5"
 )
+
+
+def taxlot_layer_names():
+    """
+    Create list of key names for layer definition data.
+    """
+    layer_stub = [
+        "corners",
+        "water_lines",
+        "taxlots",
+        "tax_code_areas",
+        "plss_lines",
+        "reference_lines",
+        "tax_code_lines",
+        "fire_districts",
+    ]
+    layer_name = []
+    for lyr in layer_stub:
+        layer_name.append("taxlot_" + lyr + "_labels")
+    # layer order is reversed from menu order
+    layer_name.reverse()
+    return layer_name
+
+
+def taxlot_layers_info(template):
+    """
+    Build dictionary of layer info.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions.
+    """
+    layer_name = taxlot_layer_names()
+    ref_data = template.get_data()
+    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
+    new_data = {}
+    for i in range(0, len(ref_list) - 1):
+        new_data.update({layer_name[i]: ref_list[i]["layerDefinition"]})
+
+    return new_data
+
+
+def taxlot_layers(group_lyr, template):
+    """
+    Add layers for BC taxlots to group layer.
+
+    :param group_lyr: Group layer definition target for layers.
+    :return: Updates group layer definition with layers.
+    """
+    layer_ord = [0]
+    # cartographic layer needs fixing
+    for i in range(2, 5):
+        layer_ord.append(i)
+    # water - above empty
+    for i in range(6, 9):
+        layer_ord.append(i)
+    # pull redundant layers
+    # corner, reference lines, cartographic lines
+    layer_ord.append(12)
+
+    layer_name = taxlot_layer_names()
+    url_list = [urls.TAXLOT_URLS[i] for i in layer_ord]
+    taxlot_group = group_layer("Taxlot Maps")
+    for lyr in reversed(url_list):
+        map_lyr = MapServiceLayer(lyr)
+        fc = feature_class(map_lyr, 0.5)
+        fc.update({"visibility": False})
+
+        # customize layer data
+        if fc["title"] == "FireDistricts":
+            fc.update({"title": "Fire Districts"})
+            fc.update({"layerDefinition": template[layer_name[0]]})
+
+        if fc["title"] == "TaxCodeLines - Below":
+            fc.update({"title": "Tax Code Lines"})
+            fc.update({"layerDefinition": template[layer_name[1]]})
+
+        if fc["title"] == "ReferenceLines - Above":
+            fc.update({"title": "Reference Lines"})
+            fc.update({"layerDefinition": template[layer_name[2]]})
+
+        if fc["title"] == "PLSSLines - Above":
+            fc.update({"title": "PLSS Lines"})
+            fc.update({"layerDefinition": template[layer_name[3]]})
+
+        if fc["title"] == "Tax Code Areas":
+            # fc.update({'title': 'Tax Code Areas'})
+            fc.update({"layerDefinition": template[layer_name[4]]})
+
+        if fc["title"] == "Taxlots":
+            # fc.update({'title': 'Taxlots'})
+            fc.update({"layerDefinition": template[layer_name[5]]})
+
+        if fc["title"] == "WaterLines - Above":
+            fc.update({"title": "Water Lines"})
+            fc.update({"layerDefinition": template[layer_name[6]]})
+
+        if fc["title"] == "Corner - Above":
+            fc.update({"title": "Corners"})
+            # fc.update({"layerDefinition": template[layer_name[7]]})
+
+        taxlot_group["layers"].append(fc)
+
+    group_lyr["layers"].append(taxlot_group)
+
+
+def anno_0050_layers_info(template):
+    """
+    Build dictionary of layer info.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions.
+    """
+    ref_data = template.get_data()
+    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
+    new_data = {}
+    zoning_current_popup = ref_list[0]["popupInfo"]
+    zoning_current_labels = ref_list[0]["layerDefinition"]
+    new_data.update({"zoning_current_popup": zoning_current_popup})
+    new_data.update({"zoning_current_labels": zoning_current_labels})
+    return new_data
+
+
+def anno_0050_layers(group_lyr, template):
+    """
+    Add layers for BC taxlot anno 0050 to group layer.
+
+    :param group_lyr: Group layer definition target for layers.
+    :return: Updates group layer definition with layers.
+    """
+    anno_group = group_layer("Anno 0050")
+    # for lyr in urls.ANNO_0020_URLS:
+    # map_lyr = MapServiceLayer(lyr)
+    # fc = feature_class(map_lyr)
+    # fc.update({"visibility": False})
+    # anno_group["layers"].append(fc)
+    lyr = MapServiceLayer(urls.ANNO_0050_URLS[0])
+    fc = feature_class(lyr)
+    anno_group["layers"].append(fc)
+
+    group_lyr["layers"].append(anno_group)
+
+
+def anno_0020_layers_info(template):
+    """
+    Build dictionary of layer info.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions.
+    """
+    ref_data = template.get_data()
+    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
+    new_data = {}
+    zoning_current_popup = ref_list[0]["popupInfo"]
+    zoning_current_labels = ref_list[0]["layerDefinition"]
+    new_data.update({"zoning_current_popup": zoning_current_popup})
+    new_data.update({"zoning_current_labels": zoning_current_labels})
+    return new_data
+
+
+def anno_0020_layers(group_lyr, template):
+    """
+    Add layers for BC taxlot anno 0020 to group layer.
+
+    :param group_lyr: Group layer definition target for layers.
+    :return: Updates group layer definition with layers.
+    """
+    anno_group = group_layer("Anno 0020")
+    # for lyr in urls.ANNO_0020_URLS:
+    # map_lyr = MapServiceLayer(lyr)
+    # fc = feature_class(map_lyr)
+    # fc.update({"visibility": False})
+    # anno_group["layers"].append(fc)
+    lyr = MapServiceLayer(urls.ANNO_0020_URLS[0])
+    fc = feature_class(lyr)
+    anno_group["layers"].append(fc)
+
+    group_lyr["layers"].append(anno_group)
 
 
 def zoning_layers_info(template):
@@ -344,21 +522,6 @@ def address_layers(group_lyr, template):
     address_group["layers"].append(address_county_fc)
 
     group_lyr["layers"].append(address_group)
-
-
-def taxlot_layers(group_lyr):
-    taxlot_anno_0020_scale = MapServiceLayer(TAXLOT_ANNO_0020_SCALE)
-    taxlot_anno_0050_scale = MapServiceLayer(TAXLOT_ANNO_0050_SCALE)
-    taxlot_anno_0020_scale_fc = feature_class(taxlot_anno_0020_scale)
-    taxlot_anno_0020_scale_fc.update({"visibility": False})
-    taxlot_anno_0050_scale_fc = feature_class(taxlot_anno_0050_scale)
-    taxlot_anno_0050_scale_fc.update({"visibility": False})
-
-    taxlot_group = group_layer("Taxlot")
-    taxlot_group["layers"].append(taxlot_anno_0050_scale_fc)
-    taxlot_group["layers"].append(taxlot_anno_0020_scale_fc)
-
-    group_lyr["layers"].append(taxlot_group)
 
 
 def survey_layers_info(template):
@@ -706,11 +869,11 @@ def county_basemap(project_map, template):
     :return: Updates the web map, adding reference layers.
     :rtype: None.
     """
-    basemap = group_layer("Base")
+    basemap = group_layer("County Planning Maps")
     natural_layers(basemap, template)
     zoning_layers(basemap, template)
     address_layers(basemap, template)
-    # taxlot_layers(basemap)
+    taxlot_layers(basemap, template)
     transport_layers(basemap, template)
     county_boundaries(basemap, template)
     survey_layers(basemap, template)
@@ -1386,6 +1549,8 @@ def build_template_dictionary(template_type, template):
             template_dict.update(nfi_popup_info(template))
         case "survey":
             template_dict.update(survey_layers_info(template))
+        case "taxlot":
+            template_dict.update(taxlot_layers_info(template))
         case "transport":
             template_dict.update(transport_layers_info(template))
         case "zoning":
