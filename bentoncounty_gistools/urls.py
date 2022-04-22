@@ -122,9 +122,36 @@ COMPLIANCE_BUTTERFLY_URLS = expand_urls(compliance_stub, butterfly_range)
 zoning_stub = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningService/MapServer/"
 )
-zoning_range = range(0, 7)
+# zoning_range = range(0, 7)
+zoning_range = range(6, -1, -1)
 ZONING_URLS = expand_urls(zoning_stub, zoning_range)
 
+ZONING_URLS_DRAFT = []
+ZONING_URLS_DRAFT.append(
+    "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/4"
+)
+ZONING_URLS_DRAFT.append(ZONING_URLS[1])
+ZONING_URLS_DRAFT.append(ZONING_URLS[2])
+ZONING_URLS_DRAFT.append(ZONING_URLS[3])
+ZONING_URLS_DRAFT.append(ZONING_URLS[5])
+ZONING_URLS_DRAFT.append(
+    "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/2"
+)
+ZONING_URLS_DRAFT.append(
+    "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/0"
+)
+
+# web hosted county layers
+
+NFI_HPSV = "35ce1b83017b4b4591fec665d7213499"
+NFI_HPSV_TILES = "1ecbb53e004a4e82a3be15900e906d59"
+NFI_HPSV_TILES_URL = "https://vectortileservices5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/tiles_nfi_incentive_vegetation/VectorTileServer/"
+hpsv_stub = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/tiles_nfi_incentive_vegetation/FeatureServer/"
+hpsv_range = range(8, -1, -1)
+NFI_HPSV_URLS = expand_urls(hpsv_stub, hpsv_range)
+
+ppsv_range = range(15, 8, -1)
+NFI_PPSV_URLS = expand_urls(hpsv_stub, ppsv_range)
 
 # Outside Resources
 # FEMA hazards

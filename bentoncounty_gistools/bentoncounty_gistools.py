@@ -1,13 +1,8 @@
 import random
 import string
 from arcgis.mapping import MapServiceLayer
+from arcgis.mapping import MapFeatureLayer
 import bentoncounty_gistools.urls as urls
-
-ZONING_UGB_CORVALLIS_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/0"
-ZONING_UGB_PHILOMATH_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/2"
-ZONING_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/3"
-ZONING_AIRPORT_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/5"
-ZONING_FEMA_FLOODPLAIN_URL = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/zoning_service_test/FeatureServer/4"
 
 BC_TAXLOTS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotOwners/FeatureServer/0"
 BC_ROADS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/FeatureServer/3"
@@ -110,22 +105,125 @@ NATURAL_WETLANDS = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/NaturalService/MapServer/5"
 )
 
-# current zoning service
-BC_ZONING_UGB = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningService/MapServer/0"
-)
-BC_WILLAMETTE_GREENWAY = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningService/MapServer/1"
-)
-BC_ZONING_OVERLAYS = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningService/MapServer/3"
-)
-BC_ZONING_AIRPORT = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningService/MapServer/4"
-)
-BC_ZONING_CURRENT = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningService/MapServer/5"
-)
+
+def ppsv_layer_names():
+    """
+    Create list of key names for layer definition data.
+    """
+    layer_stub = [
+        "connecting_corridors",
+        "native_tree_dominated",
+        "mitigation_tree_groves",
+        "isolated_tree_groves",
+        "top_third_ugb",
+        "top_11_ugb",
+        "native_tree_vegetation",
+    ]
+    layer_name = []
+    for lyr in layer_stub:
+        layer_name.append("ppsv_" + lyr + "_popup")
+    # layer order is reversed from menu order
+    layer_name.reverse()
+    return layer_name
+
+
+def ppsv_layers_info(template):
+    """
+    Build dictionary of layer info.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions.
+    """
+    layer_name = ppsv_layer_names()
+    ref_data = template.get_data()
+    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
+    new_data = {}
+    for i in range(0, len(ref_list)):
+        new_data.update({layer_name[i]: ref_list[i]["popupInfo"]})
+
+    return new_data
+
+
+def ppsv_layers(group_lyr, template):
+    """
+    Add layers for high protection incentive vegetation to group layer.
+
+    :param group_lyr: Group layer definition target for layers.
+    :return: Updates group layer definition with layers.
+    """
+    layer_name = ppsv_layer_names()
+    url_list = urls.NFI_PPSV_URLS
+    parent_group = group_layer("Partial Protection")
+    parent_group.update({"visibility": False})
+    for i in range(0, len(url_list)):
+        map_lyr = MapFeatureLayer(url_list[i])
+        fc = feature_class(map_lyr, 0.5)
+        fc.update({"popupInfo": template[layer_name[i]]})
+        parent_group["layers"].append(fc)
+
+    group_lyr["layers"].append(parent_group)
+
+
+def hpsv_layer_names():
+    """
+    Create list of key names for layer definition data.
+    """
+    layer_stub = [
+        "connecting_corridors",
+        "native_tree_dominated",
+        "mitigation_tree_groves",
+        "top_third_ugb",
+        "top_11_ugb",
+        "native_tree_timber",
+        "native_tree_vegetation",
+        "douglas_fir_chip_ross",
+        "oak_savanna",
+    ]
+    layer_name = []
+    for lyr in layer_stub:
+        layer_name.append("hpsv_" + lyr + "_popup")
+    # layer order is reversed from menu order
+    layer_name.reverse()
+    return layer_name
+
+
+def hpsv_layers_info(template):
+    """
+    Build dictionary of layer info.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions.
+    """
+    layer_name = hpsv_layer_names()
+    ref_data = template.get_data()
+    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
+    new_data = {}
+    for i in range(0, len(ref_list)):
+        new_data.update({layer_name[i]: ref_list[i]["popupInfo"]})
+
+    return new_data
+
+
+def hpsv_layers(group_lyr, template):
+    """
+    Add layers for high protection incentive vegetation to group layer.
+
+    :param group_lyr: Group layer definition target for layers.
+    :return: Updates group layer definition with layers.
+    """
+    # layer_ord = range(0, 9)
+    layer_name = hpsv_layer_names()
+    # url_list = [urls.NFI_HPSV_URLS[i] for i in layer_ord]
+    url_list = urls.NFI_HPSV_URLS
+    parent_group = group_layer("High Protection")
+    parent_group.update({"visibility": False})
+    for i in range(0, len(url_list)):
+        map_lyr = MapFeatureLayer(url_list[i])
+        fc = feature_class(map_lyr, 0.5)
+        fc.update({"popupInfo": template[layer_name[i]]})
+        parent_group["layers"].append(fc)
+
+    group_lyr["layers"].append(parent_group)
 
 
 def taxlot_layer_names():
@@ -305,6 +403,27 @@ def anno_0020_layers(group_lyr, template):
     group_lyr["layers"].append(anno_group)
 
 
+def zoning_layer_names(post):
+    """
+    Create list of key names for layer definition data.
+    """
+    layer_stub = [
+        "ugb_corvallis",
+        "ugb_philomath",
+        "greenway",
+        "overlays",
+        "airport",
+        "current",
+        "flood",
+    ]
+    layer_name = []
+    for lyr in layer_stub:
+        layer_name.append("zoning_" + lyr + post)
+    # layer order is reversed from menu order
+    layer_name.reverse()
+    return layer_name
+
+
 def zoning_layers_info(template):
     """
     Build dictionary of layer info for natural layers. Includes popup info.
@@ -312,37 +431,15 @@ def zoning_layers_info(template):
     :param template: Web map template for layer fields.
     :return: Dictionary of short keys and layer definitions for the natural layers.
     """
+    popup_name = zoning_layer_names("_popup")
+    label_name = zoning_layer_names("_label")
     ref_data = template.get_data()
     ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
     new_data = {}
-    zoning_current_popup = ref_list[0]["popupInfo"]
-    zoning_current_labels = ref_list[0]["layerDefinition"]
-    zoning_airport_popup = ref_list[1]["popupInfo"]
-    zoning_airport_labels = ref_list[1]["layerDefinition"]
-    zoning_overlays_popup = ref_list[2]["popupInfo"]
-    zoning_overlays_labels = ref_list[2]["layerDefinition"]
-    zoning_greenway_popup = ref_list[3]["popupInfo"]
-    zoning_greenway_labels = ref_list[3]["layerDefinition"]
-    # ugb_philomath_popup = ref_list[4]["popupInfo"]
-    ugb_philomath_labels = ref_list[4]["layerDefinition"]
-    ugb_corvallis_popup = ref_list[5]["popupInfo"]
-    ugb_corvallis_labels = ref_list[5]["layerDefinition"]
-    # ugb_popup = ref_list[6]["popupInfo"]
-    ugb_labels = ref_list[6]["layerDefinition"]
-    new_data.update({"zoning_current_popup": zoning_current_popup})
-    new_data.update({"zoning_current_labels": zoning_current_labels})
-    new_data.update({"zoning_airport_popup": zoning_airport_popup})
-    new_data.update({"zoning_airport_labels": zoning_airport_labels})
-    new_data.update({"zoning_overlays_popup": zoning_overlays_popup})
-    new_data.update({"zoning_overlays_labels": zoning_overlays_labels})
-    new_data.update({"zoning_greenway_popup": zoning_greenway_popup})
-    new_data.update({"zoning_greenway_labels": zoning_greenway_labels})
-    # new_data.update({"ugb_philomath_popup": ugb_philomath_popup})
-    new_data.update({"ugb_philomath_labels": ugb_philomath_labels})
-    new_data.update({"ugb_corvallis_popup": ugb_corvallis_popup})
-    new_data.update({"ugb_corvallis_labels": ugb_corvallis_labels})
-    # new_data.update({"ugb_popup": ugb_popup})
-    new_data.update({"ugb_labels": ugb_labels})
+    for i in range(0, len(popup_name)):
+        new_data.update({popup_name[i]: ref_list[i]["popupInfo"]})
+        new_data.update({label_name[i]: ref_list[i]["layerDefinition"]})
+
     return new_data
 
 
@@ -354,63 +451,33 @@ def zoning_layers(group_lyr, template):
     :param template: Web map template for feature layer info.
     :return: Updates group layer definition with zoning' layers.
     """
-    bc_zoning_ugb = MapServiceLayer(BC_ZONING_UGB)
-    bc_willamette_greenway = MapServiceLayer(BC_WILLAMETTE_GREENWAY)
-    bc_zoning_overlays = MapServiceLayer(BC_ZONING_OVERLAYS)
-    bc_zoning_airport = MapServiceLayer(BC_ZONING_AIRPORT)
-    bc_zoning_current = MapServiceLayer(BC_ZONING_CURRENT)
-    zoning_ugb_corvallis = MapServiceLayer(ZONING_UGB_CORVALLIS_URL)
-    zoning_ugb_philomath = MapServiceLayer(ZONING_UGB_PHILOMATH_URL)
+    popup_name = zoning_layer_names("_popup")
+    label_name = zoning_layer_names("_label")
+    url_list = urls.ZONING_URLS_DRAFT
+    parent_group = group_layer("Zoning")
+    parent_group.update({"visibility": False})
+    for i in range(0, len(url_list)):
+        map_lyr = MapServiceLayer(url_list[i])
+        fc = feature_class(map_lyr, 0.5)
+        fc.update({"popupInfo": template[popup_name[i]]})
+        fc.update({"layerDefinition": template[label_name[i]]})
+        if fc["title"] == "ugb_corvallis_draft_jan2022":
+            fc.update({"title": "UGB Corvallis"})
+        if fc["title"] == "philomath_ugb_draft":
+            fc.update({"title": "UGB Philomath"})
+        if fc["title"] == "Willamette Greenway Area":
+            fc.update({"title": "Willamette Greenway"})
+        if fc["title"] == "Official Zoning Overlays":
+            fc.update({"title": "Overlays"})
+        if fc["title"] == "Airport Overlay Zone":
+            fc.update({"title": "Airport Overlay"})
+        if fc["title"] == "Zoning - current":
+            fc.update({"title": "Zoning"})
+        if fc["title"] == "FEMA_floodplain":
+            fc.update({"title": "FEMA Floodplain (County backup)"})
+        parent_group["layers"].append(fc)
 
-    bc_zoning_ugb_fc = feature_class(bc_zoning_ugb)
-    bc_zoning_ugb_fc.update({"visibility": False})
-    bc_willamette_greenway_fc = feature_class(bc_willamette_greenway, 0.4)
-    bc_willamette_greenway_fc.update({"title": "Willamette Greenway"})
-    bc_willamette_greenway_fc.update({"visibility": False})
-    bc_willamette_greenway_fc.update({"popupInfo": template["zoning_greenway_popup"]})
-    bc_willamette_greenway_fc.update(
-        {"layerDefinition": template["zoning_greenway_labels"]}
-    )
-    bc_zoning_overlays_fc = feature_class(bc_zoning_overlays, 0.4)
-    bc_zoning_overlays_fc.update({"title": "Overlays"})
-    bc_zoning_overlays_fc.update({"visibility": False})
-    bc_zoning_overlays_fc.update({"popupInfo": template["zoning_overlays_popup"]})
-    bc_zoning_overlays_fc.update(
-        {"layerDefinition": template["zoning_overlays_labels"]}
-    )
-    bc_zoning_airport_fc = feature_class(bc_zoning_airport, 0.4)
-    bc_zoning_airport_fc.update({"title": "Airport Overlay"})
-    bc_zoning_airport_fc.update({"visibility": False})
-    bc_zoning_airport_fc.update({"popupInfo": template["zoning_airport_popup"]})
-    bc_zoning_airport_fc.update({"layerDefinition": template["zoning_airport_labels"]})
-    bc_zoning_current_fc = feature_class(bc_zoning_current, 0.4)
-    bc_zoning_current_fc.update({"visibility": False})
-    bc_zoning_current_fc.update({"popupInfo": template["zoning_current_popup"]})
-    bc_zoning_current_fc.update({"layerDefinition": template["zoning_current_labels"]})
-    zoning_ugb_corvallis_fc = feature_class(zoning_ugb_corvallis)
-    zoning_ugb_corvallis_fc.update({"title": "UGB Corvallis"})
-    zoning_ugb_corvallis_fc.update({"visibility": False})
-    zoning_ugb_corvallis_fc.update({"popupInfo": template["ugb_corvallis_popup"]})
-    zoning_ugb_corvallis_fc.update(
-        {"layerDefinition": template["ugb_corvallis_labels"]}
-    )
-    zoning_ugb_philomath_fc = feature_class(zoning_ugb_philomath)
-    zoning_ugb_philomath_fc.update({"title": "UGB Philomath"})
-    zoning_ugb_philomath_fc.update({"visibility": False})
-    zoning_ugb_philomath_fc.update(
-        {"layerDefinition": template["ugb_philomath_labels"]}
-    )
-
-    zoning_group = group_layer("Zoning")
-    zoning_group["layers"].append(bc_zoning_current_fc)
-    zoning_group["layers"].append(bc_zoning_airport_fc)
-    zoning_group["layers"].append(bc_zoning_overlays_fc)
-    zoning_group["layers"].append(bc_willamette_greenway_fc)
-    zoning_group["layers"].append(zoning_ugb_philomath_fc)
-    zoning_group["layers"].append(zoning_ugb_corvallis_fc)
-    zoning_group["layers"].append(bc_zoning_ugb_fc)
-
-    group_lyr["layers"].append(zoning_group)
+    group_lyr["layers"].append(parent_group)
 
 
 def natural_layers_info(template):
@@ -1542,10 +1609,14 @@ def build_template_dictionary(template_type, template):
             template_dict.update(addr_labels(template))
         case "boundary":
             template_dict.update(boundary_layer_info(template))
+        case "hpsv":
+            template_dict.update(hpsv_layers_info(template))
         case "natural":
             template_dict.update(natural_layers_info(template))
         case "nfi":
             template_dict.update(nfi_popup_info(template))
+        case "ppsv":
+            template_dict.update(ppsv_layers_info(template))
         case "survey":
             template_dict.update(survey_layers_info(template))
         case "taxlot":
