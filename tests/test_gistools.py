@@ -20,8 +20,10 @@ TEST_ANNO_0020_MAP = "63d113c5b06940bd9acd82eaa740ff31"
 TEST_ANNO_0050_MAP = "39be32a0a607428cb19affee732c64f9"
 TEST_BOUNDARIES_MAP = "3c1a1c04eeb2404380365b00d7d2ecb6"
 TEST_COUNTY_BASEMAP = "50ef97f3f25742fe9f8954948ad18b63"
+TEST_HPSV_MAP = "6c2e1b71533d4755a0b455fef2264fd6"
 TEST_NATURAL_LAYERS_MAP = "9b3770d8ef684e529690f3956cc19e1a"
 TEST_NFI_MAP = "df21a6eb07ea439c80092ddcb2cf7108"
+TEST_PPSV_MAP = "2a2bd64af0c747cdafcacf54f94c6e65"
 TEST_SURVEY_MAP = "7ff1b1363e204b0396f56c6270c1bfbc"
 TEST_TAXLOT_MAP = "c98a7f2f24974e09ac1a44017aa5774a"
 TEST_TRANSPORTATION_MAP = "cb212d30a70a468d850a83eb4cc6bc08"
@@ -31,8 +33,10 @@ TEMPLATE_ADDRESS_MAP = "5c507b0f03084f33b8da587cbd4b830b"
 TEMPLATE_ANNO_0020_MAP = "47679a569cd9421d806e981fffa49b72"
 TEMPLATE_ANNO_0050_MAP = "e6ad704ebb53408f8e111d1ace1c45b9"
 TEMPLATE_BOUNDARIES_MAP = "c8595e39c1fe4971819d74e7318d1dbd"
+TEMPLATE_HPSV_MAP = "d9b5d23af3044405afe06e8d488d8b64"
 TEMPLATE_NATURAL_LAYERS_MAP = "c172db7be269462f8f1d1e08e9ecc1db"
 TEMPLATE_NFI_MAP = "c0c19fcc00e9430bb92332e35e19aa13"
+TEMPLATE_PPSV_MAP = "a0e7e1cb85c54fd39b95eed20d1aded9"
 TEMPLATE_SURVEY_MAP = "28cbe6fcdc7c49cba8f95666644b7fda"
 TEMPLATE_TAXLOT_MAP = "a409c55c9e0440488c4ab3ce5e10659d"
 TEMPLATE_TRANSPORTATION_MAP = "8cd34cff9a43406dae69c69fa42829b9"
@@ -49,8 +53,10 @@ def test_build_template_dictionary():
     )
     address_map = gis.content.get(TEMPLATE_ADDRESS_MAP)
     boundary_map = gis.content.get(TEMPLATE_BOUNDARIES_MAP)
+    hpsv_map = gis.content.get(TEMPLATE_HPSV_MAP)
     natural_map = gis.content.get(TEMPLATE_NATURAL_LAYERS_MAP)
     nfi_map = gis.content.get(TEMPLATE_NFI_MAP)
+    ppsv_map = gis.content.get(TEMPLATE_PPSV_MAP)
     survey_map = gis.content.get(TEMPLATE_SURVEY_MAP)
     taxlot_map = gis.content.get(TEMPLATE_TAXLOT_MAP)
     transport_map = gis.content.get(TEMPLATE_TRANSPORTATION_MAP)
@@ -60,8 +66,10 @@ def test_build_template_dictionary():
 
     template_dict.update(bc.build_template_dictionary("address", address_map))
     template_dict.update(bc.build_template_dictionary("boundary", boundary_map))
+    template_dict.update(bc.build_template_dictionary("hpsv", hpsv_map))
     template_dict.update(bc.build_template_dictionary("natural", natural_map))
     template_dict.update(bc.build_template_dictionary("nfi", nfi_map))
+    template_dict.update(bc.build_template_dictionary("ppsv", ppsv_map))
     template_dict.update(bc.build_template_dictionary("survey", survey_map))
     template_dict.update(bc.build_template_dictionary("taxlot", taxlot_map))
     template_dict.update(bc.build_template_dictionary("transport", transport_map))
@@ -224,6 +232,13 @@ def test_address_layers():
     assert test_group["layers"][0]["title"] == "Address"
 
 
+def test_hpsv_layers():
+    test_group = bc.group_layer("test")
+    bc.hpsv_layers(test_group, template)
+    assert test_group["layers"][0]["title"] == "High Protection"
+    # assert test_group["layers"][0].keys() == ["foo", "bar"]
+
+
 def test_natural_layers():
     test_group = bc.group_layer("test")
     bc.natural_layers(test_group, template)
@@ -330,39 +345,6 @@ def test_zoning_map():
     gis = GIS(
         "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
     )
-
-    # build template
-    # wm = WebMap()
-    # item_props = {}
-    # item_props.update({"title": "template_zoning_map"})
-    # item_props.update(
-    #     {
-    #         "description": "Reference web map of zoning layers for testing. Do not use or modify."
-    #     }
-    # )
-    # item_props.update({"snippet": "For testing purposes. Do not use or modify."})
-    # item_props.update({"tags": ["community development", "template", "test", "zoning"]})
-    # item_props.update(
-    #     {"serviceItemId": bc.create_layer_id(random.randint(10000, 99999))}
-    # )
-    # wm.save(item_props, folder="templates")
-
-    # build test map
-    # wm = WebMap()
-    # item_props = {}
-    # item_props.update({"title": "test_zoning_map"})
-    # item_props.update(
-    #     {
-    #         "description": "Test web map of zoning layers for community development planners. Overwritten during testing. Do not use."
-    #     }
-    # )
-    # item_props.update({"snippet": "For testing purposes. Do not use."})
-    # item_props.update({"tags": ["community development", "test", "zoning"]})
-    # item_props.update(
-    #     {"serviceItemId": bc.create_layer_id(random.randint(10000, 99999))}
-    # )
-    # wm.save(item_props, folder="tests")
-
     # overwrite test map with new layers
     test_item = gis.content.get(TEST_ZONING_MAP)
 
@@ -461,39 +443,6 @@ def test_taxlot_map():
     gis = GIS(
         "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
     )
-
-    # build template
-    # wm = WebMap()
-    # item_props = {}
-    # item_props.update({"title": "template_taxlot_map"})
-    # item_props.update(
-    #     {
-    #         "description": "Reference web map of taxlot layers for testing. Do not use or modify."
-    #     }
-    # )
-    # item_props.update({"snippet": "For testing purposes. Do not use or modify."})
-    # item_props.update({"tags": ["community development", "template", "test", "taxlot"]})
-    # item_props.update(
-    #     {"serviceItemId": bc.create_layer_id(random.randint(10000, 99999))}
-    # )
-    # wm.save(item_props, folder="templates")
-
-    # build test map
-    # wm = WebMap()
-    # item_props = {}
-    # item_props.update({"title": "test_taxlot_map"})
-    # item_props.update(
-    #     {
-    #         "description": "Test web map of taxlot layers for community development planners. Overwritten during testing. Do not use."
-    #     }
-    # )
-    # item_props.update({"snippet": "For testing purposes. Do not use."})
-    # item_props.update({"tags": ["community development", "test", "taxlot"]})
-    # item_props.update(
-    #     {"serviceItemId": bc.create_layer_id(random.randint(10000, 99999))}
-    # )
-    # wm.save(item_props, folder="tests")
-
     # overwrite test map with new layers
     test_item = gis.content.get(TEST_TAXLOT_MAP)
 
@@ -505,3 +454,80 @@ def test_taxlot_map():
         test_map.remove_layer(lyr)
     test_map.update()
     bc.test_map_layers(test_item, bc.taxlot_layers, template)
+
+
+@pytest.mark.skipif(
+    PYTEST_SKIP,
+    reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
+)
+def test_hpsv_map():
+    gis = GIS(
+        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
+    )
+    # overwrite test map with new layers
+    test_item = gis.content.get(TEST_HPSV_MAP)
+
+    # comment out if new map (no layers yet)
+    # todo: add logical check for layers
+    test_map = WebMap(test_item)
+    test_layers = test_map.layers
+    for lyr in test_layers:
+        test_map.remove_layer(lyr)
+    test_map.update()
+    bc.test_map_layers(test_item, bc.hpsv_layers, template)
+
+
+@pytest.mark.skipif(
+    PYTEST_SKIP,
+    reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
+)
+def test_ppsv_map():
+    gis = GIS(
+        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
+    )
+
+    # build template
+    # wm = WebMap()
+    # item_props = {}
+    # item_props.update({"title": "template_ppsv_map"})
+    # item_props.update(
+    #     {
+    #         "description": "Reference web map of partial protection incentive vegetation layers for testing. Do not use or modify."
+    #     }
+    # )
+    # item_props.update({"snippet": "For testing purposes. Do not use or modify."})
+    # item_props.update(
+    #     {"tags": ["community development", "template", "test", "natural features"]}
+    # )
+    # item_props.update(
+    #     {"serviceItemId": bc.create_layer_id(random.randint(10000, 99999))}
+    # )
+    # wm.save(item_props, folder="templates")
+
+    # build test map
+    # wm = WebMap()
+    # item_props = {}
+    # item_props.update({"title": "test_ppsv_map"})
+    # item_props.update(
+    #     {
+    #         "description": "Test web map of partial protection significant vegetation layers for community development planners. Overwritten during testing. Do not use."
+    #     }
+    # )
+    # item_props.update({"snippet": "For testing purposes. Do not use."})
+    # item_props.update({"tags": ["community development", "test", "natural features"]})
+    # item_props.update(
+    #     {"serviceItemId": bc.create_layer_id(random.randint(10000, 99999))}
+    # )
+    # wm.save(item_props, folder="tests")
+
+    # overwrite test map with new layers
+    test_item = gis.content.get(TEST_PPSV_MAP)
+
+    # comment out if new map (no layers yet)
+    # todo: add logical check for layers
+    test_map = WebMap(test_item)
+    test_layers = test_map.layers
+    for lyr in test_layers:
+        test_map.remove_layer(lyr)
+    test_map.update()
+    bc.test_map_layers(test_item, bc.ppsv_layers, template)
