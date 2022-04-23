@@ -1,5 +1,880 @@
 {
-    "address": {
+    "address_buildings_label": {
+        "drawingInfo": {
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        156,
+                        156,
+                        156,
+                        255
+                    ],
+                    "style": "esriSLSSolid",
+                    "type": "esriSLS",
+                    "width": 1.7
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 1.5,
+                                "value": 141.062147
+                            },
+                            {
+                                "size": 0.75,
+                                "value": 1128.497176
+                            },
+                            {
+                                "size": 0.5625,
+                                "value": 9027.977411
+                            },
+                            {
+                                "size": 0.375,
+                                "value": 72223.819286
+                            }
+                        ],
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        },
+        "minScale": 0
+    },
+    "address_buildings_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID",
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "BEADD_NUM",
+                "isEditable": true,
+                "label": "BEADD_NUM",
+                "visible": true
+            },
+            {
+                "fieldName": "CITY",
+                "isEditable": true,
+                "label": "CITY",
+                "visible": true
+            },
+            {
+                "fieldName": "GlobalID",
+                "label": "GlobalID",
+                "visible": false
+            },
+            {
+                "fieldName": "ID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "ID",
+                "visible": true
+            },
+            {
+                "fieldName": "LENGTH",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "LENGTH",
+                "visible": true
+            },
+            {
+                "fieldName": "LEVYCODE",
+                "isEditable": true,
+                "label": "LEVYCODE",
+                "visible": true
+            },
+            {
+                "fieldName": "OLDSITUS",
+                "isEditable": true,
+                "label": "OLDSITUS",
+                "visible": true
+            },
+            {
+                "fieldName": "PERMIT_NUM",
+                "isEditable": true,
+                "label": "PERMIT_NUM",
+                "visible": true
+            },
+            {
+                "fieldName": "PermitNumber",
+                "isEditable": true,
+                "label": "PermitNumber",
+                "visible": true
+            },
+            {
+                "fieldName": "PIN",
+                "isEditable": true,
+                "label": "PIN",
+                "visible": true
+            },
+            {
+                "fieldName": "REVISION",
+                "isEditable": true,
+                "label": "REVISION",
+                "visible": true
+            },
+            {
+                "fieldName": "SERIAL",
+                "isEditable": true,
+                "label": "SERIAL",
+                "visible": true
+            },
+            {
+                "fieldName": "Shape.STLength()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STLength()",
+                "visible": false
+            },
+            {
+                "fieldName": "SITE_ADD",
+                "isEditable": true,
+                "label": "SITE_ADD",
+                "visible": true
+            },
+            {
+                "fieldName": "ST_NAME",
+                "isEditable": true,
+                "label": "ST_NAME",
+                "visible": true
+            },
+            {
+                "fieldName": "ST_NUMBR",
+                "isEditable": true,
+                "label": "ST_NUMBR",
+                "visible": true
+            },
+            {
+                "fieldName": "ST_PFX",
+                "isEditable": true,
+                "label": "ST_PFX",
+                "visible": true
+            },
+            {
+                "fieldName": "ST_TYPE",
+                "isEditable": true,
+                "label": "ST_TYPE",
+                "visible": true
+            },
+            {
+                "fieldName": "TRANDATE",
+                "isEditable": true,
+                "label": "TRANDATE",
+                "visible": true
+            },
+            {
+                "fieldName": "UNIT",
+                "isEditable": true,
+                "label": "UNIT",
+                "visible": true
+            },
+            {
+                "fieldName": "X_COORD",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "X_COORD",
+                "visible": true
+            },
+            {
+                "fieldName": "Y_COORD",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Y_COORD",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "BEADD_NUM",
+                        "isEditable": true,
+                        "label": "BEADD_NUM",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "CITY",
+                        "isEditable": true,
+                        "label": "CITY",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ID",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "ID",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "LENGTH",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "LENGTH",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "LEVYCODE",
+                        "isEditable": true,
+                        "label": "LEVYCODE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "OLDSITUS",
+                        "isEditable": true,
+                        "label": "OLDSITUS",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "PERMIT_NUM",
+                        "isEditable": true,
+                        "label": "PERMIT_NUM",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "PermitNumber",
+                        "isEditable": true,
+                        "label": "PermitNumber",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "PIN",
+                        "isEditable": true,
+                        "label": "PIN",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "REVISION",
+                        "isEditable": true,
+                        "label": "REVISION",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SERIAL",
+                        "isEditable": true,
+                        "label": "SERIAL",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SITE_ADD",
+                        "isEditable": true,
+                        "label": "SITE_ADD",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ST_NAME",
+                        "isEditable": true,
+                        "label": "ST_NAME",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ST_NUMBR",
+                        "isEditable": true,
+                        "label": "ST_NUMBR",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ST_PFX",
+                        "isEditable": true,
+                        "label": "ST_PFX",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ST_TYPE",
+                        "isEditable": true,
+                        "label": "ST_TYPE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "TRANDATE",
+                        "isEditable": true,
+                        "label": "TRANDATE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "UNIT",
+                        "isEditable": true,
+                        "label": "UNIT",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "X_COORD",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "X_COORD",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Y_COORD",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "Y_COORD",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Driveways: {ST_NAME}"
+    },
+    "address_corvallis_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[ADDRESS]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"ADDRESS\"]"
+                    },
+                    "labelPlacement": "esriServerPointLabelPlacementAboveCenter",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            0,
+                            0,
+                            0,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 7.5
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.75,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "angle": 0,
+                    "color": [
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "outline": {
+                        "color": [
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 1
+                    },
+                    "size": 1,
+                    "style": "esriSMSCircle",
+                    "type": "esriSMS",
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                "type": "simple"
+            }
+        },
+        "featureReduction": null,
+        "minScale": 0
+    },
+    "address_corvallis_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID",
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "ADDRESS",
+                "isEditable": true,
+                "label": "Address",
+                "visible": true
+            },
+            {
+                "fieldName": "CITY",
+                "isEditable": true,
+                "label": "City",
+                "visible": true
+            },
+            {
+                "fieldName": "COMMENTS",
+                "isEditable": true,
+                "label": "Comments",
+                "visible": true
+            },
+            {
+                "fieldName": "created_date",
+                "format": {
+                    "dateFormat": "longMonthDayYear",
+                    "digitSeparator": false
+                },
+                "isEditable": true,
+                "label": "created_date",
+                "visible": true
+            },
+            {
+                "fieldName": "created_user",
+                "isEditable": true,
+                "label": "created_user",
+                "visible": true
+            },
+            {
+                "fieldName": "DATE_",
+                "isEditable": true,
+                "label": "Date",
+                "visible": true
+            },
+            {
+                "fieldName": "DATE_MOD",
+                "isEditable": true,
+                "label": "Date Modified",
+                "visible": true
+            },
+            {
+                "fieldName": "SUF_DIR",
+                "isEditable": true,
+                "label": "Directional Suffix",
+                "visible": true
+            },
+            {
+                "fieldName": "JURIS",
+                "isEditable": true,
+                "label": "Jurisdiction",
+                "visible": true
+            },
+            {
+                "fieldName": "last_edited_date",
+                "format": {
+                    "dateFormat": "longMonthDayYear",
+                    "digitSeparator": false
+                },
+                "isEditable": true,
+                "label": "last_edited_date",
+                "visible": true
+            },
+            {
+                "fieldName": "last_edited_user",
+                "isEditable": true,
+                "label": "last_edited_user",
+                "visible": true
+            },
+            {
+                "fieldName": "MAPTAXLOT",
+                "isEditable": true,
+                "label": "Map Taxlot",
+                "visible": true
+            },
+            {
+                "fieldName": "MERGE_DATE",
+                "format": {
+                    "dateFormat": "longMonthDayYear",
+                    "digitSeparator": false
+                },
+                "isEditable": true,
+                "label": "Merge Date",
+                "visible": true
+            },
+            {
+                "fieldName": "MOD_BY",
+                "isEditable": true,
+                "label": "MOD_BY",
+                "visible": true
+            },
+            {
+                "fieldName": "NUMBER_",
+                "isEditable": true,
+                "label": "Number",
+                "visible": true
+            },
+            {
+                "fieldName": "ORMAP_ID",
+                "isEditable": true,
+                "label": "ORMap ID",
+                "visible": true
+            },
+            {
+                "fieldName": "PRE_DIR",
+                "isEditable": true,
+                "label": "Pre-Directional",
+                "visible": true
+            },
+            {
+                "fieldName": "ST",
+                "isEditable": true,
+                "label": "State",
+                "visible": true
+            },
+            {
+                "fieldName": "STATUS",
+                "isEditable": true,
+                "label": "Status",
+                "visible": true
+            },
+            {
+                "fieldName": "STR_NAM",
+                "isEditable": true,
+                "label": "Street Name",
+                "visible": true
+            },
+            {
+                "fieldName": "STR_TYPE",
+                "isEditable": true,
+                "label": "Street Type",
+                "visible": true
+            },
+            {
+                "fieldName": "STRUCT_ID",
+                "isEditable": true,
+                "label": "STRUCT_ID",
+                "visible": true
+            },
+            {
+                "fieldName": "SUB_NUM",
+                "isEditable": true,
+                "label": "Sub-Number",
+                "visible": true
+            },
+            {
+                "fieldName": "UNIQ",
+                "isEditable": true,
+                "label": "Unique ID",
+                "visible": true
+            },
+            {
+                "fieldName": "UNIT_NUM",
+                "isEditable": true,
+                "label": "Unit Number",
+                "visible": true
+            },
+            {
+                "fieldName": "UNIT_TYPE",
+                "isEditable": true,
+                "label": "Unit Type",
+                "visible": true
+            },
+            {
+                "fieldName": "X_COORD",
+                "isEditable": true,
+                "label": "X Coordinate",
+                "visible": true
+            },
+            {
+                "fieldName": "Y_COORD",
+                "isEditable": true,
+                "label": "Y Coordinate",
+                "visible": true
+            },
+            {
+                "fieldName": "ZIP4",
+                "isEditable": true,
+                "label": "Zip 4",
+                "visible": true
+            },
+            {
+                "fieldName": "ZIP5",
+                "isEditable": true,
+                "label": "Zip Code",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "ADDRESS",
+                        "isEditable": true,
+                        "label": "Address",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "CITY",
+                        "isEditable": true,
+                        "label": "City",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "COMMENTS",
+                        "isEditable": true,
+                        "label": "Comments",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "created_date",
+                        "format": {
+                            "dateFormat": "longMonthDayYear",
+                            "digitSeparator": false
+                        },
+                        "isEditable": true,
+                        "label": "created_date",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "created_user",
+                        "isEditable": true,
+                        "label": "created_user",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "DATE_",
+                        "isEditable": true,
+                        "label": "Date",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "DATE_MOD",
+                        "isEditable": true,
+                        "label": "Date Modified",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SUF_DIR",
+                        "isEditable": true,
+                        "label": "Directional Suffix",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "JURIS",
+                        "isEditable": true,
+                        "label": "Jurisdiction",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "last_edited_date",
+                        "format": {
+                            "dateFormat": "longMonthDayYear",
+                            "digitSeparator": false
+                        },
+                        "isEditable": true,
+                        "label": "last_edited_date",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "last_edited_user",
+                        "isEditable": true,
+                        "label": "last_edited_user",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "MAPTAXLOT",
+                        "isEditable": true,
+                        "label": "Map Taxlot",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "MERGE_DATE",
+                        "format": {
+                            "dateFormat": "longMonthDayYear",
+                            "digitSeparator": false
+                        },
+                        "isEditable": true,
+                        "label": "Merge Date",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "MOD_BY",
+                        "isEditable": true,
+                        "label": "MOD_BY",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "NUMBER_",
+                        "isEditable": true,
+                        "label": "Number",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ORMAP_ID",
+                        "isEditable": true,
+                        "label": "ORMap ID",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "PRE_DIR",
+                        "isEditable": true,
+                        "label": "Pre-Directional",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ST",
+                        "isEditable": true,
+                        "label": "State",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "STATUS",
+                        "isEditable": true,
+                        "label": "Status",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "STR_NAM",
+                        "isEditable": true,
+                        "label": "Street Name",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "STR_TYPE",
+                        "isEditable": true,
+                        "label": "Street Type",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "STRUCT_ID",
+                        "isEditable": true,
+                        "label": "STRUCT_ID",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SUB_NUM",
+                        "isEditable": true,
+                        "label": "Sub-Number",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "UNIQ",
+                        "isEditable": true,
+                        "label": "Unique ID",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "UNIT_NUM",
+                        "isEditable": true,
+                        "label": "Unit Number",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "UNIT_TYPE",
+                        "isEditable": true,
+                        "label": "Unit Type",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "X_COORD",
+                        "isEditable": true,
+                        "label": "X Coordinate",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Y_COORD",
+                        "isEditable": true,
+                        "label": "Y Coordinate",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ZIP4",
+                        "isEditable": true,
+                        "label": "Zip 4",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ZIP5",
+                        "isEditable": true,
+                        "label": "Zip Code",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Corvallis Addresses: {UNIQ}"
+    },
+    "address_county_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[STREET]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"STREET\"]"
+                    },
+                    "labelPlacement": "esriServerPointLabelPlacementCenterCenter",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            43,
+                            43,
+                            43,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 7.5
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.75,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ]
+        },
+        "minScale": 0
+    },
+    "address_county_popup": {
         "fieldInfos": [
             {
                 "fieldName": "OBJECTID",
@@ -14,7 +889,7 @@
                 },
                 "isEditable": true,
                 "label": "ABANDON",
-                "visible": true
+                "visible": false
             },
             {
                 "fieldName": "CITY",
@@ -35,7 +910,7 @@
                 },
                 "isEditable": true,
                 "label": "MERGE_DATE",
-                "visible": true
+                "visible": false
             },
             {
                 "fieldName": "OLD_Beadd",
@@ -87,7 +962,7 @@
                 "fieldName": "ORIGIN",
                 "isEditable": true,
                 "label": "ORIGIN",
-                "visible": true
+                "visible": false
             },
             {
                 "fieldName": "PIN",
@@ -241,35 +1116,9 @@
                 "description": "",
                 "fieldInfos": [
                     {
-                        "fieldName": "ABANDON",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 0
-                        },
-                        "isEditable": true,
-                        "label": "ABANDON",
-                        "visible": true
-                    },
-                    {
                         "fieldName": "CITY",
                         "isEditable": true,
                         "label": "CITY",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "MERGE_DATE",
-                        "format": {
-                            "dateFormat": "longMonthDayYear",
-                            "digitSeparator": false
-                        },
-                        "isEditable": true,
-                        "label": "MERGE_DATE",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "OLD_Beadd",
-                        "isEditable": true,
-                        "label": "OLD_Beadd",
                         "visible": true
                     },
                     {
@@ -313,25 +1162,9 @@
                         "visible": true
                     },
                     {
-                        "fieldName": "ORIGIN",
-                        "isEditable": true,
-                        "label": "ORIGIN",
-                        "visible": true
-                    },
-                    {
                         "fieldName": "PIN",
                         "isEditable": true,
                         "label": "PIN",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "REC_DATE",
-                        "format": {
-                            "dateFormat": "longMonthDayYear",
-                            "digitSeparator": false
-                        },
-                        "isEditable": true,
-                        "label": "REC_DATE",
                         "visible": true
                     },
                     {
@@ -463,92 +1296,88 @@
                         "isEditable": true,
                         "label": "ZIP",
                         "visible": true
+                    },
+                    {
+                        "fieldName": "OLD_Beadd",
+                        "isEditable": true,
+                        "label": "OLD_Beadd",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "REC_DATE",
+                        "format": {
+                            "dateFormat": "longMonthDayYear",
+                            "digitSeparator": false
+                        },
+                        "isEditable": true,
+                        "label": "REC_DATE",
+                        "visible": true
                     }
                 ],
                 "title": "",
                 "type": "fields"
             }
         ],
-        "title": "County_Addresses: {ST_NAME}"
+        "title": "County Addresses: {ST_NAME}"
     },
-    "benchmarks_labels": {
+    "address_driveways_label": {
         "drawingInfo": {
-            "labelingInfo": [
-                {
-                    "labelExpression": "[MON_ID]",
-                    "labelExpressionInfo": {
-                        "expression": "$feature[\"MON_ID\"]"
-                    },
-                    "labelPlacement": "esriServerPointLabelPlacementAboveCenter",
-                    "repeatLabel": true,
-                    "symbol": {
-                        "angle": 0,
-                        "color": [
-                            255,
-                            170,
-                            0,
-                            255
-                        ],
-                        "font": {
-                            "family": "Arial Narrow",
-                            "size": 10,
-                            "weight": "bold"
-                        },
-                        "haloColor": [
-                            0,
-                            0,
-                            0,
-                            255
-                        ],
-                        "haloSize": 1.5,
-                        "horizontalAlignment": "center",
-                        "kerning": true,
-                        "rightToLeft": false,
-                        "rotated": false,
-                        "text": "",
-                        "type": "esriTS",
-                        "verticalAlignment": "bottom",
-                        "xoffset": 0,
-                        "yoffset": 0
-                    },
-                    "useCodedValues": true
-                }
-            ],
             "renderer": {
                 "description": "",
                 "label": "",
                 "symbol": {
-                    "angle": 0,
                     "color": [
-                        255,
-                        170,
-                        0,
+                        178,
+                        178,
+                        178,
                         255
                     ],
                     "outline": {
                         "color": [
-                            43,
-                            43,
-                            43,
-                            128
+                            110,
+                            110,
+                            110,
+                            0
                         ],
                         "style": "esriSLSSolid",
                         "type": "esriSLS",
-                        "width": 1
+                        "width": 0.75
                     },
-                    "size": 6.75,
-                    "style": "esriSMSSquare",
-                    "type": "esriSMS",
-                    "xoffset": 0,
-                    "yoffset": 0
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
                 },
-                "type": "simple"
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 1.829268292682927,
+                                "value": 174
+                            },
+                            {
+                                "size": 0.9146341463414634,
+                                "value": 545
+                            },
+                            {
+                                "size": 0.4573170731707317,
+                                "value": 2180
+                            },
+                            {
+                                "size": 0,
+                                "value": 4360
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
             }
         },
         "featureReduction": null,
-        "minScale": 43818.696371
+        "minScale": 0
     },
-    "benchmarks_popup": {
+    "address_driveways_popup": {
         "fieldInfos": [
             {
                 "fieldName": "OBJECTID",
@@ -556,27 +1385,55 @@
                 "visible": false
             },
             {
-                "fieldName": "ALIAS",
+                "fieldName": "ArcGIS_Public.SDE.buildings.AREA",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
                 "isEditable": true,
-                "label": "ALIAS",
+                "label": "AREA",
                 "visible": true
             },
             {
-                "fieldName": "Book",
+                "fieldName": "AutoWho",
                 "isEditable": true,
-                "label": "Book",
+                "label": "AutoWho",
                 "visible": true
             },
             {
-                "fieldName": "Chapter",
+                "fieldName": "BUILDING_",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
                 "isEditable": true,
-                "label": "Chapter",
+                "label": "BUILDING_",
                 "visible": true
             },
             {
-                "fieldName": "Destroyed",
+                "fieldName": "BUILDING_I",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
                 "isEditable": true,
-                "label": "Destroyed",
+                "label": "BUILDING_I",
+                "visible": false
+            },
+            {
+                "fieldName": "Comment",
+                "isEditable": true,
+                "label": "Comment",
+                "visible": true
+            },
+            {
+                "fieldName": "DATE_",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "DATE_",
                 "visible": true
             },
             {
@@ -585,25 +1442,51 @@
                 "visible": false
             },
             {
-                "fieldName": "MON_ID",
+                "fieldName": "IMPR_TYPE",
                 "isEditable": true,
-                "label": "MON_ID",
+                "label": "IMPR_TYPE",
                 "visible": true
             },
             {
-                "fieldName": "Page",
+                "fieldName": "LAYER",
+                "isEditable": true,
+                "label": "LAYER",
+                "visible": true
+            },
+            {
+                "fieldName": "PERIMETER",
                 "format": {
                     "digitSeparator": true,
-                    "places": 0
+                    "places": 2
                 },
                 "isEditable": true,
-                "label": "Page",
-                "visible": true
+                "label": "PERIMETER",
+                "visible": false
             },
             {
-                "fieldName": "STAMPED",
+                "fieldName": "Shape.STArea()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
                 "isEditable": true,
-                "label": "STAMPED",
+                "label": "Shape.STArea()",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape.STLength()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STLength()",
+                "visible": false
+            },
+            {
+                "fieldName": "SOURCE",
+                "isEditable": true,
+                "label": "SOURCE",
                 "visible": true
             }
         ],
@@ -612,49 +1495,63 @@
                 "description": "",
                 "fieldInfos": [
                     {
-                        "fieldName": "ALIAS",
+                        "fieldName": "ArcGIS_Public.SDE.buildings.AREA",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
                         "isEditable": true,
-                        "label": "ALIAS",
+                        "label": "AREA",
                         "visible": true
                     },
                     {
-                        "fieldName": "Book",
+                        "fieldName": "AutoWho",
                         "isEditable": true,
-                        "label": "Book",
+                        "label": "AutoWho",
                         "visible": true
                     },
                     {
-                        "fieldName": "Chapter",
+                        "fieldName": "BUILDING_",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
                         "isEditable": true,
-                        "label": "Chapter",
+                        "label": "BUILDING_",
                         "visible": true
                     },
                     {
-                        "fieldName": "Destroyed",
+                        "fieldName": "Comment",
                         "isEditable": true,
-                        "label": "Destroyed",
+                        "label": "Comment",
                         "visible": true
                     },
                     {
-                        "fieldName": "MON_ID",
-                        "isEditable": true,
-                        "label": "MON_ID",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "Page",
+                        "fieldName": "DATE_",
                         "format": {
                             "digitSeparator": true,
                             "places": 0
                         },
                         "isEditable": true,
-                        "label": "Page",
+                        "label": "DATE_",
                         "visible": true
                     },
                     {
-                        "fieldName": "STAMPED",
+                        "fieldName": "IMPR_TYPE",
                         "isEditable": true,
-                        "label": "STAMPED",
+                        "label": "IMPR_TYPE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "LAYER",
+                        "isEditable": true,
+                        "label": "LAYER",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SOURCE",
+                        "isEditable": true,
+                        "label": "SOURCE",
                         "visible": true
                     }
                 ],
@@ -662,7 +1559,7 @@
                 "type": "fields"
             }
         ],
-        "title": "Benchmarks: {ALIAS}"
+        "title": "Buildings: {SOURCE}"
     },
     "buff100": {
         "fieldInfos": [
@@ -2406,50 +3303,6 @@
         ],
         "title": "Downtown Between Dixon Creek and Marys: {REACH_CD}"
     },
-    "centerlines_labels": {
-        "drawingInfo": {
-            "renderer": {
-                "description": "",
-                "label": "",
-                "symbol": {
-                    "color": [
-                        225,
-                        225,
-                        225,
-                        128
-                    ],
-                    "style": "esriSLSSolid",
-                    "type": "esriSLS",
-                    "width": 0.8
-                },
-                "type": "simple",
-                "visualVariables": [
-                    {
-                        "stops": [
-                            {
-                                "size": 1.5,
-                                "value": 564.248588
-                            },
-                            {
-                                "size": 0.75,
-                                "value": 4513.988705
-                            },
-                            {
-                                "size": 0.5625,
-                                "value": 36111.909643
-                            },
-                            {
-                                "size": 0.375,
-                                "value": 288895.277144
-                            }
-                        ],
-                        "type": "sizeInfo",
-                        "valueExpression": "$view.scale"
-                    }
-                ]
-            }
-        }
-    },
     "cities_labels": {
         "drawingInfo": {
             "labelingInfo": [
@@ -2603,840 +3456,6 @@
             }
         },
         "featureReduction": null
-    },
-    "dlc_corners_labels": {
-        "drawingInfo": {
-            "labelingInfo": [
-                {
-                    "labelExpression": "[CORNER_NO]",
-                    "labelExpressionInfo": {
-                        "expression": "$feature[\"CORNER_NO\"]"
-                    },
-                    "labelPlacement": "esriServerPointLabelPlacementAboveCenter",
-                    "maxScale": 0,
-                    "minScale": 28867.07924,
-                    "repeatLabel": true,
-                    "symbol": {
-                        "angle": 0,
-                        "color": [
-                            0,
-                            112,
-                            255,
-                            255
-                        ],
-                        "font": {
-                            "family": "Arial Narrow",
-                            "size": 10,
-                            "weight": "bold"
-                        },
-                        "horizontalAlignment": "center",
-                        "kerning": true,
-                        "rightToLeft": false,
-                        "rotated": false,
-                        "text": "",
-                        "type": "esriTS",
-                        "verticalAlignment": "bottom",
-                        "xoffset": 0,
-                        "yoffset": 0
-                    },
-                    "useCodedValues": true
-                }
-            ],
-            "renderer": {
-                "description": "",
-                "label": "",
-                "symbol": {
-                    "angle": 0,
-                    "color": [
-                        66,
-                        222,
-                        255,
-                        255
-                    ],
-                    "outline": {
-                        "color": [
-                            43,
-                            43,
-                            43,
-                            128
-                        ],
-                        "style": "esriSLSSolid",
-                        "type": "esriSLS",
-                        "width": 1
-                    },
-                    "size": 5.25,
-                    "style": "esriSMSCircle",
-                    "type": "esriSMS",
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                "type": "simple"
-            }
-        },
-        "featureReduction": null
-    },
-    "dlc_corners_popup": {
-        "fieldInfos": [
-            {
-                "fieldName": "OBJECTID_1",
-                "label": "OBJECTID_1",
-                "visible": false
-            },
-            {
-                "fieldName": "BOOK_NO",
-                "isEditable": true,
-                "label": "BOOK_NO",
-                "visible": true
-            },
-            {
-                "fieldName": "BOOK_NO_2",
-                "isEditable": true,
-                "label": "BOOK_NO_2",
-                "visible": true
-            },
-            {
-                "fieldName": "CARD_NO_1",
-                "isEditable": true,
-                "label": "CARD_NO_1",
-                "visible": true
-            },
-            {
-                "fieldName": "CARD_NO_2",
-                "isEditable": true,
-                "label": "CARD_NO_2",
-                "visible": true
-            },
-            {
-                "fieldName": "CARD_NO_3",
-                "isEditable": true,
-                "label": "CARD_NO_3",
-                "visible": true
-            },
-            {
-                "fieldName": "CARD_NO_4",
-                "isEditable": true,
-                "label": "CARD_NO_4",
-                "visible": true
-            },
-            {
-                "fieldName": "CORNER_NO",
-                "isEditable": true,
-                "label": "CORNER_NO",
-                "visible": true
-            },
-            {
-                "fieldName": "GlobalID",
-                "label": "GlobalID",
-                "visible": false
-            },
-            {
-                "fieldName": "ID",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 0
-                },
-                "isEditable": true,
-                "label": "ID",
-                "visible": true
-            },
-            {
-                "fieldName": "OBJECTID",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 0
-                },
-                "isEditable": true,
-                "label": "OBJECTID",
-                "visible": false
-            },
-            {
-                "fieldName": "R_NUM_1",
-                "isEditable": true,
-                "label": "R_NUM_1",
-                "visible": true
-            },
-            {
-                "fieldName": "R_NUM_2",
-                "isEditable": true,
-                "label": "R_NUM_2",
-                "visible": true
-            },
-            {
-                "fieldName": "R_NUM_3",
-                "isEditable": true,
-                "label": "R_NUM_3",
-                "visible": true
-            },
-            {
-                "fieldName": "R_NUM_4",
-                "isEditable": true,
-                "label": "R_NUM_4",
-                "visible": true
-            },
-            {
-                "fieldName": "R_NUM_5",
-                "isEditable": true,
-                "label": "R_NUM_5",
-                "visible": true
-            },
-            {
-                "fieldName": "RESEARCH_D",
-                "isEditable": true,
-                "label": "RESEARCH_D",
-                "visible": true
-            },
-            {
-                "fieldName": "RESEARCHED",
-                "isEditable": true,
-                "label": "RESEARCHED",
-                "visible": true
-            },
-            {
-                "fieldName": "Restoration_Status",
-                "isEditable": true,
-                "label": "Restoration_Status",
-                "visible": true
-            },
-            {
-                "fieldName": "RESTORED",
-                "isEditable": true,
-                "label": "RESTORED",
-                "visible": true
-            },
-            {
-                "fieldName": "Restored_By",
-                "isEditable": true,
-                "label": "Restored_By",
-                "visible": true
-            },
-            {
-                "fieldName": "RESTORED_DATE",
-                "isEditable": true,
-                "label": "RESTORED_DATE",
-                "visible": true
-            },
-            {
-                "fieldName": "Survey_Num",
-                "isEditable": true,
-                "label": "Survey_Num",
-                "visible": true
-            },
-            {
-                "fieldName": "UID",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 0
-                },
-                "isEditable": true,
-                "label": "UID",
-                "visible": true
-            }
-        ],
-        "popupElements": [
-            {
-                "description": "",
-                "fieldInfos": [
-                    {
-                        "fieldName": "BOOK_NO",
-                        "isEditable": true,
-                        "label": "BOOK_NO",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "BOOK_NO_2",
-                        "isEditable": true,
-                        "label": "BOOK_NO_2",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "CARD_NO_1",
-                        "isEditable": true,
-                        "label": "CARD_NO_1",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "CARD_NO_2",
-                        "isEditable": true,
-                        "label": "CARD_NO_2",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "CARD_NO_3",
-                        "isEditable": true,
-                        "label": "CARD_NO_3",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "CARD_NO_4",
-                        "isEditable": true,
-                        "label": "CARD_NO_4",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "CORNER_NO",
-                        "isEditable": true,
-                        "label": "CORNER_NO",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "ID",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 0
-                        },
-                        "isEditable": true,
-                        "label": "ID",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "R_NUM_1",
-                        "isEditable": true,
-                        "label": "R_NUM_1",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "R_NUM_2",
-                        "isEditable": true,
-                        "label": "R_NUM_2",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "R_NUM_3",
-                        "isEditable": true,
-                        "label": "R_NUM_3",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "R_NUM_4",
-                        "isEditable": true,
-                        "label": "R_NUM_4",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "R_NUM_5",
-                        "isEditable": true,
-                        "label": "R_NUM_5",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "RESEARCH_D",
-                        "isEditable": true,
-                        "label": "RESEARCH_D",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "RESEARCHED",
-                        "isEditable": true,
-                        "label": "RESEARCHED",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "Restoration_Status",
-                        "isEditable": true,
-                        "label": "Restoration_Status",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "RESTORED",
-                        "isEditable": true,
-                        "label": "RESTORED",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "Restored_By",
-                        "isEditable": true,
-                        "label": "Restored_By",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "RESTORED_DATE",
-                        "isEditable": true,
-                        "label": "RESTORED_DATE",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "Survey_Num",
-                        "isEditable": true,
-                        "label": "Survey_Num",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "UID",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 0
-                        },
-                        "isEditable": true,
-                        "label": "UID",
-                        "visible": true
-                    }
-                ],
-                "title": "",
-                "type": "fields"
-            }
-        ],
-        "title": "DLC_corner_index: {BOOK_NO}"
-    },
-    "dlc_labels": {
-        "drawingInfo": {
-            "labelingInfo": [
-                {
-                    "labelExpression": "[NAME]",
-                    "labelExpressionInfo": {
-                        "expression": "$feature[\"NAME\"]"
-                    },
-                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
-                    "maxScale": 0,
-                    "minScale": 74716.60566,
-                    "repeatLabel": true,
-                    "symbol": {
-                        "angle": 0,
-                        "color": [
-                            0,
-                            92,
-                            230,
-                            255
-                        ],
-                        "font": {
-                            "family": "Arial",
-                            "size": 10.5
-                        },
-                        "horizontalAlignment": "center",
-                        "kerning": true,
-                        "rightToLeft": false,
-                        "rotated": false,
-                        "text": "",
-                        "type": "esriTS",
-                        "verticalAlignment": "bottom",
-                        "xoffset": 0,
-                        "yoffset": 0
-                    },
-                    "useCodedValues": true
-                }
-            ]
-        }
-    },
-    "dlc_popup": {
-        "fieldInfos": [
-            {
-                "fieldName": "OBJECTID_1",
-                "label": "OBJECTID_1",
-                "visible": false
-            },
-            {
-                "fieldName": "NAME",
-                "isEditable": true,
-                "label": "NAME",
-                "visible": true
-            },
-            {
-                "fieldName": "ACRES",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 2
-                },
-                "isEditable": true,
-                "label": "ACRES",
-                "visible": true
-            },
-            {
-                "fieldName": "DLC_NUM",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 0
-                },
-                "isEditable": true,
-                "label": "DLC_NUM",
-                "visible": true
-            },
-            {
-                "fieldName": "DLC_NUM2",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 0
-                },
-                "isEditable": true,
-                "label": "DLC_NUM2",
-                "visible": true
-            },
-            {
-                "fieldName": "GlobalID",
-                "label": "GlobalID",
-                "visible": false
-            },
-            {
-                "fieldName": "OBJECTID",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 0
-                },
-                "isEditable": true,
-                "label": "OBJECTID",
-                "visible": false
-            },
-            {
-                "fieldName": "Shape_Leng",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 2
-                },
-                "isEditable": true,
-                "label": "Shape_Leng",
-                "visible": false
-            }
-        ],
-        "popupElements": [
-            {
-                "description": "",
-                "fieldInfos": [
-                    {
-                        "fieldName": "NAME",
-                        "isEditable": true,
-                        "label": "NAME",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "ACRES",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 2
-                        },
-                        "isEditable": true,
-                        "label": "ACRES",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "DLC_NUM",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 0
-                        },
-                        "isEditable": true,
-                        "label": "DLC_NUM",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "DLC_NUM2",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 0
-                        },
-                        "isEditable": true,
-                        "label": "DLC_NUM2",
-                        "visible": true
-                    }
-                ],
-                "title": "",
-                "type": "fields"
-            }
-        ],
-        "title": "Donationlandclaims: {NAME}"
-    },
-    "driveways": {
-        "fieldInfos": [
-            {
-                "fieldName": "OBJECTID",
-                "label": "OBJECTID",
-                "visible": false
-            },
-            {
-                "fieldName": "BEADD_NUM",
-                "isEditable": true,
-                "label": "BEADD_NUM",
-                "visible": true
-            },
-            {
-                "fieldName": "CITY",
-                "isEditable": true,
-                "label": "CITY",
-                "visible": true
-            },
-            {
-                "fieldName": "GlobalID",
-                "label": "GlobalID",
-                "visible": false
-            },
-            {
-                "fieldName": "ID",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 0
-                },
-                "isEditable": true,
-                "label": "ID",
-                "visible": true
-            },
-            {
-                "fieldName": "LENGTH",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 2
-                },
-                "isEditable": true,
-                "label": "LENGTH",
-                "visible": true
-            },
-            {
-                "fieldName": "LEVYCODE",
-                "isEditable": true,
-                "label": "LEVYCODE",
-                "visible": true
-            },
-            {
-                "fieldName": "OLDSITUS",
-                "isEditable": true,
-                "label": "OLDSITUS",
-                "visible": true
-            },
-            {
-                "fieldName": "PERMIT_NUM",
-                "isEditable": true,
-                "label": "PERMIT_NUM",
-                "visible": true
-            },
-            {
-                "fieldName": "PermitNumber",
-                "isEditable": true,
-                "label": "PermitNumber",
-                "visible": true
-            },
-            {
-                "fieldName": "PIN",
-                "isEditable": true,
-                "label": "PIN",
-                "visible": true
-            },
-            {
-                "fieldName": "REVISION",
-                "isEditable": true,
-                "label": "REVISION",
-                "visible": true
-            },
-            {
-                "fieldName": "SERIAL",
-                "isEditable": true,
-                "label": "SERIAL",
-                "visible": true
-            },
-            {
-                "fieldName": "Shape.STLength()",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 2
-                },
-                "isEditable": true,
-                "label": "Shape.STLength()",
-                "visible": false
-            },
-            {
-                "fieldName": "SITE_ADD",
-                "isEditable": true,
-                "label": "SITE_ADD",
-                "visible": true
-            },
-            {
-                "fieldName": "ST_NAME",
-                "isEditable": true,
-                "label": "ST_NAME",
-                "visible": true
-            },
-            {
-                "fieldName": "ST_NUMBR",
-                "isEditable": true,
-                "label": "ST_NUMBR",
-                "visible": true
-            },
-            {
-                "fieldName": "ST_PFX",
-                "isEditable": true,
-                "label": "ST_PFX",
-                "visible": true
-            },
-            {
-                "fieldName": "ST_TYPE",
-                "isEditable": true,
-                "label": "ST_TYPE",
-                "visible": true
-            },
-            {
-                "fieldName": "TRANDATE",
-                "isEditable": true,
-                "label": "TRANDATE",
-                "visible": true
-            },
-            {
-                "fieldName": "UNIT",
-                "isEditable": true,
-                "label": "UNIT",
-                "visible": true
-            },
-            {
-                "fieldName": "X_COORD",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 2
-                },
-                "isEditable": true,
-                "label": "X_COORD",
-                "visible": true
-            },
-            {
-                "fieldName": "Y_COORD",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 2
-                },
-                "isEditable": true,
-                "label": "Y_COORD",
-                "visible": true
-            }
-        ],
-        "popupElements": [
-            {
-                "description": "",
-                "fieldInfos": [
-                    {
-                        "fieldName": "BEADD_NUM",
-                        "isEditable": true,
-                        "label": "BEADD_NUM",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "CITY",
-                        "isEditable": true,
-                        "label": "CITY",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "ID",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 0
-                        },
-                        "isEditable": true,
-                        "label": "ID",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "LENGTH",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 2
-                        },
-                        "isEditable": true,
-                        "label": "LENGTH",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "LEVYCODE",
-                        "isEditable": true,
-                        "label": "LEVYCODE",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "OLDSITUS",
-                        "isEditable": true,
-                        "label": "OLDSITUS",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "PERMIT_NUM",
-                        "isEditable": true,
-                        "label": "PERMIT_NUM",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "PermitNumber",
-                        "isEditable": true,
-                        "label": "PermitNumber",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "PIN",
-                        "isEditable": true,
-                        "label": "PIN",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "REVISION",
-                        "isEditable": true,
-                        "label": "REVISION",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "SERIAL",
-                        "isEditable": true,
-                        "label": "SERIAL",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "SITE_ADD",
-                        "isEditable": true,
-                        "label": "SITE_ADD",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "ST_NAME",
-                        "isEditable": true,
-                        "label": "ST_NAME",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "ST_NUMBR",
-                        "isEditable": true,
-                        "label": "ST_NUMBR",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "ST_PFX",
-                        "isEditable": true,
-                        "label": "ST_PFX",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "ST_TYPE",
-                        "isEditable": true,
-                        "label": "ST_TYPE",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "TRANDATE",
-                        "isEditable": true,
-                        "label": "TRANDATE",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "UNIT",
-                        "isEditable": true,
-                        "label": "UNIT",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "X_COORD",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 2
-                        },
-                        "isEditable": true,
-                        "label": "X_COORD",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "Y_COORD",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 2
-                        },
-                        "isEditable": true,
-                        "label": "Y_COORD",
-                        "visible": true
-                    }
-                ],
-                "title": "",
-                "type": "fields"
-            }
-        ],
-        "title": "Driveways: {ST_NAME}"
     },
     "fire_labels": {
         "drawingInfo": {
@@ -4740,339 +4759,6 @@
             }
         ],
         "title": "0.2-Foot Floodway: {ID}"
-    },
-    "geodetic_control_labels": {
-        "drawingInfo": {
-            "labelingInfo": [
-                {
-                    "labelExpression": "[STA_NAME]",
-                    "labelExpressionInfo": {
-                        "expression": "$feature[\"STA_NAME\"]"
-                    },
-                    "labelPlacement": "esriServerPointLabelPlacementAboveCenter",
-                    "repeatLabel": true,
-                    "symbol": {
-                        "angle": 0,
-                        "color": [
-                            163,
-                            255,
-                            115,
-                            255
-                        ],
-                        "font": {
-                            "family": "Arial Narrow",
-                            "size": 10,
-                            "weight": "bold"
-                        },
-                        "haloColor": [
-                            0,
-                            0,
-                            0,
-                            255
-                        ],
-                        "haloSize": 1.5,
-                        "horizontalAlignment": "center",
-                        "kerning": true,
-                        "rightToLeft": false,
-                        "rotated": false,
-                        "text": "",
-                        "type": "esriTS",
-                        "verticalAlignment": "bottom",
-                        "xoffset": 0,
-                        "yoffset": -3
-                    },
-                    "useCodedValues": true
-                }
-            ],
-            "renderer": {
-                "description": "",
-                "label": "",
-                "symbol": {
-                    "angle": 0,
-                    "color": [
-                        138,
-                        247,
-                        114,
-                        255
-                    ],
-                    "outline": {
-                        "color": [
-                            43,
-                            43,
-                            43,
-                            255
-                        ],
-                        "style": "esriSLSSolid",
-                        "type": "esriSLS",
-                        "width": 1
-                    },
-                    "size": 5.25,
-                    "style": "esriSMSCircle",
-                    "type": "esriSMS",
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                "type": "simple"
-            }
-        },
-        "featureReduction": null,
-        "minScale": 39145.29017
-    },
-    "geodetic_control_popup": {
-        "fieldInfos": [
-            {
-                "fieldName": "OBJECTID",
-                "label": "OBJECTID",
-                "visible": false
-            },
-            {
-                "fieldName": "Con_type",
-                "isEditable": true,
-                "label": "Con_type",
-                "visible": true
-            },
-            {
-                "fieldName": "Control_Type",
-                "isEditable": true,
-                "label": "Control_Type",
-                "visible": true
-            },
-            {
-                "fieldName": "DATUM",
-                "isEditable": true,
-                "label": "DATUM",
-                "visible": true
-            },
-            {
-                "fieldName": "Datum_1",
-                "isEditable": true,
-                "label": "Datum_1",
-                "visible": true
-            },
-            {
-                "fieldName": "Datum_2",
-                "isEditable": true,
-                "label": "Datum_2",
-                "visible": true
-            },
-            {
-                "fieldName": "GlobalID",
-                "label": "GlobalID",
-                "visible": false
-            },
-            {
-                "fieldName": "GP_NO",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 2
-                },
-                "isEditable": true,
-                "label": "GP_NO",
-                "visible": true
-            },
-            {
-                "fieldName": "OBS_NUM",
-                "isEditable": true,
-                "label": "OBS_NUM",
-                "visible": true
-            },
-            {
-                "fieldName": "SOURCE_DOC",
-                "isEditable": true,
-                "label": "SOURCE_DOC",
-                "visible": true
-            },
-            {
-                "fieldName": "SOURCETHM",
-                "isEditable": true,
-                "label": "SOURCETHM",
-                "visible": true
-            },
-            {
-                "fieldName": "STA_NAME",
-                "isEditable": true,
-                "label": "STA_NAME",
-                "visible": true
-            },
-            {
-                "fieldName": "STA_NUM",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 0
-                },
-                "isEditable": true,
-                "label": "STA_NUM",
-                "visible": true
-            },
-            {
-                "fieldName": "Type",
-                "isEditable": true,
-                "label": "Type",
-                "visible": true
-            },
-            {
-                "fieldName": "X",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 2
-                },
-                "isEditable": true,
-                "label": "X",
-                "visible": true
-            },
-            {
-                "fieldName": "X_REF",
-                "isEditable": true,
-                "label": "X_REF",
-                "visible": true
-            },
-            {
-                "fieldName": "Y",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 2
-                },
-                "isEditable": true,
-                "label": "Y",
-                "visible": true
-            },
-            {
-                "fieldName": "Z",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 2
-                },
-                "isEditable": true,
-                "label": "Z",
-                "visible": true
-            }
-        ],
-        "popupElements": [
-            {
-                "description": "",
-                "fieldInfos": [
-                    {
-                        "fieldName": "Con_type",
-                        "isEditable": true,
-                        "label": "Con_type",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "Control_Type",
-                        "isEditable": true,
-                        "label": "Control_Type",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "DATUM",
-                        "isEditable": true,
-                        "label": "DATUM",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "Datum_1",
-                        "isEditable": true,
-                        "label": "Datum_1",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "Datum_2",
-                        "isEditable": true,
-                        "label": "Datum_2",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "GP_NO",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 2
-                        },
-                        "isEditable": true,
-                        "label": "GP_NO",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "OBS_NUM",
-                        "isEditable": true,
-                        "label": "OBS_NUM",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "SOURCE_DOC",
-                        "isEditable": true,
-                        "label": "SOURCE_DOC",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "SOURCETHM",
-                        "isEditable": true,
-                        "label": "SOURCETHM",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "STA_NAME",
-                        "isEditable": true,
-                        "label": "STA_NAME",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "STA_NUM",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 0
-                        },
-                        "isEditable": true,
-                        "label": "STA_NUM",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "Type",
-                        "isEditable": true,
-                        "label": "Type",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "X",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 2
-                        },
-                        "isEditable": true,
-                        "label": "X",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "X_REF",
-                        "isEditable": true,
-                        "label": "X_REF",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "Y",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 2
-                        },
-                        "isEditable": true,
-                        "label": "Y",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "Z",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 2
-                        },
-                        "isEditable": true,
-                        "label": "Z",
-                        "visible": true
-                    }
-                ],
-                "title": "",
-                "type": "fields"
-            }
-        ],
-        "title": "Geodetic Control: {STA_NAME}"
     },
     "hi_inc_1of9": {
         "fieldInfos": [
@@ -18251,99 +17937,6 @@
             }
         }
     },
-    "labels": {
-        "drawingInfo": {
-            "labelingInfo": [
-                {
-                    "labelExpression": "[STREET]",
-                    "labelExpressionInfo": {
-                        "expression": "$feature[\"STREET\"]"
-                    },
-                    "labelPlacement": "esriServerPointLabelPlacementCenterCenter",
-                    "repeatLabel": true,
-                    "symbol": {
-                        "angle": 0,
-                        "color": [
-                            230,
-                            0,
-                            0,
-                            255
-                        ],
-                        "font": {
-                            "family": "Arial Narrow",
-                            "size": 11
-                        },
-                        "horizontalAlignment": "center",
-                        "kerning": true,
-                        "rightToLeft": false,
-                        "rotated": false,
-                        "text": "",
-                        "type": "esriTS",
-                        "verticalAlignment": "bottom",
-                        "xoffset": 0,
-                        "yoffset": 0
-                    },
-                    "useCodedValues": true
-                }
-            ],
-            "renderer": {
-                "description": "",
-                "label": "",
-                "symbol": {
-                    "angle": 0,
-                    "color": [
-                        255,
-                        255,
-                        255,
-                        0
-                    ],
-                    "outline": {
-                        "color": [
-                            255,
-                            255,
-                            255,
-                            0
-                        ],
-                        "style": "esriSLSSolid",
-                        "type": "esriSLS",
-                        "width": 1
-                    },
-                    "size": 3.75,
-                    "style": "esriSMSCircle",
-                    "type": "esriSMS",
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                "type": "simple",
-                "visualVariables": [
-                    {
-                        "stops": [
-                            {
-                                "size": 3.75,
-                                "value": 2256.994353
-                            },
-                            {
-                                "size": 3,
-                                "value": 18055.954822
-                            },
-                            {
-                                "size": 1.5,
-                                "value": 144447.638572
-                            },
-                            {
-                                "size": 0.75,
-                                "value": 1155581.108577
-                            }
-                        ],
-                        "type": "sizeInfo",
-                        "valueExpression": "$view.scale"
-                    }
-                ]
-            }
-        },
-        "featureReduction": null,
-        "minScale": 11255.806314
-    },
     "landslide_risk": {
         "fieldInfos": [
             {
@@ -28458,218 +28051,6 @@
             }
         }
     },
-    "railroads_labels": {
-        "drawingInfo": {
-            "labelingInfo": [
-                {
-                    "labelExpression": "[Owner]",
-                    "labelExpressionInfo": {
-                        "expression": "$feature[\"Owner\"]"
-                    },
-                    "labelPlacement": "esriServerLinePlacementCenterAlong",
-                    "maxScale": 0,
-                    "minScale": 44810.838317,
-                    "repeatLabel": false,
-                    "symbol": {
-                        "angle": 0,
-                        "color": [
-                            115,
-                            38,
-                            0,
-                            255
-                        ],
-                        "font": {
-                            "family": "Arial",
-                            "size": 7.5
-                        },
-                        "haloSize": 1,
-                        "horizontalAlignment": "center",
-                        "kerning": true,
-                        "rotated": false,
-                        "text": "",
-                        "type": "esriTS",
-                        "verticalAlignment": "baseline",
-                        "xoffset": 0,
-                        "yoffset": 0
-                    }
-                }
-            ],
-            "renderer": {
-                "description": "",
-                "label": "",
-                "symbol": {
-                    "color": [
-                        115,
-                        38,
-                        0,
-                        128
-                    ],
-                    "style": "esriSLSSolid",
-                    "type": "esriSLS",
-                    "width": 1.5
-                },
-                "type": "simple",
-                "visualVariables": [
-                    {
-                        "stops": [
-                            {
-                                "size": 4.0068696547355085,
-                                "value": 2256.994353
-                            },
-                            {
-                                "size": 2.0034348273677542,
-                                "value": 18055.954822
-                            },
-                            {
-                                "size": 1.5025761205258157,
-                                "value": 144447.638572
-                            },
-                            {
-                                "size": 1.0017174136838771,
-                                "value": 1155581.108577
-                            }
-                        ],
-                        "type": "sizeInfo",
-                        "valueExpression": "$view.scale"
-                    }
-                ]
-            }
-        }
-    },
-    "road_surface_labels": {
-        "drawingInfo": {
-            "renderer": {
-                "description": "",
-                "label": "",
-                "symbol": {
-                    "color": [
-                        225,
-                        225,
-                        225,
-                        128
-                    ],
-                    "outline": {
-                        "color": [
-                            156,
-                            156,
-                            156,
-                            128
-                        ],
-                        "style": "esriSLSSolid",
-                        "type": "esriSLS",
-                        "width": 0.4
-                    },
-                    "style": "esriSFSSolid",
-                    "type": "esriSFS"
-                },
-                "type": "simple",
-                "visualVariables": [
-                    {
-                        "stops": [
-                            {
-                                "size": 2,
-                                "value": 311
-                            },
-                            {
-                                "size": 1,
-                                "value": 971
-                            },
-                            {
-                                "size": 0.5,
-                                "value": 3883
-                            },
-                            {
-                                "size": 0,
-                                "value": 7766
-                            }
-                        ],
-                        "target": "outline",
-                        "type": "sizeInfo",
-                        "valueExpression": "$view.scale"
-                    }
-                ]
-            }
-        }
-    },
-    "roads_labels": {
-        "drawingInfo": {
-            "labelingInfo": [
-                {
-                    "labelExpression": "[FENAME]",
-                    "labelExpressionInfo": {
-                        "expression": "$feature[\"FENAME\"]"
-                    },
-                    "labelPlacement": "esriServerLinePlacementCenterAlong",
-                    "maxScale": 0,
-                    "minScale": 41980.717091,
-                    "repeatLabel": false,
-                    "repeatLabelDistance": 0,
-                    "symbol": {
-                        "angle": 0,
-                        "color": [
-                            105,
-                            105,
-                            105,
-                            255
-                        ],
-                        "font": {
-                            "family": "Arial",
-                            "size": 6.75
-                        },
-                        "haloSize": 1,
-                        "horizontalAlignment": "center",
-                        "kerning": true,
-                        "rotated": false,
-                        "text": "",
-                        "type": "esriTS",
-                        "verticalAlignment": "baseline",
-                        "xoffset": 0,
-                        "yoffset": 0
-                    }
-                }
-            ],
-            "renderer": {
-                "description": "",
-                "label": "",
-                "symbol": {
-                    "color": [
-                        255,
-                        255,
-                        255,
-                        128
-                    ],
-                    "style": "esriSLSSolid",
-                    "type": "esriSLS",
-                    "width": 1
-                },
-                "type": "simple",
-                "visualVariables": [
-                    {
-                        "stops": [
-                            {
-                                "size": 1.5,
-                                "value": 564.248588
-                            },
-                            {
-                                "size": 0.75,
-                                "value": 4513.988705
-                            },
-                            {
-                                "size": 0.5625,
-                                "value": 36111.909643
-                            },
-                            {
-                                "size": 0.375,
-                                "value": 288895.277144
-                            }
-                        ],
-                        "type": "sizeInfo",
-                        "valueExpression": "$view.scale"
-                    }
-                ]
-            }
-        }
-    },
     "runout_closed": {
         "fieldInfos": [
             {
@@ -28873,610 +28254,6 @@
                 ]
             }
         }
-    },
-    "section_corners_labels": {
-        "drawingInfo": {
-            "labelingInfo": [
-                {
-                    "labelExpression": "[CORNER_NO]",
-                    "labelExpressionInfo": {
-                        "expression": "$feature[\"CORNER_NO\"]"
-                    },
-                    "labelPlacement": "esriServerPointLabelPlacementAboveCenter",
-                    "maxScale": 0,
-                    "minScale": 20376.998585,
-                    "repeatLabel": true,
-                    "symbol": {
-                        "angle": 0,
-                        "color": [
-                            255,
-                            0,
-                            0,
-                            255
-                        ],
-                        "font": {
-                            "family": "Arial Narrow",
-                            "size": 10
-                        },
-                        "horizontalAlignment": "center",
-                        "kerning": true,
-                        "rightToLeft": false,
-                        "rotated": false,
-                        "text": "",
-                        "type": "esriTS",
-                        "verticalAlignment": "bottom",
-                        "xoffset": 0,
-                        "yoffset": 0
-                    },
-                    "useCodedValues": true
-                }
-            ],
-            "renderer": {
-                "description": "",
-                "label": "",
-                "symbol": {
-                    "angle": 0,
-                    "color": [
-                        255,
-                        64,
-                        64,
-                        217
-                    ],
-                    "size": 5.25,
-                    "style": "esriSMSCircle",
-                    "type": "esriSMS",
-                    "xoffset": 0,
-                    "yoffset": 0
-                },
-                "type": "simple"
-            }
-        }
-    },
-    "section_corners_popup": {
-        "fieldInfos": [
-            {
-                "fieldName": "OBJECTID_1",
-                "label": "OBJECTID_1",
-                "visible": false
-            },
-            {
-                "fieldName": "BOOK_NO",
-                "isEditable": true,
-                "label": "BOOK_NO",
-                "visible": true
-            },
-            {
-                "fieldName": "BOOK_NO_2",
-                "isEditable": true,
-                "label": "BOOK_NO_2",
-                "visible": true
-            },
-            {
-                "fieldName": "CARD_NO_1",
-                "isEditable": true,
-                "label": "CARD_NO_1",
-                "visible": true
-            },
-            {
-                "fieldName": "CARD_NO_2",
-                "isEditable": true,
-                "label": "CARD_NO_2",
-                "visible": true
-            },
-            {
-                "fieldName": "CARD_NO_3",
-                "isEditable": true,
-                "label": "CARD_NO_3",
-                "visible": true
-            },
-            {
-                "fieldName": "CARD_NO_4",
-                "isEditable": true,
-                "label": "CARD_NO_4",
-                "visible": true
-            },
-            {
-                "fieldName": "CORNER_NO",
-                "isEditable": true,
-                "label": "CORNER_NO",
-                "visible": true
-            },
-            {
-                "fieldName": "GlobalID",
-                "label": "GlobalID",
-                "visible": false
-            },
-            {
-                "fieldName": "ID",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 0
-                },
-                "isEditable": true,
-                "label": "ID",
-                "visible": true
-            },
-            {
-                "fieldName": "OBJECTID",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 0
-                },
-                "isEditable": true,
-                "label": "OBJECTID",
-                "visible": false
-            },
-            {
-                "fieldName": "R_NUM_1",
-                "isEditable": true,
-                "label": "R_NUM_1",
-                "visible": true
-            },
-            {
-                "fieldName": "R_NUM_2",
-                "isEditable": true,
-                "label": "R_NUM_2",
-                "visible": true
-            },
-            {
-                "fieldName": "R_NUM_3",
-                "isEditable": true,
-                "label": "R_NUM_3",
-                "visible": true
-            },
-            {
-                "fieldName": "R_NUM_4",
-                "isEditable": true,
-                "label": "R_NUM_4",
-                "visible": true
-            },
-            {
-                "fieldName": "R_NUM_5",
-                "isEditable": true,
-                "label": "R_NUM_5",
-                "visible": true
-            },
-            {
-                "fieldName": "RESEARCH_D",
-                "isEditable": true,
-                "label": "RESEARCH_D",
-                "visible": true
-            },
-            {
-                "fieldName": "RESEARCHED",
-                "isEditable": true,
-                "label": "RESEARCHED",
-                "visible": true
-            },
-            {
-                "fieldName": "RESTORATION_STATUS",
-                "isEditable": true,
-                "label": "RESTORATION_STATUS",
-                "visible": true
-            },
-            {
-                "fieldName": "RESTORED",
-                "isEditable": true,
-                "label": "RESTORED",
-                "visible": true
-            },
-            {
-                "fieldName": "Restored_By",
-                "isEditable": true,
-                "label": "Restored_By",
-                "visible": true
-            },
-            {
-                "fieldName": "RESTORED_DATE",
-                "isEditable": true,
-                "label": "RESTORED_DATE",
-                "visible": true
-            },
-            {
-                "fieldName": "Survey_Num",
-                "isEditable": true,
-                "label": "Survey_Num",
-                "visible": true
-            },
-            {
-                "fieldName": "UID",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 0
-                },
-                "isEditable": true,
-                "label": "UID",
-                "visible": true
-            }
-        ],
-        "popupElements": [
-            {
-                "description": "",
-                "fieldInfos": [
-                    {
-                        "fieldName": "BOOK_NO",
-                        "isEditable": true,
-                        "label": "BOOK_NO",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "BOOK_NO_2",
-                        "isEditable": true,
-                        "label": "BOOK_NO_2",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "CARD_NO_1",
-                        "isEditable": true,
-                        "label": "CARD_NO_1",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "CARD_NO_2",
-                        "isEditable": true,
-                        "label": "CARD_NO_2",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "CARD_NO_3",
-                        "isEditable": true,
-                        "label": "CARD_NO_3",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "CARD_NO_4",
-                        "isEditable": true,
-                        "label": "CARD_NO_4",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "CORNER_NO",
-                        "isEditable": true,
-                        "label": "CORNER_NO",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "ID",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 0
-                        },
-                        "isEditable": true,
-                        "label": "ID",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "R_NUM_1",
-                        "isEditable": true,
-                        "label": "R_NUM_1",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "R_NUM_2",
-                        "isEditable": true,
-                        "label": "R_NUM_2",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "R_NUM_3",
-                        "isEditable": true,
-                        "label": "R_NUM_3",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "R_NUM_4",
-                        "isEditable": true,
-                        "label": "R_NUM_4",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "R_NUM_5",
-                        "isEditable": true,
-                        "label": "R_NUM_5",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "RESEARCH_D",
-                        "isEditable": true,
-                        "label": "RESEARCH_D",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "RESEARCHED",
-                        "isEditable": true,
-                        "label": "RESEARCHED",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "RESTORATION_STATUS",
-                        "isEditable": true,
-                        "label": "RESTORATION_STATUS",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "RESTORED",
-                        "isEditable": true,
-                        "label": "RESTORED",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "Restored_By",
-                        "isEditable": true,
-                        "label": "Restored_By",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "RESTORED_DATE",
-                        "isEditable": true,
-                        "label": "RESTORED_DATE",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "Survey_Num",
-                        "isEditable": true,
-                        "label": "Survey_Num",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "UID",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 0
-                        },
-                        "isEditable": true,
-                        "label": "UID",
-                        "visible": true
-                    }
-                ],
-                "title": "",
-                "type": "fields"
-            }
-        ],
-        "title": "Section_corner_index: {BOOK_NO}"
-    },
-    "section_polygons_labels": {
-        "drawingInfo": {
-            "labelingInfo": [
-                {
-                    "labelExpression": "[SECTION_]",
-                    "labelExpressionInfo": {
-                        "expression": "$feature[\"SECTION_\"]"
-                    },
-                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
-                    "repeatLabel": true,
-                    "symbol": {
-                        "angle": 0,
-                        "color": [
-                            255,
-                            0,
-                            0,
-                            255
-                        ],
-                        "font": {
-                            "family": "Arial",
-                            "size": 10.5
-                        },
-                        "haloColor": [
-                            211,
-                            211,
-                            211,
-                            255
-                        ],
-                        "haloSize": 1,
-                        "horizontalAlignment": "center",
-                        "kerning": true,
-                        "rotated": false,
-                        "text": "",
-                        "type": "esriTS",
-                        "verticalAlignment": "baseline",
-                        "xoffset": 0,
-                        "yoffset": 0
-                    }
-                }
-            ],
-            "renderer": {
-                "description": "",
-                "label": "",
-                "symbol": {
-                    "color": [
-                        255,
-                        255,
-                        255,
-                        0
-                    ],
-                    "outline": {
-                        "color": [
-                            255,
-                            0,
-                            0,
-                            179
-                        ],
-                        "style": "esriSLSDash",
-                        "type": "esriSLS",
-                        "width": 0.72
-                    },
-                    "style": "esriSFSSolid",
-                    "type": "esriSFS"
-                },
-                "type": "simple",
-                "visualVariables": [
-                    {
-                        "stops": [
-                            {
-                                "size": 2,
-                                "value": 34523
-                            },
-                            {
-                                "size": 1,
-                                "value": 107884
-                            },
-                            {
-                                "size": 0.5,
-                                "value": 431535
-                            },
-                            {
-                                "size": 0,
-                                "value": 863071
-                            }
-                        ],
-                        "target": "outline",
-                        "type": "sizeInfo",
-                        "valueExpression": "$view.scale"
-                    }
-                ]
-            }
-        },
-        "featureReduction": null
-    },
-    "section_polygons_popup": {
-        "fieldInfos": [
-            {
-                "fieldName": "OBJECTID",
-                "label": "Object ID",
-                "visible": false
-            },
-            {
-                "fieldName": "FULL_NAME",
-                "isEditable": true,
-                "label": "FULL_NAME",
-                "visible": true
-            },
-            {
-                "fieldName": "GlobalID",
-                "label": "GlobalID",
-                "visible": false
-            },
-            {
-                "fieldName": "RANGE",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 0
-                },
-                "isEditable": true,
-                "label": "RANGE",
-                "visible": true
-            },
-            {
-                "fieldName": "RNG_CHAR",
-                "isEditable": true,
-                "label": "RNG_CHAR",
-                "visible": true
-            },
-            {
-                "fieldName": "SECTION_",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 0
-                },
-                "isEditable": true,
-                "label": "SECTION_",
-                "visible": true
-            },
-            {
-                "fieldName": "SECTIONS_",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 2
-                },
-                "isEditable": true,
-                "label": "SECTIONS_",
-                "visible": true
-            },
-            {
-                "fieldName": "SECTIONS_I",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 2
-                },
-                "isEditable": true,
-                "label": "SECTIONS_I",
-                "visible": false
-            },
-            {
-                "fieldName": "TOWNSHIP",
-                "format": {
-                    "digitSeparator": true,
-                    "places": 0
-                },
-                "isEditable": true,
-                "label": "TOWNSHIP",
-                "visible": true
-            },
-            {
-                "fieldName": "TWP_CHAR",
-                "isEditable": true,
-                "label": "TWP_CHAR",
-                "visible": true
-            }
-        ],
-        "popupElements": [
-            {
-                "description": "",
-                "fieldInfos": [
-                    {
-                        "fieldName": "FULL_NAME",
-                        "isEditable": true,
-                        "label": "FULL_NAME",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "RANGE",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 0
-                        },
-                        "isEditable": true,
-                        "label": "RANGE",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "RNG_CHAR",
-                        "isEditable": true,
-                        "label": "RNG_CHAR",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "SECTION_",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 0
-                        },
-                        "isEditable": true,
-                        "label": "SECTION_",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "SECTIONS_",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 2
-                        },
-                        "isEditable": true,
-                        "label": "SECTIONS_",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "TOWNSHIP",
-                        "format": {
-                            "digitSeparator": true,
-                            "places": 0
-                        },
-                        "isEditable": true,
-                        "label": "TOWNSHIP",
-                        "visible": true
-                    },
-                    {
-                        "fieldName": "TWP_CHAR",
-                        "isEditable": true,
-                        "label": "TWP_CHAR",
-                        "visible": true
-                    }
-                ],
-                "title": "",
-                "type": "fields"
-            }
-        ],
-        "title": "Section polygons: {FULL_NAME}"
     },
     "soils_labels": {
         "drawingInfo": {
@@ -30277,7 +29054,1665 @@
         ],
         "title": "STREAMS: {SOURCE}"
     },
-    "survey_index_labels": {
+    "survey_benchmarks_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[MON_ID]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"MON_ID\"]"
+                    },
+                    "labelPlacement": "esriServerPointLabelPlacementAboveCenter",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            255,
+                            170,
+                            0,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial Narrow",
+                            "size": 10,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            0,
+                            0,
+                            0,
+                            255
+                        ],
+                        "haloSize": 1.5,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "angle": 0,
+                    "color": [
+                        255,
+                        170,
+                        0,
+                        255
+                    ],
+                    "outline": {
+                        "color": [
+                            43,
+                            43,
+                            43,
+                            128
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 1
+                    },
+                    "size": 6.75,
+                    "style": "esriSMSSquare",
+                    "type": "esriSMS",
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                "type": "simple"
+            }
+        },
+        "featureReduction": null,
+        "minScale": 43818.696371
+    },
+    "survey_benchmarks_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID",
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "ALIAS",
+                "isEditable": true,
+                "label": "ALIAS",
+                "visible": true
+            },
+            {
+                "fieldName": "Book",
+                "isEditable": true,
+                "label": "Book",
+                "visible": true
+            },
+            {
+                "fieldName": "Chapter",
+                "isEditable": true,
+                "label": "Chapter",
+                "visible": true
+            },
+            {
+                "fieldName": "Destroyed",
+                "isEditable": true,
+                "label": "Destroyed",
+                "visible": true
+            },
+            {
+                "fieldName": "GlobalID",
+                "label": "GlobalID",
+                "visible": false
+            },
+            {
+                "fieldName": "MON_ID",
+                "isEditable": true,
+                "label": "MON_ID",
+                "visible": true
+            },
+            {
+                "fieldName": "Page",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "Page",
+                "visible": true
+            },
+            {
+                "fieldName": "STAMPED",
+                "isEditable": true,
+                "label": "STAMPED",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "ALIAS",
+                        "isEditable": true,
+                        "label": "ALIAS",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Book",
+                        "isEditable": true,
+                        "label": "Book",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Chapter",
+                        "isEditable": true,
+                        "label": "Chapter",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Destroyed",
+                        "isEditable": true,
+                        "label": "Destroyed",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "MON_ID",
+                        "isEditable": true,
+                        "label": "MON_ID",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Page",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "Page",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "STAMPED",
+                        "isEditable": true,
+                        "label": "STAMPED",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Benchmarks: {ALIAS}"
+    },
+    "survey_dlc_corners_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[CORNER_NO]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"CORNER_NO\"]"
+                    },
+                    "labelPlacement": "esriServerPointLabelPlacementAboveCenter",
+                    "maxScale": 0,
+                    "minScale": 28867.07924,
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            0,
+                            112,
+                            255,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial Narrow",
+                            "size": 10,
+                            "weight": "bold"
+                        },
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "angle": 0,
+                    "color": [
+                        66,
+                        222,
+                        255,
+                        255
+                    ],
+                    "outline": {
+                        "color": [
+                            43,
+                            43,
+                            43,
+                            128
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 1
+                    },
+                    "size": 5.25,
+                    "style": "esriSMSCircle",
+                    "type": "esriSMS",
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                "type": "simple"
+            }
+        },
+        "featureReduction": null
+    },
+    "survey_dlc_corners_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID_1",
+                "label": "OBJECTID_1",
+                "visible": false
+            },
+            {
+                "fieldName": "BOOK_NO",
+                "isEditable": true,
+                "label": "BOOK_NO",
+                "visible": true
+            },
+            {
+                "fieldName": "BOOK_NO_2",
+                "isEditable": true,
+                "label": "BOOK_NO_2",
+                "visible": true
+            },
+            {
+                "fieldName": "CARD_NO_1",
+                "isEditable": true,
+                "label": "CARD_NO_1",
+                "visible": true
+            },
+            {
+                "fieldName": "CARD_NO_2",
+                "isEditable": true,
+                "label": "CARD_NO_2",
+                "visible": true
+            },
+            {
+                "fieldName": "CARD_NO_3",
+                "isEditable": true,
+                "label": "CARD_NO_3",
+                "visible": true
+            },
+            {
+                "fieldName": "CARD_NO_4",
+                "isEditable": true,
+                "label": "CARD_NO_4",
+                "visible": true
+            },
+            {
+                "fieldName": "CORNER_NO",
+                "isEditable": true,
+                "label": "CORNER_NO",
+                "visible": true
+            },
+            {
+                "fieldName": "GlobalID",
+                "label": "GlobalID",
+                "visible": false
+            },
+            {
+                "fieldName": "ID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "ID",
+                "visible": true
+            },
+            {
+                "fieldName": "OBJECTID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "R_NUM_1",
+                "isEditable": true,
+                "label": "R_NUM_1",
+                "visible": true
+            },
+            {
+                "fieldName": "R_NUM_2",
+                "isEditable": true,
+                "label": "R_NUM_2",
+                "visible": true
+            },
+            {
+                "fieldName": "R_NUM_3",
+                "isEditable": true,
+                "label": "R_NUM_3",
+                "visible": true
+            },
+            {
+                "fieldName": "R_NUM_4",
+                "isEditable": true,
+                "label": "R_NUM_4",
+                "visible": true
+            },
+            {
+                "fieldName": "R_NUM_5",
+                "isEditable": true,
+                "label": "R_NUM_5",
+                "visible": true
+            },
+            {
+                "fieldName": "RESEARCH_D",
+                "isEditable": true,
+                "label": "RESEARCH_D",
+                "visible": true
+            },
+            {
+                "fieldName": "RESEARCHED",
+                "isEditable": true,
+                "label": "RESEARCHED",
+                "visible": true
+            },
+            {
+                "fieldName": "Restoration_Status",
+                "isEditable": true,
+                "label": "Restoration_Status",
+                "visible": true
+            },
+            {
+                "fieldName": "RESTORED",
+                "isEditable": true,
+                "label": "RESTORED",
+                "visible": true
+            },
+            {
+                "fieldName": "Restored_By",
+                "isEditable": true,
+                "label": "Restored_By",
+                "visible": true
+            },
+            {
+                "fieldName": "RESTORED_DATE",
+                "isEditable": true,
+                "label": "RESTORED_DATE",
+                "visible": true
+            },
+            {
+                "fieldName": "Survey_Num",
+                "isEditable": true,
+                "label": "Survey_Num",
+                "visible": true
+            },
+            {
+                "fieldName": "UID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "UID",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "BOOK_NO",
+                        "isEditable": true,
+                        "label": "BOOK_NO",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "BOOK_NO_2",
+                        "isEditable": true,
+                        "label": "BOOK_NO_2",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "CARD_NO_1",
+                        "isEditable": true,
+                        "label": "CARD_NO_1",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "CARD_NO_2",
+                        "isEditable": true,
+                        "label": "CARD_NO_2",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "CARD_NO_3",
+                        "isEditable": true,
+                        "label": "CARD_NO_3",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "CARD_NO_4",
+                        "isEditable": true,
+                        "label": "CARD_NO_4",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "CORNER_NO",
+                        "isEditable": true,
+                        "label": "CORNER_NO",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ID",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "ID",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "R_NUM_1",
+                        "isEditable": true,
+                        "label": "R_NUM_1",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "R_NUM_2",
+                        "isEditable": true,
+                        "label": "R_NUM_2",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "R_NUM_3",
+                        "isEditable": true,
+                        "label": "R_NUM_3",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "R_NUM_4",
+                        "isEditable": true,
+                        "label": "R_NUM_4",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "R_NUM_5",
+                        "isEditable": true,
+                        "label": "R_NUM_5",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "RESEARCH_D",
+                        "isEditable": true,
+                        "label": "RESEARCH_D",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "RESEARCHED",
+                        "isEditable": true,
+                        "label": "RESEARCHED",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Restoration_Status",
+                        "isEditable": true,
+                        "label": "Restoration_Status",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "RESTORED",
+                        "isEditable": true,
+                        "label": "RESTORED",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Restored_By",
+                        "isEditable": true,
+                        "label": "Restored_By",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "RESTORED_DATE",
+                        "isEditable": true,
+                        "label": "RESTORED_DATE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Survey_Num",
+                        "isEditable": true,
+                        "label": "Survey_Num",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "UID",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "UID",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "DLC_corner_index: {BOOK_NO}"
+    },
+    "survey_dlc_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[NAME]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"NAME\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 0,
+                    "minScale": 74716.60566,
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            0,
+                            92,
+                            230,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 10.5
+                        },
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ]
+        }
+    },
+    "survey_dlc_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID_1",
+                "label": "OBJECTID_1",
+                "visible": false
+            },
+            {
+                "fieldName": "NAME",
+                "isEditable": true,
+                "label": "NAME",
+                "visible": true
+            },
+            {
+                "fieldName": "ACRES",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "ACRES",
+                "visible": true
+            },
+            {
+                "fieldName": "DLC_NUM",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "DLC_NUM",
+                "visible": true
+            },
+            {
+                "fieldName": "DLC_NUM2",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "DLC_NUM2",
+                "visible": true
+            },
+            {
+                "fieldName": "GlobalID",
+                "label": "GlobalID",
+                "visible": false
+            },
+            {
+                "fieldName": "OBJECTID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape_Leng",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape_Leng",
+                "visible": false
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "NAME",
+                        "isEditable": true,
+                        "label": "NAME",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ACRES",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "ACRES",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "DLC_NUM",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "DLC_NUM",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "DLC_NUM2",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "DLC_NUM2",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Donationlandclaims: {NAME}"
+    },
+    "survey_geodetic_control_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[STA_NAME]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"STA_NAME\"]"
+                    },
+                    "labelPlacement": "esriServerPointLabelPlacementAboveCenter",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            163,
+                            255,
+                            115,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial Narrow",
+                            "size": 10,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            0,
+                            0,
+                            0,
+                            255
+                        ],
+                        "haloSize": 1.5,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": -3
+                    },
+                    "useCodedValues": true
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "angle": 0,
+                    "color": [
+                        138,
+                        247,
+                        114,
+                        255
+                    ],
+                    "outline": {
+                        "color": [
+                            43,
+                            43,
+                            43,
+                            255
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 1
+                    },
+                    "size": 5.25,
+                    "style": "esriSMSCircle",
+                    "type": "esriSMS",
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                "type": "simple"
+            }
+        },
+        "featureReduction": null,
+        "minScale": 39145.29017
+    },
+    "survey_geodetic_control_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID",
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "Con_type",
+                "isEditable": true,
+                "label": "Con_type",
+                "visible": true
+            },
+            {
+                "fieldName": "Control_Type",
+                "isEditable": true,
+                "label": "Control_Type",
+                "visible": true
+            },
+            {
+                "fieldName": "DATUM",
+                "isEditable": true,
+                "label": "DATUM",
+                "visible": true
+            },
+            {
+                "fieldName": "Datum_1",
+                "isEditable": true,
+                "label": "Datum_1",
+                "visible": true
+            },
+            {
+                "fieldName": "Datum_2",
+                "isEditable": true,
+                "label": "Datum_2",
+                "visible": true
+            },
+            {
+                "fieldName": "GlobalID",
+                "label": "GlobalID",
+                "visible": false
+            },
+            {
+                "fieldName": "GP_NO",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "GP_NO",
+                "visible": true
+            },
+            {
+                "fieldName": "OBS_NUM",
+                "isEditable": true,
+                "label": "OBS_NUM",
+                "visible": true
+            },
+            {
+                "fieldName": "SOURCE_DOC",
+                "isEditable": true,
+                "label": "SOURCE_DOC",
+                "visible": true
+            },
+            {
+                "fieldName": "SOURCETHM",
+                "isEditable": true,
+                "label": "SOURCETHM",
+                "visible": true
+            },
+            {
+                "fieldName": "STA_NAME",
+                "isEditable": true,
+                "label": "STA_NAME",
+                "visible": true
+            },
+            {
+                "fieldName": "STA_NUM",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "STA_NUM",
+                "visible": true
+            },
+            {
+                "fieldName": "Type",
+                "isEditable": true,
+                "label": "Type",
+                "visible": true
+            },
+            {
+                "fieldName": "X",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "X",
+                "visible": true
+            },
+            {
+                "fieldName": "X_REF",
+                "isEditable": true,
+                "label": "X_REF",
+                "visible": true
+            },
+            {
+                "fieldName": "Y",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Y",
+                "visible": true
+            },
+            {
+                "fieldName": "Z",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Z",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "Con_type",
+                        "isEditable": true,
+                        "label": "Con_type",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Control_Type",
+                        "isEditable": true,
+                        "label": "Control_Type",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "DATUM",
+                        "isEditable": true,
+                        "label": "DATUM",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Datum_1",
+                        "isEditable": true,
+                        "label": "Datum_1",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Datum_2",
+                        "isEditable": true,
+                        "label": "Datum_2",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "GP_NO",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "GP_NO",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "OBS_NUM",
+                        "isEditable": true,
+                        "label": "OBS_NUM",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SOURCE_DOC",
+                        "isEditable": true,
+                        "label": "SOURCE_DOC",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SOURCETHM",
+                        "isEditable": true,
+                        "label": "SOURCETHM",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "STA_NAME",
+                        "isEditable": true,
+                        "label": "STA_NAME",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "STA_NUM",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "STA_NUM",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Type",
+                        "isEditable": true,
+                        "label": "Type",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "X",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "X",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "X_REF",
+                        "isEditable": true,
+                        "label": "X_REF",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Y",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "Y",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Z",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "Z",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Geodetic Control: {STA_NAME}"
+    },
+    "survey_section_corners_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[CORNER_NO]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"CORNER_NO\"]"
+                    },
+                    "labelPlacement": "esriServerPointLabelPlacementAboveCenter",
+                    "maxScale": 0,
+                    "minScale": 20376.998585,
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            255,
+                            0,
+                            0,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial Narrow",
+                            "size": 10
+                        },
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "angle": 0,
+                    "color": [
+                        255,
+                        64,
+                        64,
+                        217
+                    ],
+                    "size": 5.25,
+                    "style": "esriSMSCircle",
+                    "type": "esriSMS",
+                    "xoffset": 0,
+                    "yoffset": 0
+                },
+                "type": "simple"
+            }
+        }
+    },
+    "survey_section_corners_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID_1",
+                "label": "OBJECTID_1",
+                "visible": false
+            },
+            {
+                "fieldName": "BOOK_NO",
+                "isEditable": true,
+                "label": "BOOK_NO",
+                "visible": true
+            },
+            {
+                "fieldName": "BOOK_NO_2",
+                "isEditable": true,
+                "label": "BOOK_NO_2",
+                "visible": true
+            },
+            {
+                "fieldName": "CARD_NO_1",
+                "isEditable": true,
+                "label": "CARD_NO_1",
+                "visible": true
+            },
+            {
+                "fieldName": "CARD_NO_2",
+                "isEditable": true,
+                "label": "CARD_NO_2",
+                "visible": true
+            },
+            {
+                "fieldName": "CARD_NO_3",
+                "isEditable": true,
+                "label": "CARD_NO_3",
+                "visible": true
+            },
+            {
+                "fieldName": "CARD_NO_4",
+                "isEditable": true,
+                "label": "CARD_NO_4",
+                "visible": true
+            },
+            {
+                "fieldName": "CORNER_NO",
+                "isEditable": true,
+                "label": "CORNER_NO",
+                "visible": true
+            },
+            {
+                "fieldName": "GlobalID",
+                "label": "GlobalID",
+                "visible": false
+            },
+            {
+                "fieldName": "ID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "ID",
+                "visible": true
+            },
+            {
+                "fieldName": "OBJECTID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "R_NUM_1",
+                "isEditable": true,
+                "label": "R_NUM_1",
+                "visible": true
+            },
+            {
+                "fieldName": "R_NUM_2",
+                "isEditable": true,
+                "label": "R_NUM_2",
+                "visible": true
+            },
+            {
+                "fieldName": "R_NUM_3",
+                "isEditable": true,
+                "label": "R_NUM_3",
+                "visible": true
+            },
+            {
+                "fieldName": "R_NUM_4",
+                "isEditable": true,
+                "label": "R_NUM_4",
+                "visible": true
+            },
+            {
+                "fieldName": "R_NUM_5",
+                "isEditable": true,
+                "label": "R_NUM_5",
+                "visible": true
+            },
+            {
+                "fieldName": "RESEARCH_D",
+                "isEditable": true,
+                "label": "RESEARCH_D",
+                "visible": true
+            },
+            {
+                "fieldName": "RESEARCHED",
+                "isEditable": true,
+                "label": "RESEARCHED",
+                "visible": true
+            },
+            {
+                "fieldName": "RESTORATION_STATUS",
+                "isEditable": true,
+                "label": "RESTORATION_STATUS",
+                "visible": true
+            },
+            {
+                "fieldName": "RESTORED",
+                "isEditable": true,
+                "label": "RESTORED",
+                "visible": true
+            },
+            {
+                "fieldName": "Restored_By",
+                "isEditable": true,
+                "label": "Restored_By",
+                "visible": true
+            },
+            {
+                "fieldName": "RESTORED_DATE",
+                "isEditable": true,
+                "label": "RESTORED_DATE",
+                "visible": true
+            },
+            {
+                "fieldName": "Survey_Num",
+                "isEditable": true,
+                "label": "Survey_Num",
+                "visible": true
+            },
+            {
+                "fieldName": "UID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "UID",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "BOOK_NO",
+                        "isEditable": true,
+                        "label": "BOOK_NO",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "BOOK_NO_2",
+                        "isEditable": true,
+                        "label": "BOOK_NO_2",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "CARD_NO_1",
+                        "isEditable": true,
+                        "label": "CARD_NO_1",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "CARD_NO_2",
+                        "isEditable": true,
+                        "label": "CARD_NO_2",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "CARD_NO_3",
+                        "isEditable": true,
+                        "label": "CARD_NO_3",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "CARD_NO_4",
+                        "isEditable": true,
+                        "label": "CARD_NO_4",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "CORNER_NO",
+                        "isEditable": true,
+                        "label": "CORNER_NO",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ID",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "ID",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "R_NUM_1",
+                        "isEditable": true,
+                        "label": "R_NUM_1",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "R_NUM_2",
+                        "isEditable": true,
+                        "label": "R_NUM_2",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "R_NUM_3",
+                        "isEditable": true,
+                        "label": "R_NUM_3",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "R_NUM_4",
+                        "isEditable": true,
+                        "label": "R_NUM_4",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "R_NUM_5",
+                        "isEditable": true,
+                        "label": "R_NUM_5",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "RESEARCH_D",
+                        "isEditable": true,
+                        "label": "RESEARCH_D",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "RESEARCHED",
+                        "isEditable": true,
+                        "label": "RESEARCHED",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "RESTORATION_STATUS",
+                        "isEditable": true,
+                        "label": "RESTORATION_STATUS",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "RESTORED",
+                        "isEditable": true,
+                        "label": "RESTORED",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Restored_By",
+                        "isEditable": true,
+                        "label": "Restored_By",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "RESTORED_DATE",
+                        "isEditable": true,
+                        "label": "RESTORED_DATE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Survey_Num",
+                        "isEditable": true,
+                        "label": "Survey_Num",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "UID",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "UID",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Section_corner_index: {BOOK_NO}"
+    },
+    "survey_section_polygons_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[SECTION_]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"SECTION_\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            255,
+                            0,
+                            0,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 10.5
+                        },
+                        "haloColor": [
+                            211,
+                            211,
+                            211,
+                            255
+                        ],
+                        "haloSize": 1,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    }
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        255,
+                        255,
+                        255,
+                        0
+                    ],
+                    "outline": {
+                        "color": [
+                            255,
+                            0,
+                            0,
+                            179
+                        ],
+                        "style": "esriSLSDash",
+                        "type": "esriSLS",
+                        "width": 0.72
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 2,
+                                "value": 34523
+                            },
+                            {
+                                "size": 1,
+                                "value": 107884
+                            },
+                            {
+                                "size": 0.5,
+                                "value": 431535
+                            },
+                            {
+                                "size": 0,
+                                "value": 863071
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        },
+        "featureReduction": null
+    },
+    "survey_section_polygons_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID",
+                "label": "Object ID",
+                "visible": false
+            },
+            {
+                "fieldName": "FULL_NAME",
+                "isEditable": true,
+                "label": "FULL_NAME",
+                "visible": true
+            },
+            {
+                "fieldName": "GlobalID",
+                "label": "GlobalID",
+                "visible": false
+            },
+            {
+                "fieldName": "RANGE",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "RANGE",
+                "visible": true
+            },
+            {
+                "fieldName": "RNG_CHAR",
+                "isEditable": true,
+                "label": "RNG_CHAR",
+                "visible": true
+            },
+            {
+                "fieldName": "SECTION_",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "SECTION_",
+                "visible": true
+            },
+            {
+                "fieldName": "SECTIONS_",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "SECTIONS_",
+                "visible": true
+            },
+            {
+                "fieldName": "SECTIONS_I",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "SECTIONS_I",
+                "visible": false
+            },
+            {
+                "fieldName": "TOWNSHIP",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "TOWNSHIP",
+                "visible": true
+            },
+            {
+                "fieldName": "TWP_CHAR",
+                "isEditable": true,
+                "label": "TWP_CHAR",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "FULL_NAME",
+                        "isEditable": true,
+                        "label": "FULL_NAME",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "RANGE",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "RANGE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "RNG_CHAR",
+                        "isEditable": true,
+                        "label": "RNG_CHAR",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SECTION_",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "SECTION_",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SECTIONS_",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "SECTIONS_",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "TOWNSHIP",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "TOWNSHIP",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "TWP_CHAR",
+                        "isEditable": true,
+                        "label": "TWP_CHAR",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Section polygons: {FULL_NAME}"
+    },
+    "survey_survey_index_label": {
         "drawingInfo": {
             "renderer": {
                 "description": "",
@@ -30309,7 +30744,7 @@
         "featureReduction": null,
         "minScale": 126532.02513
     },
-    "survey_index_popup": {
+    "survey_survey_index_popup": {
         "expressionInfos": [
             {
                 "expression": "// Write a script to return a value to show in the pop-up. \n// For example, get the average of 4 fields:\n// Average($feature.SalesQ1, $feature.SalesQ2, $feature.SalesQ3, $feature.SalesQ4)\nConcatenate('https://gis.co.benton.or.us/gisdata/Survey_Information/PDFs/', $feature.name, '.pdf')\n",
@@ -30373,7 +30808,131 @@
         ],
         "title": "Survey Index: {NAME}"
     },
-    "taxlot_fire_districts_labels": {
+    "taxlot_corners_label": {
+        "drawingInfo": {
+            "renderer": {
+                "field1": "CornerSymbol",
+                "fieldDelimiter": ",",
+                "type": "uniqueValue",
+                "uniqueValueInfos": [
+                    {
+                        "description": "",
+                        "label": "Sub-Section",
+                        "symbol": {
+                            "angle": 0,
+                            "contentType": "image/png",
+                            "height": 6,
+                            "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAGJJREFUGJWVjrEJgFAUA694kAEsLVzCxh0cwMIhHMrCARzBUnAKwRXS2Sh8vyB4XZIrEjwZJK22l7uITKhtH2mRCy8C6JJcSWpsAyBpD6BNhPIaCwDbWwB9IozADEy/PnxyAoRdF01+bEKZAAAAAElFTkSuQmCC",
+                            "type": "esriPMS",
+                            "url": "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotService/MapServer/186/images/e83ef57b837366e2437722388bb5aff1",
+                            "width": 6,
+                            "xoffset": 0,
+                            "yoffset": 0
+                        },
+                        "value": "1"
+                    },
+                    {
+                        "description": "",
+                        "label": "DLC Corner",
+                        "symbol": {
+                            "angle": 0,
+                            "contentType": "image/png",
+                            "height": 10,
+                            "imageData": "iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAR5JREFUKJGd0rEuRFEQxvE/uTG1EyLHKhQ6ohMdiYbGA5Co9in0Wo+gUdioNVRCIRGNiEpUJHcSYbb+FGjcm+vajcSUk/md800yBf+sYkg/5Zw77v4GlH/ClNJSRMyZ2Yu7P5vZrKQVM+tLOhsIzWzDzEqgJwkASQ/AlaQMbANHP2DOeV5S393vhkR34NzM1qufCwB3XwCOh6AaS1ptR31vDe0A+2Z2IGm3sc7Td2yv4OcAOCmpC9RQ0mvOecLdazjaVGa2J6kADlv9GXe/bUa15oCkS2CtvaSkKSCa8ALYBE7aw1XlnBclPUYETVimlDoRMRCnlJYjYlzSadWrDyAiboBpYAsQ8AGMAGNmdh8R183H2rdaAr32j+7+K/oXekOC6Tm4PtoAAAAASUVORK5CYII=",
+                            "type": "esriPMS",
+                            "url": "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotService/MapServer/186/images/1d05fc1b4e95fe38c6ee8625e78a3758",
+                            "width": 10,
+                            "xoffset": 0,
+                            "yoffset": 0
+                        },
+                        "value": "2"
+                    },
+                    {
+                        "description": "",
+                        "label": "Control",
+                        "symbol": {
+                            "angle": 0,
+                            "contentType": "image/png",
+                            "height": 7,
+                            "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAN5JREFUGJVd0CFLg3EQgPEf7IUrojAcuDKGghhNC4Jh4DcQ7CIIgsGgTXFZbAaNfgk/gyAGo3ZlS38QmXhFLO8Lc5fuuIe7567yP5YwxCKe8No0qhloDzt4xjAi1jNzGSf4qSAitjOzj0OsREQvM8/b7fZmKeUaxxVk5gH25zSUUl4i4isze83qjYi4rPOFzBxExKge0segAd8y8w663W6nlNJqauziu3F8z0yYjMdjETHFpAa3cN84XuEWp/itgVZEjDLzAdNm9SfOcIFOZq5hFTd4nP/jB45mr651wB9KEFMwGM2pJAAAAABJRU5ErkJggg==",
+                            "type": "esriPMS",
+                            "url": "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotService/MapServer/186/images/1249145389a11a7af85f4e5d712fa031",
+                            "width": 7,
+                            "xoffset": 0,
+                            "yoffset": 0
+                        },
+                        "value": "3"
+                    },
+                    {
+                        "description": "",
+                        "label": "Stationing",
+                        "symbol": {
+                            "angle": 0,
+                            "contentType": "image/png",
+                            "height": 4,
+                            "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAENJREFUCJldzasRgDAURNEzIRoLDUD/9WAxGOggGQR5/O7MqiM2u+oxoKLDmhuMWDzNAcW3EpB+kAJ2TK+PLeBouzsBtlQKD84BpUcAAAAASUVORK5CYII=",
+                            "type": "esriPMS",
+                            "url": "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotService/MapServer/186/images/356c7e08f746a17b36d16b4176e0cd1b",
+                            "width": 4,
+                            "xoffset": 0,
+                            "yoffset": 0
+                        },
+                        "value": "4"
+                    },
+                    {
+                        "description": "",
+                        "label": "Dim circle",
+                        "symbol": {
+                            "angle": 0,
+                            "contentType": "image/png",
+                            "height": 2,
+                            "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAC1JREFUCJkFwaERACEQBLCIm9kOqAv77tvB0QqC4s6RFH7MJLuwMLo7hYMP9wFuzwayrMIMNAAAAABJRU5ErkJggg==",
+                            "type": "esriPMS",
+                            "url": "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotService/MapServer/186/images/dbc39ad723bf7d0540bd71ee165fb1d1",
+                            "width": 2,
+                            "xoffset": 0,
+                            "yoffset": 0
+                        },
+                        "value": "39"
+                    },
+                    {
+                        "description": "",
+                        "label": "Section",
+                        "symbol": {
+                            "angle": 0,
+                            "contentType": "image/png",
+                            "height": 15,
+                            "imageData": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAJtJREFUOI3t0jEKwkAUhOG/CMwVPIEeIWUa+3ggO228gZVYWSvkGtaCWOcO09lEiLJZVxMLIQOvG77l8TZj4GQpJUkb2wWwBfa9QdszIAeqd90k8JOM4LDgsqskaWoboIhYNbBrg6uuZoMBzJsJ5fwKniKv58BE0sX2NVSQdLP9tPIiAh6B0vYBWIcKjy3+68oj+Fsw9qW+ApNzB6Z/JkA7fc8hAAAAAElFTkSuQmCC",
+                            "type": "esriPMS",
+                            "url": "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotService/MapServer/186/images/a32652cd23aec7ebc0e05cafa26e8b9d",
+                            "width": 15,
+                            "xoffset": 0,
+                            "yoffset": 0
+                        },
+                        "value": "59"
+                    },
+                    {
+                        "description": "",
+                        "label": "Vegetation",
+                        "symbol": {
+                            "angle": 0,
+                            "contentType": "image/png",
+                            "height": 6,
+                            "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAJRJREFUGJWNzKEKwlAAheFfGZwwhk1ZE0wGVzWI4BMYfT+DyccQjcrEvnbbbQOPYRhkQZjiiT8fJ+HPJR1tCKyAw08oqbB9AcZA9Q1Obd+BIGltuxP2JI1sN5Imtm95nhchhPIDSlrYPgE721sgizEOgD7QtDBL0/Rh+wnsgStg2+f2oIWbuq4rSUsgAkdgzlvPgPIF6HdAP4uKRo8AAAAASUVORK5CYII=",
+                            "type": "esriPMS",
+                            "url": "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotService/MapServer/186/images/d5e756da4dee614f107e1c114c46b1c1",
+                            "width": 7,
+                            "xoffset": 0,
+                            "yoffset": 0
+                        },
+                        "value": "61"
+                    }
+                ]
+            }
+        },
+        "minScale": 177708.980385
+    },
+    "taxlot_fire_districts_label": {
         "drawingInfo": {
             "labelingInfo": [
                 {
@@ -30419,7 +30978,7 @@
         },
         "minScale": 755923.090039
     },
-    "taxlot_plss_lines_labels": {
+    "taxlot_plss_lines_label": {
         "drawingInfo": {
             "renderer": {
                 "field1": "LineType",
@@ -30528,7 +31087,7 @@
         "featureReduction": null,
         "minScale": 764612.728656
     },
-    "taxlot_reference_lines_labels": {
+    "taxlot_reference_lines_label": {
         "drawingInfo": {
             "renderer": {
                 "field1": "LineType",
@@ -30885,7 +31444,7 @@
         "featureReduction": null,
         "minScale": 698260.572288
     },
-    "taxlot_tax_code_areas_labels": {
+    "taxlot_tax_code_areas_label": {
         "drawingInfo": {
             "labelingInfo": [
                 {
@@ -30981,7 +31540,7 @@
         },
         "minScale": 690116.516335
     },
-    "taxlot_tax_code_lines_labels": {
+    "taxlot_tax_code_lines_label": {
         "drawingInfo": {
             "renderer": {
                 "description": "",
@@ -31027,7 +31586,7 @@
         "featureReduction": null,
         "minScale": 662475.605507
     },
-    "taxlot_taxlots_labels": {
+    "taxlot_taxlots_label": {
         "drawingInfo": {
             "labelingInfo": [
                 {
@@ -31098,7 +31657,7 @@
         },
         "featureReduction": null
     },
-    "taxlot_water_lines_labels": {
+    "taxlot_water_lines_label": {
         "drawingInfo": {
             "renderer": {
                 "field1": "LineType",
@@ -31230,6 +31789,269 @@
         },
         "featureReduction": null,
         "minScale": 177708.980385
+    },
+    "transport_centerlines_label": {
+        "drawingInfo": {
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        225,
+                        225,
+                        225,
+                        255
+                    ],
+                    "style": "esriSLSSolid",
+                    "type": "esriSLS",
+                    "width": 0.56
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 1.5555555555555554,
+                                "value": 564.248588
+                            },
+                            {
+                                "size": 0.7777777777777777,
+                                "value": 4513.988705
+                            },
+                            {
+                                "size": 0.5833333333333333,
+                                "value": 36111.909643
+                            },
+                            {
+                                "size": 0.38888888888888884,
+                                "value": 288895.277144
+                            }
+                        ],
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
+    },
+    "transport_railroads_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpressionInfo": {
+                        "expression": "Concatenate($feature[\"Owner\"], \" Railroad\")"
+                    },
+                    "labelPlacement": "esriServerLinePlacementCenterAlong",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            115,
+                            38,
+                            0,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 7.5
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 1.125,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    }
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        115,
+                        38,
+                        0,
+                        255
+                    ],
+                    "style": "esriSLSShortDash",
+                    "type": "esriSLS",
+                    "width": 1.27
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 2.8455153588415847,
+                                "value": 2256.994353
+                            },
+                            {
+                                "size": 1.4227576794207923,
+                                "value": 18055.954822
+                            },
+                            {
+                                "size": 1.0670682595655943,
+                                "value": 144447.638572
+                            },
+                            {
+                                "size": 0.7113788397103962,
+                                "value": 1155581.108577
+                            }
+                        ],
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
+    },
+    "transport_road_surface_label": {
+        "drawingInfo": {
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        224,
+                        224,
+                        224,
+                        255
+                    ],
+                    "outline": {
+                        "color": [
+                            156,
+                            156,
+                            156,
+                            255
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 0.19
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 0.22799999999999998,
+                                "value": 303
+                            },
+                            {
+                                "size": 0.11399999999999999,
+                                "value": 946
+                            },
+                            {
+                                "size": 0.056999999999999995,
+                                "value": 3784
+                            },
+                            {
+                                "size": 0,
+                                "value": 7567
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        },
+        "featureReduction": null
+    },
+    "transport_roads_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[FULLNAME]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"FULLNAME\"]"
+                    },
+                    "labelPlacement": "esriServerLinePlacementCenterAlong",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            105,
+                            105,
+                            105,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 7.5
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    }
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        255,
+                        255,
+                        255,
+                        255
+                    ],
+                    "style": "esriSLSSolid",
+                    "type": "esriSLS",
+                    "width": 0.56
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 1.5555555555555554,
+                                "value": 564.248588
+                            },
+                            {
+                                "size": 0.7777777777777777,
+                                "value": 4513.988705
+                            },
+                            {
+                                "size": 0.5833333333333333,
+                                "value": 36111.909643
+                            },
+                            {
+                                "size": 0.38888888888888884,
+                                "value": 288895.277144
+                            }
+                        ],
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
     },
     "wetlands_dsl": {
         "fieldInfos": [

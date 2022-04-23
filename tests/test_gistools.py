@@ -78,8 +78,7 @@ def test_build_template_dictionary():
     file_name = os.path.join(TEMPLATE_DIR, "template.json")
     with open(file_name, "w") as fp:
         json.dump(template_dict, fp, sort_keys=True, indent=4)
-    assert dict_keys[0] == "driveways"
-    assert dict_keys[4] == "school_labels"
+    assert dict_keys[0] == "address_buildings_popup"
 
 
 # load template after making
@@ -229,7 +228,7 @@ def test_taxlot_layers():
 def test_address_layers():
     test_group = bc.group_layer("test")
     bc.address_layers(test_group, template)
-    assert test_group["layers"][0]["title"] == "Address"
+    assert test_group["layers"][0]["title"] == "Addresses"
 
 
 def test_hpsv_layers():
