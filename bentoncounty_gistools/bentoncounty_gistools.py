@@ -56,28 +56,6 @@ BC_BOUNDARIES_ALL_DISTRICTS = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/7"
 )
 
-TRANSPORTATION_ROAD_NAMES = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/MapServer/0"
-TRANSPORTATION_ROAD_SURFACE = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/MapServer/1"
-TRANSPORTATION_CENTERLINES = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/MapServer/2"
-TRANSPORTATION_ROADS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/MapServer/3"
-TRANSPORTATION_RAILROADS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/MapServer/4"
-
-SURVEY_BENCHMARKS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/0"
-SURVEY_DLC_CORNERS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/1"
-SURVEY_GEODETIC_CONTROL = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/2"
-SURVEY_SECTION_NUMBERS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/3"
-SURVEY_SECTION_CORNERS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/4"
-SURVEY_SECTION_LINES = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/5"
-SURVEY_SECTION_POLYGONS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/6"
-SURVEY_DLC = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/7"
-SURVEY_INDEX = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/8"
-
-TAXLOT_ANNO_0020_SCALE = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotService/MapServer/0"
-)
-TAXLOT_ANNO_0050_SCALE = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotService/MapServer/38"
-)
 
 ADDRESS_COUNTY = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/AddressService/MapServer/0"
@@ -226,7 +204,7 @@ def hpsv_layers(group_lyr, template):
     group_lyr["layers"].append(parent_group)
 
 
-def taxlot_layer_names():
+def taxlot_layer_names(post):
     """
     Create list of key names for layer definition data.
     """
@@ -242,27 +220,10 @@ def taxlot_layer_names():
     ]
     layer_name = []
     for lyr in layer_stub:
-        layer_name.append("taxlot_" + lyr + "_labels")
+        layer_name.append("taxlot_" + lyr + post)
     # layer order is reversed from menu order
     layer_name.reverse()
     return layer_name
-
-
-def taxlot_layers_info(template):
-    """
-    Build dictionary of layer info.
-
-    :param template: Web map template for layer fields.
-    :return: Dictionary of short keys and layer definitions.
-    """
-    layer_name = taxlot_layer_names()
-    ref_data = template.get_data()
-    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
-    new_data = {}
-    for i in range(0, len(ref_list) - 1):
-        new_data.update({layer_name[i]: ref_list[i]["layerDefinition"]})
-
-    return new_data
 
 
 def taxlot_layers(group_lyr, template):
@@ -272,57 +233,34 @@ def taxlot_layers(group_lyr, template):
     :param group_lyr: Group layer definition target for layers.
     :return: Updates group layer definition with layers.
     """
-    layer_ord = [0]
-    # cartographic layer needs fixing
-    for i in range(2, 5):
-        layer_ord.append(i)
-    # water - above empty
-    for i in range(6, 9):
-        layer_ord.append(i)
-    # pull redundant layers
-    # corner, reference lines, cartographic lines
-    layer_ord.append(12)
-
-    layer_name = taxlot_layer_names()
-    url_list = [urls.TAXLOT_URLS[i] for i in layer_ord]
+    layer_name = taxlot_layer_names("_label")
+    url_list = urls.TAXLOT_URLS
     taxlot_group = group_layer("Taxlot Maps")
-    for lyr in reversed(url_list):
-        map_lyr = MapServiceLayer(lyr)
+    taxlot_group.update({"visibility": False})
+    for i in range(0, len(url_list)):
+        map_lyr = MapServiceLayer(url_list[i])
         fc = feature_class(map_lyr, 0.5)
-        fc.update({"visibility": False})
 
         # customize layer data
+        if fc["title"] is not "Corner - Above":
+            fc.update({"layerDefinition": template[layer_name[i]]})
         if fc["title"] == "FireDistricts":
             fc.update({"title": "Fire Districts"})
-            fc.update({"layerDefinition": template[layer_name[0]]})
 
         if fc["title"] == "TaxCodeLines - Below":
             fc.update({"title": "Tax Code Lines"})
-            fc.update({"layerDefinition": template[layer_name[1]]})
 
         if fc["title"] == "ReferenceLines - Above":
             fc.update({"title": "Reference Lines"})
-            fc.update({"layerDefinition": template[layer_name[2]]})
 
         if fc["title"] == "PLSSLines - Above":
             fc.update({"title": "PLSS Lines"})
-            fc.update({"layerDefinition": template[layer_name[3]]})
-
-        if fc["title"] == "Tax Code Areas":
-            # fc.update({'title': 'Tax Code Areas'})
-            fc.update({"layerDefinition": template[layer_name[4]]})
-
-        if fc["title"] == "Taxlots":
-            # fc.update({'title': 'Taxlots'})
-            fc.update({"layerDefinition": template[layer_name[5]]})
 
         if fc["title"] == "WaterLines - Above":
             fc.update({"title": "Water Lines"})
-            fc.update({"layerDefinition": template[layer_name[6]]})
 
         if fc["title"] == "Corner - Above":
             fc.update({"title": "Corners"})
-            # fc.update({"layerDefinition": template[layer_name[7]]})
 
         taxlot_group["layers"].append(fc)
 
@@ -422,25 +360,6 @@ def zoning_layer_names(post):
     # layer order is reversed from menu order
     layer_name.reverse()
     return layer_name
-
-
-def zoning_layers_info(template):
-    """
-    Build dictionary of layer info for natural layers. Includes popup info.
-
-    :param template: Web map template for layer fields.
-    :return: Dictionary of short keys and layer definitions for the natural layers.
-    """
-    popup_name = zoning_layer_names("_popup")
-    label_name = zoning_layer_names("_label")
-    ref_data = template.get_data()
-    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
-    new_data = {}
-    for i in range(0, len(popup_name)):
-        new_data.update({popup_name[i]: ref_list[i]["popupInfo"]})
-        new_data.update({label_name[i]: ref_list[i]["layerDefinition"]})
-
-    return new_data
 
 
 def zoning_layers(group_lyr, template):
@@ -560,6 +479,24 @@ def natural_layers(group_lyr, template):
     group_lyr["layers"].append(natural_group)
 
 
+def address_layer_names(post):
+    """
+    Create list of key names for layer definition data.
+    """
+    layer_stub = [
+        "county",
+        "corvallis",
+        "driveways",
+        "buildings",
+    ]
+    layer_name = []
+    for lyr in layer_stub:
+        layer_name.append("address_" + lyr + post)
+    # layer order is reversed from menu order
+    layer_name.reverse()
+    return layer_name
+
+
 def address_layers(group_lyr, template):
     """
     Add address layers to definition of a group layer.
@@ -568,74 +505,79 @@ def address_layers(group_lyr, template):
     :param template: Web map template for feature layer info.
     :return: Updates group layer definition with address layers.
     """
-    address_county = MapServiceLayer(ADDRESS_COUNTY)
-    address_buildings = MapServiceLayer(ADDRESS_BUILDINGS)
-    address_driveways = MapServiceLayer(ADDRESS_DRIVEWAYS)
+    popup_name = address_layer_names("_popup")
+    label_name = address_layer_names("_label")
+    url_list = urls.ADDRESS_URLS
+    parent_group = group_layer("Addresses")
+    parent_group.update({"visibility": False})
+    for i in range(0, len(url_list)):
+        map_lyr = MapServiceLayer(url_list[i])
+        fc = feature_class(map_lyr, 0.5)
+        fc.update({"popupInfo": template[popup_name[i]]})
+        fc.update({"layerDefinition": template[label_name[i]]})
+        if fc["title"] == "County_Addresses":
+            fc.update({"title": "County"})
+        if fc["title"] == "Structure_AddressCorvallis":
+            fc.update({"title": "Corvallis"})
+        parent_group["layers"].append(fc)
 
-    address_county_fc = feature_class(address_county)
-    address_county_fc.update({"title": "County Addresses"})
-    address_county_fc.update({"visibility": False})
-    address_county_fc.update({"popupInfo": template["address"]})
-    address_county_fc.update({"layerDefinition": template["labels"]})
-    address_buildings_fc = feature_class(address_buildings)
-    address_buildings_fc.update({"visibility": False})
-    address_driveways_fc = feature_class(address_driveways)
-    address_driveways_fc.update({"visibility": False})
-    address_driveways_fc.update({"popupInfo": template["driveways"]})
-
-    address_group = group_layer("Address")
-    address_group["layers"].append(address_buildings_fc)
-    address_group["layers"].append(address_driveways_fc)
-    address_group["layers"].append(address_county_fc)
-
-    group_lyr["layers"].append(address_group)
+    group_lyr["layers"].append(parent_group)
 
 
-def survey_layers_info(template):
+def survey_layer_names(post):
     """
-    Build dictionary of layer info for survey layers. Includes popup info.
+    Create list of key names for layer definition data.
+    """
+    layer_stub = [
+        "benchmarks",
+        "geodetic_control",
+        "section_corners",
+        "section_polygons",
+        "dlc_corners",
+        "dlc",
+        "survey_index",
+    ]
+    layer_name = []
+    for lyr in layer_stub:
+        layer_name.append("survey_" + lyr + post)
+    # layer order is reversed from menu order
+    layer_name.reverse()
+    return layer_name
+
+
+def update_layer_def(names, template):
+    """
+    Build dictionary of layer info for layers.
 
     :param template: Web map template for layer fields.
     :return: Dictionary of short keys and layer definitions for the survey layers.
     """
+    label_name = names("_label")
     ref_data = template.get_data()
     ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
     new_data = {}
-    # pull data from template
-    survey_index_labels = ref_list[0]["layerDefinition"]
-    survey_index_popup = ref_list[0]["popupInfo"]
-    dlc_labels = ref_list[1]["layerDefinition"]
-    dlc_popup = ref_list[1]["popupInfo"]
-    dlc_corners_labels = ref_list[2]["layerDefinition"]
-    dlc_corners_popup = ref_list[2]["popupInfo"]
-    section_polygons_labels = ref_list[3]["layerDefinition"]
-    section_polygons_popup = ref_list[3]["popupInfo"]
-    section_corners_labels = ref_list[4]["layerDefinition"]
-    section_corners_popup = ref_list[4]["popupInfo"]
-    # section_numbers_labels = ref_list[5]["layerDefinition"]
-    # section_numbers_popup = ref_list[5]["popupInfo"]
-    geodetic_control_labels = ref_list[5]["layerDefinition"]
-    geodetic_control_popup = ref_list[5]["popupInfo"]
-    benchmarks_labels = ref_list[6]["layerDefinition"]
-    benchmarks_popup = ref_list[6]["popupInfo"]
+    for i in range(0, len(label_name)):
+        new_data.update({label_name[i]: ref_list[i]["layerDefinition"]})
 
-    # save layer info to dictionary and return
-    new_data.update({"survey_index_labels": survey_index_labels})
-    new_data.update({"survey_index_popup": survey_index_popup})
-    new_data.update({"dlc_labels": dlc_labels})
-    new_data.update({"dlc_popup": dlc_popup})
-    new_data.update({"dlc_corners_labels": dlc_corners_labels})
-    new_data.update({"dlc_corners_popup": dlc_corners_popup})
-    new_data.update({"section_polygons_labels": section_polygons_labels})
-    new_data.update({"section_polygons_popup": section_polygons_popup})
-    new_data.update({"section_corners_labels": section_corners_labels})
-    new_data.update({"section_corners_popup": section_corners_popup})
-    # new_data.update({"section_numbers_labels": section_numbers_labels})
-    # new_data.update({"section_numbers_popup": section_numbers_popup})
-    new_data.update({"geodetic_control_labels": geodetic_control_labels})
-    new_data.update({"geodetic_control_popup": geodetic_control_popup})
-    new_data.update({"benchmarks_labels": benchmarks_labels})
-    new_data.update({"benchmarks_popup": benchmarks_popup})
+    return new_data
+
+
+def update_layer_info(names, template):
+    """
+    Build dictionary of layer info for layers. Includes popup info.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions for the survey layers.
+    """
+    popup_name = names("_popup")
+    label_name = names("_label")
+    ref_data = template.get_data()
+    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
+    new_data = {}
+    for i in range(0, len(popup_name)):
+        new_data.update({popup_name[i]: ref_list[i]["popupInfo"]})
+        new_data.update({label_name[i]: ref_list[i]["layerDefinition"]})
+
     return new_data
 
 
@@ -658,111 +600,47 @@ def test_map_layers(project_map, layers, template):
 
 
 def survey_layers(group_lyr, template):
-    survey_benchmarks = MapServiceLayer(SURVEY_BENCHMARKS)
-    survey_dlc_corners = MapServiceLayer(SURVEY_DLC_CORNERS)
-    survey_geodetic_control = MapServiceLayer(SURVEY_GEODETIC_CONTROL)
-    # survey_section_numbers = MapServiceLayer(SURVEY_SECTION_NUMBERS)
-    survey_section_corners = MapServiceLayer(SURVEY_SECTION_CORNERS)
-    # survey_section_lines = MapServiceLayer(SURVEY_SECTION_LINES)
-    survey_section_polygons = MapServiceLayer(SURVEY_SECTION_POLYGONS)
-    survey_dlc = MapServiceLayer(SURVEY_DLC)
-    survey_index = MapServiceLayer(SURVEY_INDEX)
+    popup_name = survey_layer_names("_popup")
+    label_name = survey_layer_names("_label")
+    url_list = urls.SURVEY_URLS
+    parent_group = group_layer("Survey")
+    parent_group.update({"visibility": False})
+    for i in range(0, len(url_list)):
+        map_lyr = MapServiceLayer(url_list[i])
+        fc = feature_class(map_lyr, 0.5)
+        fc.update({"popupInfo": template[popup_name[i]]})
+        fc.update({"layerDefinition": template[label_name[i]]})
+        if fc["title"] == "DLC_corner_index":
+            fc.update({"title": "DLC Corners"})
+        if fc["title"] == "Section_corner_index":
+            fc.update({"title": "Section Corners"})
+        if fc["title"] == "Section polygons":
+            fc.update({"title": "Sections"})
+        if fc["title"] == "Donationlandclaims":
+            fc.update({"title": "Donation Land Claims"})
+        if fc["title"] == "survey_index":
+            fc.update({"title": "Survey Index"})
+        parent_group["layers"].append(fc)
 
-    survey_benchmarks_fc = feature_class(survey_benchmarks, 0.5)
-    survey_benchmarks_fc.update({"title": "Benchmarks"})
-    survey_benchmarks_fc.update({"visibility": False})
-    survey_benchmarks_fc.update({"disablePopup": True})
-    survey_benchmarks_fc.update({"popupInfo": template["benchmarks_popup"]})
-    survey_benchmarks_fc.update({"layerDefinition": template["benchmarks_labels"]})
-    survey_dlc_corners_fc = feature_class(survey_dlc_corners)
-    survey_dlc_corners_fc.update({"title": "DLC Corners"})
-    survey_dlc_corners_fc.update({"visibility": False})
-    survey_dlc_corners_fc.update({"disablePopup": False})
-    survey_dlc_corners_fc.update({"popupInfo": template["dlc_corners_popup"]})
-    survey_dlc_corners_fc.update({"layerDefinition": template["dlc_corners_labels"]})
-    survey_geodetic_control_fc = feature_class(survey_geodetic_control, 0.5)
-    survey_geodetic_control_fc.update({"title": "Geodetic Control"})
-    survey_geodetic_control_fc.update({"visibility": False})
-    survey_geodetic_control_fc.update({"disablePopup": False})
-    survey_geodetic_control_fc.update({"popupInfo": template["geodetic_control_popup"]})
-    survey_geodetic_control_fc.update(
-        {"layerDefinition": template["geodetic_control_labels"]}
-    )
-    # survey_section_numbers_fc = feature_class(survey_section_numbers)
-    # survey_section_numbers_fc.update({"disablePopup": True})
-    # survey_section_numbers_fc.update({"popupInfo": template["section_numbers_popup"]})
-    # survey_section_numbers_fc.update(
-    #     {"layerDefinition": template["section_numbers_labels"]}
-    # )
-    # survey_section_numbers_fc.update({"showLabels": True})
-    survey_section_corners_fc = feature_class(survey_section_corners)
-    survey_section_corners_fc.update({"title": "Section Corners"})
-    survey_section_corners_fc.update({"visibility": False})
-    survey_section_corners_fc.update({"disablePopup": False})
-    survey_section_corners_fc.update({"popupInfo": template["section_corners_popup"]})
-    survey_section_corners_fc.update(
-        {"layerDefinition": template["section_corners_labels"]}
-    )
-    # survey_section_lines_fc = feature_class(survey_section_lines)
-    survey_section_polygons_fc = feature_class(survey_section_polygons)
-    survey_section_polygons_fc.update({"title": "Section Polygons"})
-    survey_section_polygons_fc.update({"visibility": False})
-    survey_section_polygons_fc.update({"disablePopup": False})
-    survey_section_polygons_fc.update({"popupInfo": template["section_polygons_popup"]})
-    survey_section_polygons_fc.update(
-        {"layerDefinition": template["section_polygons_labels"]}
-    )
-    survey_dlc_fc = feature_class(survey_dlc)
-    survey_dlc_fc.update({"title": "Donation Land Claims"})
-    survey_dlc_fc.update({"visibility": False})
-    survey_dlc_fc.update({"disablePopup": False})
-    survey_dlc_fc.update({"popupInfo": template["dlc_popup"]})
-    survey_dlc_fc.update({"layerDefinition": template["dlc_labels"]})
-    survey_index_fc = feature_class(survey_index)
-    survey_index_fc.update({"title": "Survey Index"})
-    survey_index_fc.update({"visibility": False})
-    survey_index_fc.update({"disablePopup": False})
-    survey_index_fc.update({"popupInfo": template["survey_index_popup"]})
-    survey_index_fc.update({"layerDefinition": template["survey_index_labels"]})
-
-    survey_group = group_layer("Survey")
-    # survey_group["layers"].append(survey_section_lines_fc)
-    survey_group["layers"].append(survey_index_fc)
-    survey_group["layers"].append(survey_dlc_fc)
-    survey_group["layers"].append(survey_dlc_corners_fc)
-    survey_group["layers"].append(survey_section_polygons_fc)
-    survey_group["layers"].append(survey_section_corners_fc)
-    # survey_group["layers"].append(survey_section_numbers_fc)
-    survey_group["layers"].append(survey_geodetic_control_fc)
-    survey_group["layers"].append(survey_benchmarks_fc)
-
-    group_lyr["layers"].append(survey_group)
+    group_lyr["layers"].append(parent_group)
 
 
-def transport_layers_info(template):
+def transport_layer_names(post):
     """
-    Build dictionary of layer info for transportation layers.
-
-    :param template: Web map template for layer fields.
-    :return: Dictionary of short keys and layer definitions for the survey layers.
-    :rtype: Dictionary
+    Create list of key names for layer definition data.
     """
-    ref_data = template.get_data()
-    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
-    new_data = {}
-    # pull data from template
-    road_surface_labels = ref_list[0]["layerDefinition"]
-    roads_labels = ref_list[1]["layerDefinition"]
-    centerlines_labels = ref_list[2]["layerDefinition"]
-    railroads_labels = ref_list[3]["layerDefinition"]
-
-    # save layer info to dictionary and return
-    new_data.update({"road_surface_labels": road_surface_labels})
-    new_data.update({"roads_labels": roads_labels})
-    new_data.update({"centerlines_labels": centerlines_labels})
-    # new_data.update({"road_names_labels": road_names_labels})
-    new_data.update({"railroads_labels": railroads_labels})
-    return new_data
+    layer_stub = [
+        "railroads",
+        "centerlines",
+        "roads",
+        "road_surface",
+    ]
+    layer_name = []
+    for lyr in layer_stub:
+        layer_name.append("transport_" + lyr + post)
+    # layer order is reversed from menu order
+    layer_name.reverse()
+    return layer_name
 
 
 def transport_layers(group_lyr, template):
@@ -773,39 +651,17 @@ def transport_layers(group_lyr, template):
     :return: Group layer definition with transportation layers appended.
     :rtype: None.
     """
-    # transport_road_names = MapServiceLayer(TRANSPORTATION_ROAD_NAMES)
-    transport_road_surface = MapServiceLayer(TRANSPORTATION_ROAD_SURFACE)
-    transport_centerlines = MapServiceLayer(TRANSPORTATION_CENTERLINES)
-    transport_roads = MapServiceLayer(TRANSPORTATION_ROADS)
-    transport_railroads = MapServiceLayer(TRANSPORTATION_RAILROADS)
+    label_name = transport_layer_names("_label")
+    url_list = urls.TRANSPORT_URLS
+    parent_group = group_layer("Transportation")
+    parent_group.update({"visibility": False})
+    for i in range(0, len(url_list)):
+        map_lyr = MapServiceLayer(url_list[i])
+        fc = feature_class(map_lyr, 0.5)
+        fc.update({"layerDefinition": template[label_name[i]]})
+        parent_group["layers"].append(fc)
 
-    # transport_road_names_fc = feature_class(transport_road_names)
-    # transport_road_names_fc.update({"visibility": False})
-    # transport_road_names_fc.update({"layerDefinition": template["road_names_labels"]})
-    transport_road_surface_fc = feature_class(transport_road_surface)
-    transport_road_surface_fc.update({"visibility": False})
-    transport_road_surface_fc.update(
-        {"layerDefinition": template["road_surface_labels"]}
-    )
-    transport_centerlines_fc = feature_class(transport_centerlines)
-    transport_centerlines_fc.update({"visibility": False})
-    transport_centerlines_fc.update({"layerDefinition": template["centerlines_labels"]})
-    transport_roads_fc = feature_class(transport_roads, 0.5)
-    transport_roads_fc.update({"visibility": False})
-    transport_roads_fc.update({"layerDefinition": template["roads_labels"]})
-    transport_railroads_fc = feature_class(transport_railroads)
-    transport_railroads_fc.update({"visibility": False})
-    transport_railroads_fc.update({"layerDefinition": template["railroads_labels"]})
-
-    transport_group = group_layer("Transportation")
-
-    transport_group["layers"].append(transport_road_surface_fc)
-    transport_group["layers"].append(transport_roads_fc)
-    transport_group["layers"].append(transport_centerlines_fc)
-    # transport_group["layers"].append(transport_road_names_fc)
-    transport_group["layers"].append(transport_railroads_fc)
-
-    group_lyr["layers"].append(transport_group)
+    group_lyr["layers"].append(parent_group)
 
 
 def boundary_layer_info(template):
@@ -1605,8 +1461,7 @@ def build_template_dictionary(template_type, template):
     template_dict = {}
     match template_type:
         case "address":
-            template_dict.update(addr_popup_info(template))
-            template_dict.update(addr_labels(template))
+            template_dict.update(update_layer_info(address_layer_names, template))
         case "boundary":
             template_dict.update(boundary_layer_info(template))
         case "hpsv":
@@ -1618,13 +1473,13 @@ def build_template_dictionary(template_type, template):
         case "ppsv":
             template_dict.update(ppsv_layers_info(template))
         case "survey":
-            template_dict.update(survey_layers_info(template))
+            template_dict.update(update_layer_info(survey_layer_names, template))
         case "taxlot":
-            template_dict.update(taxlot_layers_info(template))
+            template_dict.update(update_layer_def(taxlot_layer_names, template))
         case "transport":
-            template_dict.update(transport_layers_info(template))
+            template_dict.update(update_layer_def(transport_layer_names, template))
         case "zoning":
-            template_dict.update(zoning_layers_info(template))
+            template_dict.update(update_layer_info(zoning_layer_names, template))
 
     return template_dict
 

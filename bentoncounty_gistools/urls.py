@@ -12,11 +12,17 @@ def expand_urls(stub, rng):
     return urls
 
 
+address_corvo = "https://gis.corvallisoregon.gov/pub2/rest/services/Base/CorvallisAddress/MapServer/0"
 address_stub = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/AddressService/MapServer/"
 )
-address_range = range(0, 3)
-ADDRESS_URLS = expand_urls(address_stub, address_range)
+address_range = [2, 1, 0]
+address_url = expand_urls(address_stub, address_range)
+ADDRESS_URLS = [address_url[0]]
+ADDRESS_URLS.append(address_url[1])
+ADDRESS_URLS.append(address_corvo)
+ADDRESS_URLS.append(address_url[2])
+
 
 appraisal_stub = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/Appraisal/MapServer/"
@@ -78,7 +84,8 @@ SLOPE_LIDAR_URL = (
 survey_stub = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/MapServer/"
 )
-survey_range = range(0, 9)
+# survey_range = range(0, 9)
+survey_range = [8, 7, 1, 6, 4, 2, 0]
 SURVEY_URLS = expand_urls(survey_stub, survey_range)
 
 TAXLOT_OWNERS_URL = (
@@ -99,7 +106,9 @@ ANNO_0050_URLS = expand_urls(taxlot_stub, anno_0050_rng)
 ANNO_0100_URLS = expand_urls(taxlot_stub, anno_0100_rng)
 ANNO_0200_URLS = expand_urls(taxlot_stub, anno_0200_rng)
 ANNO_0400_URLS = expand_urls(taxlot_stub, anno_0400_rng)
-TAXLOT_URLS = expand_urls(taxlot_stub, taxlot_rng)
+layer_ord = [198, 194, 193, 192, 190, 189, 191, 186]
+TAXLOT_URLS = expand_urls(taxlot_stub, layer_ord)
+
 
 TAX_CODE_AREAS_URL = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/TCAService/MapServer/0"
@@ -110,7 +119,8 @@ topo_range = range(0, 4)
 TOPO_CONTOURS_URLS = expand_urls(topo_stub, topo_range)
 
 transport_stub = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/MapServer/"
-transport_range = range(0, 5)
+# transport_range = range(0, 5)
+transport_range = [1, 3, 2, 4]
 TRANSPORT_URLS = expand_urls(transport_stub, transport_range)
 
 compliance_stub = "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningCompliance/MapServer/"
