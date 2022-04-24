@@ -38,7 +38,7 @@ BC_IMAGERY_2014_URL = (
 boundary_stub = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/"
 )
-boundary_range = range(0, 8)
+boundary_range = range(6, -1, -1)
 BOUNDARY_URLS = expand_urls(boundary_stub, boundary_range)
 
 eam_stub = (
@@ -162,6 +162,20 @@ NFI_HPSV_URLS = expand_urls(hpsv_stub, hpsv_range)
 
 ppsv_range = range(15, 8, -1)
 NFI_PPSV_URLS = expand_urls(hpsv_stub, ppsv_range)
+
+
+nfi_fs_stub = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/NaturalFeaturesInventoryService2022_DRAFT/FeatureServer/"
+riparian_ord = range(29, 23, -1)
+RIPARIAN_URLS = expand_urls(nfi_fs_stub, riparian_ord)
+
+features_ord = [33, 31, 3]
+FEATURES_URLS = expand_urls(nfi_fs_stub, features_ord)
+
+flood_ord = range(44, 35, -1)
+NFI_FLOOD_URLS = expand_urls(nfi_fs_stub, flood_ord)
+
+hazard_ord = [50, 48, 47, 46]
+NFI_HAZARD_URLS = expand_urls(nfi_fs_stub, hazard_ord)
 
 # Outside Resources
 # FEMA hazards

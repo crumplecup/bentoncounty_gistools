@@ -4,68 +4,6 @@ from arcgis.mapping import MapServiceLayer
 from arcgis.mapping import MapFeatureLayer
 import bentoncounty_gistools.urls as urls
 
-BC_TAXLOTS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotOwners/FeatureServer/0"
-BC_ROADS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/FeatureServer/3"
-BC_RAILROADS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/FeatureServer/4"
-BC_SECTION_LINES = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/5"
-BC_SECTION_NUMBERS = "https://gis.co.benton.or.us/arcgis/rest/services/Public/SurveyService/FeatureServer/3"
-BC_BOUNDARIES = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer"
-)
-BC_TRANSPORTATION = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/MapServer"
-BC_TAXLOT_MAP = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/TaxlotService/MapServer"
-)
-BC_ADDRESS_CORVALLIS = (
-    "https://gis.corvallisoregon.gov/pub2/rest/services/Base/CorvallisAddress/MapServer"
-)
-BC_ADDRESS_COUNTY = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/AddressService/MapServer"
-)
-FEMA_FLOOD_HAZARDS = (
-    "https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer"
-)
-BC_ZONING_COMPLIANCE = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningCompliance/MapServer"
-)
-BC_WATER_SOILS_WETLANDS = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/NaturalService/MapServer"
-)
-BC_BOUNDARIES_CITIES = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/0"
-)
-BC_BOUNDARIES_COUNTY = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/1"
-)
-BC_BOUNDARIES_PRECINCTS = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/2"
-)
-BC_BOUNDARIES_PARKS = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/3"
-)
-BC_BOUNDARIES_ZIP_CODES = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/4"
-)
-BC_BOUNDARIES_SCHOOL = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/5"
-)
-BC_BOUNDARIES_FIRE = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/6"
-)
-BC_BOUNDARIES_ALL_DISTRICTS = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/7"
-)
-
-
-ADDRESS_COUNTY = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/AddressService/MapServer/0"
-)
-ADDRESS_BUILDINGS = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/AddressService/MapServer/1"
-)
-ADDRESS_DRIVEWAYS = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/AddressService/MapServer/2"
-)
 
 NATURAL_HYDRO_HUCS = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/NaturalService/MapServer/0"
@@ -84,7 +22,216 @@ NATURAL_WETLANDS = (
 )
 
 
-def ppsv_layer_names():
+def nfi_hazard_layer_names(post):
+    """
+    Create list of key names for layer definition data.
+    """
+    layer_stub = [
+        "closed_channel",
+        "open_channel",
+        "landslide",
+        "slope",
+    ]
+    layer_name = []
+    for lyr in layer_stub:
+        layer_name.append("nfi_hazard_" + lyr + post)
+    # layer order is reversed from menu order
+    layer_name.reverse()
+    return layer_name
+
+
+def nfi_hazard_layers(group_lyr, template):
+    """
+    Add layers for nfi hazards to group layer.
+
+    :param group_lyr: Group layer definition target for layers.
+    :return: Updates group layer definition with layers.
+    """
+    layer_name = riparian_layer_names("_label")
+    popup_name = nfi_hazard_layer_names("_popup")
+    url_list = urls.NFI_HAZARD_URLS
+    parent_group = group_layer("Hazards")
+    parent_group.update({"visibility": False})
+
+    branch = group_layer("Percent Slope")
+    lyr = MapServiceLayer(url_list[0])
+    fc = feature_class(lyr, 0.5)
+    fc.update({"layerDefinition": layer_name[0]})
+    fc.update({"popupInfo": popup_name[0]})
+    branch["layers"].append(fc)
+    parent_group["layers"].append(branch)
+
+    branch = group_layer("Landslide Risk")
+    lyr = MapServiceLayer(url_list[1])
+    fc = feature_class(lyr, 0.5)
+    fc.update({"layerDefinition": layer_name[1]})
+    fc.update({"popupInfo": popup_name[1]})
+    branch["layers"].append(fc)
+    parent_group["layers"].append(branch)
+
+    branch = group_layer("Landslide Debris Runout Areas")
+    lyr = MapServiceLayer(url_list[2])
+    fc = feature_class(lyr, 0.5)
+    fc.update({"layerDefinition": layer_name[2]})
+    fc.update({"popupInfo": popup_name[2]})
+    branch["layers"].append(fc)
+    lyr = MapServiceLayer(url_list[3])
+    fc = feature_class(lyr, 0.5)
+    fc.update({"layerDefinition": layer_name[3]})
+    fc.update({"popupInfo": popup_name[3]})
+    branch["layers"].append(fc)
+    parent_group["layers"].append(branch)
+
+    nfi_flood_layers(parent_group, template)
+
+    group_lyr["layers"].append(parent_group)
+
+
+def nfi_flood_layer_names(post):
+    """
+    Create list of key names for layer definition data.
+    """
+    layer_stub = [
+        "0.2_floodway",
+        "willamette",
+        "dixon",
+        "dunawi",
+        "jackson",
+        "lewisburg",
+        "oak_creek",
+        "sequoia",
+        "village",
+    ]
+    layer_name = []
+    for lyr in layer_stub:
+        layer_name.append("nfi_flood" + lyr + post)
+    # layer order is reversed from menu order
+    layer_name.reverse()
+    return layer_name
+
+
+def nfi_flood_layers(group_lyr, template):
+    """
+    Add layers for nfi flooding hazards to group layer.
+
+    :param group_lyr: Group layer definition target for layers.
+    :return: Updates group layer definition with layers.
+    """
+    layer_name = nfi_flood_layer_names("_label")
+    popup_name = nfi_flood_layer_names("_popup")
+    url_list = urls.NFI_FLOOD_URLS
+    parent_group = group_layer("Flooding")
+    parent_group.update({"visibility": False})
+    for i in range(0, len(url_list)):
+        map_lyr = MapServiceLayer(url_list[i])
+        fc = feature_class(map_lyr, 0.5)
+        fc.update({"popupInfo": template[popup_name[i]]})
+        fc.update({"layerDefinition": template[layer_name[i]]})
+        parent_group["layers"].append(fc)
+
+    group_lyr["layers"].append(parent_group)
+
+
+def nfi_features_layer_names(post):
+    """
+    Create list of key names for layer definition data.
+    """
+    layer_stub = [
+        "oak_savanna",
+        "wetlands_critical",
+        "wetlands_dsl",
+    ]
+    layer_name = []
+    for lyr in layer_stub:
+        layer_name.append("nfi_features_" + lyr + post)
+    # layer order is reversed from menu order
+    layer_name.reverse()
+    return layer_name
+
+
+def add_single_layer(key_name, url, group_lyr, template):
+    popup_name = key_name + "_popup"
+    label_name = key_name + "_label"
+    lyr = MapServiceLayer(url)
+    fc = feature_class(lyr, 0.5)
+    fc.update({"popupInfo": template[popup_name]})
+    fc.update({"layerDefinition": template[label_name]})
+    group_lyr["layers"].append(fc)
+
+
+def nfi_features_layers(group_lyr, template):
+    """
+    Add layers for riparian areas to group layer.
+
+    :param group_lyr: Group layer definition target for layers.
+    :return: Updates group layer definition with layers.
+    """
+    url_list = urls.FEATURES_URLS
+    parent_group = group_layer("Features")
+    parent_group.update({"visibility": False})
+
+    branch = group_layer("Other Wetlands")
+    add_single_layer("nfi_features_wetlands_dsl", url_list[0], branch, template)
+    parent_group["layers"].append(branch)
+
+    branch = group_layer("Systems-Critical Wetlands")
+    add_single_layer("nfi_features_wetlands_critical", url_list[1], branch, template)
+    parent_group["layers"].append(branch)
+
+    riparian_layers(parent_group, template)
+
+    branch = group_layer("Significant Vegetation")
+    ppsv_layers(branch, template)
+    hpsv_layers(branch, template)
+    add_single_layer("nfi_features_oak_savanna", url_list[2], branch, template)
+    parent_group["layers"].append(branch)
+
+    group_lyr["layers"].append(parent_group)
+
+
+def riparian_layer_names(post):
+    """
+    Create list of key names for layer definition data.
+    """
+    layer_stub = [
+        "50foot_buffers",
+        "75foot_buffers",
+        "100foot_buffers",
+        "120foot_buffers",
+        "downtown",
+        "wetlands",
+    ]
+    layer_name = []
+    for lyr in layer_stub:
+        layer_name.append("riparian_" + lyr + post)
+    # layer order is reversed from menu order
+    layer_name.reverse()
+    return layer_name
+
+
+def riparian_layers(group_lyr, template):
+    """
+    Add layers for riparian areas to group layer.
+
+    :param group_lyr: Group layer definition target for layers.
+    :return: Updates group layer definition with layers.
+    """
+    layer_name = riparian_layer_names("_label")
+    popup_name = riparian_layer_names("_popup")
+    url_list = urls.RIPARIAN_URLS
+    parent_group = group_layer("Riparian Areas")
+    parent_group.update({"visibility": False})
+    for i in range(0, len(url_list)):
+        map_lyr = MapServiceLayer(url_list[i])
+        fc = feature_class(map_lyr, 0.5)
+        fc.update({"popupInfo": template[popup_name[i]]})
+        fc.update({"layerDefinition": template[layer_name[i]]})
+        parent_group["layers"].append(fc)
+
+    group_lyr["layers"].append(parent_group)
+
+
+def ppsv_layer_names(post):
     """
     Create list of key names for layer definition data.
     """
@@ -99,27 +246,10 @@ def ppsv_layer_names():
     ]
     layer_name = []
     for lyr in layer_stub:
-        layer_name.append("ppsv_" + lyr + "_popup")
+        layer_name.append("ppsv_" + lyr + post)
     # layer order is reversed from menu order
     layer_name.reverse()
     return layer_name
-
-
-def ppsv_layers_info(template):
-    """
-    Build dictionary of layer info.
-
-    :param template: Web map template for layer fields.
-    :return: Dictionary of short keys and layer definitions.
-    """
-    layer_name = ppsv_layer_names()
-    ref_data = template.get_data()
-    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
-    new_data = {}
-    for i in range(0, len(ref_list)):
-        new_data.update({layer_name[i]: ref_list[i]["popupInfo"]})
-
-    return new_data
 
 
 def ppsv_layers(group_lyr, template):
@@ -129,20 +259,22 @@ def ppsv_layers(group_lyr, template):
     :param group_lyr: Group layer definition target for layers.
     :return: Updates group layer definition with layers.
     """
-    layer_name = ppsv_layer_names()
+    popup_name = ppsv_layer_names("_popup")
+    label_name = ppsv_layer_names("_label")
     url_list = urls.NFI_PPSV_URLS
     parent_group = group_layer("Partial Protection")
     parent_group.update({"visibility": False})
     for i in range(0, len(url_list)):
         map_lyr = MapFeatureLayer(url_list[i])
         fc = feature_class(map_lyr, 0.5)
-        fc.update({"popupInfo": template[layer_name[i]]})
+        fc.update({"popupInfo": template[popup_name[i]]})
+        fc.update({"layerDefinition": template[label_name[i]]})
         parent_group["layers"].append(fc)
 
     group_lyr["layers"].append(parent_group)
 
 
-def hpsv_layer_names():
+def hpsv_layer_names(post):
     """
     Create list of key names for layer definition data.
     """
@@ -159,27 +291,10 @@ def hpsv_layer_names():
     ]
     layer_name = []
     for lyr in layer_stub:
-        layer_name.append("hpsv_" + lyr + "_popup")
+        layer_name.append("hpsv_" + lyr + post)
     # layer order is reversed from menu order
     layer_name.reverse()
     return layer_name
-
-
-def hpsv_layers_info(template):
-    """
-    Build dictionary of layer info.
-
-    :param template: Web map template for layer fields.
-    :return: Dictionary of short keys and layer definitions.
-    """
-    layer_name = hpsv_layer_names()
-    ref_data = template.get_data()
-    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
-    new_data = {}
-    for i in range(0, len(ref_list)):
-        new_data.update({layer_name[i]: ref_list[i]["popupInfo"]})
-
-    return new_data
 
 
 def hpsv_layers(group_lyr, template):
@@ -189,16 +304,16 @@ def hpsv_layers(group_lyr, template):
     :param group_lyr: Group layer definition target for layers.
     :return: Updates group layer definition with layers.
     """
-    # layer_ord = range(0, 9)
-    layer_name = hpsv_layer_names()
-    # url_list = [urls.NFI_HPSV_URLS[i] for i in layer_ord]
+    popup_name = hpsv_layer_names("_popup")
+    label_name = hpsv_layer_names("_label")
     url_list = urls.NFI_HPSV_URLS
     parent_group = group_layer("High Protection")
     parent_group.update({"visibility": False})
     for i in range(0, len(url_list)):
         map_lyr = MapFeatureLayer(url_list[i])
         fc = feature_class(map_lyr, 0.5)
-        fc.update({"popupInfo": template[layer_name[i]]})
+        fc.update({"popupInfo": template[popup_name[i]]})
+        fc.update({"layerDefinition": template[label_name[i]]})
         parent_group["layers"].append(fc)
 
     group_lyr["layers"].append(parent_group)
@@ -545,6 +660,23 @@ def survey_layer_names(post):
     return layer_name
 
 
+def update_popup_info(names, template):
+    """
+    Build dictionary of layer info for layers.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions for the survey layers.
+    """
+    label_name = names("_popup")
+    ref_data = template.get_data()
+    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
+    new_data = {}
+    for i in range(0, len(label_name)):
+        new_data.update({label_name[i]: ref_list[i]["popupInfo"]})
+
+    return new_data
+
+
 def update_layer_def(names, template):
     """
     Build dictionary of layer info for layers.
@@ -664,35 +796,25 @@ def transport_layers(group_lyr, template):
     group_lyr["layers"].append(parent_group)
 
 
-def boundary_layer_info(template):
+def boundary_layer_names(post):
     """
-    Build dictionary of layer info for the boundary layers. Includes popup info and layer definition.
-
-    :param template: Web map template for layer fields.
-    :return: Dictionary of short keys and layer definitions for the boundary layers.
+    Create list of key names for layer definition data.
     """
-    ref_data = template.get_data()
-    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
-    new_data = {}
-    fire_labels = ref_list[0]["layerDefinition"]
-    school_labels = ref_list[1]["layerDefinition"]
-    zipcode_popup = ref_list[2]["popupInfo"]
-    zipcode_labels = ref_list[2]["layerDefinition"]
-    parks_popup = ref_list[3]["popupInfo"]
-    parks_labels = ref_list[3]["layerDefinition"]
-    precincts_labels = ref_list[4]["layerDefinition"]
-    county_labels = ref_list[5]["layerDefinition"]
-    cities_labels = ref_list[6]["layerDefinition"]
-    new_data.update({"fire_labels": fire_labels})
-    new_data.update({"school_labels": school_labels})
-    new_data.update({"zipcode_popup": zipcode_popup})
-    new_data.update({"zipcode_labels": zipcode_labels})
-    new_data.update({"parks_popup": parks_popup})
-    new_data.update({"parks_labels": parks_labels})
-    new_data.update({"precincts_labels": precincts_labels})
-    new_data.update({"county_labels": county_labels})
-    new_data.update({"cities_labels": cities_labels})
-    return new_data
+    layer_stub = [
+        "cities",
+        "county",
+        "precincts",
+        "parks",
+        "zip_codes",
+        "school_districts",
+        "fire_districts",
+    ]
+    layer_name = []
+    for lyr in layer_stub:
+        layer_name.append("boundary" + lyr + post)
+    # layer order is reversed from menu order
+    layer_name.reverse()
+    return layer_name
 
 
 def county_boundaries(group_lyr, template):
@@ -704,54 +826,21 @@ def county_boundaries(group_lyr, template):
     :return: Group layer definition with boundary layers appended.
     :rtype: None.
     """
-    bc_boundaries_cities = MapServiceLayer(BC_BOUNDARIES_CITIES)
-    bc_boundaries_county = MapServiceLayer(BC_BOUNDARIES_COUNTY)
-    bc_boundaries_precincts = MapServiceLayer(BC_BOUNDARIES_PRECINCTS)
-    bc_boundaries_parks = MapServiceLayer(BC_BOUNDARIES_PARKS)
-    bc_boundaries_zip = MapServiceLayer(BC_BOUNDARIES_ZIP_CODES)
-    bc_boundaries_school = MapServiceLayer(BC_BOUNDARIES_SCHOOL)
-    bc_boundaries_fire = MapServiceLayer(BC_BOUNDARIES_FIRE)
-    # bc_boundaries_all = MapServiceLayer(BC_BOUNDARIES_ALL_DISTRICTS)
+    label_name = boundary_layer_names("_label")
+    popup_name = boundary_layer_names("_popup")
+    url_list = urls.BOUNDARY_URLS
+    parent_group = group_layer("Boundaries")
+    parent_group.update({"visibility": False})
+    for i in range(0, len(url_list)):
+        map_lyr = MapServiceLayer(url_list[i])
+        fc = feature_class(map_lyr, 0.5)
+        if fc["title"] not in ["County Parks"]:
+            fc.update({"layerDefinition": template[label_name[i]]})
+        if fc["title"] in ["Zip Codes"]:
+            fc.update({"popupInfo": template[popup_name[i]]})
+        parent_group["layers"].append(fc)
 
-    bc_boundaries_cities_fc = feature_class(bc_boundaries_cities)
-    bc_boundaries_cities_fc.update({"visibility": False})
-    bc_boundaries_cities_fc.update({"layerDefinition": template["cities_labels"]})
-    bc_boundaries_county_fc = feature_class(bc_boundaries_county)
-    bc_boundaries_county_fc.update({"visibility": False})
-    bc_boundaries_county_fc.update({"layerDefinition": template["county_labels"]})
-    bc_boundaries_precincts_fc = feature_class(bc_boundaries_precincts)
-    bc_boundaries_precincts_fc.update({"visibility": False})
-    bc_boundaries_precincts_fc.update({"layerDefinition": template["precincts_labels"]})
-    bc_boundaries_parks_fc = feature_class(bc_boundaries_parks)
-    # bc_boundaries_parks_fc.update({"popupInfo": template["parks_popup"]})
-    # bc_boundaries_parks_fc.update({"layerDefinition": template["parks_labels"]})
-    # bc_boundaries_parks_fc.update({"showLabels": True})
-    # bc_boundaries_parks_fc.update({"disablePopup": False})
-    bc_boundaries_zip_fc = feature_class(bc_boundaries_zip)
-    bc_boundaries_zip_fc.update({"visibility": False})
-    bc_boundaries_zip_fc.update({"popupInfo": template["zipcode_popup"]})
-    bc_boundaries_zip_fc.update({"layerDefinition": template["zipcode_labels"]})
-    bc_boundaries_zip_fc.update({"disablePopup": False})
-    bc_boundaries_school_fc = feature_class(bc_boundaries_school)
-    bc_boundaries_school_fc.update({"visibility": False})
-    bc_boundaries_school_fc.update({"layerDefinition": template["school_labels"]})
-    bc_boundaries_fire_fc = feature_class(bc_boundaries_fire)
-    bc_boundaries_fire_fc.update({"visibility": False})
-    bc_boundaries_fire_fc.update({"layerDefinition": template["fire_labels"]})
-    # bc_boundaries_all_fc = feature_class(bc_boundaries_all)
-
-    boundary_group = group_layer("Boundaries")
-
-    # group_layer["layers"].append(bc_boundaries_all_fc)
-    boundary_group["layers"].append(bc_boundaries_fire_fc)
-    boundary_group["layers"].append(bc_boundaries_school_fc)
-    boundary_group["layers"].append(bc_boundaries_zip_fc)
-    boundary_group["layers"].append(bc_boundaries_parks_fc)
-    boundary_group["layers"].append(bc_boundaries_precincts_fc)
-    boundary_group["layers"].append(bc_boundaries_county_fc)
-    boundary_group["layers"].append(bc_boundaries_cities_fc)
-
-    group_lyr["layers"].append(boundary_group)
+    group_lyr["layers"].append(parent_group)
 
 
 def county_basemap_layers(group_layer):
@@ -1219,36 +1308,6 @@ def add_nfi(project_map, service, template):
     project_map.update({"text": str(map_def)})
 
 
-def addr_popup_info(template):
-    """
-    Build dictionary of layer info for the address layers. Includes popup info.
-
-    :param template: Web map template for layer fields.
-    :return: Dictionary of short keys and layer definitions for the address layers.
-    """
-    addr = template.get_data()
-    addr_dict = {}
-    driveways = addr["operationalLayers"][0]["layers"][0]["layers"][1]["popupInfo"]
-    address = addr["operationalLayers"][0]["layers"][0]["layers"][2]["popupInfo"]
-    addr_dict.update({"driveways": driveways})
-    addr_dict.update({"address": address})
-    return addr_dict
-
-
-def addr_labels(template):
-    """
-    Build dictionary of layer info for the address layers. Includes layer definition.
-
-    :param template: Web map template for layer fields.
-    :return: Dictionary of short keys and layer definitions for the address layers.
-    """
-    addr = template.get_data()
-    addr_dict = {}
-    labels = addr["operationalLayers"][0]["layers"][0]["layers"][2]["layerDefinition"]
-    addr_dict.update({"labels": labels})
-    return addr_dict
-
-
 def nfi_popup_info(template):
     """
     Generates dictionary of popupInfo for layers of the natural features inventory.
@@ -1463,15 +1522,23 @@ def build_template_dictionary(template_type, template):
         case "address":
             template_dict.update(update_layer_info(address_layer_names, template))
         case "boundary":
-            template_dict.update(boundary_layer_info(template))
+            template_dict.update(update_layer_info(boundary_layer_names, template))
         case "hpsv":
-            template_dict.update(hpsv_layers_info(template))
+            template_dict.update(update_layer_info(hpsv_layer_names, template))
         case "natural":
             template_dict.update(natural_layers_info(template))
         case "nfi":
             template_dict.update(nfi_popup_info(template))
+        case "nfi_features":
+            template_dict.update(update_layer_info(nfi_features_layer_names, template))
+        case "nfi_flood":
+            template_dict.update(update_layer_info(nfi_flood_layer_names, template))
+        case "nfi_hazard":
+            template_dict.update(update_layer_info(nfi_hazard_layer_names, template))
         case "ppsv":
-            template_dict.update(ppsv_layers_info(template))
+            template_dict.update(update_layer_info(ppsv_layer_names, template))
+        case "riparian":
+            template_dict.update(update_layer_info(riparian_layer_names, template))
         case "survey":
             template_dict.update(update_layer_info(survey_layer_names, template))
         case "taxlot":
