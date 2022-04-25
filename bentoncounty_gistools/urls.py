@@ -207,8 +207,10 @@ osu_m49 = "https://lib-gis2.library.oregonstate.edu/arcgis/rest/services/land_us
 # add fw_nwi_wetlands
 # add nrcs_hydric_soils
 environment_urls = [
-    natural_wetlands,
+    nrcs_hydric_soils,
     natural_soils,
+    natural_wetlands,
+    fw_nwi_wetlands,
     bc_eq_slope,
     bc_landslide,
     shpo_buff,

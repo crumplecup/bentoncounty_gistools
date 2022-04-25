@@ -72,11 +72,9 @@ def test_build_template_dictionary():
     environment_map = gis.content.get(TEMPLATE_ENVIRONMENT_MAP)
     hcp_map = gis.content.get(TEMPLATE_HCP_BUTTERFY_MAP)
     hpsv_map = gis.content.get(TEMPLATE_HPSV_MAP)
-    natural_map = gis.content.get(TEMPLATE_NATURAL_LAYERS_MAP)
     nfi_features_map = gis.content.get(TEMPLATE_NFI_FEATURES_MAP)
     nfi_flood_map = gis.content.get(TEMPLATE_NFI_FLOOD_MAP)
     nfi_hazard_map = gis.content.get(TEMPLATE_NFI_HAZARD_MAP)
-    nfi_map = gis.content.get(TEMPLATE_NFI_MAP)
     ppsv_map = gis.content.get(TEMPLATE_PPSV_MAP)
     riparian_map = gis.content.get(TEMPLATE_RIPARIAN_MAP)
     survey_map = gis.content.get(TEMPLATE_SURVEY_MAP)
@@ -92,11 +90,9 @@ def test_build_template_dictionary():
     template_dict.update(bc.build_template_dictionary("environment", environment_map))
     template_dict.update(bc.build_template_dictionary("hcp", hcp_map))
     template_dict.update(bc.build_template_dictionary("hpsv", hpsv_map))
-    template_dict.update(bc.build_template_dictionary("natural", natural_map))
     template_dict.update(bc.build_template_dictionary("nfi_features", nfi_features_map))
     template_dict.update(bc.build_template_dictionary("nfi_flood", nfi_flood_map))
     template_dict.update(bc.build_template_dictionary("nfi_hazard", nfi_hazard_map))
-    template_dict.update(bc.build_template_dictionary("nfi", nfi_map))
     template_dict.update(bc.build_template_dictionary("ppsv", ppsv_map))
     template_dict.update(bc.build_template_dictionary("riparian", riparian_map))
     template_dict.update(bc.build_template_dictionary("survey", survey_map))
@@ -134,52 +130,6 @@ def test_layer_urls():
         urls[1]
         == "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/NaturalFeaturesInventoryService2022_DRAFT/FeatureServer/3"
     )
-
-
-def test_fc_gen():
-    """Produces feature class data format."""
-    gis = GIS()
-    # load natural features inventory feature collection service
-    nfi_fs = gis.content.search(
-        "NaturalFeaturesInventoryService2022_DRAFT",
-        item_type="Feature Layer Collection",
-    )[0]
-    urls = bc.layer_urls(nfi_fs)
-    streams = MapServiceLayer(urls[0])
-    stream = bc.fc_gen(streams)
-    assert (
-        stream["url"]
-        == "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/NaturalFeaturesInventoryService2022_DRAFT/FeatureServer/0"
-    )
-    assert stream["title"] == "STREAMS"
-    assert stream["layerType"] == "ArcGISFeatureLayer"
-
-
-@pytest.mark.skipif(
-    PYTEST_SKIP,
-    reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
-)
-def test_add_nfi():
-    """Adds NFI layers to web map."""
-    gis = GIS(
-        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
-    )
-    # load natural features inventory feature collection service
-    nfi_fs = gis.content.search(
-        "NaturalFeaturesInventoryService2022_DRAFT",
-        item_type="Feature Layer Collection",
-    )[0]
-    # load designated web map for unit testing
-    nfi_template = gis.content.search("nfi_template")[0]
-    nfi_map = gis.content.search("nfi_test_map")[0]
-    nfi_test = WebMap(nfi_map)
-    test_layers = nfi_test.layers
-    # delete current content of test map
-    for lyr in test_layers:
-        nfi_test.remove_layer(lyr)
-    nfi_test.update()
-    # add nfi layers
-    bc.add_nfi(nfi_map, nfi_fs, nfi_template)
 
 
 def test_group_layer():
@@ -242,12 +192,6 @@ def test_hpsv_layers():
     # assert test_group["layers"][0].keys() == ["foo", "bar"]
 
 
-def test_natural_layers():
-    test_group = bc.group_layer("test")
-    bc.natural_layers(test_group, template)
-    assert test_group["layers"][0]["title"] == "WATER|SOILS|WETLANDS"
-
-
 def test_zoning_layers():
     test_group = bc.group_layer("test")
     bc.zoning_layers(test_group, template)
@@ -287,23 +231,6 @@ def test_boundaries_map():
         test_map.remove_layer(lyr)
     test_map.update()
     bc.test_map_layers(test_item, bc.county_boundaries, template)
-
-
-@pytest.mark.skipif(
-    PYTEST_SKIP,
-    reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
-)
-def test_natural_map():
-    gis = GIS(
-        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
-    )
-    test_item = gis.content.get(TEST_NATURAL_LAYERS_MAP)
-    test_map = WebMap(test_item)
-    test_layers = test_map.layers
-    for lyr in test_layers:
-        test_map.remove_layer(lyr)
-    test_map.update()
-    bc.test_map_layers(test_item, bc.natural_layers, template)
 
 
 @pytest.mark.skipif(
@@ -621,7 +548,7 @@ def test_nfi_hazard_map():
 
 
 @pytest.mark.skipif(
-    not PYTEST_CREATE,
+    PYTEST_CREATE,
     reason="Creates new files on the ArcGIS server.  Only run to instantiate new tests.",
 )
 def test_new():
