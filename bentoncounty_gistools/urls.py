@@ -63,6 +63,12 @@ natural_stub = (
 natural_range = range(0, 6)
 NATURAL_URLS = expand_urls(natural_stub, natural_range)
 
+hydro_hucs = natural_stub + "0"
+hydro_polys = natural_stub + "1"
+hydro_lines = natural_stub + "2"
+natural_soils = natural_stub + "3"
+natural_wetlands = natural_stub + "5"
+
 PUBLIC_LANDS_URL = "https://gis.co.benton.or.us/arcgis/rest/services/Public/PublicLandsService/MapServer/0"
 
 PUBLIC_WATER_SYSTEM_URL = "https://gis.co.benton.or.us/arcgis/rest/services/Public/PublicWaterSystemService/MapServer/0"
@@ -115,7 +121,7 @@ TAX_CODE_AREAS_URL = (
 )
 
 topo_stub = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TopoServiceContours20ft/MapServer/"
-topo_range = range(0, 4)
+topo_range = [3, 1, 2, 0]
 TOPO_CONTOURS_URLS = expand_urls(topo_stub, topo_range)
 
 transport_stub = "https://gis.co.benton.or.us/arcgis/rest/services/Public/TransportationService/MapServer/"
@@ -126,8 +132,15 @@ TRANSPORT_URLS = expand_urls(transport_stub, transport_range)
 compliance_stub = "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningCompliance/MapServer/"
 compliance_range = [0, 1, range(8, 16)]
 COMPLIANCE_URLS = expand_urls(compliance_stub, compliance_range)
-butterfly_range = range(3, 8)
-COMPLIANCE_BUTTERFLY_URLS = expand_urls(compliance_stub, butterfly_range)
+earthquake_faults = compliance_stub + "1"
+big_game = compliance_stub + "8"
+rip_buff = compliance_stub + "9"
+shpo_buff = compliance_stub + "10"
+bc_landslide = compliance_stub + "13"
+bc_eq_slope = compliance_stub + "14"
+
+butterfly_range = range(7, 2, -1)
+HCP_BUTTERFLY_URLS = expand_urls(compliance_stub, butterfly_range)
 
 zoning_stub = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningService/MapServer/"
@@ -178,6 +191,35 @@ hazard_ord = [50, 48, 47, 46]
 NFI_HAZARD_URLS = expand_urls(nfi_fs_stub, hazard_ord)
 
 # Outside Resources
+
+# Fish & Wildlife NWI Wetlands
+fw_nwi_wetlands = (
+    "https://www.fws.gov/wetlandsmapservice/rest/services/Wetlands/MapServer/0"
+)
+
+# NRCS Hydric Soils
+nrcs_hydric_soils = "https://gisdata.dsl.state.or.us/arcgis/rest/services/Maps/SWI_HydricSoil_2020_B/MapServer/0"
+
+# OSU M49 Authorizations
+osu_m49 = "https://lib-gis2.library.oregonstate.edu/arcgis/rest/services/land_use_planning/M49_2018/MapServer/0"
+
+
+# add fw_nwi_wetlands
+# add nrcs_hydric_soils
+environment_urls = [
+    natural_wetlands,
+    natural_soils,
+    bc_eq_slope,
+    bc_landslide,
+    shpo_buff,
+    rip_buff,
+    big_game,
+    earthquake_faults,
+    hydro_lines,
+    hydro_polys,
+    hydro_hucs,
+]
+
 # FEMA hazards
 
 fema_nfhl_stub = (

@@ -22,6 +22,171 @@ NATURAL_WETLANDS = (
 )
 
 
+def environment_layer_names(post):
+    """
+    Create list of key names for layer definition data.
+    """
+    layer_stub = [
+        "natural_wetlands",
+        "natural_soils",
+        "bc_eq_slope",
+        "bc_landslide",
+        "shpo_buff",
+        "rip_buff",
+        "big_game",
+        "earthquake_faults",
+        "hydro_lines",
+        "hydro_polys",
+        "hydro_hucs",
+    ]
+    layer_name = []
+    for lyr in layer_stub:
+        layer_name.append("environment_" + lyr + post)
+    return layer_name
+
+
+def environment_layers(group_lyr, template):
+    """
+    Add layers for topographic contours to group layer.
+
+    :param group_lyr: Group layer definition target for layers.
+    :return: Updates group layer definition with layers.
+    """
+    popup_names = environment_layer_names("_popup")
+    label_names = environment_layer_names("_label")
+    url_list = urls.environment_urls
+    parent_group = group_layer("Environment")
+    parent_group.update({"visibility": False})
+    for i in range(0, len(url_list)):
+        map_lyr = MapServiceLayer(url_list[i])
+        fc = feature_class(map_lyr, 0.5)
+        if fc["title"] == "Wetlands (NWI)":
+            fc.update({"title": "Wetlands - NWI (County backup)"})
+        if fc["title"] == "benton_eq_slope_region":
+            fc.update({"title": "County Slope"})
+        if fc["title"] == "benton_landslide_region":
+            fc.update({"title": "County Landslide Risk"})
+        if fc["title"] == "SHPO BUFFER":
+            fc.update({"title": "SHPO Buffer"})
+        if fc["title"] == "BENTON RIPARIAN BUFFER":
+            fc.update({"title": "County Riparian Buffer"})
+        if fc["title"] == "BIG GAME RANGE":
+            fc.update({"title": "Big Game Range"})
+        if fc["title"] == "EARTHQUAKE FAULTS (advisory only)":
+            fc.update({"title": "Earthquake Faults (advisory only)"})
+        if fc["title"] == "Hydro_lines":
+            fc.update({"title": "Rivers & Streams"})
+        if fc["title"] == "Hydro_polys":
+            fc.update({"title": "Water Bodies"})
+        if fc["title"] == "Hydro_HUCS":
+            fc.update({"title": "HUCS Watershed Boundaries"})
+        fc.update({"popupInfo": template[popup_names[i]]})
+        fc.update({"layerDefinition": template[label_names[i]]})
+        parent_group["layers"].append(fc)
+
+    group_lyr["layers"].append(parent_group)
+
+
+def hcp_butterfly_layer_names(post):
+    """
+    Create list of key names for layer definition data.
+    """
+    layer_stub = [
+        "surveyed",
+        "nectar",
+        "blue_zone",
+        "blue_zone_ugb",
+        "kincaid",
+    ]
+    layer_name = []
+    for lyr in layer_stub:
+        layer_name.append("hcp_butterfly_" + lyr + post)
+    # layer order is reversed from menu order
+    layer_name.reverse()
+    return layer_name
+
+
+def hcp_butterfly_layers(group_lyr, template):
+    """
+    Add layers for topographic contours to group layer.
+
+    :param group_lyr: Group layer definition target for layers.
+    :return: Updates group layer definition with layers.
+    """
+    popup_names = hcp_butterfly_layer_names("_popup")
+    label_names = hcp_butterfly_layer_names("_label")
+    url_list = urls.HCP_BUTTERFLY_URLS
+    parent_group = group_layer("HCP Butterfly")
+    parent_group.update({"visibility": False})
+    for i in range(0, len(url_list)):
+        map_lyr = MapServiceLayer(url_list[i])
+        fc = feature_class(map_lyr, 0.5)
+        if fc["title"] == "SurveyedAreas":
+            fc.update({"title": "Surveyed Areas"})
+        if fc["title"] == "NectarZone":
+            fc.update({"title": "Nectar Zone"})
+        if fc["title"] == "FendersBlueZone - Official":
+            fc.update({"title": "Fenders Blue Zone - Official"})
+        if fc["title"] == "FendersBlueZones UGB_USFWS":
+            fc.update({"title": "Fenders Blue Zone - UGB (USFWS)"})
+        if fc["title"] == "KincaidLupinesZone":
+            fc.update({"title": "Kincaid Lupines"})
+        fc.update({"popupInfo": template[popup_names[i]]})
+        fc.update({"layerDefinition": template[label_names[i]]})
+        parent_group["layers"].append(fc)
+
+    group_lyr["layers"].append(parent_group)
+
+
+def contour_layer_names(post):
+    """
+    Create list of key names for layer definition data.
+    """
+    layer_stub = [
+        "100ft",
+        "20ft",
+        "10ft",
+        "2ft",
+    ]
+    layer_name = []
+    for lyr in layer_stub:
+        layer_name.append("contours_" + lyr + post)
+    # layer order is reversed from menu order
+    layer_name.reverse()
+    return layer_name
+
+
+def contour_layers(group_lyr, template):
+    """
+    Add layers for topographic contours to group layer.
+
+    :param group_lyr: Group layer definition target for layers.
+    :return: Updates group layer definition with layers.
+    """
+    popup_names = contour_layer_names("_popup")
+    label_names = contour_layer_names("_label")
+    url_list = urls.TOPO_CONTOURS_URLS
+    parent_group = group_layer("Topographic Contours")
+    parent_group.update({"visibility": False})
+    for i in range(0, len(url_list)):
+        # add_single_layer(contour_names[i], url_list[i], parent_group, template)
+        map_lyr = MapServiceLayer(url_list[i])
+        fc = feature_class(map_lyr, 0.5)
+        if fc["title"] == "contours100ft":
+            fc.update({"title": "100-ft Contours"})
+        if fc["title"] == "contours20ft":
+            fc.update({"title": "20-ft Contours"})
+        if fc["title"] == "contours10ft":
+            fc.update({"title": "10-ft Contours"})
+        if fc["title"] == "contours2ft":
+            fc.update({"title": "2-ft Contours"})
+        fc.update({"popupInfo": template[popup_names[i]]})
+        fc.update({"layerDefinition": template[label_names[i]]})
+        parent_group["layers"].append(fc)
+
+    group_lyr["layers"].append(parent_group)
+
+
 def nfi_hazard_layer_names(post):
     """
     Create list of key names for layer definition data.
@@ -47,39 +212,21 @@ def nfi_hazard_layers(group_lyr, template):
     :param group_lyr: Group layer definition target for layers.
     :return: Updates group layer definition with layers.
     """
-    layer_name = riparian_layer_names("_label")
-    popup_name = nfi_hazard_layer_names("_popup")
     url_list = urls.NFI_HAZARD_URLS
     parent_group = group_layer("Hazards")
     parent_group.update({"visibility": False})
 
     branch = group_layer("Percent Slope")
-    lyr = MapServiceLayer(url_list[0])
-    fc = feature_class(lyr, 0.5)
-    fc.update({"layerDefinition": layer_name[0]})
-    fc.update({"popupInfo": popup_name[0]})
-    branch["layers"].append(fc)
+    add_single_layer("nfi_hazard_slope", url_list[0], branch, template)
     parent_group["layers"].append(branch)
 
     branch = group_layer("Landslide Risk")
-    lyr = MapServiceLayer(url_list[1])
-    fc = feature_class(lyr, 0.5)
-    fc.update({"layerDefinition": layer_name[1]})
-    fc.update({"popupInfo": popup_name[1]})
-    branch["layers"].append(fc)
+    add_single_layer("nfi_hazard_landslide", url_list[1], branch, template)
     parent_group["layers"].append(branch)
 
     branch = group_layer("Landslide Debris Runout Areas")
-    lyr = MapServiceLayer(url_list[2])
-    fc = feature_class(lyr, 0.5)
-    fc.update({"layerDefinition": layer_name[2]})
-    fc.update({"popupInfo": popup_name[2]})
-    branch["layers"].append(fc)
-    lyr = MapServiceLayer(url_list[3])
-    fc = feature_class(lyr, 0.5)
-    fc.update({"layerDefinition": layer_name[3]})
-    fc.update({"popupInfo": popup_name[3]})
-    branch["layers"].append(fc)
+    add_single_layer("nfi_hazard_open_channel", url_list[2], branch, template)
+    add_single_layer("nfi_hazard_closed_channel", url_list[3], branch, template)
     parent_group["layers"].append(branch)
 
     nfi_flood_layers(parent_group, template)
@@ -843,35 +990,6 @@ def county_boundaries(group_lyr, template):
     group_lyr["layers"].append(parent_group)
 
 
-def county_basemap_layers(group_layer):
-    """
-    Add common reference layers to group layer.
-    Layers are taxlots, roads, railroads, section lines and section numbers.
-
-    :param group_layer: Group layer target for reference layers.
-    :return: Appends reference layers to group layer.
-    :rtype: None.
-    """
-    bc_taxlots = MapServiceLayer(BC_TAXLOTS)
-    bc_roads = MapServiceLayer(BC_ROADS)
-    bc_railroads = MapServiceLayer(BC_RAILROADS)
-    bc_section_lines = MapServiceLayer(BC_SECTION_LINES)
-    bc_section_numbers = MapServiceLayer(BC_SECTION_NUMBERS)
-
-    bc_taxlots_fc = feature_class(bc_taxlots, 0.75)
-    bc_roads_fc = feature_class(bc_roads, 1.0)
-    bc_railroads_fc = feature_class(bc_railroads, 0.75)
-    bc_section_lines_fc = feature_class(bc_section_lines, 0.75)
-    bc_section_numbers_fc = feature_class(bc_section_numbers, 0.75)
-
-    # append in reverse legend order
-    group_layer["layers"].append(bc_taxlots_fc)
-    group_layer["layers"].append(bc_roads_fc)
-    group_layer["layers"].append(bc_railroads_fc)
-    group_layer["layers"].append(bc_section_lines_fc)
-    group_layer["layers"].append(bc_section_numbers_fc)
-
-
 def county_basemap(project_map, template):
     """
     Add common reference layers to web map.
@@ -1523,6 +1641,12 @@ def build_template_dictionary(template_type, template):
             template_dict.update(update_layer_info(address_layer_names, template))
         case "boundary":
             template_dict.update(update_layer_info(boundary_layer_names, template))
+        case "contour":
+            template_dict.update(update_layer_info(contour_layer_names, template))
+        case "environment":
+            template_dict.update(update_layer_info(environment_layer_names, template))
+        case "hcp":
+            template_dict.update(update_layer_info(hcp_butterfly_layer_names, template))
         case "hpsv":
             template_dict.update(update_layer_info(hpsv_layer_names, template))
         case "natural":

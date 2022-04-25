@@ -4656,6 +4656,3487 @@
         ],
         "title": "Downtown Between Dixon Creek and Marys: {REACH_CD}"
     },
+    "contours_100ft_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpressionInfo": {
+                        "expression": "Concatenate($feature[\"ELEV\"], \" ft\")"
+                    },
+                    "labelPlacement": "esriServerLinePlacementCenterAlong",
+                    "maxScale": 12000,
+                    "minScale": 100000,
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            115,
+                            0,
+                            0,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial Narrow",
+                            "size": 8.25,
+                            "style": "italic"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.75,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        115,
+                        0,
+                        0,
+                        255
+                    ],
+                    "style": "esriSLSSolid",
+                    "type": "esriSLS",
+                    "width": 0.56
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 1.1666666666666667,
+                                "value": 4513.988705
+                            },
+                            {
+                                "size": 0.5833333333333334,
+                                "value": 36111.909643
+                            },
+                            {
+                                "size": 0.4375,
+                                "value": 288895.277144
+                            },
+                            {
+                                "size": 0.2916666666666667,
+                                "value": 2311162.217155
+                            }
+                        ],
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
+    },
+    "contours_100ft_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID",
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "ELEV",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "ELEV",
+                "visible": true
+            },
+            {
+                "fieldName": "ID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "ID",
+                "visible": true
+            },
+            {
+                "fieldName": "Shape_Length",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape_Length",
+                "visible": false
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "ELEV",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "ELEV",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ID",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "ID",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "100-ft Contours: {ID}"
+    },
+    "contours_10ft_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpressionInfo": {
+                        "expression": "Concatenate($feature[\"ELEV\"], \" ft\")"
+                    },
+                    "labelPlacement": "esriServerLinePlacementCenterAlong",
+                    "maxScale": 0,
+                    "minScale": 12000,
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            115,
+                            0,
+                            0,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial Narrow",
+                            "size": 8.25,
+                            "style": "italic"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.75,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        115,
+                        0,
+                        0,
+                        255
+                    ],
+                    "style": "esriSLSSolid",
+                    "type": "esriSLS",
+                    "width": 0.56
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 1.2537313432835817,
+                                "value": 282.124294
+                            },
+                            {
+                                "size": 0.6268656716417909,
+                                "value": 2256.994353
+                            },
+                            {
+                                "size": 0.47014925373134314,
+                                "value": 18055.954822
+                            },
+                            {
+                                "size": 0.31343283582089543,
+                                "value": 144447.638572
+                            }
+                        ],
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
+    },
+    "contours_10ft_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID",
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "ELEV",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "ELEV",
+                "visible": true
+            },
+            {
+                "fieldName": "ID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "ID",
+                "visible": true
+            },
+            {
+                "fieldName": "Shape_Length",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape_Length",
+                "visible": false
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "ELEV",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "ELEV",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ID",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "ID",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "10-ft Contours: {ID}"
+    },
+    "contours_20ft_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpressionInfo": {
+                        "expression": "Concatenate($feature[\"ELEV\"], \" ft\")"
+                    },
+                    "labelPlacement": "esriServerLinePlacementCenterAlong",
+                    "maxScale": 0,
+                    "minScale": 24000,
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            250,
+                            168,
+                            62,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 8.25
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    }
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        205,
+                        170,
+                        102,
+                        255
+                    ],
+                    "style": "esriSLSSolid",
+                    "type": "esriSLS",
+                    "width": 0.38
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 0.7882861024844721,
+                                "value": 1128.497176
+                            },
+                            {
+                                "size": 0.39414305124223603,
+                                "value": 9027.977411
+                            },
+                            {
+                                "size": 0.295607288431677,
+                                "value": 72223.819286
+                            },
+                            {
+                                "size": 0.19707152562111802,
+                                "value": 577790.554289
+                            }
+                        ],
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
+    },
+    "contours_20ft_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID",
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "ELEV",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "ELEV",
+                "visible": true
+            },
+            {
+                "fieldName": "ID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "ID",
+                "visible": true
+            },
+            {
+                "fieldName": "Shape_Length",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape_Length",
+                "visible": false
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "ELEV",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "ELEV",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ID",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "ID",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "20-ft Contours: {ID}"
+    },
+    "contours_2ft_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[ELEV] CONCAT \" ft\"",
+                    "labelExpressionInfo": {
+                        "expression": "Concatenate($feature[\"ELEV\"], \" ft\")"
+                    },
+                    "labelPlacement": "esriServerLinePlacementCenterAlong",
+                    "maxScale": 0,
+                    "minScale": 2400,
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            250,
+                            168,
+                            62,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial Narrow",
+                            "size": 8.25,
+                            "style": "italic"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.75,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ],
+            "renderer": {
+                "description": "",
+                "label": "",
+                "symbol": {
+                    "color": [
+                        205,
+                        170,
+                        102,
+                        255
+                    ],
+                    "style": "esriSLSSolid",
+                    "type": "esriSLS",
+                    "width": 0.38
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 0.76,
+                                "value": 564.248588
+                            },
+                            {
+                                "size": 0.38,
+                                "value": 4513.988705
+                            },
+                            {
+                                "size": 0.285,
+                                "value": 36111.909643
+                            },
+                            {
+                                "size": 0.19,
+                                "value": 288895.277144
+                            }
+                        ],
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        },
+        "featureReduction": null
+    },
+    "contours_2ft_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID",
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "ELEV",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "ELEV",
+                "visible": true
+            },
+            {
+                "fieldName": "ID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "ID",
+                "visible": true
+            },
+            {
+                "fieldName": "Shape_Length",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape_Length",
+                "visible": false
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "ELEV",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "ELEV",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ID",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "ID",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "2-ft Contours: {ID}"
+    },
+    "environment_bc_eq_slope_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[SLOPE_H]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"SLOPE_H\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 0,
+                    "minScale": 12186.897029,
+                    "name": "High",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            255,
+                            64,
+                            64,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 8.25,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 1,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "where": "SLOPE_H = 'High'"
+                },
+                {
+                    "labelExpression": "[SLOPE_H]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"SLOPE_H\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 0,
+                    "minScale": 12936.804153,
+                    "name": "Very High",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            255,
+                            64,
+                            64,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 8.25,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 1,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "where": "SLOPE_H = 'Very high'"
+                }
+            ]
+        }
+    },
+    "environment_bc_eq_slope_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "FID",
+                "label": "FID",
+                "visible": false
+            },
+            {
+                "fieldName": "SLOPE_H",
+                "isEditable": true,
+                "label": "SLOPE_H",
+                "visible": true
+            },
+            {
+                "fieldName": "TYPE",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "TYPE",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "SLOPE_H",
+                        "isEditable": true,
+                        "label": "SLOPE_H",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "TYPE",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "TYPE",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "County Slope: {SLOPE_H}"
+    },
+    "environment_bc_landslide_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[SLOPE_H]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"SLOPE_H\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 0,
+                    "minScale": 26037.052356,
+                    "name": "High",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            255,
+                            64,
+                            64,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 8.25,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 1,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "where": "SLOPE_H = 'High'"
+                },
+                {
+                    "labelExpression": "[SLOPE_H]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"SLOPE_H\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 0,
+                    "minScale": 28374.127895,
+                    "name": "Existing",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            255,
+                            64,
+                            64,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 8.25,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 1,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "where": "SLOPE_H = 'Existing'"
+                }
+            ]
+        }
+    },
+    "environment_bc_landslide_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "FID",
+                "label": "FID",
+                "visible": false
+            },
+            {
+                "fieldName": "SLOPE_H",
+                "isEditable": true,
+                "label": "SLOPE_H",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "SLOPE_H",
+                        "isEditable": true,
+                        "label": "SLOPE_H",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "County Landslide Risk: {SLOPE_H}"
+    },
+    "environment_big_game_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[TYPE]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"TYPE\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "name": "Major",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            224,
+                            59,
+                            153,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 8.25,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true,
+                    "where": "TYPE = 'Major Big Game Range'"
+                },
+                {
+                    "labelExpression": "[TYPE]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"TYPE\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "name": "Peripheral",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            75,
+                            100,
+                            201,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 8.25,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true,
+                    "where": "TYPE = 'Peripheral Big Game Range'"
+                },
+                {
+                    "labelExpression": "[TYPE]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"TYPE\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "name": "None",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            0,
+                            137,
+                            119,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 8.25,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true,
+                    "where": "TYPE = 'NOT Big Game Range'"
+                }
+            ]
+        }
+    },
+    "environment_big_game_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "FID",
+                "label": "FID",
+                "visible": false
+            },
+            {
+                "fieldName": "AREA",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "AREA",
+                "visible": true
+            },
+            {
+                "fieldName": "GAME2_",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "GAME2_",
+                "visible": true
+            },
+            {
+                "fieldName": "GAME2_ID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "GAME2_ID",
+                "visible": true
+            },
+            {
+                "fieldName": "PERIMETER",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "PERIMETER",
+                "visible": false
+            },
+            {
+                "fieldName": "TYPE",
+                "isEditable": true,
+                "label": "TYPE",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "AREA",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "AREA",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "GAME2_",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "GAME2_",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "GAME2_ID",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "GAME2_ID",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "TYPE",
+                        "isEditable": true,
+                        "label": "TYPE",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Big Game Range: {TYPE}"
+    },
+    "environment_earthquake_faults_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpressionInfo": {
+                        "expression": "\"Faultline\""
+                    },
+                    "labelPlacement": "esriServerLinePlacementCenterAlong",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            224,
+                            59,
+                            153,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 9.75,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    }
+                }
+            ]
+        }
+    },
+    "environment_earthquake_faults_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "FID",
+                "label": "FID",
+                "visible": false
+            },
+            {
+                "fieldName": "ID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "ID",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "ID",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "ID",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Earthquake Faults (advisory only): {ID}"
+    },
+    "environment_hydro_hucs_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[SUBWAT_NAM]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"SUBWAT_NAM\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            75,
+                            100,
+                            201,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 7.5,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    }
+                }
+            ]
+        }
+    },
+    "environment_hydro_hucs_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID_1",
+                "label": "OBJECTID_1",
+                "visible": false
+            },
+            {
+                "fieldName": "ArcGIS_Public.SDE.Hydro_HUCS.AREA",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "ArcGIS_Public.SDE.Hydro_HUCS.AREA",
+                "visible": true
+            },
+            {
+                "fieldName": "HECTARES",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "HECTARES",
+                "visible": true
+            },
+            {
+                "fieldName": "HUC_NUM",
+                "isEditable": true,
+                "label": "HUC_NUM",
+                "visible": true
+            },
+            {
+                "fieldName": "OBJECTID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "PERIMETER",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "PERIMETER",
+                "visible": false
+            },
+            {
+                "fieldName": "REGION",
+                "isEditable": true,
+                "label": "REGION",
+                "visible": true
+            },
+            {
+                "fieldName": "Shape_Leng",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape_Leng",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape.STArea()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STArea()",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape.STLength()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STLength()",
+                "visible": false
+            },
+            {
+                "fieldName": "SUBWAT_NAM",
+                "isEditable": true,
+                "label": "SUBWAT_NAM",
+                "visible": true
+            },
+            {
+                "fieldName": "WATERSHED_",
+                "isEditable": true,
+                "label": "WATERSHED_",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "ArcGIS_Public.SDE.Hydro_HUCS.AREA",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "ArcGIS_Public.SDE.Hydro_HUCS.AREA",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "HECTARES",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "HECTARES",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "HUC_NUM",
+                        "isEditable": true,
+                        "label": "HUC_NUM",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "REGION",
+                        "isEditable": true,
+                        "label": "REGION",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SUBWAT_NAM",
+                        "isEditable": true,
+                        "label": "SUBWAT_NAM",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "WATERSHED_",
+                        "isEditable": true,
+                        "label": "WATERSHED_",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "HUCS Watershed Boundaries: {HUC_NUM}"
+    },
+    "environment_hydro_lines_label": {
+        "definitionExpression": null,
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[NAME]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"NAME\"]"
+                    },
+                    "labelPlacement": "esriServerLinePlacementAboveAlong",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            0,
+                            169,
+                            230,
+                            255
+                        ],
+                        "font": {
+                            "family": "Book Antiqua",
+                            "size": 9,
+                            "style": "italic"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "left",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ]
+        },
+        "minScale": 165728.07588
+    },
+    "environment_hydro_lines_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID",
+                "label": "FID",
+                "visible": false
+            },
+            {
+                "fieldName": "NAME",
+                "isEditable": true,
+                "label": "NAME",
+                "visible": true
+            },
+            {
+                "fieldName": "HUC_NUM",
+                "isEditable": true,
+                "label": "HUC_NUM",
+                "visible": true
+            },
+            {
+                "fieldName": "HYDRO_TYPE",
+                "isEditable": true,
+                "label": "HYDRO_TYPE",
+                "visible": true
+            },
+            {
+                "fieldName": "LENGTH",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "LENGTH",
+                "visible": true
+            },
+            {
+                "fieldName": "Shape.STLength()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STLength()",
+                "visible": false
+            },
+            {
+                "fieldName": "SOURCE",
+                "isEditable": true,
+                "label": "SOURCE",
+                "visible": true
+            },
+            {
+                "fieldName": "TYPE",
+                "isEditable": true,
+                "label": "TYPE",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "NAME",
+                        "isEditable": true,
+                        "label": "NAME",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "HUC_NUM",
+                        "isEditable": true,
+                        "label": "HUC_NUM",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "HYDRO_TYPE",
+                        "isEditable": true,
+                        "label": "HYDRO_TYPE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "LENGTH",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "LENGTH",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SOURCE",
+                        "isEditable": true,
+                        "label": "SOURCE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "TYPE",
+                        "isEditable": true,
+                        "label": "TYPE",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Rivers & Streams: {NAME}"
+    },
+    "environment_hydro_polys_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpressionInfo": {
+                        "expression": "Concatenate($feature[\"NAME\"], \" \", $feature[\"TYPE\"])"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 0,
+                    "minScale": 19524.588828,
+                    "name": "Pond",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            255,
+                            64,
+                            64,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 6.75,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "where": "TYPE = 'Pond'"
+                },
+                {
+                    "labelExpressionInfo": {
+                        "expression": "Concatenate($feature[\"NAME\"], \" \", $feature[\"TYPE\"])"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "name": "Lake",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            67,
+                            171,
+                            235,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 6.75,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.75,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "where": "TYPE = 'Lake'"
+                },
+                {
+                    "labelExpressionInfo": {
+                        "expression": "Concatenate($feature[\"NAME\"], \" \", $feature[\"TYPE\"])"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 0,
+                    "minScale": 242641.081131,
+                    "name": "Creek",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            115,
+                            181,
+                            102,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 6.75,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "where": "TYPE = 'Creek'"
+                },
+                {
+                    "labelExpressionInfo": {
+                        "expression": "Concatenate($feature[\"NAME\"], \" \", $feature[\"TYPE\"])"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "name": "River",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            152,
+                            104,
+                            237,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 6.75,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "where": "TYPE = 'River'"
+                },
+                {
+                    "labelExpressionInfo": {
+                        "expression": "Concatenate($feature[\"NAME\"], \" \", $feature[\"TYPE\"])"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "name": "Slough",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            255,
+                            130,
+                            2,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 6.75,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "where": "TYPE = 'Slough'"
+                },
+                {
+                    "labelExpressionInfo": {
+                        "expression": "Concatenate($feature[\"NAME\"], \" \", $feature[\"TYPE\"])"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 0,
+                    "minScale": 20999.6045,
+                    "name": "Pond2",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            250,
+                            168,
+                            62,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 6.75,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "where": "TYPE = ' Pond'"
+                }
+            ],
+            "renderer": {
+                "defaultLabel": "Other",
+                "defaultSymbol": {
+                    "color": [
+                        170,
+                        170,
+                        170,
+                        255
+                    ],
+                    "outline": {
+                        "color": [
+                            153,
+                            153,
+                            153,
+                            64
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 0.75
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "field1": "TYPE",
+                "type": "uniqueValue",
+                "uniqueValueInfos": [
+                    {
+                        "label": "Pond",
+                        "symbol": {
+                            "color": [
+                                237,
+                                81,
+                                81,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    153,
+                                    153,
+                                    153,
+                                    64
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 0.75
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "Pond"
+                    },
+                    {
+                        "label": "Lake",
+                        "symbol": {
+                            "color": [
+                                20,
+                                158,
+                                206,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    153,
+                                    153,
+                                    153,
+                                    64
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 0.75
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "Lake"
+                    },
+                    {
+                        "label": "Creek",
+                        "symbol": {
+                            "color": [
+                                167,
+                                198,
+                                54,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    153,
+                                    153,
+                                    153,
+                                    64
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 0.75
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "Creek"
+                    },
+                    {
+                        "label": "River",
+                        "symbol": {
+                            "color": [
+                                158,
+                                85,
+                                156,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    153,
+                                    153,
+                                    153,
+                                    64
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 0.75
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "River"
+                    },
+                    {
+                        "label": "Slough",
+                        "symbol": {
+                            "color": [
+                                252,
+                                146,
+                                31,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    153,
+                                    153,
+                                    153,
+                                    64
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 0.75
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": "Slough"
+                    },
+                    {
+                        "label": " Pond",
+                        "symbol": {
+                            "color": [
+                                255,
+                                222,
+                                62,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    153,
+                                    153,
+                                    153,
+                                    64
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 0.75
+                            },
+                            "style": "esriSFSSolid",
+                            "type": "esriSFS"
+                        },
+                        "value": " Pond"
+                    }
+                ],
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 2,
+                                "value": 7305
+                            },
+                            {
+                                "size": 1,
+                                "value": 22829
+                            },
+                            {
+                                "size": 0.5,
+                                "value": 91316
+                            },
+                            {
+                                "size": 0,
+                                "value": 182632
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
+    },
+    "environment_hydro_polys_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID",
+                "label": "FID",
+                "visible": false
+            },
+            {
+                "fieldName": "NAME",
+                "isEditable": true,
+                "label": "NAME",
+                "visible": true
+            },
+            {
+                "fieldName": "ACRES",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "ACRES",
+                "visible": true
+            },
+            {
+                "fieldName": "ArcGIS_Public.SDE.Hydro_polys.AREA",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "ArcGIS_Public.SDE.Hydro_polys.AREA",
+                "visible": true
+            },
+            {
+                "fieldName": "COMMENTS",
+                "isEditable": true,
+                "label": "COMMENTS",
+                "visible": true
+            },
+            {
+                "fieldName": "PERIMETER",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "PERIMETER",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape.STArea()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STArea()",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape.STLength()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STLength()",
+                "visible": false
+            },
+            {
+                "fieldName": "SOURCE",
+                "isEditable": true,
+                "label": "SOURCE",
+                "visible": true
+            },
+            {
+                "fieldName": "TYPE",
+                "isEditable": true,
+                "label": "TYPE",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "NAME",
+                        "isEditable": true,
+                        "label": "NAME",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ACRES",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "ACRES",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ArcGIS_Public.SDE.Hydro_polys.AREA",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "ArcGIS_Public.SDE.Hydro_polys.AREA",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "COMMENTS",
+                        "isEditable": true,
+                        "label": "COMMENTS",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SOURCE",
+                        "isEditable": true,
+                        "label": "SOURCE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "TYPE",
+                        "isEditable": true,
+                        "label": "TYPE",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Water Bodies: {NAME}"
+    },
+    "environment_natural_soils_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[PRIMSOILNA]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"PRIMSOILNA\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            51,
+                            51,
+                            51,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 7.5
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    }
+                }
+            ],
+            "renderer": {
+                "symbol": {
+                    "color": [
+                        227,
+                        139,
+                        79,
+                        0
+                    ],
+                    "outline": {
+                        "color": [
+                            224,
+                            59,
+                            153,
+                            64
+                        ],
+                        "style": "esriSLSSolid",
+                        "type": "esriSLS",
+                        "width": 0.75
+                    },
+                    "style": "esriSFSSolid",
+                    "type": "esriSFS"
+                },
+                "type": "simple",
+                "visualVariables": [
+                    {
+                        "stops": [
+                            {
+                                "size": 0.7653061224489796,
+                                "value": 16546
+                            },
+                            {
+                                "size": 0.3826530612244898,
+                                "value": 51707
+                            },
+                            {
+                                "size": 0.1913265306122449,
+                                "value": 206826
+                            },
+                            {
+                                "size": 0,
+                                "value": 413653
+                            }
+                        ],
+                        "target": "outline",
+                        "type": "sizeInfo",
+                        "valueExpression": "$view.scale"
+                    }
+                ]
+            }
+        }
+    },
+    "environment_natural_soils_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID",
+                "label": "FID",
+                "visible": false
+            },
+            {
+                "fieldName": "EROSION",
+                "isEditable": true,
+                "label": "EROSION",
+                "visible": true
+            },
+            {
+                "fieldName": "FPROD1",
+                "isEditable": true,
+                "label": "FPROD1",
+                "visible": true
+            },
+            {
+                "fieldName": "FPROD123",
+                "isEditable": true,
+                "label": "FPROD123",
+                "visible": true
+            },
+            {
+                "fieldName": "FPROD2",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "FPROD2",
+                "visible": true
+            },
+            {
+                "fieldName": "FPROD3",
+                "isEditable": true,
+                "label": "FPROD3",
+                "visible": true
+            },
+            {
+                "fieldName": "HIVAL",
+                "isEditable": true,
+                "label": "HIVAL",
+                "visible": true
+            },
+            {
+                "fieldName": "HYDRICCRIT",
+                "isEditable": true,
+                "label": "HYDRICCRIT",
+                "visible": true
+            },
+            {
+                "fieldName": "HYDRICRATI",
+                "isEditable": true,
+                "label": "HYDRICRATI",
+                "visible": true
+            },
+            {
+                "fieldName": "LANDFORM",
+                "isEditable": true,
+                "label": "LANDFORM",
+                "visible": true
+            },
+            {
+                "fieldName": "MU_NAME",
+                "isEditable": true,
+                "label": "MU_NAME",
+                "visible": true
+            },
+            {
+                "fieldName": "MUKEY",
+                "isEditable": true,
+                "label": "MUKEY",
+                "visible": true
+            },
+            {
+                "fieldName": "MUSYM",
+                "isEditable": true,
+                "label": "MUSYM",
+                "visible": true
+            },
+            {
+                "fieldName": "MUSYMNUM",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "MUSYMNUM",
+                "visible": true
+            },
+            {
+                "fieldName": "PRIMLCS_IR",
+                "isEditable": true,
+                "label": "PRIMLCS_IR",
+                "visible": true
+            },
+            {
+                "fieldName": "PRIMLCS_NI",
+                "isEditable": true,
+                "label": "PRIMLCS_NI",
+                "visible": true
+            },
+            {
+                "fieldName": "PRIMPERCEN",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "PRIMPERCEN",
+                "visible": true
+            },
+            {
+                "fieldName": "PRIMSOILNA",
+                "isEditable": true,
+                "label": "PRIMSOILNA",
+                "visible": true
+            },
+            {
+                "fieldName": "Shape.STArea()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STArea()",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape.STLength()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STLength()",
+                "visible": false
+            },
+            {
+                "fieldName": "SHRINK_SW",
+                "isEditable": true,
+                "label": "SHRINK_SW",
+                "visible": true
+            },
+            {
+                "fieldName": "SLOPE",
+                "isEditable": true,
+                "label": "SLOPE",
+                "visible": true
+            },
+            {
+                "fieldName": "SOIL1",
+                "isEditable": true,
+                "label": "SOIL1",
+                "visible": true
+            },
+            {
+                "fieldName": "SOIL2",
+                "isEditable": true,
+                "label": "SOIL2",
+                "visible": true
+            },
+            {
+                "fieldName": "SOIL3",
+                "isEditable": true,
+                "label": "SOIL3",
+                "visible": true
+            },
+            {
+                "fieldName": "ZNDLCS_NIR",
+                "isEditable": true,
+                "label": "ZNDLCS_NIR",
+                "visible": true
+            },
+            {
+                "fieldName": "ZNDLCSUBCL",
+                "isEditable": true,
+                "label": "ZNDLCSUBCL",
+                "visible": true
+            },
+            {
+                "fieldName": "ZNDPERCENT",
+                "isEditable": true,
+                "label": "ZNDPERCENT",
+                "visible": true
+            },
+            {
+                "fieldName": "ZNDSOILNAM",
+                "isEditable": true,
+                "label": "ZNDSOILNAM",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "EROSION",
+                        "isEditable": true,
+                        "label": "EROSION",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "FPROD1",
+                        "isEditable": true,
+                        "label": "FPROD1",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "FPROD123",
+                        "isEditable": true,
+                        "label": "FPROD123",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "FPROD2",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "FPROD2",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "FPROD3",
+                        "isEditable": true,
+                        "label": "FPROD3",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "HIVAL",
+                        "isEditable": true,
+                        "label": "HIVAL",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "HYDRICCRIT",
+                        "isEditable": true,
+                        "label": "HYDRICCRIT",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "HYDRICRATI",
+                        "isEditable": true,
+                        "label": "HYDRICRATI",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "LANDFORM",
+                        "isEditable": true,
+                        "label": "LANDFORM",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "MU_NAME",
+                        "isEditable": true,
+                        "label": "MU_NAME",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "MUKEY",
+                        "isEditable": true,
+                        "label": "MUKEY",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "MUSYM",
+                        "isEditable": true,
+                        "label": "MUSYM",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "MUSYMNUM",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "MUSYMNUM",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "PRIMLCS_IR",
+                        "isEditable": true,
+                        "label": "PRIMLCS_IR",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "PRIMLCS_NI",
+                        "isEditable": true,
+                        "label": "PRIMLCS_NI",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "PRIMPERCEN",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "PRIMPERCEN",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "PRIMSOILNA",
+                        "isEditable": true,
+                        "label": "PRIMSOILNA",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SHRINK_SW",
+                        "isEditable": true,
+                        "label": "SHRINK_SW",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SLOPE",
+                        "isEditable": true,
+                        "label": "SLOPE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SOIL1",
+                        "isEditable": true,
+                        "label": "SOIL1",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SOIL2",
+                        "isEditable": true,
+                        "label": "SOIL2",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SOIL3",
+                        "isEditable": true,
+                        "label": "SOIL3",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ZNDLCS_NIR",
+                        "isEditable": true,
+                        "label": "ZNDLCS_NIR",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ZNDLCSUBCL",
+                        "isEditable": true,
+                        "label": "ZNDLCSUBCL",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ZNDPERCENT",
+                        "isEditable": true,
+                        "label": "ZNDPERCENT",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "ZNDSOILNAM",
+                        "isEditable": true,
+                        "label": "ZNDSOILNAM",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Soils: {MU_NAME}"
+    },
+    "environment_natural_wetlands_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[WETLAND_TY]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"WETLAND_TY\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 0,
+                    "minScale": 41933.369162,
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            51,
+                            51,
+                            51,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 8.25
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    }
+                }
+            ]
+        },
+        "minScale": 0
+    },
+    "environment_natural_wetlands_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "OBJECTID",
+                "label": "FID",
+                "visible": false
+            },
+            {
+                "fieldName": "ATTRIBUTE",
+                "isEditable": true,
+                "label": "ATTRIBUTE",
+                "visible": true
+            },
+            {
+                "fieldName": "Shape_Leng",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape_Leng",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape.STArea()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STArea()",
+                "visible": false
+            },
+            {
+                "fieldName": "Shape.STLength()",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Shape.STLength()",
+                "visible": false
+            },
+            {
+                "fieldName": "WETLAND_TY",
+                "isEditable": true,
+                "label": "WETLAND_TY",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "ATTRIBUTE",
+                        "isEditable": true,
+                        "label": "ATTRIBUTE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "WETLAND_TY",
+                        "isEditable": true,
+                        "label": "WETLAND_TY",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Wetlands - NWI (County backup): {ATTRIBUTE}"
+    },
+    "environment_rip_buff_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "[Stname]",
+                    "labelExpressionInfo": {
+                        "expression": "$feature[\"Stname\"]"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            75,
+                            100,
+                            201,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 9,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    }
+                }
+            ]
+        }
+    },
+    "environment_rip_buff_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "FID",
+                "label": "FID",
+                "visible": false
+            },
+            {
+                "fieldName": "Baeditdate",
+                "format": {
+                    "dateFormat": "longMonthDayYear",
+                    "digitSeparator": false
+                },
+                "isEditable": true,
+                "label": "Baeditdate",
+                "visible": true
+            },
+            {
+                "fieldName": "Baeditname",
+                "isEditable": true,
+                "label": "Baeditname",
+                "visible": true
+            },
+            {
+                "fieldName": "BUFF_DIST",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "BUFF_DIST",
+                "visible": true
+            },
+            {
+                "fieldName": "Comments",
+                "isEditable": true,
+                "label": "Comments",
+                "visible": true
+            },
+            {
+                "fieldName": "Continuity",
+                "isEditable": true,
+                "label": "Continuity",
+                "visible": true
+            },
+            {
+                "fieldName": "District",
+                "isEditable": true,
+                "label": "District",
+                "visible": true
+            },
+            {
+                "fieldName": "Duration",
+                "isEditable": true,
+                "label": "Duration",
+                "visible": true
+            },
+            {
+                "fieldName": "FID_AstStr",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "FID_AstStr",
+                "visible": true
+            },
+            {
+                "fieldName": "Fishpres",
+                "isEditable": true,
+                "label": "Fishpres",
+                "visible": true
+            },
+            {
+                "fieldName": "FLEDITDATE",
+                "format": {
+                    "dateFormat": "longMonthDayYear",
+                    "digitSeparator": false
+                },
+                "isEditable": true,
+                "label": "FLEDITDATE",
+                "visible": true
+            },
+            {
+                "fieldName": "FLEDITNAME",
+                "isEditable": true,
+                "label": "FLEDITNAME",
+                "visible": true
+            },
+            {
+                "fieldName": "FLSOURCE",
+                "isEditable": true,
+                "label": "FLSOURCE",
+                "visible": true
+            },
+            {
+                "fieldName": "FLSURVDATE",
+                "format": {
+                    "dateFormat": "longMonthDayYear",
+                    "digitSeparator": false
+                },
+                "isEditable": true,
+                "label": "FLSURVDATE",
+                "visible": true
+            },
+            {
+                "fieldName": "FLSURVEYOR",
+                "isEditable": true,
+                "label": "FLSURVEYOR",
+                "visible": true
+            },
+            {
+                "fieldName": "FocBUF",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "FocBUF",
+                "visible": true
+            },
+            {
+                "fieldName": "FPA_LABEL",
+                "isEditable": true,
+                "label": "FPA_LABEL",
+                "visible": true
+            },
+            {
+                "fieldName": "Fpasize",
+                "isEditable": true,
+                "label": "Fpasize",
+                "visible": true
+            },
+            {
+                "fieldName": "Fpeditdate",
+                "format": {
+                    "dateFormat": "longMonthDayYear",
+                    "digitSeparator": false
+                },
+                "isEditable": true,
+                "label": "Fpeditdate",
+                "visible": true
+            },
+            {
+                "fieldName": "Fpeditname",
+                "isEditable": true,
+                "label": "Fpeditname",
+                "visible": true
+            },
+            {
+                "fieldName": "FPSURVEYOR",
+                "isEditable": true,
+                "label": "FPSURVEYOR",
+                "visible": true
+            },
+            {
+                "fieldName": "GlobalID",
+                "isEditable": true,
+                "label": "GlobalID",
+                "visible": true
+            },
+            {
+                "fieldName": "HABSRV",
+                "isEditable": true,
+                "label": "HABSRV",
+                "visible": true
+            },
+            {
+                "fieldName": "Int_Type",
+                "isEditable": true,
+                "label": "Int_Type",
+                "visible": true
+            },
+            {
+                "fieldName": "OBJECTID",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "OBJECTID",
+                "visible": false
+            },
+            {
+                "fieldName": "Program",
+                "isEditable": true,
+                "label": "Program",
+                "visible": true
+            },
+            {
+                "fieldName": "SpecBUF",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "SpecBUF",
+                "visible": true
+            },
+            {
+                "fieldName": "Stdatasrc",
+                "isEditable": true,
+                "label": "Stdatasrc",
+                "visible": true
+            },
+            {
+                "fieldName": "Stname",
+                "isEditable": true,
+                "label": "Stname",
+                "visible": true
+            },
+            {
+                "fieldName": "Stream_Cat",
+                "isEditable": true,
+                "label": "Stream_Cat",
+                "visible": true
+            },
+            {
+                "fieldName": "STREAMFLOW",
+                "isEditable": true,
+                "label": "STREAMFLOW",
+                "visible": true
+            },
+            {
+                "fieldName": "Stsrcq",
+                "isEditable": true,
+                "label": "Stsrcq",
+                "visible": true
+            },
+            {
+                "fieldName": "Szeditdate",
+                "format": {
+                    "dateFormat": "longMonthDayYear",
+                    "digitSeparator": false
+                },
+                "isEditable": true,
+                "label": "Szeditdate",
+                "visible": true
+            },
+            {
+                "fieldName": "Szeditname",
+                "isEditable": true,
+                "label": "Szeditname",
+                "visible": true
+            },
+            {
+                "fieldName": "Verfish",
+                "isEditable": true,
+                "label": "Verfish",
+                "visible": true
+            },
+            {
+                "fieldName": "Veridate",
+                "isEditable": true,
+                "label": "Veridate",
+                "visible": true
+            },
+            {
+                "fieldName": "VERIFLOW",
+                "isEditable": true,
+                "label": "VERIFLOW",
+                "visible": true
+            },
+            {
+                "fieldName": "Versource",
+                "isEditable": true,
+                "label": "Versource",
+                "visible": true
+            },
+            {
+                "fieldName": "Watershed",
+                "isEditable": true,
+                "label": "Watershed",
+                "visible": true
+            },
+            {
+                "fieldName": "Watershed_",
+                "isEditable": true,
+                "label": "Watershed_",
+                "visible": true
+            },
+            {
+                "fieldName": "WC_LLID_NR",
+                "isEditable": true,
+                "label": "WC_LLID_NR",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "Baeditdate",
+                        "format": {
+                            "dateFormat": "longMonthDayYear",
+                            "digitSeparator": false
+                        },
+                        "isEditable": true,
+                        "label": "Baeditdate",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Baeditname",
+                        "isEditable": true,
+                        "label": "Baeditname",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "BUFF_DIST",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "BUFF_DIST",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Comments",
+                        "isEditable": true,
+                        "label": "Comments",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Continuity",
+                        "isEditable": true,
+                        "label": "Continuity",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "District",
+                        "isEditable": true,
+                        "label": "District",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Duration",
+                        "isEditable": true,
+                        "label": "Duration",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "FID_AstStr",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "FID_AstStr",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Fishpres",
+                        "isEditable": true,
+                        "label": "Fishpres",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "FLEDITDATE",
+                        "format": {
+                            "dateFormat": "longMonthDayYear",
+                            "digitSeparator": false
+                        },
+                        "isEditable": true,
+                        "label": "FLEDITDATE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "FLEDITNAME",
+                        "isEditable": true,
+                        "label": "FLEDITNAME",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "FLSOURCE",
+                        "isEditable": true,
+                        "label": "FLSOURCE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "FLSURVDATE",
+                        "format": {
+                            "dateFormat": "longMonthDayYear",
+                            "digitSeparator": false
+                        },
+                        "isEditable": true,
+                        "label": "FLSURVDATE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "FLSURVEYOR",
+                        "isEditable": true,
+                        "label": "FLSURVEYOR",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "FocBUF",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "FocBUF",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "FPA_LABEL",
+                        "isEditable": true,
+                        "label": "FPA_LABEL",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Fpasize",
+                        "isEditable": true,
+                        "label": "Fpasize",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Fpeditdate",
+                        "format": {
+                            "dateFormat": "longMonthDayYear",
+                            "digitSeparator": false
+                        },
+                        "isEditable": true,
+                        "label": "Fpeditdate",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Fpeditname",
+                        "isEditable": true,
+                        "label": "Fpeditname",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "FPSURVEYOR",
+                        "isEditable": true,
+                        "label": "FPSURVEYOR",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "GlobalID",
+                        "isEditable": true,
+                        "label": "GlobalID",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "HABSRV",
+                        "isEditable": true,
+                        "label": "HABSRV",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Int_Type",
+                        "isEditable": true,
+                        "label": "Int_Type",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Program",
+                        "isEditable": true,
+                        "label": "Program",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SpecBUF",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "SpecBUF",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Stdatasrc",
+                        "isEditable": true,
+                        "label": "Stdatasrc",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Stname",
+                        "isEditable": true,
+                        "label": "Stname",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Stream_Cat",
+                        "isEditable": true,
+                        "label": "Stream_Cat",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "STREAMFLOW",
+                        "isEditable": true,
+                        "label": "STREAMFLOW",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Stsrcq",
+                        "isEditable": true,
+                        "label": "Stsrcq",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Szeditdate",
+                        "format": {
+                            "dateFormat": "longMonthDayYear",
+                            "digitSeparator": false
+                        },
+                        "isEditable": true,
+                        "label": "Szeditdate",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Szeditname",
+                        "isEditable": true,
+                        "label": "Szeditname",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Verfish",
+                        "isEditable": true,
+                        "label": "Verfish",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Veridate",
+                        "isEditable": true,
+                        "label": "Veridate",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "VERIFLOW",
+                        "isEditable": true,
+                        "label": "VERIFLOW",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Versource",
+                        "isEditable": true,
+                        "label": "Versource",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Watershed",
+                        "isEditable": true,
+                        "label": "Watershed",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Watershed_",
+                        "isEditable": true,
+                        "label": "Watershed_",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "WC_LLID_NR",
+                        "isEditable": true,
+                        "label": "WC_LLID_NR",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "County Riparian Buffer: {Stname}"
+    },
+    "environment_shpo_buff_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpressionInfo": {
+                        "expression": "Concatenate($feature[\"NAME\"], \" SHPO\")"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            255,
+                            209,
+                            89,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 9,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.75,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    }
+                }
+            ]
+        }
+    },
+    "environment_shpo_buff_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "FID",
+                "label": "FID",
+                "visible": false
+            },
+            {
+                "fieldName": "NAME",
+                "isEditable": true,
+                "label": "NAME",
+                "visible": true
+            },
+            {
+                "fieldName": "BUFF_DIST",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "BUFF_DIST",
+                "visible": true
+            },
+            {
+                "fieldName": "HYDRO_TYPE",
+                "isEditable": true,
+                "label": "HYDRO_TYPE",
+                "visible": true
+            },
+            {
+                "fieldName": "LENGTH",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "LENGTH",
+                "visible": true
+            },
+            {
+                "fieldName": "SOURCE",
+                "isEditable": true,
+                "label": "SOURCE",
+                "visible": true
+            },
+            {
+                "fieldName": "SOURCETHM",
+                "isEditable": true,
+                "label": "SOURCETHM",
+                "visible": true
+            },
+            {
+                "fieldName": "TYPE",
+                "isEditable": true,
+                "label": "TYPE",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "NAME",
+                        "isEditable": true,
+                        "label": "NAME",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "BUFF_DIST",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "BUFF_DIST",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "HYDRO_TYPE",
+                        "isEditable": true,
+                        "label": "HYDRO_TYPE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "LENGTH",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "LENGTH",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SOURCE",
+                        "isEditable": true,
+                        "label": "SOURCE",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SOURCETHM",
+                        "isEditable": true,
+                        "label": "SOURCETHM",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "TYPE",
+                        "isEditable": true,
+                        "label": "TYPE",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "SHPO Buffer: {NAME}"
+    },
     "flood_dixon": {
         "fieldInfos": [
             {
@@ -5861,6 +9342,1127 @@
             }
         ],
         "title": "0.2-Foot Floodway: {ID}"
+    },
+    "hcp_butterfly_blue_zone_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpressionInfo": {
+                        "expression": "Concatenate(\"Fenders Blue Zone \", $feature[\"Zone\"])"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            75,
+                            100,
+                            201,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 8.25,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    }
+                }
+            ]
+        }
+    },
+    "hcp_butterfly_blue_zone_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "FID",
+                "label": "FID",
+                "visible": false
+            },
+            {
+                "fieldName": "Area_acre",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Area_acre",
+                "visible": true
+            },
+            {
+                "fieldName": "Area_acres",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "Area_acres",
+                "visible": true
+            },
+            {
+                "fieldName": "Area_ft",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Area_ft",
+                "visible": true
+            },
+            {
+                "fieldName": "Area_ha",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Area_ha",
+                "visible": true
+            },
+            {
+                "fieldName": "Id",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "Id",
+                "visible": true
+            },
+            {
+                "fieldName": "Zone",
+                "isEditable": true,
+                "label": "Zone",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "Area_acre",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "Area_acre",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Area_acres",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "Area_acres",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Area_ft",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "Area_ft",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Area_ha",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "Area_ha",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Id",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "Id",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Zone",
+                        "isEditable": true,
+                        "label": "Zone",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Fenders Blue Zone - Official: {Zone}"
+    },
+    "hcp_butterfly_blue_zone_ugb_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpressionInfo": {
+                        "expression": "Concatenate(\"Fenders Blue Zone \", $feature[\"Zone\"])"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            75,
+                            100,
+                            201,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 8.25,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    }
+                }
+            ]
+        }
+    },
+    "hcp_butterfly_blue_zone_ugb_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "FID",
+                "label": "FID",
+                "visible": false
+            },
+            {
+                "fieldName": "Area_acre",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Area_acre",
+                "visible": true
+            },
+            {
+                "fieldName": "Area_acres",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "Area_acres",
+                "visible": true
+            },
+            {
+                "fieldName": "Area_ft",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Area_ft",
+                "visible": true
+            },
+            {
+                "fieldName": "Area_ha",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "Area_ha",
+                "visible": true
+            },
+            {
+                "fieldName": "Id",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "Id",
+                "visible": true
+            },
+            {
+                "fieldName": "Zone",
+                "isEditable": true,
+                "label": "Zone",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "Area_acre",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "Area_acre",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Area_acres",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "Area_acres",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Area_ft",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "Area_ft",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Area_ha",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "Area_ha",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Id",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "Id",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Zone",
+                        "isEditable": true,
+                        "label": "Zone",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "FendersBlueZones UGB_USFWS: {Zone}"
+    },
+    "hcp_butterfly_kincaid_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpressionInfo": {
+                        "expression": "\"Kincaid Lupine\""
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            255,
+                            209,
+                            89,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 9.75,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            43,
+                            43,
+                            43,
+                            255
+                        ],
+                        "haloSize": 1,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    }
+                }
+            ]
+        }
+    },
+    "hcp_butterfly_kincaid_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "FID",
+                "label": "FID",
+                "visible": false
+            },
+            {
+                "fieldName": "area_ha",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "area_ha",
+                "visible": true
+            },
+            {
+                "fieldName": "area_m2",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "area_m2",
+                "visible": true
+            },
+            {
+                "fieldName": "BUFF_DIST",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "BUFF_DIST",
+                "visible": true
+            },
+            {
+                "fieldName": "Comment",
+                "isEditable": true,
+                "label": "Comment",
+                "visible": true
+            },
+            {
+                "fieldName": "Date_",
+                "format": {
+                    "dateFormat": "longMonthDayYear",
+                    "digitSeparator": false
+                },
+                "isEditable": true,
+                "label": "Date_",
+                "visible": true
+            },
+            {
+                "fieldName": "Id",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "Id",
+                "visible": true
+            },
+            {
+                "fieldName": "Ownership",
+                "isEditable": true,
+                "label": "Ownership",
+                "visible": true
+            },
+            {
+                "fieldName": "shape_area",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "shape_area",
+                "visible": false
+            },
+            {
+                "fieldName": "Site",
+                "isEditable": true,
+                "label": "Site",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "area_ha",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "area_ha",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "area_m2",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "area_m2",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "BUFF_DIST",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "BUFF_DIST",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Comment",
+                        "isEditable": true,
+                        "label": "Comment",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Date_",
+                        "format": {
+                            "dateFormat": "longMonthDayYear",
+                            "digitSeparator": false
+                        },
+                        "isEditable": true,
+                        "label": "Date_",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Id",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "Id",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Ownership",
+                        "isEditable": true,
+                        "label": "Ownership",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Site",
+                        "isEditable": true,
+                        "label": "Site",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Kincaid Lupines: {Comment}"
+    },
+    "hcp_butterfly_nectar_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "\"Inside\" CONCAT  NEWLINE  CONCAT \"Nectar Zone\"",
+                    "labelExpressionInfo": {
+                        "expression": "\"Nectar Zone\""
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            255,
+                            170,
+                            0,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 10.5,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            43,
+                            43,
+                            43,
+                            255
+                        ],
+                        "haloSize": 0.75,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true
+                }
+            ]
+        }
+    },
+    "hcp_butterfly_nectar_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "FID",
+                "label": "FID",
+                "visible": false
+            },
+            {
+                "fieldName": "area_ha",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "area_ha",
+                "visible": true
+            },
+            {
+                "fieldName": "area_m2",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "area_m2",
+                "visible": true
+            },
+            {
+                "fieldName": "BUFF_DIST",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "BUFF_DIST",
+                "visible": true
+            },
+            {
+                "fieldName": "Comment",
+                "isEditable": true,
+                "label": "Comment",
+                "visible": true
+            },
+            {
+                "fieldName": "Date_",
+                "format": {
+                    "dateFormat": "longMonthDayYear",
+                    "digitSeparator": false
+                },
+                "isEditable": true,
+                "label": "Date_",
+                "visible": true
+            },
+            {
+                "fieldName": "Id",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "Id",
+                "visible": true
+            },
+            {
+                "fieldName": "Ownership",
+                "isEditable": true,
+                "label": "Ownership",
+                "visible": true
+            },
+            {
+                "fieldName": "shape_area",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                },
+                "isEditable": true,
+                "label": "shape_area",
+                "visible": false
+            },
+            {
+                "fieldName": "Site",
+                "isEditable": true,
+                "label": "Site",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "area_ha",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "area_ha",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "area_m2",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "area_m2",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "BUFF_DIST",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 2
+                        },
+                        "isEditable": true,
+                        "label": "BUFF_DIST",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Comment",
+                        "isEditable": true,
+                        "label": "Comment",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Date_",
+                        "format": {
+                            "dateFormat": "longMonthDayYear",
+                            "digitSeparator": false
+                        },
+                        "isEditable": true,
+                        "label": "Date_",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Id",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "Id",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Ownership",
+                        "isEditable": true,
+                        "label": "Ownership",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Site",
+                        "isEditable": true,
+                        "label": "Site",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Nectar Zone: {BUFF_DIST}"
+    },
+    "hcp_butterfly_surveyed_label": {
+        "drawingInfo": {
+            "labelingInfo": [
+                {
+                    "labelExpression": "\"SURVEY\" CONCAT  NEWLINE  CONCAT [SurveyDate] CONCAT  NEWLINE  CONCAT \"Expires: \" CONCAT [Expiration] CONCAT  NEWLINE  CONCAT \"Lupine: \" CONCAT [Lupine] CONCAT  NEWLINE  CONCAT \"Nectar: \" CONCAT [Nectar]",
+                    "labelExpressionInfo": {
+                        "expression": "Concatenate(\"Valid to \", Year($feature[\"Expiration\"]), '\\n',\n    \"Lupine \", $feature[\"Lupine\"], \"\\n\",\n    \"Nectar \", $feature[\"Nectar\"])"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 0,
+                    "minScale": 24000,
+                    "name": "Valid",
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            115,
+                            181,
+                            102,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 8.25,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rightToLeft": false,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "bottom",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "useCodedValues": true,
+                    "where": "Expiration > timestamp '2022-04-25 06:59:59'"
+                },
+                {
+                    "labelExpressionInfo": {
+                        "expression": "Concatenate(\"Expired \", Year($feature[\"Expiration\"]), '\\n',\n    \"Lupine \", $feature[\"Lupine\"], \"\\n\",\n    \"Nectar \", $feature[\"Nectar\"])"
+                    },
+                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 0,
+                    "minScale": 26999.261497,
+                    "repeatLabel": true,
+                    "symbol": {
+                        "angle": 0,
+                        "color": [
+                            255,
+                            64,
+                            64,
+                            255
+                        ],
+                        "font": {
+                            "family": "Arial",
+                            "size": 8.25,
+                            "weight": "bold"
+                        },
+                        "haloColor": [
+                            255,
+                            255,
+                            255,
+                            255
+                        ],
+                        "haloSize": 0.375,
+                        "horizontalAlignment": "center",
+                        "kerning": true,
+                        "rotated": false,
+                        "text": "",
+                        "type": "esriTS",
+                        "verticalAlignment": "baseline",
+                        "xoffset": 0,
+                        "yoffset": 0
+                    },
+                    "where": "Expiration < timestamp '2022-04-24 07:00:00'"
+                }
+            ],
+            "renderer": {
+                "field1": "Status",
+                "fieldDelimiter": ",",
+                "type": "uniqueValue",
+                "uniqueValueInfos": [
+                    {
+                        "description": "",
+                        "label": "Expired",
+                        "symbol": {
+                            "color": [
+                                255,
+                                127,
+                                127,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    188,
+                                    0,
+                                    0,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 0.4
+                            },
+                            "style": "esriSFSBackwardDiagonal",
+                            "type": "esriSFS"
+                        },
+                        "value": "Expired"
+                    },
+                    {
+                        "description": "",
+                        "label": "Valid",
+                        "symbol": {
+                            "color": [
+                                109,
+                                187,
+                                67,
+                                255
+                            ],
+                            "outline": {
+                                "color": [
+                                    56,
+                                    168,
+                                    0,
+                                    255
+                                ],
+                                "style": "esriSLSSolid",
+                                "type": "esriSLS",
+                                "width": 1
+                            },
+                            "style": "esriSFSBackwardDiagonal",
+                            "type": "esriSFS"
+                        },
+                        "value": "Valid"
+                    }
+                ]
+            }
+        }
+    },
+    "hcp_butterfly_surveyed_popup": {
+        "fieldInfos": [
+            {
+                "fieldName": "FID",
+                "label": "FID",
+                "visible": false
+            },
+            {
+                "fieldName": "Area_acres",
+                "format": {
+                    "digitSeparator": true,
+                    "places": 0
+                },
+                "isEditable": true,
+                "label": "Area_acres",
+                "visible": true
+            },
+            {
+                "fieldName": "Comment_1",
+                "isEditable": true,
+                "label": "Comment_1",
+                "visible": true
+            },
+            {
+                "fieldName": "Comment_2",
+                "isEditable": true,
+                "label": "Comment_2",
+                "visible": true
+            },
+            {
+                "fieldName": "Expiration",
+                "format": {
+                    "dateFormat": "longMonthDayYear",
+                    "digitSeparator": false
+                },
+                "isEditable": true,
+                "label": "Expiration",
+                "visible": true
+            },
+            {
+                "fieldName": "Lupine",
+                "isEditable": true,
+                "label": "Lupine",
+                "visible": true
+            },
+            {
+                "fieldName": "Lupine_Zon",
+                "isEditable": true,
+                "label": "Lupine_Zon",
+                "visible": true
+            },
+            {
+                "fieldName": "MapTaxlot",
+                "isEditable": true,
+                "label": "MapTaxlot",
+                "visible": true
+            },
+            {
+                "fieldName": "Nectar",
+                "isEditable": true,
+                "label": "Nectar",
+                "visible": true
+            },
+            {
+                "fieldName": "Nectr_Zone",
+                "isEditable": true,
+                "label": "Nectr_Zone",
+                "visible": true
+            },
+            {
+                "fieldName": "Owner",
+                "isEditable": true,
+                "label": "Owner",
+                "visible": true
+            },
+            {
+                "fieldName": "Site_code",
+                "isEditable": true,
+                "label": "Site_code",
+                "visible": true
+            },
+            {
+                "fieldName": "Status",
+                "isEditable": true,
+                "label": "Status",
+                "visible": true
+            },
+            {
+                "fieldName": "SurveyDate",
+                "format": {
+                    "dateFormat": "longMonthDayYear",
+                    "digitSeparator": false
+                },
+                "isEditable": true,
+                "label": "SurveyDate",
+                "visible": true
+            },
+            {
+                "fieldName": "Surveyor",
+                "isEditable": true,
+                "label": "Surveyor",
+                "visible": true
+            }
+        ],
+        "popupElements": [
+            {
+                "description": "",
+                "fieldInfos": [
+                    {
+                        "fieldName": "Area_acres",
+                        "format": {
+                            "digitSeparator": true,
+                            "places": 0
+                        },
+                        "isEditable": true,
+                        "label": "Area_acres",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Comment_1",
+                        "isEditable": true,
+                        "label": "Comment_1",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Comment_2",
+                        "isEditable": true,
+                        "label": "Comment_2",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Expiration",
+                        "format": {
+                            "dateFormat": "longMonthDayYear",
+                            "digitSeparator": false
+                        },
+                        "isEditable": true,
+                        "label": "Expiration",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Lupine",
+                        "isEditable": true,
+                        "label": "Lupine",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Lupine_Zon",
+                        "isEditable": true,
+                        "label": "Lupine_Zon",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "MapTaxlot",
+                        "isEditable": true,
+                        "label": "MapTaxlot",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Nectar",
+                        "isEditable": true,
+                        "label": "Nectar",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Nectr_Zone",
+                        "isEditable": true,
+                        "label": "Nectr_Zone",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Owner",
+                        "isEditable": true,
+                        "label": "Owner",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Site_code",
+                        "isEditable": true,
+                        "label": "Site_code",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Status",
+                        "isEditable": true,
+                        "label": "Status",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "SurveyDate",
+                        "format": {
+                            "dateFormat": "longMonthDayYear",
+                            "digitSeparator": false
+                        },
+                        "isEditable": true,
+                        "label": "SurveyDate",
+                        "visible": true
+                    },
+                    {
+                        "fieldName": "Surveyor",
+                        "isEditable": true,
+                        "label": "Surveyor",
+                        "visible": true
+                    }
+                ],
+                "title": "",
+                "type": "fields"
+            }
+        ],
+        "title": "Surveyed Areas: {Owner}"
     },
     "hi_inc_1of9": {
         "fieldInfos": [
