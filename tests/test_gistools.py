@@ -13,17 +13,25 @@ load_dotenv()
 ARCGIS_USERNAME = os.getenv("ARCGIS_USERNAME")
 ARCGIS_PASSWORD = os.getenv("ARCGIS_PASSWORD")
 PYTEST_SKIP = os.getenv("PYTEST_SKIP")
+PYTEST_CREATE = os.getenv("PYTEST_CREATE")
 TEMPLATE_DIR = os.getenv("TEMPLATE_DIR")
 
 TEST_ADDRESS_MAP = "a08fb19797cb4e61b1536fbc4961cce6"
 TEST_ANNO_0020_MAP = "63d113c5b06940bd9acd82eaa740ff31"
 TEST_ANNO_0050_MAP = "39be32a0a607428cb19affee732c64f9"
 TEST_BOUNDARIES_MAP = "3c1a1c04eeb2404380365b00d7d2ecb6"
+TEST_CONTOURS_MAP = "0b7ae5ebff5f4859b6c4696b556ebb47"
 TEST_COUNTY_BASEMAP = "50ef97f3f25742fe9f8954948ad18b63"
+TEST_ENVIRONMENT_MAP = "313f8d220cbe4c40b052a69c942e9bcc"
+TEST_HCP_BUTTERFY_MAP = "9cd23c96be10410ba85c1c9329bd292d"
 TEST_HPSV_MAP = "6c2e1b71533d4755a0b455fef2264fd6"
 TEST_NATURAL_LAYERS_MAP = "9b3770d8ef684e529690f3956cc19e1a"
+TEST_NFI_FEATURES_MAP = "d2608a049bed4d4b8b29c87608110137"
+TEST_NFI_FLOOD_MAP = "23020f6d205c4e27bd28ae183adef5a7"
+TEST_NFI_HAZARD_MAP = "692cf8d0949b40e380decdc2b7ad3b54"
 TEST_NFI_MAP = "df21a6eb07ea439c80092ddcb2cf7108"
 TEST_PPSV_MAP = "2a2bd64af0c747cdafcacf54f94c6e65"
+TEST_RIPARIAN_MAP = "6dc956a2be7847b5a031df1973245f96"
 TEST_SURVEY_MAP = "7ff1b1363e204b0396f56c6270c1bfbc"
 TEST_TAXLOT_MAP = "c98a7f2f24974e09ac1a44017aa5774a"
 TEST_TRANSPORTATION_MAP = "cb212d30a70a468d850a83eb4cc6bc08"
@@ -33,10 +41,17 @@ TEMPLATE_ADDRESS_MAP = "5c507b0f03084f33b8da587cbd4b830b"
 TEMPLATE_ANNO_0020_MAP = "47679a569cd9421d806e981fffa49b72"
 TEMPLATE_ANNO_0050_MAP = "e6ad704ebb53408f8e111d1ace1c45b9"
 TEMPLATE_BOUNDARIES_MAP = "c8595e39c1fe4971819d74e7318d1dbd"
+TEMPLATE_CONTOURS_MAP = "1e0e9975687741a897e2ff4c7dd3b8e0"
+TEMPLATE_ENVIRONMENT_MAP = "a2612a21ccf3458e945ac971390cf5dc"
+TEMPLATE_HCP_BUTTERFY_MAP = "6f3467fcdeea4d839d01bff403a5e891"
 TEMPLATE_HPSV_MAP = "d9b5d23af3044405afe06e8d488d8b64"
 TEMPLATE_NATURAL_LAYERS_MAP = "c172db7be269462f8f1d1e08e9ecc1db"
+TEMPLATE_NFI_FEATURES_MAP = "4b01743efdb94a3fa54e0f542aad987a"
+TEMPLATE_NFI_FLOOD_MAP = "ee08f36f69b24f2599bea34563215a17"
+TEMPLATE_NFI_HAZARD_MAP = "9db5a09c12454347871a522f6af851d8"
 TEMPLATE_NFI_MAP = "c0c19fcc00e9430bb92332e35e19aa13"
 TEMPLATE_PPSV_MAP = "a0e7e1cb85c54fd39b95eed20d1aded9"
+TEMPLATE_RIPARIAN_MAP = "dbeaf45e240a41178879f64751d6954d"
 TEMPLATE_SURVEY_MAP = "28cbe6fcdc7c49cba8f95666644b7fda"
 TEMPLATE_TAXLOT_MAP = "a409c55c9e0440488c4ab3ce5e10659d"
 TEMPLATE_TRANSPORTATION_MAP = "8cd34cff9a43406dae69c69fa42829b9"
@@ -53,10 +68,17 @@ def test_build_template_dictionary():
     )
     address_map = gis.content.get(TEMPLATE_ADDRESS_MAP)
     boundary_map = gis.content.get(TEMPLATE_BOUNDARIES_MAP)
+    contour_map = gis.content.get(TEMPLATE_CONTOURS_MAP)
+    environment_map = gis.content.get(TEMPLATE_ENVIRONMENT_MAP)
+    hcp_map = gis.content.get(TEMPLATE_HCP_BUTTERFY_MAP)
     hpsv_map = gis.content.get(TEMPLATE_HPSV_MAP)
     natural_map = gis.content.get(TEMPLATE_NATURAL_LAYERS_MAP)
+    nfi_features_map = gis.content.get(TEMPLATE_NFI_FEATURES_MAP)
+    nfi_flood_map = gis.content.get(TEMPLATE_NFI_FLOOD_MAP)
+    nfi_hazard_map = gis.content.get(TEMPLATE_NFI_HAZARD_MAP)
     nfi_map = gis.content.get(TEMPLATE_NFI_MAP)
     ppsv_map = gis.content.get(TEMPLATE_PPSV_MAP)
+    riparian_map = gis.content.get(TEMPLATE_RIPARIAN_MAP)
     survey_map = gis.content.get(TEMPLATE_SURVEY_MAP)
     taxlot_map = gis.content.get(TEMPLATE_TAXLOT_MAP)
     transport_map = gis.content.get(TEMPLATE_TRANSPORTATION_MAP)
@@ -66,10 +88,17 @@ def test_build_template_dictionary():
 
     template_dict.update(bc.build_template_dictionary("address", address_map))
     template_dict.update(bc.build_template_dictionary("boundary", boundary_map))
+    template_dict.update(bc.build_template_dictionary("contour", contour_map))
+    template_dict.update(bc.build_template_dictionary("environment", environment_map))
+    template_dict.update(bc.build_template_dictionary("hcp", hcp_map))
     template_dict.update(bc.build_template_dictionary("hpsv", hpsv_map))
     template_dict.update(bc.build_template_dictionary("natural", natural_map))
+    template_dict.update(bc.build_template_dictionary("nfi_features", nfi_features_map))
+    template_dict.update(bc.build_template_dictionary("nfi_flood", nfi_flood_map))
+    template_dict.update(bc.build_template_dictionary("nfi_hazard", nfi_hazard_map))
     template_dict.update(bc.build_template_dictionary("nfi", nfi_map))
     template_dict.update(bc.build_template_dictionary("ppsv", ppsv_map))
+    template_dict.update(bc.build_template_dictionary("riparian", riparian_map))
     template_dict.update(bc.build_template_dictionary("survey", survey_map))
     template_dict.update(bc.build_template_dictionary("taxlot", taxlot_map))
     template_dict.update(bc.build_template_dictionary("transport", transport_map))
@@ -167,21 +196,6 @@ def test_county_basemap():
     gis = GIS(
         "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
     )
-
-    # wm = WebMap()
-    # item_props = {}
-    # item_props.update({"title": "test_county_basemap"})
-    # item_props.update(
-    #     {
-    #         "description": "Test web map for common reference layers for community development planners. Overwritten during tests. Do not use."
-    #     }
-    #  )
-    #  item_props.update({"snippet": "For testing purposes. Do not use."})
-    #  item_props.update({"tags": ["community development", "test"]})
-    #  item_props.update(
-    #      {"serviceItemId": bc.create_layer_id(random.randint(10000, 99999))}
-    #  )
-    #  wm.save(item_props)
     test_item = gis.content.get(TEST_COUNTY_BASEMAP)
     test_map = WebMap(test_item)
     test_layers = test_map.layers
@@ -189,16 +203,6 @@ def test_county_basemap():
         test_map.remove_layer(lyr)
     test_map.update()
     bc.county_basemap(test_item, template)
-
-
-def test_county_basemap_layers():
-    test_group = bc.group_layer("test")
-    bc.county_basemap_layers(test_group)
-    assert test_group["layers"][4]["title"] == "Section Numbers"
-    assert test_group["layers"][3]["title"] == "Sectionlines"
-    assert test_group["layers"][2]["title"] == "Railroads"
-    assert test_group["layers"][1]["title"] == "Roads"
-    assert test_group["layers"][0]["title"] == "TaxlotOwners"
 
 
 def test_county_boundaries():
@@ -272,7 +276,7 @@ def test_address_map():
     PYTEST_SKIP,
     reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
 )
-def test_county_boundaries_map():
+def test_boundaries_map():
     gis = GIS(
         "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
     )
@@ -484,14 +488,35 @@ def test_ppsv_map():
     gis = GIS(
         "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
     )
+    # overwrite test map with new layers
+    test_item = gis.content.get(TEST_PPSV_MAP)
+
+    # comment out if new map (no layers yet)
+    # todo: add logical check for layers
+    test_map = WebMap(test_item)
+    test_layers = test_map.layers
+    for lyr in test_layers:
+        test_map.remove_layer(lyr)
+    test_map.update()
+    bc.test_map_layers(test_item, bc.ppsv_layers, template)
+
+
+@pytest.mark.skipif(
+    PYTEST_SKIP,
+    reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
+)
+def test_riparian_map():
+    gis = GIS(
+        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
+    )
 
     # build template
     # wm = WebMap()
     # item_props = {}
-    # item_props.update({"title": "template_ppsv_map"})
+    # item_props.update({"title": "template_riparian_map"})
     # item_props.update(
     #     {
-    #         "description": "Reference web map of partial protection incentive vegetation layers for testing. Do not use or modify."
+    #         "description": "Reference web map of riparian areas layers for testing. Do not use or modify."
     #     }
     # )
     # item_props.update({"snippet": "For testing purposes. Do not use or modify."})
@@ -506,10 +531,10 @@ def test_ppsv_map():
     # build test map
     # wm = WebMap()
     # item_props = {}
-    # item_props.update({"title": "test_ppsv_map"})
+    # item_props.update({"title": "test_riparian_map"})
     # item_props.update(
     #     {
-    #         "description": "Test web map of partial protection significant vegetation layers for community development planners. Overwritten during testing. Do not use."
+    #         "description": "Test web map of riparian areas layers for community development planners. Overwritten during testing. Do not use."
     #     }
     # )
     # item_props.update({"snippet": "For testing purposes. Do not use."})
@@ -520,7 +545,7 @@ def test_ppsv_map():
     # wm.save(item_props, folder="tests")
 
     # overwrite test map with new layers
-    test_item = gis.content.get(TEST_PPSV_MAP)
+    test_item = gis.content.get(TEST_RIPARIAN_MAP)
 
     # comment out if new map (no layers yet)
     # todo: add logical check for layers
@@ -529,4 +554,180 @@ def test_ppsv_map():
     for lyr in test_layers:
         test_map.remove_layer(lyr)
     test_map.update()
-    bc.test_map_layers(test_item, bc.ppsv_layers, template)
+    bc.test_map_layers(test_item, bc.riparian_layers, template)
+
+
+@pytest.mark.skipif(
+    PYTEST_SKIP,
+    reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
+)
+def test_nfi_features_map():
+    gis = GIS(
+        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
+    )
+    # overwrite test map with new layers
+    test_item = gis.content.get(TEST_NFI_FEATURES_MAP)
+
+    # comment out if new map (no layers yet)
+    # todo: add logical check for layers
+    test_map = WebMap(test_item)
+    test_layers = test_map.layers
+    for lyr in test_layers:
+        test_map.remove_layer(lyr)
+    test_map.update()
+    bc.test_map_layers(test_item, bc.nfi_features_layers, template)
+
+
+@pytest.mark.skipif(
+    PYTEST_SKIP,
+    reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
+)
+def test_nfi_flood_map():
+    gis = GIS(
+        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
+    )
+    # overwrite test map with new layers
+    test_item = gis.content.get(TEST_NFI_FLOOD_MAP)
+
+    # comment out if new map (no layers yet)
+    # todo: add logical check for layers
+    test_map = WebMap(test_item)
+    test_layers = test_map.layers
+    for lyr in test_layers:
+        test_map.remove_layer(lyr)
+    test_map.update()
+    bc.test_map_layers(test_item, bc.nfi_flood_layers, template)
+
+
+@pytest.mark.skipif(
+    PYTEST_SKIP,
+    reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
+)
+def test_nfi_hazard_map():
+    gis = GIS(
+        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
+    )
+    # overwrite test map with new layers
+    test_item = gis.content.get(TEST_NFI_HAZARD_MAP)
+
+    # comment out if new map (no layers yet)
+    # todo: add logical check for layers
+    test_map = WebMap(test_item)
+    test_layers = test_map.layers
+    for lyr in test_layers:
+        test_map.remove_layer(lyr)
+    test_map.update()
+    bc.test_map_layers(test_item, bc.nfi_hazard_layers, template)
+
+
+@pytest.mark.skipif(
+    not PYTEST_CREATE,
+    reason="Creates new files on the ArcGIS server.  Only run to instantiate new tests.",
+)
+def test_new():
+    gis = GIS(
+        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
+    )
+    # build template
+    wm = WebMap()
+    item_props = {}
+    item_props.update({"title": "template_environment_map"})
+    item_props.update(
+        {
+            "description": "Reference web map of environment layers for testing. Do not use or modify."
+        }
+    )
+    item_props.update({"snippet": "For testing purposes. Do not use or modify."})
+    item_props.update(
+        {
+            "tags": [
+                "community development",
+                "template",
+                "test",
+                "environment",
+            ]
+        }
+    )
+    item_props.update(
+        {"serviceItemId": bc.create_layer_id(random.randint(10000, 99999))}
+    )
+    wm.save(item_props, folder="templates")
+
+    # build test map
+    wm = WebMap()
+    item_props = {}
+    item_props.update({"title": "test_environment_map"})
+    item_props.update(
+        {
+            "description": "Test web map of environment layers for community development planners. Overwritten during testing. Do not use."
+        }
+    )
+    item_props.update({"snippet": "For testing purposes. Do not use."})
+    item_props.update({"tags": ["community development", "test", "environment"]})
+    item_props.update(
+        {"serviceItemId": bc.create_layer_id(random.randint(10000, 99999))}
+    )
+    wm.save(item_props, folder="tests")
+
+
+@pytest.mark.skipif(
+    PYTEST_SKIP,
+    reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
+)
+def test_contour_map():
+    gis = GIS(
+        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
+    )
+    # overwrite test map with new layers
+    test_item = gis.content.get(TEST_CONTOURS_MAP)
+
+    # comment out if new map (no layers yet)
+    # todo: add logical check for layers
+    test_map = WebMap(test_item)
+    test_layers = test_map.layers
+    for lyr in test_layers:
+        test_map.remove_layer(lyr)
+    test_map.update()
+    bc.test_map_layers(test_item, bc.contour_layers, template)
+
+
+@pytest.mark.skipif(
+    PYTEST_SKIP,
+    reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
+)
+def test_hcp_butterfly_map():
+    gis = GIS(
+        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
+    )
+    # overwrite test map with new layers
+    test_item = gis.content.get(TEST_HCP_BUTTERFY_MAP)
+
+    # comment out if new map (no layers yet)
+    # todo: add logical check for layers
+    test_map = WebMap(test_item)
+    test_layers = test_map.layers
+    for lyr in test_layers:
+        test_map.remove_layer(lyr)
+    test_map.update()
+    bc.test_map_layers(test_item, bc.hcp_butterfly_layers, template)
+
+
+@pytest.mark.skipif(
+    PYTEST_SKIP,
+    reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
+)
+def test_environment_map():
+    gis = GIS(
+        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
+    )
+    # overwrite test map with new layers
+    test_item = gis.content.get(TEST_ENVIRONMENT_MAP)
+
+    # comment out if new map (no layers yet)
+    # todo: add logical check for layers
+    test_map = WebMap(test_item)
+    test_layers = test_map.layers
+    for lyr in test_layers:
+        test_map.remove_layer(lyr)
+    test_map.update()
+    bc.test_map_layers(test_item, bc.environment_layers, template)
