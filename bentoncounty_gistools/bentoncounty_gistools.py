@@ -48,13 +48,27 @@ def environment_layers(group_lyr, template):
     add_single_layer(name_stub[1], url_list[1], branch, template)
     parent_group["layers"].append(branch)
 
-    add_single_layer(name_stub[6], url_list[6], parent_group, template, "SHPO Buffer")
     add_single_layer(
-        name_stub[7], url_list[7], parent_group, template, "County Riparian Buffer"
+        name_stub[6], url_list[6], parent_group, template, "SHPO Buffer", False
     )
-    add_single_layer(name_stub[4], url_list[4], parent_group, template, "County Slope")
     add_single_layer(
-        name_stub[5], url_list[5], parent_group, template, "County Landslide Risk"
+        name_stub[7],
+        url_list[7],
+        parent_group,
+        template,
+        "County Riparian Buffer",
+        False,
+    )
+    add_single_layer(
+        name_stub[4], url_list[4], parent_group, template, "County Slope", False
+    )
+    add_single_layer(
+        name_stub[5],
+        url_list[5],
+        parent_group,
+        template,
+        "County Landslide Risk",
+        False,
     )
     add_single_layer(
         name_stub[9],
@@ -62,9 +76,10 @@ def environment_layers(group_lyr, template):
         parent_group,
         template,
         "Earthquake Faults (advisory only)",
+        False,
     )
     add_single_layer(
-        name_stub[8], url_list[8], parent_group, template, "Big Game Range"
+        name_stub[8], url_list[8], parent_group, template, "Big Game Range", False
     )
 
     hcp_butterfly_layers(parent_group, template)
@@ -77,7 +92,12 @@ def environment_layers(group_lyr, template):
     branch = group_layer("Wetland")
     branch.update({"visibility": False})
     add_single_layer(
-        name_stub[2], url_list[2], branch, template, "Wetlands - NWI (County Backup)"
+        name_stub[2],
+        url_list[2],
+        branch,
+        template,
+        "Wetlands - NWI (County Backup)",
+        False,
     )
     add_single_layer(
         name_stub[3], url_list[3], branch, template, "Wetlands - NWI (USFWS)"
@@ -303,13 +323,15 @@ def nfi_features_layer_names(post):
     return layer_name
 
 
-def add_single_layer(key_name, url, group_lyr, template, title=None):
+def add_single_layer(key_name, url, group_lyr, template, title=None, visibility=None):
     popup_name = key_name + "_popup"
     label_name = key_name + "_label"
     lyr = MapServiceLayer(url)
     fc = feature_class(lyr, 0.5)
     if title is not None:
         fc.update({"title": title})
+    if visibility is not None:
+        fc.update({"visibility": visibility})
     fc.update({"popupInfo": template[popup_name]})
     fc.update({"layerDefinition": template[label_name]})
     group_lyr["layers"].append(fc)
@@ -665,6 +687,7 @@ def zoning_layers(group_lyr, template):
             fc.update({"title": "Zoning"})
         if fc["title"] == "FEMA_floodplain":
             fc.update({"title": "FEMA Floodplain (County backup)"})
+            fc.update({"visibility": False})
         parent_group["layers"].append(fc)
 
     group_lyr["layers"].append(parent_group)
@@ -710,6 +733,8 @@ def address_layers(group_lyr, template):
             fc.update({"title": "County"})
         if fc["title"] == "Structure_AddressCorvallis":
             fc.update({"title": "Corvallis"})
+        if i in [0, 1]:
+            fc.update({"visibility": False})
         parent_group["layers"].append(fc)
 
     group_lyr["layers"].append(parent_group)
@@ -867,6 +892,9 @@ def transport_layers(group_lyr, template):
         map_lyr = MapServiceLayer(url_list[i])
         fc = feature_class(map_lyr, 0.5)
         fc.update({"layerDefinition": template[label_name[i]]})
+        if i in [0, 2]:
+            # road surface, centerlines
+            fc.update({"visibility": False})
         parent_group["layers"].append(fc)
 
     group_lyr["layers"].append(parent_group)

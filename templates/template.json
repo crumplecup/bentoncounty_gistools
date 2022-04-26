@@ -8070,6 +8070,8 @@
                         "expression": "Concatenate(\"Fenders Blue Zone \", $feature[\"Zone\"])"
                     },
                     "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 0,
+                    "minScale": 21792.012028,
                     "repeatLabel": true,
                     "symbol": {
                         "angle": 0,
@@ -8243,6 +8245,8 @@
                         "expression": "Concatenate(\"Fenders Blue Zone \", $feature[\"Zone\"])"
                     },
                     "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+                    "maxScale": 0,
+                    "minScale": 20376.998585,
                     "repeatLabel": true,
                     "symbol": {
                         "angle": 0,
@@ -8619,7 +8623,6 @@
         "drawingInfo": {
             "labelingInfo": [
                 {
-                    "labelExpression": "\"Inside\" CONCAT  NEWLINE  CONCAT \"Nectar Zone\"",
                     "labelExpressionInfo": {
                         "expression": "\"Nectar Zone\""
                     },
@@ -8829,7 +8832,6 @@
         "drawingInfo": {
             "labelingInfo": [
                 {
-                    "labelExpression": "\"SURVEY\" CONCAT  NEWLINE  CONCAT [SurveyDate] CONCAT  NEWLINE  CONCAT \"Expires: \" CONCAT [Expiration] CONCAT  NEWLINE  CONCAT \"Lupine: \" CONCAT [Lupine] CONCAT  NEWLINE  CONCAT \"Nectar: \" CONCAT [Nectar]",
                     "labelExpressionInfo": {
                         "expression": "Concatenate(\"Valid to \", Year($feature[\"Expiration\"]), '\\n',\n    \"Lupine \", $feature[\"Lupine\"], \"\\n\",\n    \"Nectar \", $feature[\"Nectar\"])"
                     },
