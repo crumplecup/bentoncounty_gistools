@@ -2,7 +2,85 @@ import random
 import string
 from arcgis.mapping import MapServiceLayer
 from arcgis.mapping import MapFeatureLayer
+from arcgis.mapping import MapImageLayer
+from arcgis.mapping import MapRasterLayer
 import bentoncounty_gistools.urls as urls
+
+
+def test_map_group(project_map, layers, template, urls, group, stub):
+    """
+    Build test map of the target layers.
+
+    :param project_map: Web map to update with target layers.
+    :type project_map: Web Map
+    :param template: Web map template for feature layer info.
+    :type template: Dictionary
+    :return: Updates web map to include the target layers.
+    :rtype: None
+    """
+    basemap = group_layer("Base")
+    layers(basemap, template, urls, group, stub)
+    map_def = project_map.get_data()
+    map_def["operationalLayers"].append(basemap)
+    project_map.update({"text": str(map_def)})
+
+
+def define_layer_names(urls, stub):
+    names = []
+    for i in range(0, len(urls)):
+        names.append(stub + "_" + str(i))
+    return names
+
+
+def aerial_imagery(group_lyr):
+    """
+    Append aerial imagery layers to group layer.
+
+    :param group_lyr: Group layer to update with target layers.
+    :type group_lyr: Group layer
+    :return: Updates group layer to include the target layers.
+    :rtype: None
+    """
+    basemap = group_layer("Aerial Imagery")
+    basemap["layers"].append(urls.corvallis_image_2019)
+    basemap["layers"].append(urls.corvallis_image_2021)
+    basemap["layers"].append(urls.esri_image_def)
+    group_lyr["layers"].append(basemap)
+
+
+def test_map_image(project_map, layer_def):
+    """
+    Build test map of the target layers.
+
+    :param project_map: Web map to update with target layers.
+    :type project_map: Web Map
+    :param template: Web map template for feature layer info.
+    :type template: Dictionary
+    :return: Updates web map to include the target layers.
+    :rtype: None
+    """
+    basemap = group_layer("Base")
+    make_image_layer(basemap, layer_def)
+    map_def = project_map.get_data()
+    map_def["operationalLayers"].append(basemap)
+    project_map.update({"text": str(map_def)})
+
+
+def make_image_layer(trunk, layer_def):
+    trunk["layers"].append(layer_def)
+
+
+def define_layers(trunk, template, urls, group, stub):
+    branch = group_layer(group)
+    names = define_layer_names(urls, stub)
+    for i in range(0, len(urls)):
+        lyr = MapImageLayer(urls[i])
+        fc = feature_class(lyr, 0.5)
+        fc.update({"visibility": False})
+        # fc.update({'popupInfo': template[names[i] + '_popup']})
+        # fc.update({'layerDefinition': template[names[i] + '_label']})
+        branch["layers"].append(fc)
+    trunk["layers"].append(branch)
 
 
 def environment_layer_names(post):
@@ -42,11 +120,15 @@ def environment_layers(group_lyr, template):
     parent_group = group_layer("Environment")
     parent_group.update({"visibility": False})
 
+    fema_layers(parent_group)
+
     branch = group_layer("Soil")
     branch.update({"visibility": False})
     add_single_layer(name_stub[0], url_list[0], branch, template, "Hydric Soils (NRCS)")
     add_single_layer(name_stub[1], url_list[1], branch, template)
     parent_group["layers"].append(branch)
+
+    contour_layers(parent_group, template)
 
     add_single_layer(
         name_stub[6], url_list[6], parent_group, template, "SHPO Buffer", False
@@ -328,13 +410,33 @@ def add_single_layer(key_name, url, group_lyr, template, title=None, visibility=
     label_name = key_name + "_label"
     lyr = MapServiceLayer(url)
     fc = feature_class(lyr, 0.5)
-    if title is not None:
+    if title != None:
         fc.update({"title": title})
-    if visibility is not None:
+    if visibility != None:
         fc.update({"visibility": visibility})
     fc.update({"popupInfo": template[popup_name]})
     fc.update({"layerDefinition": template[label_name]})
     group_lyr["layers"].append(fc)
+
+
+def fema_layers(group_lyr):
+    """
+    Add layers for FEMA flood zone to group layer.
+
+    :param group_lyr: Group layer definition target for layers.
+    :return: Updates group layer definition with layers.
+    """
+    url_list = urls.FEMA_NFHL_URLS
+    parent_group = group_layer("FEMA Flood Hazard")
+    parent_group.update({"visibility": True})
+
+    for i in range(0, len(url_list)):
+        map_lyr = MapServiceLayer(url_list[i])
+        fc = feature_class(map_lyr, 0.5)
+        fc.update({"visibility": False})
+        parent_group["layers"].append(fc)
+
+    group_lyr["layers"].append(parent_group)
 
 
 def nfi_features_layers(group_lyr, template):
@@ -529,13 +631,14 @@ def taxlot_layers(group_lyr, template):
     layer_name = taxlot_layer_names("_label")
     url_list = urls.TAXLOT_URLS
     taxlot_group = group_layer("Taxlot Maps")
-    taxlot_group.update({"visibility": False})
+    # taxlot_group.update({"visibility": False})
     for i in range(0, len(url_list)):
         map_lyr = MapServiceLayer(url_list[i])
         fc = feature_class(map_lyr, 0.5)
+        fc.update({"visibility": False})
 
         # customize layer data
-        if fc["title"] is not "Corner - Above":
+        if fc["title"] != "Corner - Above":
             fc.update({"layerDefinition": template[layer_name[i]]})
         if fc["title"] == "FireDistricts":
             fc.update({"title": "Fire Districts"})
@@ -577,6 +680,17 @@ def anno_0050_layers_info(template):
     return new_data
 
 
+def anno_0050_names(post):
+    """
+    Create list of key names for layer definition data.
+    """
+    stub = "anno_0020_"
+    stubs = []
+    for i in range(0, 36):
+        stubs.append(stub + str(i) + post)
+    return stubs
+
+
 def anno_0050_layers(group_lyr, template):
     """
     Add layers for BC taxlot anno 0050 to group layer.
@@ -584,17 +698,19 @@ def anno_0050_layers(group_lyr, template):
     :param group_lyr: Group layer definition target for layers.
     :return: Updates group layer definition with layers.
     """
-    anno_group = group_layer("Anno 0050")
-    # for lyr in urls.ANNO_0020_URLS:
-    # map_lyr = MapServiceLayer(lyr)
-    # fc = feature_class(map_lyr)
-    # fc.update({"visibility": False})
-    # anno_group["layers"].append(fc)
-    lyr = MapServiceLayer(urls.ANNO_0050_URLS[0])
-    fc = feature_class(lyr)
-    anno_group["layers"].append(fc)
+    popup_name = anno_0050_names("_popup")
+    label_name = anno_0050_names("_label")
+    url_list = urls.ANNO_0050_URLS
+    parent_group = group_layer("Anno 0050")
+    parent_group.update({"visibility": False})
+    for i in range(0, len(url_list)):
+        map_lyr = MapImageLayer(url_list[i])
+        fc = feature_class(map_lyr, 0.5)
+        # fc.update({"popupInfo": template[popup_name[i]]})
+        # fc.update({"layerDefinition": template[label_name[i]]})
+        parent_group["layers"].append(fc)
 
-    group_lyr["layers"].append(anno_group)
+    group_lyr["layers"].append(parent_group)
 
 
 def anno_0020_layers_info(template):
@@ -837,10 +953,11 @@ def survey_layers(group_lyr, template):
     label_name = survey_layer_names("_label")
     url_list = urls.SURVEY_URLS
     parent_group = group_layer("Survey")
-    parent_group.update({"visibility": False})
+    # parent_group.update({"visibility": False})
     for i in range(0, len(url_list)):
         map_lyr = MapServiceLayer(url_list[i])
         fc = feature_class(map_lyr, 0.5)
+        fc.update({"visibility": False})
         fc.update({"popupInfo": template[popup_name[i]]})
         fc.update({"layerDefinition": template[label_name[i]]})
         if fc["title"] == "DLC_corner_index":
@@ -934,10 +1051,11 @@ def county_boundaries(group_lyr, template):
     popup_name = boundary_layer_names("_popup")
     url_list = urls.BOUNDARY_URLS
     parent_group = group_layer("Boundaries")
-    parent_group.update({"visibility": False})
+    # parent_group.update({"visibility": False})
     for i in range(0, len(url_list)):
         map_lyr = MapServiceLayer(url_list[i])
         fc = feature_class(map_lyr, 0.5)
+        fc.update({"visibility": False})
         if fc["title"] not in ["County Parks"]:
             fc.update({"layerDefinition": template[label_name[i]]})
         if fc["title"] in ["Zip Codes"]:
@@ -957,6 +1075,7 @@ def county_basemap(project_map, template):
     :rtype: None.
     """
     basemap = group_layer("County Planning Maps")
+    aerial_imagery(basemap)
     environment_layers(basemap, template)
     zoning_layers(basemap, template)
     address_layers(basemap, template)

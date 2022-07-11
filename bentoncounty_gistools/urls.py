@@ -198,7 +198,10 @@ fw_nwi_wetlands = (
 )
 
 # NRCS Hydric Soils
-nrcs_hydric_soils = "https://gisdata.dsl.state.or.us/arcgis/rest/services/Maps/SWI_HydricSoil_2020_B/MapServer/0"
+# nrcs_hydric_soils = "https://gisdata.dsl.state.or.us/arcgis/rest/services/Maps/SWI_HydricSoil_2020_B/MapServer/0"
+nrcs_hydric_soils = (
+    "https://maps.dsl.state.or.us/arcgis/rest/services/HydricSoil/MapServer/0"
+)
 
 # OSU M49 Authorizations
 osu_m49 = "https://lib-gis2.library.oregonstate.edu/arcgis/rest/services/land_use_planning/M49_2018/MapServer/0"
@@ -222,12 +225,69 @@ environment_urls = [
     hydro_hucs,
 ]
 
+
+# aerial imagery
+
+# Corvallis
+
+imagery_corv = (
+    "https://gis.corvallisoregon.gov/pub2/rest/services/Imagery/Ortho_2021/ImageServer"
+)
+imagery_urls = [BC_IMAGERY_2014_URL, imagery_corv]
+
+corvallis_image_2019 = {
+    "id": "CorvallisAGI2019Orthos",
+    "layerType": "ArcGISTiledMapServiceLayer",
+    "url": "https://tiles.arcgis.com/tiles/NNPaUnXVoJt8FVVE/arcgis/rest/services/CorvallisAGI2019Orthos/MapServer",
+    # "url": "https://gis.corvallisoregon.gov/pub2/rest/services/Imagery/Ortho_2019/ImageServer",
+    "visibility": False,
+    "opacity": 1,
+    "title": "Aerial Photo - Corvallis (2019)",
+    "itemId": "b6d1d578364d4d548f741d613a6201df",
+    "showLegend": True,
+    "layers": [],
+}
+
+corvallis_image_2021 = {
+    "id": "Ortho_2021_6642",
+    "layerType": "ArcGISImageServiceLayer",
+    "url": "https://gis.corvallisoregon.gov/pub2/rest/services/Imagery/Ortho_2021/ImageServer",
+    "visibility": False,
+    "opacity": 1,
+    "title": "Aerial Photo - Corvallis (2021)",
+    "itemId": "71adc148d2ec43048fddd3d341ba6d61",
+    "showLegend": True,
+    "layers": [],
+}
+
+# esri
+
+esri_imagery_stub = (
+    "https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/"
+)
+
+esri_imagery_range = range(3, -1, -1)
+esri_imagery_urls = expand_urls(esri_imagery_stub, esri_imagery_range)
+
+esri_image_def = {
+    "id": "World_Imagery_9777",
+    "layerType": "ArcGISTiledMapServiceLayer",
+    "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+    "visibility": False,
+    "opacity": 1,
+    "title": "Aerial Photo - ESRI (2021)",
+    "itemId": "10df2279f9684e4a9f6a7f08febac2a9",
+    "showLegend": True,
+    "layers": [],
+}
+
+
 # FEMA hazards
 
 fema_nfhl_stub = (
     "https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/"
 )
-fema_nfhl_rng = range(1, 32)
+fema_nfhl_rng = [i for i in range(32, -1, -1) if i != 21]
 fema_nfhlwms_stub = (
     "https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHLWMS/MapServer/"
 )
