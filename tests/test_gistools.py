@@ -3,6 +3,9 @@ from arcgis.gis import GIS
 from arcgis.mapping import MapServiceLayer
 from arcgis.mapping import WebMap
 from bentoncounty_gistools import bentoncounty_gistools as bc
+
+# from bentoncounty_gistools import template as temp
+import bentoncounty_gistools as bct
 from bentoncounty_gistools import urls as URLS
 
 import os
@@ -68,6 +71,15 @@ TEMPLATE_ZONING_MAP = "1f417e7ca2c54a8e99ffb7b373c3c229"
     PYTEST_SKIP,
     reason="Only build dictionary when templates have changed.",
 )
+def test_build_template():
+    bct.build_template()
+    print("template successfully built")
+
+
+@pytest.mark.skipif(
+    PYTEST_SKIP,
+    reason="Only build dictionary when templates have changed.",
+)
 def test_build_template_dictionary():
     gis = GIS(
         "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
@@ -76,7 +88,6 @@ def test_build_template_dictionary():
     boundary_map = gis.content.get(TEMPLATE_BOUNDARIES_MAP)
     contour_map = gis.content.get(TEMPLATE_CONTOURS_MAP)
     environment_map = gis.content.get(TEMPLATE_ENVIRONMENT_MAP)
-    esri_imagery_map = gis.content.get(TEMPLATE_ESRI_IMAGERY_MAP)
     hcp_map = gis.content.get(TEMPLATE_HCP_BUTTERFY_MAP)
     hpsv_map = gis.content.get(TEMPLATE_HPSV_MAP)
     nfi_features_map = gis.content.get(TEMPLATE_NFI_FEATURES_MAP)
@@ -95,7 +106,6 @@ def test_build_template_dictionary():
     template_dict.update(bc.build_template_dictionary("boundary", boundary_map))
     template_dict.update(bc.build_template_dictionary("contour", contour_map))
     template_dict.update(bc.build_template_dictionary("environment", environment_map))
-    template_dict.update(bc.build_template_dictionary("esri_imagery", esri_imagery_map))
     template_dict.update(bc.build_template_dictionary("hcp", hcp_map))
     template_dict.update(bc.build_template_dictionary("hpsv", hpsv_map))
     template_dict.update(bc.build_template_dictionary("nfi_features", nfi_features_map))
@@ -655,6 +665,45 @@ def test_corvo_data():
         "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
     )
     # overwrite test map with new layers
-    test_item = gis.content.get("71adc148d2ec43048fddd3d341ba6d61")
+    test_item = gis.content.get("4b01743efdb94a3fa54e0f542aad987a")
     map_def = test_item.get_data()
-    print(map_def)
+
+    ref_list = map_def["operationalLayers"][0]["layers"][0]["layers"][2]
+    print(json.dumps(ref_list, indent=4))
+
+
+def test_riparian_buffer():
+    gis = GIS(
+        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
+    )
+    # overwrite test map with new layers
+    test_item = gis.content.get("35bec34ee4604ee9967ba398dbcc178c")
+    test_map = WebMap(test_item)
+    test_layers = test_map.layers
+    for lyr in test_layers:
+        test_map.remove_layer(lyr)
+    test_map.update()
+
+    basemap = bc.group_layer("Base")
+    url = URLS.RIPARIAN_100ft
+    parent_group = bc.group_layer("Riparian Areas")
+    map_lyr = MapServiceLayer(url)
+    fc = bc.fc_from_fl(map_lyr, 0.5)
+    parent_group["layers"].append(fc)
+
+    basemap["layers"].append(parent_group)
+    map_def = test_item.get_data()
+    map_def["operationalLayers"].append(basemap)
+    test_item.update({"text": str(map_def)})
+
+
+def test_riparian_data():
+    gis = GIS(
+        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
+    )
+    # overwrite test map with new layers
+    test_item = gis.content.get("35bec34ee4604ee9967ba398dbcc178c")
+    test_map = WebMap(test_item)
+    test_layers = test_map.layers
+    for lyr in test_layers:
+        print(lyr.properties)

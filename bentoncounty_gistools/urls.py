@@ -12,6 +12,7 @@ def expand_urls(stub, rng):
     return urls
 
 
+# address layers for planning map
 address_corvo = "https://gis.corvallisoregon.gov/pub2/rest/services/Base/CorvallisAddress/MapServer/0"
 address_stub = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/AddressService/MapServer/"
@@ -30,11 +31,8 @@ appraisal_stub = (
 appraisal_range = range(1, 9)
 APPRAISAL_URLS = expand_urls(appraisal_stub, appraisal_range)
 
-# benton 2014
-BC_IMAGERY_2014_URL = (
-    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Benton_2014/MapServer/0"
-)
 
+# boundaries layer for planning map
 boundary_stub = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/Boundaries/MapServer/"
 )
@@ -129,6 +127,7 @@ transport_stub = "https://gis.co.benton.or.us/arcgis/rest/services/Public/Transp
 transport_range = [1, 3, 2, 4]
 TRANSPORT_URLS = expand_urls(transport_stub, transport_range)
 
+# zoning compliance map
 compliance_stub = "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningCompliance/MapServer/"
 compliance_range = [0, 1, range(8, 16)]
 COMPLIANCE_URLS = expand_urls(compliance_stub, compliance_range)
@@ -139,9 +138,11 @@ shpo_buff = compliance_stub + "10"
 bc_landslide = compliance_stub + "13"
 bc_eq_slope = compliance_stub + "14"
 
+# Blue Fender Butterfly Zone
 butterfly_range = range(7, 2, -1)
 HCP_BUTTERFLY_URLS = expand_urls(compliance_stub, butterfly_range)
 
+# Zoning
 zoning_stub = (
     "https://gis.co.benton.or.us/arcgis/rest/services/Public/ZoningService/MapServer/"
 )
@@ -177,12 +178,26 @@ ppsv_range = range(15, 8, -1)
 NFI_PPSV_URLS = expand_urls(hpsv_stub, ppsv_range)
 
 
+# Corvallis Natural Features Inventory
 nfi_fs_stub = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/NaturalFeaturesInventoryService2022_DRAFT/FeatureServer/"
 riparian_ord = range(29, 23, -1)
 RIPARIAN_URLS = expand_urls(nfi_fs_stub, riparian_ord)
 
+# replace wetlands within raas (squaw creek changed to dunawi creek)
+# Wetlands Within RAAs
+nfi_wwr = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/nfi_locally_significant_wetlands/FeatureServer"
+RIPARIAN_URLS[0] = nfi_wwr
+
+# replace 100ft buffer
+RIPARIAN_URLS[
+    3
+] = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/riparian_buffer_100ft/FeatureServer"
+RIPARIAN_100ft = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/riparian_buffer_100ft/FeatureServer"
+
 features_ord = [33, 31, 3]
 FEATURES_URLS = expand_urls(nfi_fs_stub, features_ord)
+# Locally Significant Wetlands
+nfi_lsw = "https://services5.arcgis.com/U7TbEknoCzTtNGz4/arcgis/rest/services/nfi_locally_significant_wetlands/FeatureServer"
 
 flood_ord = range(44, 35, -1)
 NFI_FLOOD_URLS = expand_urls(nfi_fs_stub, flood_ord)
@@ -229,12 +244,6 @@ environment_urls = [
 # aerial imagery
 
 # Corvallis
-
-imagery_corv = (
-    "https://gis.corvallisoregon.gov/pub2/rest/services/Imagery/Ortho_2021/ImageServer"
-)
-imagery_urls = [BC_IMAGERY_2014_URL, imagery_corv]
-
 corvallis_image_2019 = {
     "id": "CorvallisAGI2019Orthos",
     "layerType": "ArcGISTiledMapServiceLayer",
@@ -302,4 +311,9 @@ CORVALLIS_ADDRESS_URL = "https://gis.corvallisoregon.gov/pub2/rest/services/Base
 # esri
 ESRI_IMAGERY_30CM = (
     "https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/3"
+)
+
+# benton 2014 aerial imagery
+BC_IMAGERY_2014_URL = (
+    "https://gis.co.benton.or.us/arcgis/rest/services/Public/Benton_2014/MapServer/0"
 )

@@ -405,6 +405,20 @@ def nfi_features_layer_names(post):
     return layer_name
 
 
+def add_feature_layer(key_name, url, group_lyr, template, title=None, visibility=None):
+    popup_name = key_name + "_popup"
+    label_name = key_name + "_label"
+    lyr = MapServiceLayer(url)
+    fc = fc_from_fl(lyr, 0.5)
+    if title != None:
+        fc.update({"title": title})
+    if visibility != None:
+        fc.update({"visibility": visibility})
+    fc.update({"popupInfo": template[popup_name]})
+    fc.update({"layerDefinition": template[label_name]})
+    group_lyr["layers"].append(fc)
+
+
 def add_single_layer(key_name, url, group_lyr, template, title=None, visibility=None):
     popup_name = key_name + "_popup"
     label_name = key_name + "_label"
@@ -455,7 +469,13 @@ def nfi_features_layers(group_lyr, template):
     parent_group["layers"].append(branch)
 
     branch = group_layer("Systems-Critical Wetlands")
-    add_single_layer("nfi_features_wetlands_critical", url_list[1], branch, template)
+    add_feature_layer(
+        "nfi_features_wetlands_critical",
+        urls.nfi_lsw,
+        branch,
+        template,
+        "Locally Significant Wetlands",
+    )
     parent_group["layers"].append(branch)
 
     riparian_layers(parent_group, template)
@@ -503,7 +523,15 @@ def riparian_layers(group_lyr, template):
     parent_group.update({"visibility": False})
     for i in range(0, len(url_list)):
         map_lyr = MapServiceLayer(url_list[i])
-        fc = feature_class(map_lyr, 0.5)
+        if i == 0:
+            fc = fc_from_fl(map_lyr, 0.5)
+            fc.update({"title": "Wetlands Within RAAs"})
+        elif i == 3:
+            fc = fc_from_fl(map_lyr, 0.5)
+            fc.update({"title": "100-Foot TOB Buffers"})
+        else:
+            fc = feature_class(map_lyr, 0.5)
+
         fc.update({"popupInfo": template[popup_name[i]]})
         fc.update({"layerDefinition": template[layer_name[i]]})
         parent_group["layers"].append(fc)
@@ -542,7 +570,7 @@ def ppsv_layers(group_lyr, template):
     popup_name = ppsv_layer_names("_popup")
     label_name = ppsv_layer_names("_label")
     url_list = urls.NFI_PPSV_URLS
-    parent_group = group_layer("Partial Protection")
+    parent_group = group_layer("Partial Protection (PPSV)")
     parent_group.update({"visibility": False})
     for i in range(0, len(url_list)):
         map_lyr = MapFeatureLayer(url_list[i])
@@ -587,7 +615,7 @@ def hpsv_layers(group_lyr, template):
     popup_name = hpsv_layer_names("_popup")
     label_name = hpsv_layer_names("_label")
     url_list = urls.NFI_HPSV_URLS
-    parent_group = group_layer("High Protection")
+    parent_group = group_layer("High Protection (HPSV)")
     parent_group.update({"visibility": False})
     for i in range(0, len(url_list)):
         map_lyr = MapFeatureLayer(url_list[i])
@@ -1130,6 +1158,15 @@ def create_layer_id(layerIndex):
         + "-layer-"
         + str(layerIndex)
     )
+
+
+def fc_from_fl(layer, opacity=1.0):
+    fc_dict = {}
+    fc_dict.update({"id": create_layer_id(random.randint(10000, 99999))})
+    fc_dict.update({"url": layer.url})
+    fc_dict.update({"layerType": "ArcGISFeatureLayer"})
+    fc_dict.update({"opacity": opacity})
+    return fc_dict
 
 
 def feature_class(layer, opacity=1.0):
