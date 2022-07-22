@@ -10,10 +10,8 @@ The package function `build_template()` reads layers information from the templa
 
 ::
 
-        Why is a parent ``Base`` layer necessary?  In order to make maps more
-        composable, the package functions for adding layers insert the desired
-        group into the parent group of a web map.  Typically the parent group
-        is named after the map's overarching purpose, such as ``Benton County
-        Zoning Map``, or ``Benton County Taxlot Map``.  Template maps provide
-        the ``Base`` layer as a trunk onto which the package functions attach
-        other groups as branches.
+        Why is a parent **Base** layer necessary?  In order to make maps more composable, the package
+        functions for adding layers insert the desired group into the parent group of a web map.  Typically
+        the parent group is named after the map's overarching purpose, such as **Benton County Zoning Map**,
+        or **Benton County Taxlot Map**.  Template maps provide the **Base** layer as a trunk onto which the
+        package functions attach other groups as branches.
