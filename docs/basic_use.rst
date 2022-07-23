@@ -25,6 +25,8 @@ The standard process for updating the visual representation of a map layer is to
 +------------------------------+----------------------------------------------------------------+
 |template_aerial_imagery_map_  | County and ESRI high resolution orthography.                   |
 +------------------------------+----------------------------------------------------------------+
+|template_boundaries_map_      | Layers from the Benton County boundaries service.              |
++------------------------------+----------------------------------------------------------------+
 |template_contours_map_        | Topographic contour layers.                                    |
 +------------------------------+----------------------------------------------------------------+
 |template_environment_map_     | General water, soils and wetlands layers.                      |
@@ -37,21 +39,34 @@ The standard process for updating the visual representation of a map layer is to
 +------------------------------+----------------------------------------------------------------+
 |template_nfi_flood_map_       | Flooding layers from Corvallis NFI hazards.                    |
 +------------------------------+----------------------------------------------------------------+
+|template_nfi_hazard_map_      | Confined/Open Channel, landslide risk and slope layers.        |
++------------------------------+----------------------------------------------------------------+
 |template_ppsv_map_            | Partial protection significant vegetation from Corvallis NFI.  |
 +------------------------------+----------------------------------------------------------------+
 |template_riparian_map_        | Riparian buffers from the Corvallis NFI.                       |
 +------------------------------+----------------------------------------------------------------+
+|template_survey_map_          | Layers from the Benton County survey service.                  |
++------------------------------+----------------------------------------------------------------+
 |template_taxlot_map_          | Layers from the Benton County taxlot service.                  |
++------------------------------+----------------------------------------------------------------+
+|template_transportation_map_  | Layers from the Benton County transportation service.          |
++------------------------------+----------------------------------------------------------------+
+|template_zoning_map_          | Layers from the Benton County zoning service.                  |
 +------------------------------+----------------------------------------------------------------+
 
 .. _template_address_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=5c507b0f03084f33b8da587cbd4b830b
 .. _template_aerial_imagery_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=4cb460dcb6464724b2e99ba696d5dd77
+.. _template_boundaries_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=c8595e39c1fe4971819d74e7318d1dbd
 .. _template_contours_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=1e0e9975687741a897e2ff4c7dd3b8e0
 .. _template_environment_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=a2612a21ccf3458e945ac971390cf5dc
 .. _template_hpc_butterfly_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=6f3467fcdeea4d839d01bff403a5e891
 .. _template_hpsv_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=d9b5d23af3044405afe06e8d488d8b64
 .. _template_nfi_features_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=4b01743efdb94a3fa54e0f542aad987a
 .. _template_nfi_flood_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=ee08f36f69b24f2599bea34563215a17
+.. _template_nfi_hazard_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=9db5a09c12454347871a522f6af851d8
 .. _template_ppsv_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=a0e7e1cb85c54fd39b95eed20d1aded9
 .. _template_riparian_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=dbeaf45e240a41178879f64751d6954d
+.. _template_survey_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=28cbe6fcdc7c49cba8f95666644b7fda
 .. _template_taxlot_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=a409c55c9e0440488c4ab3ce5e10659d
+.. _template_transportation_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=8cd34cff9a43406dae69c69fa42829b9
+.. _template_zoning_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=1f417e7ca2c54a8e99ffb7b373c3c229
