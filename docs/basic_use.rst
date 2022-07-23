@@ -18,6 +18,8 @@ The package function `build_template()` reads layers information from the templa
 
 The standard process for updating the visual representation of a map layer is to open the corresponding template and modify the settings in the ArcGIS Online GUI, then run the `build_template()` function to record the changes for later use.  The following table lists the name and description for each of the current template maps, and clicking on the name of the map will open the corresponding template in ArcGIS Online:
 
+Table of Templates
+__________________
 +------------------------------+----------------------------------------------------------------+
 |Name                          |Description                                                     |
 +==============================+================================================================+
@@ -70,3 +72,8 @@ The standard process for updating the visual representation of a map layer is to
 .. _template_taxlot_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=a409c55c9e0440488c4ab3ce5e10659d
 .. _template_transportation_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=8cd34cff9a43406dae69c69fa42829b9
 .. _template_zoning_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=1f417e7ca2c54a8e99ffb7b373c3c229
+
+Updating a Template
+^^^^^^^^^^^^^^^^^^^
+
+The first step is to locate the specific layer of interest in the list of template maps.  Since county planning maps can include more than a hundred layers, it can take time to become familiar with all the different layers.  Once you have located the template map that contains the layer of interest, then you can adjust the color, style, label etc. using the ArcGIS Online GUI.  After making changes, you will need to save the changes to the template by clicking on the folder icon in the left sidebar menu and selecting "Save" from the available options.
