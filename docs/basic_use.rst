@@ -15,3 +15,15 @@ The package function `build_template()` reads layers information from the templa
         Typically the parent group is named after the map's overarching purpose, such as "Benton
         County Zoning Map", or "Benton County Taxlot Map".  Template maps provide the "Base" layer
         as a trunk onto which the package functions attach other groups as branches.
+
+The standard process for updating the visual representation of a map layer is to open the corresponding template and modify the settings in the ArcGIS Online GUI, then run the `build_template()` function to record the changes for later use.
+
+=======                         =======
+Name                            Description
+=======                         =======
+template_address_map_           Addresses for County and City of Corvallis.
+template_aerial_imagery_map_    County and ESRI high resolution orthography.
+=======                         =======
+
+.. _template_address_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=5c507b0f03084f33b8da587cbd4b830b
+.. _template_aerial_imagery_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=4cb460dcb6464724b2e99ba696d5dd77
