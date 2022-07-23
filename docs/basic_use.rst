@@ -18,12 +18,22 @@ The package function `build_template()` reads layers information from the templa
 
 The standard process for updating the visual representation of a map layer is to open the corresponding template and modify the settings in the ArcGIS Online GUI, then run the `build_template()` function to record the changes for later use.
 
-=======                         =======
-Name                            Description
-=======                         =======
-template_address_map_           Addresses for County and City of Corvallis.
-template_aerial_imagery_map_    County and ESRI high resolution orthography.
-=======                         =======
++------------------------------+----------------------------------------------------------------+
+|Name                          |Description                                                     |
++==============================+================================================================+
+|template_address_map_         | Addresses for County and City of Corvallis.                    |
++------------------------------+----------------------------------------------------------------+
+|template_aerial_imagery_map_  | County and ESRI high resolution orthography.                   |
++------------------------------+----------------------------------------------------------------+
+|template_nfi_features_map_    | Oak Savanna, Critical-Systems Wetlands and DNI Wetland layers. |
++------------------------------+----------------------------------------------------------------+
+|template_ppsv_map_            | Partial protection significant vegetation for the Covallis NFI.|
++------------------------------+----------------------------------------------------------------+
+|template_riparian_map_        | Riparian buffers from the Corvallis Natural Features Inventory.|
++==============================+================================================================+
 
 .. _template_address_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=5c507b0f03084f33b8da587cbd4b830b
 .. _template_aerial_imagery_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=4cb460dcb6464724b2e99ba696d5dd77
+.. _template_nfi_features_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=4b01743efdb94a3fa54e0f542aad987a
+.. _template_ppsv_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=a0e7e1cb85c54fd39b95eed20d1aded9
+.. _template_riparian_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=dbeaf45e240a41178879f64751d6954d
