@@ -27,10 +27,10 @@ The standard process for updating the visual representation of a map layer is to
 +------------------------------+----------------------------------------------------------------+
 |template_nfi_features_map_    | Oak Savanna, Critical-Systems Wetlands and DNI Wetland layers. |
 +------------------------------+----------------------------------------------------------------+
-|template_ppsv_map_            | Partial protection significant vegetation for the Covallis NFI.|
+|template_ppsv_map_            | Partial protection significant vegetation from Covallis NFI.   |
 +------------------------------+----------------------------------------------------------------+
-|template_riparian_map_        | Riparian buffers from the Corvallis Natural Features Inventory.|
-+==============================+================================================================+
+|template_riparian_map_        | Riparian buffers from the Corvallis NFI.                       |
++------------------------------+----------------------------------------------------------------+
 
 .. _template_address_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=5c507b0f03084f33b8da587cbd4b830b
 .. _template_aerial_imagery_map: https://bentoncountygis.maps.arcgis.com/home/item.html?id=4cb460dcb6464724b2e99ba696d5dd77
