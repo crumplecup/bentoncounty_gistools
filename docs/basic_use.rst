@@ -88,9 +88,9 @@ When accessing ArcGIS online from the browser, a security check-in will prompt y
 The package will look for the ``.env`` file in the working directory of your project, and will not exist until you create it!  The good news is that you can create a ``.env`` file using any text editor.  Begin with a new blank document and enter the following:
 
 ```
-ARCGIS_USERNAME = "my_username"
-ARCGIS_PASSWORD = "my_password"
-TEMPLATE_DIR = "/path/to/my/project"
+| ARCGIS_USERNAME = "my_username"
+| ARCGIS_PASSWORD = "my_password"
+| TEMPLATE_DIR = "/path/to/my/project"
 ```
 
 Be sure to replace *my_username* and *my_password* with your actual username and password.  Single or double quotes surrounding the username and password are required, as they specify the information as text strings, instead of variable names.  Likewise, replace */path/to/my/project* with the directory path to your project.  This is where the package will store and update the *template.json* file that describes how to build your maps.  Once these changes are complete, save the file in your working directory as *.env*.  Make sure to include the dot before *env*.  If the text editor sneakily adds a ".txt" or some other extension on the end of the file name, rename the file as ".env" and ignore any cautionary warnings about changing the file type.
