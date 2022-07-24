@@ -223,6 +223,15 @@ def test_county_basemap():
     bc.county_basemap(test_item, template)
 
 
+@pytest.mark.skipif(
+    PYTEST_SKIP,
+    reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
+)
+def test_planning_map():
+    bct.planning_map()
+    print("Planning map successfully built.")
+
+
 def test_county_boundaries():
     test_group = bc.group_layer("test")
     bc.county_boundaries(test_group, template)

@@ -5565,7 +5565,6 @@
                 ]
             }
         },
-        "featureReduction": null,
         "minScale": 191858.77638
     },
     "environment_natural_soils_popup": {
@@ -6422,7 +6421,6 @@
                 ]
             }
         },
-        "featureReduction": null,
         "minScale": 207319.658603
     },
     "environment_natural_wetlands_popup": {

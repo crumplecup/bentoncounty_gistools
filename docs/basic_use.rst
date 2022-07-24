@@ -6,6 +6,8 @@ When constructing a web map from a published service, it is possible to customiz
 
 Template web maps serve as a reference for building future web maps.  Each template map is devoted to a single group layer, whereas maps used by staff for planning typically combine several group layers together.  In the legend, group layers are named categories that include several features or layers.  Clicking on a group layer in the legend, or the expansion carrot adjacent to the legend name, will show the list of included layers, but the group layer itself does not hold its own data, merely references to child data.
 
+Template Maps
+-------------
 The package function `build_template()` reads layers information from the template map and stores this info in a local file called `template.json`, which it references for future builds.  The ``json`` format is a widely used standard for storing nested key-value pairs, and under the hood all ArcGIS web maps are essentially ``json`` files telling the server where to find the source data and how to construct the visual representation.  Group layers add a level of nesting to the key-value pairs stored in the ``json`` document, and so in order to use a single function for reading data from multiple template files, the level of nesting in each template file has to be the same.  Therefore, every template map has a parent category (arbitrarily called `Base`), and then a single group category holding the layers specific to the template.  The package does not support template maps that deviate from this structure.
 
 ::
@@ -19,7 +21,7 @@ The package function `build_template()` reads layers information from the templa
 The standard process for updating the visual representation of a map layer is to open the corresponding template and modify the settings in the ArcGIS Online GUI, then run the `build_template()` function to record the changes for later use.  The following table lists the name and description for each of the current template maps, and clicking on the name of the map will open the corresponding template in ArcGIS Online:
 
 Table of Templates
-__________________
+^^^^^^^^^^^^^^^^^^
 +------------------------------+----------------------------------------------------------------+
 |Name                          |Description                                                     |
 +==============================+================================================================+
@@ -37,7 +39,7 @@ __________________
 +------------------------------+----------------------------------------------------------------+
 |template_hpsv_map_            | High protection significant vegetation from Corvallis NFI.     |
 +------------------------------+----------------------------------------------------------------+
-|template_nfi_features_map_    | Oak Savanna, Critical-Systems Wetlands and DNI Wetland layers. |
+|template_nfi_features_map_    | Oak Savanna, Critical-Systems Wetlands and DSL Wetland layers. |
 +------------------------------+----------------------------------------------------------------+
 |template_nfi_flood_map_       | Flooding layers from Corvallis NFI hazards.                    |
 +------------------------------+----------------------------------------------------------------+
@@ -77,3 +79,18 @@ Updating a Template
 ^^^^^^^^^^^^^^^^^^^
 
 The first step is to locate the specific layer of interest in the list of template maps.  Since county planning maps can include more than a hundred layers, it can take time to become familiar with all the different layers.  Once you have located the template map that contains the layer of interest, then you can adjust the color, style, label etc. using the ArcGIS Online GUI.  After making changes, you will need to save the changes to the template by clicking on the folder icon in the left sidebar menu and selecting "Save" from the available options.
+
+Logging Into ArcGIS Online
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When accessing ArcGIS online from the browser, a security check-in will prompt you to enter the username and password associated with your account.  When using this package to modify or build maps, entry of a valid username and password is still required, but the process is automated, and the package needs to accommodate different users.  How do you enter your credentials?  The solution this package employs is to use *environmental variables*, which are named references to information that are accessible to the package, but not defined in the package itself.  In this case, the relevant variables are called **ARCGIS_USERNAME** and **ARCGIS_PASSWORD**, and they are stored in a file called ``.env``.  When the package runs, it will open the ``.env`` file and read the contents, allowing the user to specify their credentials without leaking this private data.
+
+The package will look for the ``.env`` file in the working directory of your project, and will not exist until you create it!  The good news is that you can create a ``.env`` file using any text editor.  Begin with a new blank document and enter the following:
+
+```
+ARCGIS_USERNAME = "my_username"
+ARCGIS_PASSWORD = "my_password"
+TEMPLATE_DIR = "/path/to/my/project"
+```
+
+Be sure to replace *my_username* and *my_password* with your actual username and password.  Single or double quotes surrounding the username and password are required, as they specify the information as text strings, instead of variable names.  Likewise, replace */path/to/my/project* with the directory path to your project.  This is where the package will store and update the *template.json* file that describes how to build your maps.  Once these changes are complete, save the file in your working directory as *.env*.  Make sure to include the dot before *env*.  If the text editor sneakily adds a ".txt" or some other extension on the end of the file name, rename the file as ".env" and ignore any cautionary warnings about changing the file type.
