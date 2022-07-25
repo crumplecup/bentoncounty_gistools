@@ -80,6 +80,11 @@ Updating a Template
 
 The first step is to locate the specific layer of interest in the list of template maps.  Since county planning maps can include more than a hundred layers, it can take time to become familiar with all the different layers.  Once you have located the template map that contains the layer of interest, then you can adjust the color, style, label etc. using the ArcGIS Online GUI.  After making changes, you will need to save the changes to the template by clicking on the folder icon in the left sidebar menu and selecting "Save" from the available options.
 
+-----------------
+Using the Package
+-----------------
+
+
 Logging Into ArcGIS Online
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -137,3 +142,20 @@ The Planning Map is a bit of a catch-all map, intended to contain any and all la
 Because the map is large, this command will take a significant amount of time to finish executing.  Normal wait times run from 20-30 minutes, but if the ArcGIS server is experiencing a larger than normal workload, the execution can take longer.  The longest build time I have personally encountered is 2 hours and 38 minutes!  Since the processing is being done a remote server (ArcGIS Online), the bottleneck is not occurring on your local machine, or the local network, and you cannot mitigate this problem by upgrading to a better machine, or switching from WiFi to a broadband connection.
 
 On my machine, the console prints an alarming amount of warning messages, including "deprecation" warnings related to specific packages or functions, which you can safely ignore.  The warnings do not originate from the code in this package, but rather its dependencies, or packages that this tools package relies on to perform some of the low level work of the application.  Updating and correcting these warnings are the responsibility of these other package developers.  All of the dependencies our package rely on are mainstream packages that support a number of professional uses, and are actively updated and maintained by their developers.  Since a number of professional projects rely on these packages, we can be confident that their developers will update their code as the language evolves, and that our code will continue to work over time.
+
+Troubleshooting
+^^^^^^^^^^^^^^^
+
+If the map fails to build, or if any layers than you adjusted in a template map fail to display properly, this is typically frustrating but fixable.  As you are adjusting the style of layers in a web template, you may note that ArcGIS warns the user that not all style features are stable.  This means that the map might *look correct*, but might now draw properly when you try to build a new map based on the template.  The first impulse as a user is to conclude that the package does not work as intended (this was *my* first reaction to encountering this problem).  However, since the map was building correctly before you made the change to the template, chances are that the new style or label you have specified is producing a *malformed layer definition*.  This essentially means that the server cannot pull enough information, or the right kind of information, from the template file in order to construct a new map from the template.
+
+::
+
+        The first time I encountered this error was changing a hatched symbol to a solid color. To
+        resolve the error, I had to change the layer style explicity to Basic Polygon Fill, and then
+        specify the desired solid color from the GUI menu.  There are often multiple ways of changing
+        the color or style of layers within the ArcGIS Online browser, and you may have to experiment
+        with different combinations to find one that is stable between builds.
+
+To avoid a situation where the map is no longer building and you do not know why, it is safest to make small, incremental changes to a template map, rebuilding the map between changes to ensure that the new features are propagating through to the final map the way you want.  If you make dozens of changes to a template map at once, it becomes hard to determine in retrospect which change caused the build to fail, and this can lead to wasted time isolating the error.
+
+If a particular style choice is problematic, causing the build to fail or the layer to draw incorrectly, try exploring alternate ways of setting the style using the ArcGIS Online GUI.  Some style choices are simple unstable or unsupported, and you may consider using an alternative style choice that is more stable.  ArcGIS Online is still rapidly expanding the types of styles that they support, and we can expect the situation to improve in the future.
