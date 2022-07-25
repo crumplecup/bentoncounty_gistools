@@ -108,6 +108,7 @@ The Benton County GIS Tools package is accessible for download on Python Packagi
 .. _documentation: https://pro.arcgis.com/en/pro-app/2.8/arcpy/get-started/python-window.htm
 
 ::
+
         To open the Python window, on the Analysis tab, in the Geoprocessing group, click the drop-down
         menu under the Python button and click the Python window button.
 
