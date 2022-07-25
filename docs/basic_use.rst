@@ -80,7 +80,7 @@ Updating a Template
 
 The first step is to locate the specific layer of interest in the list of template maps.  Since county planning maps can include more than a hundred layers, it can take time to become familiar with all the different layers.  Once you have located the template map that contains the layer of interest, then you can adjust the color, style, label etc. using the ArcGIS Online GUI.  After making changes, you will need to save the changes to the template by clicking on the folder icon in the left sidebar menu and selecting "Save" from the available options.
 
------------------
+
 Using the Package
 -----------------
 
@@ -105,11 +105,12 @@ Importing the Package
 
 The Benton County GIS Tools package is accessible for download on Python Packaging Index (PYPI).  The easiest way to use Python within an ArcGIS project is to use the Python window.  From the ArcGIS Pro documentation_:
 
+.. _documentation: https://pro.arcgis.com/en/pro-app/2.8/arcpy/get-started/python-window.htm
+
 ::
         To open the Python window, on the Analysis tab, in the Geoprocessing group, click the drop-down
         menu under the Python button and click the Python window button.
 
-.. _documentation: https://pro.arcgis.com/en/pro-app/2.8/arcpy/get-started/python-window.htm
 
 In order for the running instance of Python to access the functions within the package, the package must first be installed (see :doc:`Installation`), which only needs to be done once on a given machine, and then *imported*.  The import statement is a line of code that tells Python which package you are using, and optionally supplied a nickname for referring to the package in later code.  An example import statement looks like this:
 
