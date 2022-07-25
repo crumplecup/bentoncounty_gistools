@@ -94,3 +94,46 @@ The package will look for the ``.env`` file in the working directory of your pro
         TEMPLATE_DIR = "/path/to/my/project"
 
 Be sure to replace *my_username* and *my_password* with your actual username and password.  Single or double quotes surrounding the username and password are required, as they specify the information as text strings, instead of variable names.  Likewise, replace */path/to/my/project* with the directory path to your project.  This is where the package will store and update the *template.json* file that describes how to build your maps.  Once these changes are complete, save the file in your working directory as *.env*.  Make sure to include the dot before *env*.  If the text editor sneakily adds a ".txt" or some other extension on the end of the file name, rename the file as ".env" and ignore any cautionary warnings about changing the file type.
+
+Importing the Package
+^^^^^^^^^^^^^^^^^^^^^
+
+The Benton County GIS Tools package is accessible for download on Python Packaging Index (PYPI).  The easiest way to use Python within an ArcGIS project is to use the Python window.  From the ArcGIS Pro documentation_:
+
+::
+        To open the Python window, on the Analysis tab, in the Geoprocessing group, click the drop-down
+        menu under the Python button and click the Python window button.
+
+.. _documentation: https://pro.arcgis.com/en/pro-app/2.8/arcpy/get-started/python-window.htm
+
+In order for the running instance of Python to access the functions within the package, the package must first be installed (see :doc:`Installation`), which only needs to be done once on a given machine, and then *imported*.  The import statement is a line of code that tells Python which package you are using, and optionally supplied a nickname for referring to the package in later code.  An example import statement looks like this:
+
+::
+
+        import bentoncounty_gistools as bc
+
+The statement "import bentoncounty_gistools" is necessary.  The optional addition of "as bc" assigns *bc* as a nickname for the package.  Instead of typing the full name of the package "bentoncounty_gistools", you can access functions contained in the package using the shorthand "bc".  Feel free to assign a different nickname to suit your taste.
+
+Storing Template Data
+^^^^^^^^^^^^^^^^^^^^^
+
+The template web maps store server-side information about how to display the layers in a web map.  Once you have saved changes to the template maps, the package needs to read these template maps and record the changes in its ``template.json`` file.  The function *build_template()* will read any changes to the template web maps and store this information in the ``template.json`` file.  All the functions contained in the package are accessible using package name, or the nickname specified using the "as" syntax in the import statement, and then the function name, separated by a period (in this context called a dot operator).  For instance, using the import statement above, we can access the *build_template()* function using the following statement:
+
+::
+
+        bc.build_template()
+
+This is equivalent to typing "bentoncounty_gistools.build_template()".  This function only needs to be run once after making changes to a template web map.  Once the changes are saved in the ``template.json`` file, the package will reference this file for future builds.  If you save changes to a template web mab on the server, and do not run this function, then the changes will not show up in map builds, because the package will be referencing the previous configuration, and will not know about your changes.
+
+Building the Planning Map
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Planning Map is a bit of a catch-all map, intended to contain any and all layers that planners may use while working with new permit applications.  Because it is a monolithic map containing more than hundred layers and many nested groups, constructing the map from scratch is a complex process, and producing this map is a primary function on this package.  Therefore the package provides a convenience function to build this map using a single line of code, as follows:
+
+::
+
+        bc.planning_map()
+
+Because the map is large, this command will take a significant amount of time to finish executing.  Normal wait times run from 20-30 minutes, but if the ArcGIS server is experiencing a larger than normal workload, the execution can take longer.  The longest build time I have personally encountered is 2 hours and 38 minutes!  Since the processing is being done a remote server (ArcGIS Online), the bottleneck is not occurring on your local machine, or the local network, and you cannot mitigate this problem by upgrading to a better machine, or switching from WiFi to a broadband connection.
+
+On my machine, the console prints an alarming amount of warning messages, including "deprecation" warnings related to specific packages or functions, which you can safely ignore.  The warnings do not originate from the code in this package, but rather its dependencies, or packages that this tools package relies on to perform some of the low level work of the application.  Updating and correcting these warnings are the responsibility of these other package developers.  All of the dependencies our package rely on are mainstream packages that support a number of professional uses, and are actively updated and maintained by their developers.  Since a number of professional projects rely on these packages, we can be confident that their developers will update their code as the language evolves, and that our code will continue to work over time.
