@@ -7,3 +7,4 @@ sphinx_rtd_theme==1.0.0
 pre-commit==2.19.0
 arcgis==2.0.0
 pipenv==2022.7.4
+python-dotenv==0.20.0
