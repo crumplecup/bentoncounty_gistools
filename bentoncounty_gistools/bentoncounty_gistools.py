@@ -423,9 +423,7 @@ def add_single_layer(key_name, url, group_lyr, template, title=None, visibility=
     popup_name = key_name + "_popup"
     label_name = key_name + "_label"
     lyr = MapServiceLayer(url)
-    fc = feature_class(lyr, 0.5)
-    if title != None:
-        fc.update({"title": title})
+    fc = feature_class(lyr, 0.5, title)
     if visibility != None:
         fc.update({"visibility": visibility})
     fc.update({"popupInfo": template[popup_name]})
@@ -469,7 +467,7 @@ def nfi_features_layers(group_lyr, template):
     parent_group["layers"].append(branch)
 
     branch = group_layer("Systems-Critical Wetlands")
-    add_feature_layer(
+    add_single_layer(
         "nfi_features_wetlands_critical",
         urls.nfi_lsw,
         branch,
@@ -1169,7 +1167,7 @@ def fc_from_fl(layer, opacity=1.0):
     return fc_dict
 
 
-def feature_class(layer, opacity=1.0):
+def feature_class(layer, opacity=1.0, title=None):
     """
     Generic feature class wrapper for layer data.
 
@@ -1199,7 +1197,10 @@ def feature_class(layer, opacity=1.0):
     fc_dict = {}
     fc_dict.update({"id": create_layer_id(random.randint(10000, 99999))})
     fc_dict.update({"url": layer.url})
-    fc_dict.update({"title": layer.properties.name})
+    if title != None:
+        fc_dict.update({"title": title})
+    else:
+        fc_dict.update({"title": layer.properties.name})
     fc_dict.update({"layerType": "ArcGISFeatureLayer"})
     fc_dict.update({"opacity": opacity})
     return fc_dict

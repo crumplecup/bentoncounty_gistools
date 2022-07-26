@@ -6,8 +6,9 @@
 Welcome to Benton County GIS Tools's documentation!
 ===================================================
 
-Function definitions are in :doc:`bentoncounty_gistools` or :doc:`modules`.
-Check out the :doc:`basic_use` section for further information.
+The :doc:`install` section describes how to install the package on your machine.
+The :doc:`basic_use` section describes how to edit and update the planning map.
+Function definitions are in the :doc:`modules` section.
 
 .. toctree::
    :maxdepth: 2

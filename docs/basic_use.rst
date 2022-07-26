@@ -113,7 +113,7 @@ The Benton County GIS Tools package is accessible for download on Python Packagi
         menu under the Python button and click the Python window button.
 
 
-In order for the running instance of Python to access the functions within the package, the package must first be installed (see :doc:`Installation`), which only needs to be done once on a given machine, and then *imported*.  The import statement is a line of code that tells Python which package you are using, and optionally supplied a nickname for referring to the package in later code.  An example import statement looks like this:
+In order for the running instance of Python to access the functions within the package, the package must first be installed (see :doc:`install`), which only needs to be done once on a given machine, and then *imported*.  The import statement is a line of code that tells Python which package you are using, and optionally supplied a nickname for referring to the package in later code.  An example import statement looks like this:
 
 ::
 
