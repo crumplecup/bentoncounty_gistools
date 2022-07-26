@@ -1,8 +1,9 @@
+=======================
 Benton County GIS Tools
-===
+=======================
 
 Python tools for managing ArcGIS maps, used by the Community Development Department.
 
-.. note::
+Official documentation is hosted on readthedocs.org_.
 
-   This project is under active development.
+.. _readthedocs.org: https://bentoncounty-gistools.readthedocs.io/en/latest/index.html
