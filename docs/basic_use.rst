@@ -141,7 +141,7 @@ On my machine, the console prints an alarming amount of warning messages, includ
 Summary
 -------
 
-Importing the package, reading the template data, and building the planning map involve a single line of code each, for a total of three lines:
+Importing the package, reading the template data, and building the planning map involve a total of two lines of code:
 
 ::
 

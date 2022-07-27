@@ -16,7 +16,7 @@ requirements_dev = []
 
 setup(
     name="bentoncounty_gistools",
-    version="0.0.7",
+    version="0.0.8",
     author="Erik Rose",
     author_email="erik.w.rose@gmail.com",
     description="Mapping tools for Benton County Community Development, Oregon",
