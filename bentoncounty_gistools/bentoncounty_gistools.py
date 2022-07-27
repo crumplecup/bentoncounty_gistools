@@ -903,6 +903,7 @@ def survey_layer_names(post):
     return layer_name
 
 
+# delete
 def update_popup_info(names, template):
     """
     Build dictionary of layer info for layers.
@@ -920,6 +921,7 @@ def update_popup_info(names, template):
     return new_data
 
 
+# delete
 def update_layer_def(names, template):
     """
     Build dictionary of layer info for layers.
@@ -937,10 +939,12 @@ def update_layer_def(names, template):
     return new_data
 
 
+# delete
 def update_layer_info(names, template):
     """
     Build dictionary of layer info for layers. Includes popup info.
 
+    :param names: Function returned layers names, appends argument to base name.
     :param template: Web map template for layer fields.
     :return: Dictionary of short keys and layer definitions for the survey layers.
     """
@@ -1221,6 +1225,7 @@ def group_layer(title):
     return group_dict
 
 
+# delete
 def build_template_dictionary(template_type, template):
     template_dict = {}
     match template_type:

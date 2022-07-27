@@ -1,8 +1,9 @@
 from arcgis.gis import GIS
 from bentoncounty_gistools import bentoncounty_gistools as bc
 import os
-import json
 from dotenv import load_dotenv
+
+# import json
 
 # load user name, password and template directory from .env
 load_dotenv()
@@ -63,22 +64,105 @@ def build_template():
     zoning_map = gis.content.get(TEMPLATE_ZONING_MAP)
 
     template = {}
+    template.update(build_template_dictionary("address", address_map))
+    template.update(build_template_dictionary("boundary", boundary_map))
+    template.update(build_template_dictionary("contour", contour_map))
+    template.update(build_template_dictionary("environment", environment_map))
+    template.update(build_template_dictionary("hcp", hcp_map))
+    template.update(build_template_dictionary("hpsv", hpsv_map))
+    template.update(build_template_dictionary("nfi_features", nfi_features_map))
+    template.update(build_template_dictionary("nfi_flood", nfi_flood_map))
+    template.update(build_template_dictionary("nfi_hazard", nfi_hazard_map))
+    template.update(build_template_dictionary("ppsv", ppsv_map))
+    template.update(build_template_dictionary("riparian", riparian_map))
+    template.update(build_template_dictionary("survey", survey_map))
+    template.update(build_template_dictionary("taxlot", taxlot_map))
+    template.update(build_template_dictionary("transport", transport_map))
+    template.update(build_template_dictionary("zoning", zoning_map))
+    return template
+    # file_name = os.path.join(TEMPLATE_DIR, "template.json")
+    # with open(file_name, "w") as fp:
+    #     json.dump(template, fp, sort_keys=True, indent=4)
 
-    template.update(bc.build_template_dictionary("address", address_map))
-    template.update(bc.build_template_dictionary("boundary", boundary_map))
-    template.update(bc.build_template_dictionary("contour", contour_map))
-    template.update(bc.build_template_dictionary("environment", environment_map))
-    template.update(bc.build_template_dictionary("hcp", hcp_map))
-    template.update(bc.build_template_dictionary("hpsv", hpsv_map))
-    template.update(bc.build_template_dictionary("nfi_features", nfi_features_map))
-    template.update(bc.build_template_dictionary("nfi_flood", nfi_flood_map))
-    template.update(bc.build_template_dictionary("nfi_hazard", nfi_hazard_map))
-    template.update(bc.build_template_dictionary("ppsv", ppsv_map))
-    template.update(bc.build_template_dictionary("riparian", riparian_map))
-    template.update(bc.build_template_dictionary("survey", survey_map))
-    template.update(bc.build_template_dictionary("taxlot", taxlot_map))
-    template.update(bc.build_template_dictionary("transport", transport_map))
-    template.update(bc.build_template_dictionary("zoning", zoning_map))
-    file_name = os.path.join(TEMPLATE_DIR, "template.json")
-    with open(file_name, "w") as fp:
-        json.dump(template, fp, sort_keys=True, indent=4)
+
+def build_template_dictionary(template_type, template):
+    template_dict = {}
+    match template_type:
+        case "address":
+            template_dict.update(update_layer_info(bc.address_layer_names, template))
+        case "boundary":
+            template_dict.update(update_layer_info(bc.boundary_layer_names, template))
+        case "contour":
+            template_dict.update(update_layer_info(bc.contour_layer_names, template))
+        case "environment":
+            template_dict.update(
+                update_layer_info(bc.environment_layer_names, template)
+            )
+        case "hcp":
+            template_dict.update(
+                update_layer_info(bc.hcp_butterfly_layer_names, template)
+            )
+        case "hpsv":
+            template_dict.update(update_layer_info(bc.hpsv_layer_names, template))
+        case "nfi_features":
+            template_dict.update(
+                update_layer_info(bc.nfi_features_layer_names, template)
+            )
+        case "nfi_flood":
+            template_dict.update(update_layer_info(bc.nfi_flood_layer_names, template))
+        case "nfi_hazard":
+            template_dict.update(update_layer_info(bc.nfi_hazard_layer_names, template))
+        case "ppsv":
+            template_dict.update(update_layer_info(bc.ppsv_layer_names, template))
+        case "riparian":
+            template_dict.update(update_layer_info(bc.riparian_layer_names, template))
+        case "survey":
+            template_dict.update(update_layer_info(bc.survey_layer_names, template))
+        case "taxlot":
+            template_dict.update(update_layer_def(bc.taxlot_layer_names, template))
+        case "transport":
+            template_dict.update(update_layer_def(bc.transport_layer_names, template))
+        case "zoning":
+            template_dict.update(update_layer_info(bc.zoning_layer_names, template))
+
+    return template_dict
+
+
+def update_layer_def(names, template):
+    """
+    Build dictionary of layer info for layers.
+
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions for the survey layers.
+    """
+    label_name = names("_label")
+    ref_data = template.get_data()
+    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
+    new_data = {}
+    for i in range(0, len(label_name)):
+        new_data.update({label_name[i]: ref_list[i]["layerDefinition"]})
+
+    return new_data
+
+
+def update_layer_info(names, template):
+    """
+    Build dictionary of layer info for layers. Includes popup info.
+
+    :param names: Function returned layers names, appends argument to base name.
+    :param template: Web map template for layer fields.
+    :return: Dictionary of short keys and layer definitions for the survey layers.
+    """
+    popup_name = names("_popup")
+    label_name = names("_label")
+    ref_data = template.get_data()
+    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
+    new_data = {}
+    for i in range(0, len(popup_name)):
+        new_data.update({popup_name[i]: ref_list[i]["popupInfo"]})
+        new_data.update({label_name[i]: ref_list[i]["layerDefinition"]})
+
+    return new_data
+
+
+# delete build_template_dictionary update_layer_info update_layer_def from bc_tools
