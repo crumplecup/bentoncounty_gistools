@@ -18,7 +18,7 @@ The package function `build_template()` reads layers information from the templa
         County Zoning Map", or "Benton County Taxlot Map".  Template maps provide the "Base" layer
         as a trunk onto which the package functions attach other groups as branches.
 
-The standard process for updating the visual representation of a map layer is to open the corresponding template and modify the settings in the ArcGIS Online GUI, then run the `build_template()` function to record the changes for later use.  The following table lists the name and description for each of the current template maps, and clicking on the name of the map will open the corresponding template in ArcGIS Online:
+The standard process for updating the visual representation of a map layer is to open the corresponding template and modify the settings in the ArcGIS Online GUI.  When the package builds a new map, it will reference the updated layer definitions in the template maps.  The following table lists the name and description for each of the current template maps, and clicking on the name of the map will open the corresponding template in ArcGIS Online:
 
 Table of Templates
 ^^^^^^^^^^^^^^^^^^
@@ -96,7 +96,6 @@ The package will look for the ``.env`` file in the working directory of your pro
 
         ARCGIS_USERNAME="my_username"
         ARCGIS_PASSWORD="my_password"
-        TEMPLATE_DIR="/path/to/my/project"
 
 Be sure to replace *my_username* and *my_password* with your actual username and password.  Single or double quotes surrounding the username and password are required, as they specify the information as text strings, instead of variable names.  Likewise, replace */path/to/my/project* with the directory path to your project.  This is where the package will store and update the *template.json* file that describes how to build your maps.  Once these changes are complete, save the file in your working directory as *.env*.  Make sure to include the dot before *env*.  If the text editor sneakily adds a ".txt" or some other extension on the end of the file name, rename the file as ".env" and ignore any cautionary warnings about changing the file type.
 
@@ -125,16 +124,6 @@ In order for the running instance of Python to access the functions within the p
 
 The statement "import bentoncounty_gistools" is necessary.  The optional addition of "as bc" assigns *bc* as a nickname for the package.  Instead of typing the full name of the package "bentoncounty_gistools", you can access functions contained in the package using the shorthand "bc".  Feel free to assign a different nickname to suit your taste.
 
-Storing Template Data
-^^^^^^^^^^^^^^^^^^^^^
-
-The template web maps store server-side information about how to display the layers in a web map.  Once you have saved changes to the template maps, the package needs to read these template maps and record the changes in its ``template.json`` file.  The function *build_template()* will read any changes to the template web maps and store this information in the ``template.json`` file.  All the functions contained in the package are accessible using package name, or the nickname specified using the "as" syntax in the import statement, and then the function name, separated by a period (in this context called a dot operator).  For instance, using the import statement above, we can access the *build_template()* function using the following statement:
-
-::
-
-        bc.build_template()
-
-This is equivalent to typing "bentoncounty_gistools.build_template()".  This function only needs to be run once after making changes to a template web map.  Once the changes are saved in the ``template.json`` file, the package will reference this file for future builds.  If you save changes to a template web mab on the server, and do not run this function, then the changes will not show up in map builds, because the package will be referencing the previous configuration, and will not know about your changes.
 
 Building the Planning Map
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -158,7 +147,6 @@ Importing the package, reading the template data, and building the planning map 
 
         import bentoncounty_gistools as bc
 
-        bc.build_template()
         bc.planning_map()
 
 An example Python file containing this code (called update_planning_map.py) is in the examples_ directory of the package repository on GitHub.

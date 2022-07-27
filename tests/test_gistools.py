@@ -76,59 +76,12 @@ def test_build_template():
     print("template successfully built")
 
 
-@pytest.mark.skipif(
-    PYTEST_SKIP,
-    reason="Only build dictionary when templates have changed.",
-)
-def test_build_template_dictionary():
-    gis = GIS(
-        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
-    )
-    address_map = gis.content.get(TEMPLATE_ADDRESS_MAP)
-    boundary_map = gis.content.get(TEMPLATE_BOUNDARIES_MAP)
-    contour_map = gis.content.get(TEMPLATE_CONTOURS_MAP)
-    environment_map = gis.content.get(TEMPLATE_ENVIRONMENT_MAP)
-    hcp_map = gis.content.get(TEMPLATE_HCP_BUTTERFY_MAP)
-    hpsv_map = gis.content.get(TEMPLATE_HPSV_MAP)
-    nfi_features_map = gis.content.get(TEMPLATE_NFI_FEATURES_MAP)
-    nfi_flood_map = gis.content.get(TEMPLATE_NFI_FLOOD_MAP)
-    nfi_hazard_map = gis.content.get(TEMPLATE_NFI_HAZARD_MAP)
-    ppsv_map = gis.content.get(TEMPLATE_PPSV_MAP)
-    riparian_map = gis.content.get(TEMPLATE_RIPARIAN_MAP)
-    survey_map = gis.content.get(TEMPLATE_SURVEY_MAP)
-    taxlot_map = gis.content.get(TEMPLATE_TAXLOT_MAP)
-    transport_map = gis.content.get(TEMPLATE_TRANSPORTATION_MAP)
-    zoning_map = gis.content.get(TEMPLATE_ZONING_MAP)
-
-    template_dict = {}
-
-    template_dict.update(bc.build_template_dictionary("address", address_map))
-    template_dict.update(bc.build_template_dictionary("boundary", boundary_map))
-    template_dict.update(bc.build_template_dictionary("contour", contour_map))
-    template_dict.update(bc.build_template_dictionary("environment", environment_map))
-    template_dict.update(bc.build_template_dictionary("hcp", hcp_map))
-    template_dict.update(bc.build_template_dictionary("hpsv", hpsv_map))
-    template_dict.update(bc.build_template_dictionary("nfi_features", nfi_features_map))
-    template_dict.update(bc.build_template_dictionary("nfi_flood", nfi_flood_map))
-    template_dict.update(bc.build_template_dictionary("nfi_hazard", nfi_hazard_map))
-    template_dict.update(bc.build_template_dictionary("ppsv", ppsv_map))
-    template_dict.update(bc.build_template_dictionary("riparian", riparian_map))
-    template_dict.update(bc.build_template_dictionary("survey", survey_map))
-    template_dict.update(bc.build_template_dictionary("taxlot", taxlot_map))
-    template_dict.update(bc.build_template_dictionary("transport", transport_map))
-    template_dict.update(bc.build_template_dictionary("zoning", zoning_map))
-    dict_keys = list(template_dict.keys())
-    file_name = os.path.join(TEMPLATE_DIR, "template.json")
-    with open(file_name, "w") as fp:
-        json.dump(template_dict, fp, sort_keys=True, indent=4)
-    assert dict_keys[0] == "address_buildings_popup"
-
-
 # load template after making
-template_name = "template.json"
-file_name = os.path.join(TEMPLATE_DIR, template_name)
-with open(file_name) as json_file:
-    template = json.load(json_file)
+# template_name = "template.json"
+# file_name = os.path.join(TEMPLATE_DIR, template_name)
+# with open(file_name) as json_file:
+#     template = json.load(json_file)
+template = bct.build_template()
 
 
 @pytest.mark.skipif(
@@ -204,23 +157,6 @@ def test_group_layer():
     group_lyr = bc.group_layer("test")
     assert group_lyr["layerType"] == "GroupLayer"
     assert group_lyr["title"] == "test"
-
-
-@pytest.mark.skipif(
-    PYTEST_SKIP,
-    reason="Resource intensive. Test copies overwrite test files on the server, consuming county credit on the ArcGIS server.",
-)
-def test_county_basemap():
-    gis = GIS(
-        "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
-    )
-    test_item = gis.content.get(TEST_COUNTY_BASEMAP)
-    test_map = WebMap(test_item)
-    test_layers = test_map.layers
-    for lyr in test_layers:
-        test_map.remove_layer(lyr)
-    test_map.update()
-    bc.county_basemap(test_item, template)
 
 
 @pytest.mark.skipif(

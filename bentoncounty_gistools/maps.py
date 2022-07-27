@@ -1,9 +1,11 @@
 from arcgis.gis import GIS
 from arcgis.mapping import WebMap
 from bentoncounty_gistools import bentoncounty_gistools as bc
+from bentoncounty_gistools import template as tp
 import os
-import json
 from dotenv import load_dotenv
+
+# import json
 
 # load user name, password and template directory from .env
 load_dotenv()
@@ -34,10 +36,10 @@ TEST_TRANSPORTATION_MAP = "cb212d30a70a468d850a83eb4cc6bc08"
 TEST_ZONING_MAP = "224f58c8813840da82b59cf3f8a58678"
 
 # load map template
-template_name = "template.json"
-file_name = os.path.join(TEMPLATE_DIR, template_name)
-with open(file_name) as json_file:
-    template = json.load(json_file)
+# template_name = "template.json"
+# file_name = os.path.join(TEMPLATE_DIR, template_name)
+# with open(file_name) as json_file:
+#     template = json.load(json_file)
 
 
 def planning_map():
@@ -47,6 +49,7 @@ def planning_map():
     gis = GIS(
         "https://bentoncountygis.maps.arcgis.com/", ARCGIS_USERNAME, ARCGIS_PASSWORD
     )
+    template = tp.build_template()
     map_item = gis.content.get(TEST_COUNTY_BASEMAP)
     clear(map_item)
     bc.county_basemap(map_item, template)

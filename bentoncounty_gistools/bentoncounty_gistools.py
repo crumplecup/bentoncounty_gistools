@@ -405,21 +405,24 @@ def nfi_features_layer_names(post):
     return layer_name
 
 
-def add_feature_layer(key_name, url, group_lyr, template, title=None, visibility=None):
-    popup_name = key_name + "_popup"
-    label_name = key_name + "_label"
-    lyr = MapServiceLayer(url)
-    fc = fc_from_fl(lyr, 0.5)
-    if title != None:
-        fc.update({"title": title})
-    if visibility != None:
-        fc.update({"visibility": visibility})
-    fc.update({"popupInfo": template[popup_name]})
-    fc.update({"layerDefinition": template[label_name]})
-    group_lyr["layers"].append(fc)
-
-
 def add_single_layer(key_name, url, group_lyr, template, title=None, visibility=None):
+    """
+    Add single feature layer to parent group layer.
+
+    :param key_name: Base name for template definition reference.
+    :type key_name: Text string
+    :param url: Url address of feature service layer to add.
+    :type url: Text string (must be valid url).
+    :param group_lyr: Group layer definition target for layers.
+    :type group_lyr: Dictionary
+    :param template: Template dictionary holding layer definitions for the map.
+    :type template: Dictionary
+    :param title: Optional title to assign to the added layer.
+    :type title: Text string
+    :param visibility: Optional level of transparency to assign to new layer.
+    :type visibility: Float ranging from 0-1.
+    :return: Updates group layer definition with new layer.
+    """
     popup_name = key_name + "_popup"
     label_name = key_name + "_label"
     lyr = MapServiceLayer(url)
@@ -903,63 +906,6 @@ def survey_layer_names(post):
     return layer_name
 
 
-# delete
-def update_popup_info(names, template):
-    """
-    Build dictionary of layer info for layers.
-
-    :param template: Web map template for layer fields.
-    :return: Dictionary of short keys and layer definitions for the survey layers.
-    """
-    label_name = names("_popup")
-    ref_data = template.get_data()
-    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
-    new_data = {}
-    for i in range(0, len(label_name)):
-        new_data.update({label_name[i]: ref_list[i]["popupInfo"]})
-
-    return new_data
-
-
-# delete
-def update_layer_def(names, template):
-    """
-    Build dictionary of layer info for layers.
-
-    :param template: Web map template for layer fields.
-    :return: Dictionary of short keys and layer definitions for the survey layers.
-    """
-    label_name = names("_label")
-    ref_data = template.get_data()
-    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
-    new_data = {}
-    for i in range(0, len(label_name)):
-        new_data.update({label_name[i]: ref_list[i]["layerDefinition"]})
-
-    return new_data
-
-
-# delete
-def update_layer_info(names, template):
-    """
-    Build dictionary of layer info for layers. Includes popup info.
-
-    :param names: Function returned layers names, appends argument to base name.
-    :param template: Web map template for layer fields.
-    :return: Dictionary of short keys and layer definitions for the survey layers.
-    """
-    popup_name = names("_popup")
-    label_name = names("_label")
-    ref_data = template.get_data()
-    ref_list = ref_data["operationalLayers"][0]["layers"][0]["layers"]
-    new_data = {}
-    for i in range(0, len(popup_name)):
-        new_data.update({popup_name[i]: ref_list[i]["popupInfo"]})
-        new_data.update({label_name[i]: ref_list[i]["layerDefinition"]})
-
-    return new_data
-
-
 def test_map_layers(project_map, layers, template):
     """
     Build test map of the target layers.
@@ -1223,44 +1169,6 @@ def group_layer(title):
     group_dict.update({"layerType": "GroupLayer"})
     group_dict.update({"title": title})
     return group_dict
-
-
-# delete
-def build_template_dictionary(template_type, template):
-    template_dict = {}
-    match template_type:
-        case "address":
-            template_dict.update(update_layer_info(address_layer_names, template))
-        case "boundary":
-            template_dict.update(update_layer_info(boundary_layer_names, template))
-        case "contour":
-            template_dict.update(update_layer_info(contour_layer_names, template))
-        case "environment":
-            template_dict.update(update_layer_info(environment_layer_names, template))
-        case "hcp":
-            template_dict.update(update_layer_info(hcp_butterfly_layer_names, template))
-        case "hpsv":
-            template_dict.update(update_layer_info(hpsv_layer_names, template))
-        case "nfi_features":
-            template_dict.update(update_layer_info(nfi_features_layer_names, template))
-        case "nfi_flood":
-            template_dict.update(update_layer_info(nfi_flood_layer_names, template))
-        case "nfi_hazard":
-            template_dict.update(update_layer_info(nfi_hazard_layer_names, template))
-        case "ppsv":
-            template_dict.update(update_layer_info(ppsv_layer_names, template))
-        case "riparian":
-            template_dict.update(update_layer_info(riparian_layer_names, template))
-        case "survey":
-            template_dict.update(update_layer_info(survey_layer_names, template))
-        case "taxlot":
-            template_dict.update(update_layer_def(taxlot_layer_names, template))
-        case "transport":
-            template_dict.update(update_layer_def(transport_layer_names, template))
-        case "zoning":
-            template_dict.update(update_layer_info(zoning_layer_names, template))
-
-    return template_dict
 
 
 if __name__ == "__main__":
